@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="SqsLibraries.Common">
+      <HintPath>..\..\..\..\..\..\..\Users\Qinisela.Molefe\source\repos\SqsLibraries\SqsLibraries.Common\bin\Debug\netcoreapp2.0\SqsLibraries.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

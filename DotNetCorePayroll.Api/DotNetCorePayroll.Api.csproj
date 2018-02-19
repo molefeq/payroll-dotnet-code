@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetCorePayroll.DataAccess\DotNetCorePayroll.DataAccess.csproj" />
+    <ProjectReference Include="..\DotNetCorePayroll.ServiceBusinessRules\DotNetCorePayroll.ServiceBusinessRules.csproj" />
+    <ProjectReference Include="..\DotNetCorePayroll.Common\DotNetCorePayroll.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SqsLibraries.Common">
+      <HintPath>..\..\..\..\..\..\..\Users\Qinisela.Molefe\source\repos\SqsLibraries\SqsLibraries.Common\bin\Debug\netcoreapp2.0\SqsLibraries.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/appveyor" /></VisualStudio></ProjectExtensions>
+
+</Project>
