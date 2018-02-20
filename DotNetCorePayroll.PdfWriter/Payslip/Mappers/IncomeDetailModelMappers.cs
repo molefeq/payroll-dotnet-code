@@ -1,41 +1,41 @@
-﻿using Libraries.Common.Extensions;
+﻿//using Libraries.Common.Extensions;
 
-using DotNetCorePayroll.PdfWriter.Models;
+//using DotNetCorePayroll.PdfWriter.Models;
 
-using System.Data.SqlClient;
+//using System.Data.SqlClient;
 
-namespace DotNetCorePayroll.PdfWriter.Payslip.Mappers
-{
-    public class IncomeDetailModelMappers
-    {
-        private static IncomeDetailModelMappers _instance;
+//namespace DotNetCorePayroll.PdfWriter.Payslip.Mappers
+//{
+//    public class IncomeDetailModelMappers
+//    {
+//        private static IncomeDetailModelMappers _instance;
 
-        private IncomeDetailModelMappers()
-        {
-        }
+//        private IncomeDetailModelMappers()
+//        {
+//        }
 
-        public static IncomeDetailModelMappers Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new IncomeDetailModelMappers();
-                }
+//        public static IncomeDetailModelMappers Instance
+//        {
+//            get
+//            {
+//                if (_instance == null)
+//                {
+//                    _instance = new IncomeDetailModelMappers();
+//                }
 
-                return _instance;
-            }
-        }
+//                return _instance;
+//            }
+//        }
 
 
-        public IncomeDetailModel MapToIncomeDetailModel(SqlDataReader sqlDataReader)
-        {
-            IncomeDetailModel incomeDetailModel = new IncomeDetailModel();
+//        public IncomeDetailModel MapToIncomeDetailModel(SqlDataReader sqlDataReader)
+//        {
+//            IncomeDetailModel incomeDetailModel = new IncomeDetailModel();
 
-            incomeDetailModel.Description = sqlDataReader["Description"].ToString();
-            incomeDetailModel.Amount = sqlDataReader["Amount"].ToDecimal();
+//            incomeDetailModel.Description = sqlDataReader["Description"].ToString();
+//            incomeDetailModel.Amount = sqlDataReader["Amount"].ToDecimal();
 
-            return incomeDetailModel;
-        }
-    }
-}
+//            return incomeDetailModel;
+//        }
+//    }
+//}

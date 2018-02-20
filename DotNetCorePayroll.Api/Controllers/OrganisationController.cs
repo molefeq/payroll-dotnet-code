@@ -75,24 +75,26 @@ namespace DotNetCorePayroll.Api.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage SaveImage(ICollection<IFormFile> files)
+        public void SaveImage(ICollection<IFormFile> files)
         {
             if (files == null || files.Count == 0)
             {
-               return new HttpResponseMessage(HttpStatusCode.UnsupportedMediaType);
+              // return new HttpResponseMessage(HttpStatusCode.UnsupportedMediaType);
             }
 
-            ImageInformation normalImageInformation = new ImageInformation
-            {
-                Width = AppSettingsUtils.GetDimensionWidth("OrganisationImagesNormalDimension"),
-                Height = AppSettingsUtils.GetDimensionHeight("OrganisationImagesNormalDimension"),
-                PhysicalDirectory = AppSettingsUtils.GetAppSettingPhysicalPath("OrganisationImagesTempDirectory", HttpContext.Current.Server.MapPath),
-                RelativeDirectory = AppSettingsUtils.GetAppSettingUri(HttpContext.Current.Request.Url, "OrganisationImagesTempDirectory", VirtualPathUtility.ToAbsolute)
-            };
+            //ImageInformation normalImageInformation = new ImageInformation
+            //{
+            //    Width = AppSettingsUtils.GetDimensionWidth("OrganisationImagesNormalDimension"),
+            //    Height = AppSettingsUtils.GetDimensionHeight("OrganisationImagesNormalDimension"),
+            //    PhysicalDirectory = AppSettingsUtils.GetAppSettingPhysicalPath("OrganisationImagesTempDirectory", HttpContext.Current.Server.MapPath),
+            //    RelativeDirectory = AppSettingsUtils.GetAppSettingUri(HttpContext.Current.Request.Url, "OrganisationImagesTempDirectory", VirtualPathUtility.ToAbsolute)
+            //};
 
-            string fileName = UploadFileHandler.SaveUploadedImage(httpRequest.Files[0], normalImageInformation);
+            //string fileName = UploadFileHandler.SaveUploadedImage(httpRequest.Files[0], normalImageInformation);
 
-            return Request.CreateResponse<ImageModel>(HttpStatusCode.OK, new ImageModel { ImageFileNamePath = normalImageInformation.RelativeFileName, ImageFileName = fileName });
+            //return Request.CreateResponse<ImageModel>(HttpStatusCode.OK, new ImageModel { ImageFileNamePath = normalImageInformation.RelativeFileName, ImageFileName = fileName });
+
+            return;
         }
 
         #region Private Methods

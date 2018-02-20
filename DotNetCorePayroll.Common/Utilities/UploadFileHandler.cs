@@ -7,55 +7,55 @@ namespace DotNetCorePayroll.Common.Utilities
 {
     class UploadFileHandler
     {
-        public static string SaveUploadedImage(IFormFile postedImage, ImageInformation imageInformation)
-        {
-            if (postedImage == null)
-            {
-                return null;
-            }
+        //public static string SaveUploadedImage(IFormFile postedImage, ImageInformation imageInformation)
+        //{
+        //    if (postedImage == null)
+        //    {
+        //        return null;
+        //    }
 
-            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(postedImage.FileName);
+        //    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(postedImage.FileName);
 
-            imageInformation.PhysicalFileName = GetPhysicalFileName(imageInformation.PhysicalDirectory, fileName);
-            imageInformation.RelativeFileName = GetRelativeFileName(imageInformation.RelativeDirectory, fileName);
+        //    imageInformation.PhysicalFileName = GetPhysicalFileName(imageInformation.PhysicalDirectory, fileName);
+        //    imageInformation.RelativeFileName = GetRelativeFileName(imageInformation.RelativeDirectory, fileName);
 
-            postedImage.SaveAs(imageInformation.PhysicalFileName);
-            ResizeImage(imageInformation);
+        //    postedImage.SaveAs(imageInformation.PhysicalFileName);
+        //    ResizeImage(imageInformation);
 
-            return fileName;
-        }
+        //    return fileName;
+        //}
 
-        public static void ResizeImage(ImageInformation imageInformation)
-        {
-            ImageResizer imageResizer = new ImageResizer(imageInformation.PhysicalFileName, imageInformation.PhysicalFileName, imageInformation.Width, imageInformation.Height);
-            imageResizer.ResizeImage();
-        }
+        //public static void ResizeImage(ImageInformation imageInformation)
+        //{
+        //    ImageResizer imageResizer = new ImageResizer(imageInformation.PhysicalFileName, imageInformation.PhysicalFileName, imageInformation.Width, imageInformation.Height);
+        //    imageResizer.ResizeImage();
+        //}
 
-        public static void ResizeImage(string imageFileName, string fileName, ImageInformation imageInformation)
-        {
-            imageInformation.PhysicalFileName = GetPhysicalFileName(imageInformation.PhysicalDirectory, fileName);
-            ImageResizer imageResizer = new ImageResizer(imageFileName, imageInformation.PhysicalFileName, imageInformation.Width, imageInformation.Height);
-            imageResizer.ResizeImage();
-        }
+        //public static void ResizeImage(string imageFileName, string fileName, ImageInformation imageInformation)
+        //{
+        //    imageInformation.PhysicalFileName = GetPhysicalFileName(imageInformation.PhysicalDirectory, fileName);
+        //    ImageResizer imageResizer = new ImageResizer(imageFileName, imageInformation.PhysicalFileName, imageInformation.Width, imageInformation.Height);
+        //    imageResizer.ResizeImage();
+        //}
 
-        public static string GetPhysicalFileName(string directory, string fileName, string fileSuffix = "")
-        {
-            if (string.IsNullOrEmpty(fileSuffix))
-            {
-                return Path.Combine(directory, fileName);
-            }
+        //public static string GetPhysicalFileName(string directory, string fileName, string fileSuffix = "")
+        //{
+        //    if (string.IsNullOrEmpty(fileSuffix))
+        //    {
+        //        return Path.Combine(directory, fileName);
+        //    }
 
-            return Path.Combine(directory, Path.GetFileNameWithoutExtension(fileName) + "_" + fileSuffix + Path.GetExtension(fileName));
-        }
+        //    return Path.Combine(directory, Path.GetFileNameWithoutExtension(fileName) + "_" + fileSuffix + Path.GetExtension(fileName));
+        //}
 
-        public static string GetRelativeFileName(string virtualDirectory, string fileName, string fileSuffix = "")
-        {
-            if (string.IsNullOrEmpty(fileSuffix))
-            {
-                return Path.Combine(virtualDirectory, fileName);
-            }
+        //public static string GetRelativeFileName(string virtualDirectory, string fileName, string fileSuffix = "")
+        //{
+        //    if (string.IsNullOrEmpty(fileSuffix))
+        //    {
+        //        return Path.Combine(virtualDirectory, fileName);
+        //    }
 
-            return Path.Combine(virtualDirectory, Path.GetFileNameWithoutExtension(fileName) + "_" + fileSuffix + Path.GetExtension(fileName));
-        }
+        //    return Path.Combine(virtualDirectory, Path.GetFileNameWithoutExtension(fileName) + "_" + fileSuffix + Path.GetExtension(fileName));
+        //}
     }
 }
