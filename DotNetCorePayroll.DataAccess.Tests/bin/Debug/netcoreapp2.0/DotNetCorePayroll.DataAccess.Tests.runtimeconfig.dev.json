@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Qinisela.Molefe\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Qinisela.Molefe\\.nuget\\packages",
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ]
+  }
+}
