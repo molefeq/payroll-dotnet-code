@@ -8,6 +8,7 @@ namespace DotNetCorePayroll.Api.IocContainers
         public static void Initialise(IServiceCollection services)
         {
             services.AddSingleton<OrganisationAdapter>();
+            services.AddSingleton<AccountAdapter>();
         }
     }
 }

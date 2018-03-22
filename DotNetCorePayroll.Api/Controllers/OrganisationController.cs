@@ -1,174 +1,126 @@
-﻿using DotNetCorePayroll.Common.Utilities;
-using DotNetCorePayroll.Data.SearchFilters;
-using DotNetCorePayroll.Data.ViewModels;
-using DotNetCorePayroll.ServiceBusinessRules.Services;
+﻿//using DotNetCorePayroll.Api.Extensions;
+//using DotNetCorePayroll.Common.Utilities;
+//using DotNetCorePayroll.Data.SearchFilters;
+//using DotNetCorePayroll.Data.ViewModels;
+//using DotNetCorePayroll.ServiceBusinessRules.Services;
+
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
-using SqsLibraries.Common.Utilities.ResponseObjects;
+//using SqsLibraries.Common.Utilities.ResponseObjects;
+
 using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
+using System.IO;
 
 namespace DotNetCorePayroll.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Organisation")]
+    [Route("api/[controller]/[action]")]
     public class OrganisationController : Controller
     {
-        private IOgranisationService ogranisationService;
+        //private IOgranisationService ogranisationService;
+        //private IConfiguration configuration;
+        //private IHostingEnvironment environment;
 
-        public OrganisationController(IOgranisationService ogranisationService)
-        {
-            this.ogranisationService = ogranisationService;
-        }
-
-        [HttpPost]
-        public Result<OrganisationModel> GetOrganisations(SearchFilter searchFilter)
-        {
-            Result<OrganisationModel> result = ogranisationService.Get(searchFilter.SearchText, searchFilter.PageData);
-
-            MapRelativeLogoPaths(result.Items);
-
-            return result;
-        }
-
-        [HttpPost]
-        public Response<OrganisationModel> AddOrganisation(OrganisationModel organisationModel)
-        {
-            Response<OrganisationModel> response = ogranisationService.Add(organisationModel);
-
-            ImageFixing(response.Item, organisationModel.LogoFileNamePath);
-
-            return response; // Request.CreateResponse<Response<OrganisationModel>>(HttpStatusCode.OK, response);
-        }
-
-        [HttpPost]
-        public Response<OrganisationModel> UpdateOrganisation(OrganisationModel organisationModel)
-        {
-            Response<OrganisationModel> response = ogranisationService.Update(organisationModel);
-
-            ImageFixing(response.Item, organisationModel.LogoFileNamePath);
-
-            return response; //Request.CreateResponse<Response<OrganisationModel>>(HttpStatusCode.OK, response);
-        }
-
-        [HttpPost]
-        public Response<OrganisationModel> DeleteOrganisation(OrganisationModel organisationModel)
-        {
-            Response<OrganisationModel> response = ogranisationService.Delete(organisationModel.Id.Value);
-
-            ImageFixing(response.Item, organisationModel.LogoFileNamePath);
-
-            return response; //Request.CreateResponse<Response<OrganisationModel>>(HttpStatusCode.OK, response);
-        }
-
-        [HttpPost]
-        public Response<OrganisationModel> FetchOrganisation(Guid organisationId)
-        {
-            Response<OrganisationModel> response = ogranisationService.Find(organisationId);
-
-            MapRelativeLogoPath(response.Item);
-
-            return response;
-        }
-
-        [HttpPost]
-        public void SaveImage(ICollection<IFormFile> files)
-        {
-            if (files == null || files.Count == 0)
-            {
-              // return new HttpResponseMessage(HttpStatusCode.UnsupportedMediaType);
-            }
-
-            //ImageInformation normalImageInformation = new ImageInformation
-            //{
-            //    Width = AppSettingsUtils.GetDimensionWidth("OrganisationImagesNormalDimension"),
-            //    Height = AppSettingsUtils.GetDimensionHeight("OrganisationImagesNormalDimension"),
-            //    PhysicalDirectory = AppSettingsUtils.GetAppSettingPhysicalPath("OrganisationImagesTempDirectory", HttpContext.Current.Server.MapPath),
-            //    RelativeDirectory = AppSettingsUtils.GetAppSettingUri(HttpContext.Current.Request.Url, "OrganisationImagesTempDirectory", VirtualPathUtility.ToAbsolute)
-            //};
-
-            //string fileName = UploadFileHandler.SaveUploadedImage(httpRequest.Files[0], normalImageInformation);
-
-            //return Request.CreateResponse<ImageModel>(HttpStatusCode.OK, new ImageModel { ImageFileNamePath = normalImageInformation.RelativeFileName, ImageFileName = fileName });
-
-            return;
-        }
-
-        #region Private Methods
-
-        private void ImageFixing(OrganisationModel organisationModel, string logoFileNamePath)
-        {
-            if (organisationModel == null || string.IsNullOrEmpty(logoFileNamePath))
-            {
-                return;
-            }
-
-            //if (logoFileNamePath.Contains("/Organisations/Temp/"))
-            //{
-            //    ResizeLogos(organisationModel);
-            //}
-
-            //MapRelativeLogoPath(organisationModel);
-        }
-
-        //private void ResizeLogos(OrganisationModel organisationModel)
+        //public OrganisationController(IOgranisationService ogranisationService, IConfiguration configuration, IHostingEnvironment environment)
         //{
-        //    string logoFileName = UploadFileHandler.GetPhysicalFileName(AppSettingsUtils.GetAppSettingPhysicalPath("OrganisationImagesTempDirectory", HttpContext.Current.Server.MapPath), organisationDto.LogoFileName);
-
-        //    UploadFileHandler.ResizeImage(logoFileName, organisationModel.LogoFileName,
-        //        new ImageInformation
-        //        {
-
-        //            Width = AppSettingsUtils.GetDimensionWidth("OrganisationImagesNormalDimension"),
-        //            Height = AppSettingsUtils.GetDimensionHeight("OrganisationImagesNormalDimension"),
-        //            PhysicalDirectory = AppSettingsUtils.GetAppSettingPhysicalPath("OrganisationImagesNormalDirectory", HttpContext.Current.Server.MapPath),
-        //            RelativeDirectory = AppSettingsUtils.GetAppSettingUri(HttpContext.Current.Request.Url, "OrganisationImagesNormalDirectory", VirtualPathUtility.ToAbsolute)
-        //        });
-
-        //    UploadFileHandler.ResizeImage(logoFileName, organisationModel.LogoFileName,
-        //        new ImageInformation
-        //        {
-
-        //            Width = AppSettingsUtils.GetDimensionWidth("OrganisationImagesThumbnailsDimension"),
-        //            Height = AppSettingsUtils.GetDimensionHeight("OrganisationImagesThumbnailsDimension"),
-        //            PhysicalDirectory = AppSettingsUtils.GetAppSettingPhysicalPath("OrganisationImagesThumbnailsDirectory", HttpContext.Current.Server.MapPath),
-        //            RelativeDirectory = AppSettingsUtils.GetAppSettingUri(HttpContext.Current.Request.Url, "OrganisationImagesThumbnailsDirectory", VirtualPathUtility.ToAbsolute)
-        //        });
-
-        //    UploadFileHandler.ResizeImage(logoFileName, organisationModel.LogoFileName,
-        //        new ImageInformation
-        //        {
-
-        //            Width = AppSettingsUtils.GetDimensionWidth("OrganisationImagesPreviewDimension"),
-        //            Height = AppSettingsUtils.GetDimensionHeight("OrganisationImagesPreviewDimension"),
-        //            PhysicalDirectory = AppSettingsUtils.GetAppSettingPhysicalPath("OrganisationImagesPreviewDirectory", HttpContext.Current.Server.MapPath),
-        //            RelativeDirectory = AppSettingsUtils.GetAppSettingUri(HttpContext.Current.Request.Url, "OrganisationImagesPreviewDirectory", VirtualPathUtility.ToAbsolute)
-        //        });
+        //    this.ogranisationService = ogranisationService;
+        //    this.configuration = configuration;
+        //    this.environment = environment;
         //}
 
-        private void MapRelativeLogoPaths(List<OrganisationModel> organisationModels)
-        {
-            if (organisationModels == null || organisationModels.Count == 0)
-            {
-                return;
-            }
+        //[HttpPost]
+        //public Result<OrganisationModel> GetOrganisations(SearchFilter searchFilter)
+        //{
+        //    Result<OrganisationModel> result = ogranisationService.Get(searchFilter.SearchText, searchFilter.PageData);
 
-            organisationModels.ForEach(item => MapRelativeLogoPath(item));
-        }
+        //    ogranisationService.MapRelativeLogoPaths(result.Items, configuration, HttpContext.Request.CurrentUrl());
 
-        private void MapRelativeLogoPath(OrganisationModel organisationModel)
-        {
-            if (string.IsNullOrEmpty(organisationModel.LogoFileName))
-            {
-                return;
-            }
+        //    return result;
+        //}
 
-            // organisationModel.LogoFileNamePath = AppSettingsUtils.GetStringAppSetting("SiteUrl") + UploadFileHandler.GetRelativeFileName(AppSettingsUtils.GetAppSettingPhysicalPath("OrganisationImagesNormalDirectory", VirtualPathUtility.ToAbsolute), organisationDto.LogoFileName);
-        }
+        //[HttpPost]
+        //public Response<OrganisationModel> AddOrganisation(OrganisationModel organisationModel)
+        //{
+        //    Response<OrganisationModel> response = ogranisationService.Add(organisationModel);
 
-        #endregion
+        //    ImageFixing(response.Item, organisationModel.LogoFileNamePath);
+
+        //    return response;
+        //}
+
+        //[HttpPost]
+        //public Response<OrganisationModel> UpdateOrganisation(OrganisationModel organisationModel)
+        //{
+        //    Response<OrganisationModel> response = ogranisationService.Update(organisationModel);
+
+        //    ImageFixing(response.Item, organisationModel.LogoFileNamePath);
+
+        //    return response;
+        //}
+
+        //[HttpPost]
+        //public Response<OrganisationModel> DeleteOrganisation(OrganisationModel organisationModel)
+        //{
+        //    Response<OrganisationModel> response = ogranisationService.Delete(organisationModel.Id.Value);
+
+        //    ImageFixing(response.Item, organisationModel.LogoFileNamePath);
+
+        //    return response;
+        //}
+
+        //[HttpPost]
+        //public Response<OrganisationModel> FetchOrganisation(Guid organisationId)
+        //{
+        //    Response<OrganisationModel> response = ogranisationService.Find(organisationId);
+
+        //    ogranisationService.MapRelativeLogoPath(response.Item, configuration, HttpContext.Request.CurrentUrl());
+
+        //    return response;
+        //}
+
+        //[HttpPost]
+        //public IActionResult SaveImage(IFormFile file)
+        //{
+        //    if (file == null || file.Length == 0)
+        //    {
+        //        return BadRequest(new { message = "Image upload failed, file is required and must not be null." });
+        //    }
+
+        //    long size = file.Length;
+
+        //    string filename = FileHandler.SaveImage(new ImageModel
+        //    {
+        //        File = file.OpenReadStream(),
+        //        OriginalFileName = file.FileName,
+        //        Width = configuration.OrganisationNormalImageWidth(),
+        //        Height = configuration.OrganisationNormalImageHeight(),
+        //        PhysicalDirectory = Path.Combine(environment.WebRootPath, configuration.OrganisationNormalTempDirectory()),
+        //        RelativeDirectory = new Uri(HttpContext.Request.CurrentUrl() + configuration.OrganisationNormalTempDirectory()).AbsoluteUri
+        //    });
+
+        //    return Ok(new { filename, size });
+        //}
+
+        //#region Private Methods
+
+        //private void ImageFixing(OrganisationModel organisationModel, string logoFileNamePath)
+        //{
+        //    if (organisationModel == null || string.IsNullOrEmpty(logoFileNamePath))
+        //    {
+        //        return;
+        //    }
+
+        //    if (logoFileNamePath.Contains(configuration.OrganisationNormalTempDirectory()))
+        //    {
+        //        ogranisationService.ResizeLogos(organisationModel, configuration, environment.WebRootPath, HttpContext.Request.CurrentUrl());
+        //    }
+
+        //    ogranisationService.MapRelativeLogoPath(organisationModel, configuration, HttpContext.Request.CurrentUrl());
+        //}
+
+        //#endregion
     }
 }

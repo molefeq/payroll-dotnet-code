@@ -1,0 +1,91 @@
+2018-03-22 20:54:30.467 +02:00 [INF] Host starting...
+2018-03-22 20:54:31.775 +02:00 [INF] User profile is available. Using 'C:\Users\Qinisela.Molefe\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2018-03-22 20:54:37.893 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/  
+2018-03-22 20:54:38.029 +02:00 [INF] Request finished in 141.1039ms 200 text/html
+2018-03-22 20:54:38.270 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/v1/swagger.json  
+2018-03-22 20:54:38.519 +02:00 [INF] Request finished in 248.7211ms 200 application/json
+2018-03-22 20:54:51.959 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:58308/api/Account/Login application/json-patch+json 97
+2018-03-22 20:54:52.182 +02:00 [INF] Executing action method DotNetCorePayroll.Api.Controllers.AccountController.Login (DotNetCorePayroll.Api) with arguments (["DotNetCorePayroll.Data.ViewModels.LoginModel"]) - ModelState is "Invalid"
+2018-03-22 20:54:52.193 +02:00 [INF] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2018-03-22 20:54:52.204 +02:00 [INF] Executed action DotNetCorePayroll.Api.Controllers.AccountController.Login (DotNetCorePayroll.Api) in 159.0863ms
+2018-03-22 20:54:52.206 +02:00 [INF] Request finished in 246.9983ms 422 application/json; charset=utf-8
+2018-03-22 21:07:00.772 +02:00 [INF] Host starting...
+2018-03-22 21:07:01.552 +02:00 [INF] User profile is available. Using 'C:\Users\Qinisela.Molefe\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2018-03-22 21:07:06.224 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/  
+2018-03-22 21:07:06.350 +02:00 [INF] Request finished in 130.7347ms 200 text/html
+2018-03-22 21:07:06.574 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/v1/swagger.json  
+2018-03-22 21:07:06.839 +02:00 [INF] Request finished in 264.2238ms 200 application/json
+2018-03-22 21:08:01.360 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:58308/api/Account/ResetPassword/test  0
+2018-03-22 21:08:01.621 +02:00 [INF] Executing action method DotNetCorePayroll.Api.Controllers.AccountController.ResetPassword (DotNetCorePayroll.Api) with arguments (["test"]) - ModelState is "Valid"
+2018-03-22 21:08:05.266 +02:00 [INF] Executing JsonResult, writing value { data = True }.
+2018-03-22 21:08:05.275 +02:00 [INF] Executed action DotNetCorePayroll.Api.Controllers.AccountController.ResetPassword (DotNetCorePayroll.Api) in 3777.6914ms
+2018-03-22 21:08:05.276 +02:00 [INF] Request finished in 3915.8189ms 200 application/json; charset=utf-8
+2018-03-22 21:23:26.700 +02:00 [INF] Host starting...
+2018-03-22 21:23:27.576 +02:00 [INF] User profile is available. Using 'C:\Users\Qinisela.Molefe\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2018-03-22 21:23:32.144 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/  
+2018-03-22 21:23:32.265 +02:00 [INF] Request finished in 125.3109ms 200 text/html
+2018-03-22 21:23:32.290 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/css/reset.css  
+2018-03-22 21:23:32.296 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/css/screen.css  
+2018-03-22 21:23:32.314 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/object-assign-pollyfill.js  
+2018-03-22 21:23:32.317 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/jquery-1.8.0.min.js  
+2018-03-22 21:23:32.318 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/jquery.slideto.min.js  
+2018-03-22 21:23:32.321 +02:00 [INF] The file /css/reset.css was not modified
+2018-03-22 21:23:32.321 +02:00 [INF] The file /css/screen.css was not modified
+2018-03-22 21:23:32.321 +02:00 [INF] The file /lib/object-assign-pollyfill.js was not modified
+2018-03-22 21:23:32.321 +02:00 [INF] The file /lib/jquery-1.8.0.min.js was not modified
+2018-03-22 21:23:32.321 +02:00 [INF] The file /lib/jquery.slideto.min.js was not modified
+2018-03-22 21:23:32.326 +02:00 [INF] Request finished in 8.9256ms 304 application/javascript
+2018-03-22 21:23:32.326 +02:00 [INF] Request finished in 29.3938ms 304 text/css
+2018-03-22 21:23:32.326 +02:00 [INF] Request finished in 35.6409ms 304 text/css
+2018-03-22 21:23:32.326 +02:00 [INF] Request finished in 7.4054ms 304 application/javascript
+2018-03-22 21:23:32.326 +02:00 [INF] Request finished in 12.0758ms 304 application/javascript
+2018-03-22 21:23:32.355 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/lodash.min.js  
+2018-03-22 21:23:32.357 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/css/typography.css  
+2018-03-22 21:23:32.357 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/handlebars-4.0.5.js  
+2018-03-22 21:23:32.357 +02:00 [INF] The file /lib/lodash.min.js was not modified
+2018-03-22 21:23:32.379 +02:00 [INF] Request finished in 24.1659ms 304 application/javascript
+2018-03-22 21:23:32.380 +02:00 [INF] The file /lib/handlebars-4.0.5.js was not modified
+2018-03-22 21:23:32.380 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/jquery.ba-bbq.min.js  
+2018-03-22 21:23:32.381 +02:00 [INF] The file /css/typography.css was not modified
+2018-03-22 21:23:32.381 +02:00 [INF] Request finished in 23.4417ms 304 application/javascript
+2018-03-22 21:23:32.382 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/backbone-min.js  
+2018-03-22 21:23:32.381 +02:00 [INF] Request finished in 25.3696ms 304 text/css
+2018-03-22 21:23:32.382 +02:00 [INF] The file /lib/jquery.ba-bbq.min.js was not modified
+2018-03-22 21:23:32.382 +02:00 [INF] Request finished in 2.8562ms 304 application/javascript
+2018-03-22 21:23:32.382 +02:00 [INF] The file /lib/backbone-min.js was not modified
+2018-03-22 21:23:32.383 +02:00 [INF] Request finished in 0.4187ms 304 application/javascript
+2018-03-22 21:23:32.412 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/jquery.wiggle.min.js  
+2018-03-22 21:23:32.435 +02:00 [INF] The file /lib/jquery.wiggle.min.js was not modified
+2018-03-22 21:23:32.435 +02:00 [INF] Request finished in 22.9313ms 304 application/javascript
+2018-03-22 21:23:32.436 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/jsoneditor.min.js  
+2018-03-22 21:23:32.436 +02:00 [INF] The file /lib/jsoneditor.min.js was not modified
+2018-03-22 21:23:32.437 +02:00 [INF] Request finished in 1.4317ms 304 application/javascript
+2018-03-22 21:23:32.441 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/swagger-oauth.js  
+2018-03-22 21:23:32.439 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/highlight.9.1.0.pack_extended.js  
+2018-03-22 21:23:32.463 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/marked.js  
+2018-03-22 21:23:32.463 +02:00 [INF] The file /lib/swagger-oauth.js was not modified
+2018-03-22 21:23:32.464 +02:00 [INF] The file /lib/marked.js was not modified
+2018-03-22 21:23:32.486 +02:00 [INF] Request finished in 22.927ms 304 application/javascript
+2018-03-22 21:23:32.486 +02:00 [INF] Request finished in 22.7603ms 304 application/javascript
+2018-03-22 21:23:32.486 +02:00 [INF] The file /lib/highlight.9.1.0.pack_extended.js was not modified
+2018-03-22 21:23:32.487 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/swagger-ui.min.js  
+2018-03-22 21:23:32.487 +02:00 [INF] Request finished in 49.9077ms 304 application/javascript
+2018-03-22 21:23:32.487 +02:00 [INF] The file /swagger-ui.min.js was not modified
+2018-03-22 21:23:32.488 +02:00 [INF] Request finished in 1.3914ms 304 application/javascript
+2018-03-22 21:23:32.527 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/lib/highlight.9.1.0.pack.js  
+2018-03-22 21:23:32.528 +02:00 [INF] The file /lib/highlight.9.1.0.pack.js was not modified
+2018-03-22 21:23:32.529 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/images/logo_small.png  
+2018-03-22 21:23:32.529 +02:00 [INF] Request finished in 2.2253ms 304 application/javascript
+2018-03-22 21:23:32.530 +02:00 [INF] The file /images/logo_small.png was not modified
+2018-03-22 21:23:32.532 +02:00 [INF] Request finished in 2.8946ms 304 image/png
+2018-03-22 21:23:32.536 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/css/print.css  
+2018-03-22 21:23:32.536 +02:00 [INF] The file /css/print.css was not modified
+2018-03-22 21:23:32.536 +02:00 [INF] Request finished in 0.2899ms 304 text/css
+2018-03-22 21:23:32.615 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/v1/swagger.json  
+2018-03-22 21:23:32.845 +02:00 [INF] Request finished in 230.222ms 200 application/json
+2018-03-22 21:24:08.987 +02:00 [INF] Host starting...
+2018-03-22 21:24:09.847 +02:00 [INF] User profile is available. Using 'C:\Users\Qinisela.Molefe\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2018-03-22 21:24:14.574 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/  
+2018-03-22 21:24:14.696 +02:00 [INF] Request finished in 126.9587ms 200 text/html
+2018-03-22 21:24:14.926 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:58308/swagger/v1/swagger.json  
+2018-03-22 21:24:15.169 +02:00 [INF] Request finished in 242.9212ms 200 application/json

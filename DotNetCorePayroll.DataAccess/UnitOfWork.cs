@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCorePayroll.DataAccess
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private PayrollContext context;
         private bool disposed;
@@ -14,6 +14,7 @@ namespace DotNetCorePayroll.DataAccess
         #region Private Repositories Fields
 
         private OrganisationRepository organisation;
+        private AccountRepository account;
 
         #endregion
 
@@ -44,6 +45,19 @@ namespace DotNetCorePayroll.DataAccess
                 }
 
                 return organisation;
+            }
+        }
+
+        public AccountRepository Account
+        {
+            get
+            {
+                if (account == null)
+                {
+                    account = new AccountRepository(context);
+                }
+
+                return account;
             }
         }
 

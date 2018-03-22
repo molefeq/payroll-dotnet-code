@@ -1,4 +1,5 @@
 ﻿using DotNetCorePayroll.ServiceBusinessRules.Services;
+using DotNetCorePayroll.ServiceBusinessRules.Services.Account;
 using DotNetCorePayroll.ServiceBusinessRules.Services.Organisation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +9,8 @@ namespace DotNetCorePayroll.Api.IocContainers
     {
         public static void Initialise(IServiceCollection services)
         {
-            services.AddSingleton<IOgranisationService, OgranisationService>();
+            services.AddScoped<IOgranisationService, OgranisationService>();
+            services.AddScoped<IAccountService, AccountService>();
         }
     }
 }

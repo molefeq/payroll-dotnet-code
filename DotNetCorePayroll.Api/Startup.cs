@@ -1,5 +1,8 @@
-﻿using DotNetCorePayroll.Api.IocContainers;
+﻿using DotNetCorePayroll.Api.Extensions;
+using DotNetCorePayroll.Api.IocContainers;
+using DotNetCorePayroll.Api.Providers;
 using DotNetCorePayroll.DataAccess;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+
+using Swashbuckle.AspNetCore.Swagger;
+
 using System;
 using System.Text;
 
@@ -24,6 +30,8 @@ namespace DotNetCorePayroll.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddAuthorization();
             services.AddAuthentication(options =>
             {
                 options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -35,11 +43,27 @@ namespace DotNetCorePayroll.Api
                 cfg.SaveToken = true;
                 cfg.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidIssuer = Configuration["JwtIssuer"],
-                    ValidAudience = Configuration["JwtIssuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
+                    ValidIssuer = Configuration["token:issuer"],
+                    ValidAudience = Configuration["token:audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["token:key"])),
                     ClockSkew = TimeSpan.Zero // remove delay of token when expire
                 };
+            });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "Zenit Payroll API V1",
+                    Version = "v1",
+                    Description = "Zenit Payroll Web API written in ASP.NET Core Web API",
+                    Contact = new Contact { Name = "Qinisela Molefe", Email = "molefeq@gmail.com", Url = "https://www.codeassembly.co.za" },
+                });
+
+                //// Set the comments path for the Swagger JSON and UI.
+                //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                //var xmlPath = Path.Combine(basePath, "dotnetcore-file-upload.xml");
+                //c.IncludeXmlComments(xmlPath);
             });
 
             services.AddDbContext<PayrollContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Payroll_DB_Local")));
@@ -47,9 +71,10 @@ namespace DotNetCorePayroll.Api
 
             Adapters.Initialise(services);
             Builders.Initialise(services);
+            BusinessRules.Initialise(services);
             Services.Initialise(services);
 
-            services.AddMvc();
+            services.AddScoped<LoginProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +85,14 @@ namespace DotNetCorePayroll.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UsePayrollExceptionHandler();
+            app.UseSwagger();
             app.UseAuthentication();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Zenit Payroll API V1");
+            });
 
             app.UseMvc();
         }

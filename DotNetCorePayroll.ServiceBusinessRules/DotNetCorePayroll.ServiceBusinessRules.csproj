@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DotNetCorePayroll.Common\DotNetCorePayroll.Common.csproj" />
     <ProjectReference Include="..\DotNetCorePayroll.DataAccess\DotNetCorePayroll.DataAccess.csproj" />
+    <ProjectReference Include="..\DotNetCorePayroll.Domain\DotNetCorePayroll.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
