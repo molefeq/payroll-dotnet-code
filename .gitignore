@@ -1,2 +1,6 @@
 **/Serilogs
 **/node_modules
+*.dll
+*.pdb
+*.vs
+*.user
