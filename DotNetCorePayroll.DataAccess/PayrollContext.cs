@@ -31,5 +31,10 @@ namespace DotNetCorePayroll.DataAccess
             ProvinceBuilder.Build(modelBuilder);
             RoleBuilder.Build(modelBuilder);
         }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
     }
 }

@@ -5,6 +5,7 @@ using DotNetCorePayroll.DataAccess.Repositories;
 
 using SqsLibraries.Common.Utilities;
 using SqsLibraries.Common.Utilities.ResponseObjects;
+
 using System;
 
 namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
@@ -75,17 +76,22 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
             {
                 throw new ResponseValidationException(ResponseMessage.ToError("Username", "Username is currently being used another user."));
             }
+
+            if (accountRepository.GetById(a => a.EmailAddress.Equals(accountModel.EmailAddress)) != null)
+            {
+                throw new ResponseValidationException(ResponseMessage.ToError("EmailAddress", "Email address is currently being used another user."));
+            }
         }
 
         public void UpdateCheck(AccountModel accountModel, AccountRepository accountRepository)
         {
-            if (accountModel == null || accountModel.Id == null || accountModel.Id.Value == int.MinValue ||
-                accountRepository.GetById(s => s.Id == accountModel.Id.Value && s.DisableDate == null) == null)
+            if (accountModel == null || accountModel.Id == null || accountModel.Id.Value == Guid.Empty ||
+                accountRepository.GetById(a => a.Guid == accountModel.Id.Value && a.DisableDate == null) == null)
             {
                 throw new ResponseValidationException(ResponseMessage.ToError("The account entry you trying to update does not exist."));
             }
 
-            if (accountRepository.GetById(a => a.Id != accountModel.Id.Value && a.Username.Equals(accountModel.Username)) != null)
+            if (accountRepository.GetById(a => a.Guid != accountModel.Id.Value && a.Username.Equals(accountModel.Username)) != null)
             {
                 throw new ResponseValidationException(ResponseMessage.ToError("Username", "Username is currently being used another account."));
             }

@@ -25,7 +25,7 @@ namespace DotNetCorePayroll.Api.Providers
 
         public UserModel Login(LoginModel loginmodel)
         {
-            UserModel user = this.accountService.Login(loginmodel);
+            UserModel user = accountService.Login(loginmodel);
 
             user.Token = new JwtSecurityTokenHandler().WriteToken(CreateToken(user));
 

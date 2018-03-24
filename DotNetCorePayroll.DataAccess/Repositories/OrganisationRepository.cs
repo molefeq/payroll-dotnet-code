@@ -2,9 +2,7 @@
 
 using SqsLibraries.Common.Utilities.ResponseObjects;
 
-using System;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace DotNetCorePayroll.DataAccess.Repositories
 {
@@ -12,20 +10,16 @@ namespace DotNetCorePayroll.DataAccess.Repositories
     {
         public OrganisationRepository(PayrollContext context) : base(context) { }
 
-        public Result<Organisation> GetOrganisations(string searchText, PageData pageData)
+        public Result<Organisation> Get(string searchText, PageData pageData)
         {
-            Expression<Func<Organisation, bool>> filter = null;
+            IQueryable<Organisation> query = dbSet;
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                filter = o => o.Name.Contains(searchText) || o.Description.Contains(searchText);
+                query = query.Where(o => o.Name.Contains(searchText) || o.Description.Contains(searchText));
             }
 
-            return new Result<Organisation>
-            {
-                Items = GetEntities(filter, o => o.OrderBy(t => t.Name), pageData, "PhysicalAddress, PostalAddress").ToList(),
-                TotalItems = CountEntities(filter)
-            };
+            return GetPagedEntities(query, pageData, "PhysicalAddress, PostalAddress");
         }
     }
 }

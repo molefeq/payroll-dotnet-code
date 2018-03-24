@@ -11,8 +11,8 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelAdapters
             account.Lastname = accountModel.Lastname;
             account.EmailAddress = accountModel.EmailAddress;
             account.ContactNumber = accountModel.ContactNumber;
-            account.RoleId = accountModel.RoleId;
-            account.OrganisationId = accountModel.OrganisationId;
+            account.RoleId = accountModel.RoleId.Value;
+            account.OrganisationId = accountModel.OrganisationId.Value;
             account.CompanyId = accountModel.CompanyId;
         }
     }

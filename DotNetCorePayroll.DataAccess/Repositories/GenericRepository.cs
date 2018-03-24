@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using Npgsql;
-
+using SqsLibraries.Common.Enums;
 using SqsLibraries.Common.Extensions;
 using SqsLibraries.Common.Utilities.ResponseObjects;
 
@@ -121,6 +121,38 @@ namespace DotNetCorePayroll.DataAccess.Repositories
             }
 
             return query.Where(filter).FirstOrDefault<TEntity>();
+        }
+
+        public Result<TEntity> GetPagedEntities(IQueryable<TEntity> query, PageData pageData, string includeProperties = null)
+        {
+            Include(query, includeProperties);
+
+            if (typeof(TEntity).GetProperty(pageData.SortColumn) != null)
+            {
+                if (pageData.SortOrder == SortOrder.DESC)
+                {
+                    query = query.OrderByDescending(item => item.GetType().GetProperty(pageData.SortColumn).GetValue(item));
+                }
+                else
+                {
+                    query = query.OrderBy(item => item.GetType().GetProperty(pageData.SortColumn).GetValue(item));
+                }
+            }
+
+            if (pageData != null && !pageData.IncludeAllData)
+            {
+                return new Result<TEntity>
+                {
+                    Items = query.Skip(pageData.Skip.Value).Take(pageData.Take.Value).ToList(),
+                    TotalItems = query.Count()
+                };
+            }
+
+            return new Result<TEntity>
+            {
+                Items = query.ToList(),
+                TotalItems = query.Count()
+            };
         }
 
         public virtual async Task<TEntity> GetByIdAsync(Expression<Func<TEntity, bool>> filter, string includeProperties = "")

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCorePayroll.DataAccess
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private PayrollContext context;
         private bool disposed;
@@ -62,24 +62,5 @@ namespace DotNetCorePayroll.DataAccess
         }
 
         #endregion
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
     }
 }

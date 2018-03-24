@@ -1,5 +1,6 @@
 ﻿using DotNetCorePayroll.Common.Exceptions;
 using DotNetCorePayroll.Common.Extensions;
+using DotNetCorePayroll.Data.SearchFilters;
 using DotNetCorePayroll.Data.ViewModels;
 using DotNetCorePayroll.DataAccess;
 using DotNetCorePayroll.ServiceBusinessRules.ModelAdapters;
@@ -12,169 +13,158 @@ using SqsLibraries.Common.Utilities;
 using SqsLibraries.Common.Utilities.ResponseObjects;
 
 using System;
+using System.Linq;
 using System.Text;
 
 namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
 {
     public class AccountService : IAccountService
     {
-        private PayrollContext context;
+        private IUnitOfWork unitOfWork;
         private AccountBuilder accountBuilder;
         private AccountAdapter accountAdapter;
         private AccountBusinessRules accountBusinessRules;
 
-        public AccountService(PayrollContext context, AccountBuilder accountBuilder, AccountAdapter accountAdapter, AccountBusinessRules accountBusinessRules)
+        public AccountService(IUnitOfWork unitOfWork, AccountBuilder accountBuilder, AccountAdapter accountAdapter, AccountBusinessRules accountBusinessRules)
         {
-            this.context = context;
+            this.unitOfWork = unitOfWork;
             this.accountBuilder = accountBuilder;
             this.accountAdapter = accountAdapter;
             this.accountBusinessRules = accountBusinessRules;
         }
 
-        public AccountModel Read(long accountId)
+        public Result<AccountModel> Get(AccountSearchFilter accountSearchFilter)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(context))
+            var result = unitOfWork.Account.Get(accountSearchFilter);
+
+            if (result == null)
             {
-                var account = unitOfWork.Account.GetById(a => a.Id == accountId, "Organisation, Company, Role");
-
-                if (account == null)
-                {
-                    throw new ResponseValidationException(ResponseMessage.ToError("Account entry you trying to fetch does not exist."));
-                }
-
-                return accountBuilder.BuildToAccountModel(account);
+                new Result<AccountModel>();
             }
+
+            return new Result<AccountModel>
+            {
+                TotalItems = result.TotalItems,
+                Items = result.Items.Select(a => accountBuilder.BuildToAccountModel(a)).ToList()
+            };
+        }
+
+        public AccountModel Read(Guid accountId)
+        {
+            var account = unitOfWork.Account.GetById(a => a.Guid == accountId, "Organisation, Company, Role");
+
+            if (account == null)
+            {
+                throw new ResponseValidationException(ResponseMessage.ToError("Account entry you trying to fetch does not exist."));
+            }
+
+            return accountBuilder.BuildToAccountModel(account);
         }
 
         public AccountModel Create(AccountModel accountModel, IConfiguration configuration)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(context))
-            {
-                accountBusinessRules.CreateCheck(accountModel, unitOfWork.Account);
-                accountModel.Password = GeneratePassword.CreateRandomPassword();
-                unitOfWork.Account.Insert(accountBuilder.Build(accountModel));
-                unitOfWork.Save();
-            }
+            accountBusinessRules.CreateCheck(accountModel, unitOfWork.Account);
+            accountModel.Password = GeneratePassword.CreateRandomPassword();
+            unitOfWork.Account.Insert(accountBuilder.Build(accountModel));
+            unitOfWork.Save();
 
-            SendCreateAccountEmail(accountModel, configuration);
+            //SendCreateAccountEmail(accountModel, configuration);
 
             return GetAccountByUsername(accountModel.Username);
         }
 
         public AccountModel Update(AccountModel accountModel)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(context))
-            {
-                accountBusinessRules.UpdateCheck(accountModel, unitOfWork.Account);
-                
-                var account = unitOfWork.Account.GetById(a => a.Id == accountModel.Id.Value);
+            accountBusinessRules.UpdateCheck(accountModel, unitOfWork.Account);
 
-                accountAdapter.Update(account, accountModel);
-                unitOfWork.Account.Update(account);
-                unitOfWork.Save();
-            }
-            
+            var account = unitOfWork.Account.GetById(a => a.Guid == accountModel.Id.Value);
+
+            accountAdapter.Update(account, accountModel);
+            unitOfWork.Account.Update(account);
+            unitOfWork.Save();
+
             return GetAccountByUsername(accountModel.Username);
         }
 
-        public void Delete(AccountModel accountModel)
+        public void Delete(Guid accountId)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(context))
+            var account = unitOfWork.Account.GetById(a => a.Guid == accountId && a.DisableDate == null);
+
+            if (account == null)
             {
-                var account = unitOfWork.Account.GetById(a => a.Id == accountModel.Id && a.DisableDate == null);
-
-                if (account == null)
-                {
-                    throw new ResponseValidationException(ResponseMessage.ToError("The account entry you trying to delete does not exist."));
-                }
-
-                account.DisableDate = DateTime.Now;
-
-                unitOfWork.Account.Update(account);
-
-                unitOfWork.Save();
+                throw new ResponseValidationException(ResponseMessage.ToError("The account entry you trying to delete does not exist."));
             }
+
+            account.DisableDate = DateTime.Now;
+
+            unitOfWork.Account.Update(account);
+
+            unitOfWork.Save();
         }
 
         public AccountModel GetAccountByUsername(string username)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(context))
+            var account = unitOfWork.Account.GetById(a => a.Username == username, "Organisation, Company, Role");
+
+            if (account == null)
             {
-                var account = unitOfWork.Account.GetById(a => a.Username == username, "Organisation, Company, Role");
-
-                if (account == null)
-                {
-                    throw new ResponseValidationException(ResponseMessage.ToError("Account entry you trying to fetch does not exist."));
-                }
-
-                return accountBuilder.BuildToAccountModel(account);
+                throw new ResponseValidationException(ResponseMessage.ToError("Account entry you trying to fetch does not exist."));
             }
+
+            return accountBuilder.BuildToAccountModel(account);
         }
 
         public UserModel Login(LoginModel loginModel)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(context))
-            {
-                accountBusinessRules.LoginCheck(loginModel, unitOfWork.Account);
+            accountBusinessRules.LoginCheck(loginModel, unitOfWork.Account);
 
-                var account = unitOfWork.Account.GetById(a => a.Username == loginModel.Username, "Company, Organisation, Role");
+            var account = unitOfWork.Account.GetById(a => a.Username == loginModel.Username, "Company, Organisation, Role");
 
-                return accountBuilder.BuildToUserModel(account);
-            }
+            return accountBuilder.BuildToUserModel(account);
         }
 
         public AccountModel PasswordResetRequest(string username, IConfiguration configuration)
         {
             AccountModel accountModel = null;
-            using (UnitOfWork unitOfWork = new UnitOfWork(context))
-            {
-                accountBusinessRules.ResetPasswordRequestCheck(username, unitOfWork.Account);
+            accountBusinessRules.ResetPasswordRequestCheck(username, unitOfWork.Account);
 
-                var account = unitOfWork.Account.GetById(a => a.Username == username, "Company, Organisation, Role");
+            var account = unitOfWork.Account.GetById(a => a.Username == username, "Company, Organisation, Role");
 
-                account.PasswordResetKey = Guid.NewGuid();
-                unitOfWork.Account.Update(account);
+            account.PasswordResetKey = Guid.NewGuid();
+            unitOfWork.Account.Update(account);
 
-                accountModel= accountBuilder.BuildToAccountModel(account);
-            }
-
-            SendResetPasswordEmail(accountModel, configuration);
+            accountModel = accountBuilder.BuildToAccountModel(account);
+            // SendResetPasswordEmail(accountModel, configuration);
 
             return accountModel;
         }
 
         public UserModel ChangePassword(string username, string password)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(context))
-            {
-                accountBusinessRules.ChangePasswordCheck(username, unitOfWork.Account);
+            accountBusinessRules.ChangePasswordCheck(username, unitOfWork.Account);
 
-                var account = unitOfWork.Account.GetById(a => a.Username == username, "Organisation, Company, Role");
+            var account = unitOfWork.Account.GetById(a => a.Username == username, "Organisation, Company, Role");
 
-                account.PasswordSalt = GeneratePassword.PasswordSalt();
-                account.Password = GeneratePassword.HashedPassword(password, account.PasswordSalt);
+            account.PasswordSalt = GeneratePassword.PasswordSalt();
+            account.Password = GeneratePassword.HashedPassword(password, account.PasswordSalt);
 
-                unitOfWork.Account.Update(account);
+            unitOfWork.Account.Update(account);
 
-                return accountBuilder.BuildToUserModel(account);
-            }
+            return accountBuilder.BuildToUserModel(account);
         }
 
         public UserModel ResetPassword(Guid forgotPasswordKey, string password)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(context))
-            {
-                accountBusinessRules.ResetPasswordCheck(forgotPasswordKey, unitOfWork.Account);
+            accountBusinessRules.ResetPasswordCheck(forgotPasswordKey, unitOfWork.Account);
 
-                var account = unitOfWork.Account.GetById(a => a.PasswordResetKey == forgotPasswordKey, "Organisation, Company, Role");
+            var account = unitOfWork.Account.GetById(a => a.PasswordResetKey == forgotPasswordKey, "Organisation, Company, Role");
 
-                account.PasswordSalt = GeneratePassword.PasswordSalt();
-                account.Password = GeneratePassword.HashedPassword(password, account.PasswordSalt);
+            account.PasswordSalt = GeneratePassword.PasswordSalt();
+            account.Password = GeneratePassword.HashedPassword(password, account.PasswordSalt);
 
-                unitOfWork.Account.Update(account);
+            unitOfWork.Account.Update(account);
 
-                return accountBuilder.BuildToUserModel(account);
-            }
+            return accountBuilder.BuildToUserModel(account);
         }
 
         #region Private Methods

@@ -5,7 +5,7 @@ namespace DotNetCorePayroll.Data.ViewModels
 {
     public class AccountModel
     {
-        public long? Id { get; set; }
+        public Guid? Id { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Username is required and empty spaces are not allowed.")]
         [MaxLength(100, ErrorMessage = "Username cannot not be more than 100 characters.")]
@@ -29,12 +29,12 @@ namespace DotNetCorePayroll.Data.ViewModels
         public string ContactNumber { get; set; }
 
         [Required(ErrorMessage ="Organisation is required.")]
-        public long OrganisationId { get; set; }
+        public long? OrganisationId { get; set; }
 
         public long? CompanyId { get; set; }
 
         [Required(ErrorMessage = "Role is required.")]
-        public long RoleId { get; set; }
+        public long? RoleId { get; set; }
 
         public Guid? ForgotPasswordKey { get; set; }
 

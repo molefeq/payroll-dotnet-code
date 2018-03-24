@@ -1,4 +1,6 @@
-﻿namespace DotNetCorePayroll.Data.ViewModels
+﻿using System;
+
+namespace DotNetCorePayroll.Data.ViewModels
 {
     public class UserModel
     {
@@ -11,5 +13,6 @@
         public string CompanyName { get; set; }
         public long RoleId { get; set; }
         public string RoleName { get; set; }
+        public bool IsFirstTimeLogIn { get; set; }
     }
 }

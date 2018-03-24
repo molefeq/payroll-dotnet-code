@@ -31,7 +31,6 @@ namespace DotNetCorePayroll.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddAuthorization();
             services.AddAuthentication(options =>
             {
                 options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -50,6 +49,7 @@ namespace DotNetCorePayroll.Api
                 };
             });
 
+            services.AddAuthorization();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
@@ -66,8 +66,8 @@ namespace DotNetCorePayroll.Api
                 //c.IncludeXmlComments(xmlPath);
             });
 
-            services.AddDbContext<PayrollContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Payroll_DB_Local")));
-            services.AddTransient<UnitOfWork>();
+            services.AddDbContext<PayrollContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Payroll_DB_Local")), ServiceLifetime.Transient);
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             Adapters.Initialise(services);
             Builders.Initialise(services);

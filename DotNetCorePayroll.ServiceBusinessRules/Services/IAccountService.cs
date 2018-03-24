@@ -1,6 +1,10 @@
-﻿using DotNetCorePayroll.Data.ViewModels;
+﻿using DotNetCorePayroll.Data.SearchFilters;
+using DotNetCorePayroll.Data.ViewModels;
 
 using Microsoft.Extensions.Configuration;
+
+using SqsLibraries.Common.Utilities.ResponseObjects;
+
 using System;
 
 namespace DotNetCorePayroll.ServiceBusinessRules.Services
@@ -13,9 +17,10 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services
         UserModel ResetPassword(Guid forgotPasswordKey, string password);
         AccountModel GetAccountByUsername(string username);
 
+        Result<AccountModel> Get(AccountSearchFilter accountSearchFilter);
         AccountModel Create(AccountModel accountModel, IConfiguration configuration);
-        AccountModel Read(long accountId);
+        AccountModel Read(Guid accountId);
         AccountModel Update(AccountModel accountModel);
-        void Delete(AccountModel accountModel);
+        void Delete(Guid accountId);
     }
 }

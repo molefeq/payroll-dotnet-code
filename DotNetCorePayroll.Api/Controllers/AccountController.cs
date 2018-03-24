@@ -1,16 +1,19 @@
 ﻿using DotNetCorePayroll.Api.ActionResultHelpers;
+using DotNetCorePayroll.Api.Extensions;
 using DotNetCorePayroll.Api.Providers;
-
+using DotNetCorePayroll.Data.SearchFilters;
 using DotNetCorePayroll.Data.ViewModels;
 using DotNetCorePayroll.ServiceBusinessRules.Services;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
+using System;
+
 namespace DotNetCorePayroll.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private LoginProvider loginProvider;
         private IAccountService accountService;
@@ -71,6 +74,15 @@ namespace DotNetCorePayroll.Api.Controllers
         }
 
         [HttpPost]
+        public IActionResult FetchAccounts([FromBody] AccountSearchFilter filter)
+        {
+            var results = accountService.Get(filter);
+
+            return new JsonResult(new { data = results });
+        }
+
+
+        [HttpPost]
         public IActionResult CreateAccount([FromBody] AccountModel model)
         {
             if (!ModelState.IsValid)
@@ -78,6 +90,7 @@ namespace DotNetCorePayroll.Api.Controllers
                 return new ValidationActionResult(ModelState);
             }
 
+            model.CreateUserId = UserId;
             var accountModel = accountService.Create(model, configuration);
 
             return new JsonResult(new { data = accountModel });
@@ -90,27 +103,22 @@ namespace DotNetCorePayroll.Api.Controllers
             {
                 return new ValidationActionResult(ModelState);
             }
-
+            
             var accountModel = accountService.Update(model);
 
             return new JsonResult(new { data = accountModel });
         }
 
         [HttpPost]
-        public IActionResult DeleteAccount([FromBody] AccountModel model)
+        public IActionResult DeleteAccount([FromBody] Guid accountId)
         {
-            if (!ModelState.IsValid)
-            {
-                return new ValidationActionResult(ModelState);
-            }
-
-            accountService.Delete(model);
+            accountService.Delete(accountId);
 
             return new JsonResult(new { ok = true });
         }
 
         [HttpPost("{accountId}")]
-        public IActionResult ReadAccount([FromRoute] long accountId)
+        public IActionResult ReadAccount([FromRoute] Guid accountId)
         {
             var accountModel = accountService.Read(accountId);
 
