@@ -4274,15 +4274,12 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj",
+      "projectUniqueName": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj",
       "projectName": "DotNetCorePayroll.PdfWriter",
-      "projectPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj",
+      "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj",
       "packagesPath": "C:\\Users\\Qinisela.Molefe\\.nuget\\packages\\",
-      "outputPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.PdfWriter\\obj\\",
+      "outputPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

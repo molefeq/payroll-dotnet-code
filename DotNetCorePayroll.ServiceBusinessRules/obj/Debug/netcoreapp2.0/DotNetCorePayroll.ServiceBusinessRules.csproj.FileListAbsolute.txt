@@ -15,3 +15,9 @@ C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetC
 C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netcoreapp2.0\DotNetCorePayroll.ServiceBusinessRules.AssemblyInfo.cs
 C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netcoreapp2.0\DotNetCorePayroll.ServiceBusinessRules.dll
 C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netcoreapp2.0\DotNetCorePayroll.ServiceBusinessRules.pdb
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netcoreapp2.0\DotNetCorePayroll.ServiceBusinessRules.csprojResolveAssemblyReference.cache
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netcoreapp2.0\DotNetCorePayroll.ServiceBusinessRules.csproj.CoreCompileInputs.cache
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netcoreapp2.0\DotNetCorePayroll.ServiceBusinessRules.AssemblyInfoInputs.cache
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netcoreapp2.0\DotNetCorePayroll.ServiceBusinessRules.AssemblyInfo.cs
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netcoreapp2.0\DotNetCorePayroll.ServiceBusinessRules.dll
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netcoreapp2.0\DotNetCorePayroll.ServiceBusinessRules.pdb

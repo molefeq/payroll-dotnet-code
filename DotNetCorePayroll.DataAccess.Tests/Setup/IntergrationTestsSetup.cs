@@ -17,9 +17,9 @@ namespace DotNetCorePayroll.DataAccess.Tests.Setup
                    .AddJsonFile("appsettings.json");
 
             Configuration = builder.Build();
-            ContextOptions = new DbContextOptionsBuilder<PayrollContext>()
-                   .UseNpgsql(Configuration.GetConnectionString("Payroll_DB_Local"))
-                   .Options;
+            var contextOptionsBuilder = new DbContextOptionsBuilder<PayrollContext>().UseInMemoryDatabase("payroll");
+
+            ContextOptions = contextOptionsBuilder.Options;
         }        
 
     }
