@@ -4,3 +4,6 @@
 *.pdb
 *.vs
 *.user
+*.cache
+*.props
+*.targets

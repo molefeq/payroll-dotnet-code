@@ -4155,7 +4155,7 @@
       ]
     },
     "System.Diagnostics.TraceSource/4.3.0": {
-      "sha512": "VnYp1NxGx8Ww731y2LJ1vpfb/DKVNKEZ8Jsh5SgQTZREL/YpWRArgh9pI8CDLmgHspZmLL697CaLvH85qQpRiw==",
+      "sha512": "KfxRYBCfPxGPeryLYqznTU6Deib9dAX6X3FWbUkDlwpkOHNbq6oF4iqZd6g02H5PJL/bNrtv2cawz9NWpxGbeg==",
       "type": "package",
       "path": "system.diagnostics.tracesource/4.3.0",
       "files": [
@@ -6753,12 +6753,15 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess.Tests\\DotNetCorePayroll.DataAccess.Tests.csproj",
+      "projectUniqueName": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.DataAccess.Tests\\DotNetCorePayroll.DataAccess.Tests.csproj",
       "projectName": "DotNetCorePayroll.DataAccess.Tests",
-      "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess.Tests\\DotNetCorePayroll.DataAccess.Tests.csproj",
+      "projectPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.DataAccess.Tests\\DotNetCorePayroll.DataAccess.Tests.csproj",
       "packagesPath": "C:\\Users\\Qinisela.Molefe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess.Tests\\obj\\",
+      "outputPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.DataAccess.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6777,11 +6780,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj"
+            "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj": {
+              "projectPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj"
             },
-            "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj": {
-              "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj"
+            "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj": {
+              "projectPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj"
             }
           }
         }
