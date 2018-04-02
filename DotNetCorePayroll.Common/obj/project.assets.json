@@ -4084,12 +4084,15 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj",
+      "projectUniqueName": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj",
       "projectName": "DotNetCorePayroll.Common",
-      "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj",
+      "projectPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj",
       "packagesPath": "C:\\Users\\Qinisela.Molefe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Common\\obj\\",
+      "outputPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

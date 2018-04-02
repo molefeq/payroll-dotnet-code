@@ -6,6 +6,8 @@
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build",
+    "swagger-clean": "node ./node_modules/rimraf/bin.js rimraf ./src/app/shared/generated/.",
+    "swagger": "java -jar tools/swagger-codegen-cli-2.3.1.jar generate -i http://localhost:58308/swagger/v1/swagger.json -l typescript-angular -o src/app/shared/generated -c swagger-codegen.config.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
