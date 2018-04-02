@@ -1,7 +1,0 @@
-C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.ServiceBusinessRules\bin\Debug\netstandard2.0\DotNetCorePayroll.Common.dll
-C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.ServiceBusinessRules\bin\Debug\netstandard2.0\DotNetCorePayroll.DataAccess.dll
-C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.ServiceBusinessRules\bin\Debug\netstandard2.0\DotNetCorePayroll.Common.pdb
-C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netstandard2.0\DotNetCorePayroll.ServiceBusinessRules.csprojResolveAssemblyReference.cache
-C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netstandard2.0\DotNetCorePayroll.ServiceBusinessRules.csproj.CoreCompileInputs.cache
-C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netstandard2.0\DotNetCorePayroll.ServiceBusinessRules.AssemblyInfoInputs.cache
-C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.ServiceBusinessRules\obj\Debug\netstandard2.0\DotNetCorePayroll.ServiceBusinessRules.AssemblyInfo.cs
