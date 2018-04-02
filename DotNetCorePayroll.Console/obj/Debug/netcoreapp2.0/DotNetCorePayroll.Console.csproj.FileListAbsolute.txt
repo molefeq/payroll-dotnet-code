@@ -19,3 +19,9 @@ C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetC
 C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.Console\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Console.AssemblyInfo.cs
 C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.Console\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Console.dll
 C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.Console\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Console.pdb
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Console\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Console.csprojResolveAssemblyReference.cache
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Console\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Console.csproj.CoreCompileInputs.cache
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Console\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Console.AssemblyInfoInputs.cache
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Console\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Console.AssemblyInfo.cs
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Console\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Console.dll
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Console\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Console.pdb

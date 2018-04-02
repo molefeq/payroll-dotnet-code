@@ -37,3 +37,9 @@ C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetC
 C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.Api\bin\Debug\netcoreapp2.0\DotNetCorePayroll.ServiceBusinessRules.pdb
 C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.Api\bin\Debug\netcoreapp2.0\DotNetCorePayroll.DataAccess.pdb
 C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.Api\bin\Debug\netcoreapp2.0\SqsLibraries.Common.pdb
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Api\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Api.csprojResolveAssemblyReference.cache
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Api\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Api.csproj.CoreCompileInputs.cache
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Api\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Api.AssemblyInfoInputs.cache
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Api\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Api.AssemblyInfo.cs
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Api\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Api.dll
+C:\Users\Qinisela.Molefe\Documents\Visual Studio 2017\Projects\Payroll\payroll-dotnet-code\DotNetCorePayroll.Api\obj\Debug\netcoreapp2.0\DotNetCorePayroll.Api.pdb
