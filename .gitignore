@@ -4,3 +4,8 @@
 *.pdb
 *.vs
 *.user
+*.cache
+*.props
+*.targets
+*.Tests.deps.json
+*.csproj.FileListAbsolute.txt

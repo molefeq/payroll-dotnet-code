@@ -1,0 +1,2 @@
+C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.App\obj\Debug\DotNetCorePayroll.App.njsproj.CoreCompileInputs.cache
+C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.App\bin\Microsoft.NodejsTools.WebRole.dll
