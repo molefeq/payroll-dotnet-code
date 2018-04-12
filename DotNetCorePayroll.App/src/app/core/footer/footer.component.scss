@@ -1,0 +1,11 @@
+@import '../../../colors';
+
+footer{
+    height: 40px;
+    position: fixed;
+    background: $light-blue-900;
+    width: 100%;
+    bottom: 0;
+    color:$white;
+}
+

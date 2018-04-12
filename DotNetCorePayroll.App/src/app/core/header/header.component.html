@@ -1,0 +1,62 @@
+<header>
+  <mat-toolbar>
+    <mat-toolbar-row id="desktop-toolbar">
+      <div id="logo-container">
+        <a id="logo" class="display-1">Zenit Payroll</a>
+      </div>
+      <div id="menu-container">
+        <button mat-button>About Us</button>
+        <button mat-button>Contact Us</button>
+        <button mat-button>Services</button>
+      </div>
+      <div id="login-container">
+        <button aria-label="GitHub Repository" rel="login" [matMenuTriggerFor]="loginMenu" class="docs-button docs-navbar-show-small mat-icon-button"
+          href="https://github.com/angular/material2" mat-icon-button="" tabindex="0" aria-disabled="false">
+          <span class="mat-button-wrapper">
+            <mat-icon>account_circle</mat-icon>
+          </span>
+        </button>
+        <mat-menu #loginMenu="matMenu" overlapTrigger="false">
+          <button mat-menu-item>About Us</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>Contact Us</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>Services</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar-row>
+    <mat-toolbar-row id="mobile-toolbar">
+      <mat-menu #appMenu="matMenu" overlapTrigger="false">
+        <button mat-menu-item>About Us</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Contact Us</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Services</button>
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="appMenu" id="menu-button">
+        <mat-icon>reorder</mat-icon>
+      </button>
+      <div id="logo-container">
+        <a id="logo">Zenit Payroll</a>
+      </div>
+      <div id="menu-container">
+
+      </div>
+      <div id="login-container">
+        <button aria-label="GitHub Repository" rel="login" [matMenuTriggerFor]="loginMenu" class="docs-button docs-navbar-show-small mat-icon-button"
+          href="https://github.com/angular/material2" mat-icon-button="" tabindex="0" aria-disabled="false">
+          <span class="mat-button-wrapper">
+            <mat-icon>account_circle</mat-icon>
+          </span>
+        </button>
+        <mat-menu #loginMenu="matMenu" overlapTrigger="false">
+          <button mat-menu-item>About Us</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>Contact Us</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>Services</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
