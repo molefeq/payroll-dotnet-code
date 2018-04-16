@@ -13,6 +13,6 @@ import { SharedModule } from '../shared/shared.module';
   ], 
   exports: [
     FooterComponent,
-    HeaderComponent,]
+    HeaderComponent]
 })
 export class CoreModule { }
