@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+$config: mat-typography-config();
+
+@mixin md-icon-size($size: 24px) {
+    font-size: $size;
+    height: $size;
+    width: $size;
+    line-height: $size;
+  }
+
+  @mixin md-button-bg-color($color) {
+    background: $color;
+  }
+
+  unicorn-header {
+    font-size: mat-font-size($config, headline);
+    font-family: mat-font-family($config);
+  }
