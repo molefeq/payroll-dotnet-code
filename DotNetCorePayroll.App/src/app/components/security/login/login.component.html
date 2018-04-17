@@ -1,3 +1,30 @@
-<p>
-  login works!
-</p>
+<div class="form-container shadow">
+  <div class="login-header">
+    <mat-icon class="login-account-icon">account_circle</mat-icon>
+    <div class="header-24">Login</div>
+  </div>
+  <form>
+    <mat-form-field>
+      <input matInput type="email" placeholder="Email">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password">
+    </mat-form-field>
+
+    <div class="buttons-container">
+      <div class="login-links">
+        <mat-checkbox aria-label="Remember Me" class="remember-me">Remember Me</mat-checkbox>
+        <span class="forgot-password">
+          <a>Forgot Password</a>
+        </span>
+      </div>
+      <div class="link">
+        <div class="link">
+          <button mat-raised-button class="login-button"> LOGIN </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
