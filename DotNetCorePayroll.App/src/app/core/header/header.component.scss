@@ -1,75 +1,64 @@
 @import '../../../colors';
-   
-   header{
-        height: 56px;
-        display: flex;
-        flex-direction: row;
-        position: fixed;
-        background:$light-blue-900;
-        width: 100%;
-        top: 0;    
-        -webkit-box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
-        box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
-
-        .mat-toolbar-multiple-rows{
-            min-height: 56px;
-            background:$light-blue-900;
-            color:$white;
-        }
-
-        #mobile-toolbar{
-            display: none;
-        }
-        
-        #desktop-toolbar{
-            display: flex;
-            height: 56px;
-        }
-        
-        #logo-container{
-            flex:none;
-            margin-right: 15px;
-        }
-
-        #menu-container{
-            flex: 1 0 auto;
-            display: inline-block;
-            margin: 0 15px 0 15px;
-        }
-
-        #login-container{
-            flex: none;
-            margin-left: 15px;
-        }
+:host {
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    background: $light-blue-900;
+    width: 100%;
+    top: 0;
+    -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+    z-index: 999;
+    .mat-toolbar-multiple-rows {
+        min-height: 56px;
+        background: $light-blue-900;
+        color: $white;
     }
+    #mobile-toolbar {
+        display: none;
+    }
+    #desktop-toolbar {
+        display: flex;
+        height: 56px;
+    }
+    #logo-container {
+        flex: none;
+        margin-right: 15px;
+    }
+    #menu-container {
+        flex: 1 0 auto;
+        display: inline-block;
+        margin: 0 15px 0 15px;
+    }
+    #login-container {
+        flex: none;
+        margin-left: 15px;
+    }
+}
 
-@media (max-width: 720px){
-    header{
-        height: 48px!important;
-        
-        #login-container{
-            margin-left: 0!important;
-            margin-right: 5px!important;
+@media (max-width: 720px) {
+    :host {
+        height: 48px !important;
+        #login-container {
+            margin-left: 0 !important;
+            margin-right: 5px !important;
         }
-        
-        .mat-toolbar{
+        .mat-toolbar {
             min-height: 48px;
             height: 48px;
-
-            #desktop-toolbar{
-                display: none!important;
+            #desktop-toolbar {
+                display: none !important;
             }
-            #mobile-toolbar{
-                display: flex!important;
+            #mobile-toolbar {
+                display: flex !important;
                 padding-left: 0;
                 padding-right: 0;
                 height: 48px;
-
-                #menu-button{
-                    margin-right: 15px; 
+                #menu-button {
+                    margin-right: 15px;
                 }
             }
         }
-
     }
 }

@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material/material.module';
+import { PanelWidgetComponent } from './components/panel-widget/panel-widget.component';
 
 @NgModule({
-  exports:[
+  imports:[
     MaterialModule,
   ],
-  declarations: []
+  exports:[
+    MaterialModule,
+    PanelWidgetComponent,
+  ],
+  declarations: [PanelWidgetComponent]
 })
 export class SharedModule { }

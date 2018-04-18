@@ -1,0 +1,26 @@
+@import '../../../colors';
+:host {
+    padding: 12px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    overflow-y: auto;
+}
+
+.panels-container {
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    flex-flow: row wrap;
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    
+    .panels-container {
+        justify-content: space-around;
+        height: 100%;
+    }
+}
