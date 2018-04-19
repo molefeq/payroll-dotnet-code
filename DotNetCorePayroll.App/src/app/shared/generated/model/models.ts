@@ -4,3 +4,5 @@ export * from './changePasswordModel';
 export * from './loginModel';
 export * from './pageData';
 export * from './resetPasswordModel';
+export * from './resultAccountModel';
+export * from './userModel';

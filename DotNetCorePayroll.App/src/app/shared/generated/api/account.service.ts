@@ -23,6 +23,8 @@ import { AccountSearchFilter } from '../model/accountSearchFilter';
 import { ChangePasswordModel } from '../model/changePasswordModel';
 import { LoginModel } from '../model/loginModel';
 import { ResetPasswordModel } from '../model/resetPasswordModel';
+import { ResultAccountModel } from '../model/resultAccountModel';
+import { UserModel } from '../model/userModel';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -67,15 +69,18 @@ export class AccountService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiAccountChangePasswordPost(model?: ChangePasswordModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiAccountChangePasswordPost(model?: ChangePasswordModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiAccountChangePasswordPost(model?: ChangePasswordModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiAccountChangePasswordPost(model?: ChangePasswordModel, observe?: 'body', reportProgress?: boolean): Observable<UserModel>;
+    public apiAccountChangePasswordPost(model?: ChangePasswordModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserModel>>;
+    public apiAccountChangePasswordPost(model?: ChangePasswordModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserModel>>;
     public apiAccountChangePasswordPost(model?: ChangePasswordModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -94,7 +99,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/Account/ChangePassword`,
+        return this.httpClient.post<UserModel>(`${this.basePath}/api/Account/ChangePassword`,
             model,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -112,15 +117,18 @@ export class AccountService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiAccountCreateAccountPost(model?: AccountModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiAccountCreateAccountPost(model?: AccountModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiAccountCreateAccountPost(model?: AccountModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiAccountCreateAccountPost(model?: AccountModel, observe?: 'body', reportProgress?: boolean): Observable<AccountModel>;
+    public apiAccountCreateAccountPost(model?: AccountModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccountModel>>;
+    public apiAccountCreateAccountPost(model?: AccountModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccountModel>>;
     public apiAccountCreateAccountPost(model?: AccountModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -139,7 +147,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/Account/CreateAccount`,
+        return this.httpClient.post<AccountModel>(`${this.basePath}/api/Account/CreateAccount`,
             model,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -202,15 +210,18 @@ export class AccountService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiAccountFetchAccountsPost(filter?: AccountSearchFilter, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiAccountFetchAccountsPost(filter?: AccountSearchFilter, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiAccountFetchAccountsPost(filter?: AccountSearchFilter, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiAccountFetchAccountsPost(filter?: AccountSearchFilter, observe?: 'body', reportProgress?: boolean): Observable<ResultAccountModel>;
+    public apiAccountFetchAccountsPost(filter?: AccountSearchFilter, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResultAccountModel>>;
+    public apiAccountFetchAccountsPost(filter?: AccountSearchFilter, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResultAccountModel>>;
     public apiAccountFetchAccountsPost(filter?: AccountSearchFilter, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -229,7 +240,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/Account/FetchAccounts`,
+        return this.httpClient.post<ResultAccountModel>(`${this.basePath}/api/Account/FetchAccounts`,
             filter,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -247,15 +258,18 @@ export class AccountService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiAccountLoginPost(model?: LoginModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiAccountLoginPost(model?: LoginModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiAccountLoginPost(model?: LoginModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiAccountLoginPost(model?: LoginModel, observe?: 'body', reportProgress?: boolean): Observable<UserModel>;
+    public apiAccountLoginPost(model?: LoginModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserModel>>;
+    public apiAccountLoginPost(model?: LoginModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserModel>>;
     public apiAccountLoginPost(model?: LoginModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -274,7 +288,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/Account/Login`,
+        return this.httpClient.post<UserModel>(`${this.basePath}/api/Account/Login`,
             model,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -292,9 +306,9 @@ export class AccountService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiAccountReadAccountByAccountIdPost(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiAccountReadAccountByAccountIdPost(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiAccountReadAccountByAccountIdPost(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiAccountReadAccountByAccountIdPost(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<AccountModel>;
+    public apiAccountReadAccountByAccountIdPost(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccountModel>>;
+    public apiAccountReadAccountByAccountIdPost(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccountModel>>;
     public apiAccountReadAccountByAccountIdPost(accountId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (accountId === null || accountId === undefined) {
             throw new Error('Required parameter accountId was null or undefined when calling apiAccountReadAccountByAccountIdPost.');
@@ -304,6 +318,9 @@ export class AccountService {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -314,7 +331,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<any>(`${this.basePath}/api/Account/ReadAccount/${encodeURIComponent(String(accountId))}`,
+        return this.httpClient.post<AccountModel>(`${this.basePath}/api/Account/ReadAccount/${encodeURIComponent(String(accountId))}`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -332,15 +349,18 @@ export class AccountService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiAccountResetPasswordPost(model?: ResetPasswordModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiAccountResetPasswordPost(model?: ResetPasswordModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiAccountResetPasswordPost(model?: ResetPasswordModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiAccountResetPasswordPost(model?: ResetPasswordModel, observe?: 'body', reportProgress?: boolean): Observable<UserModel>;
+    public apiAccountResetPasswordPost(model?: ResetPasswordModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserModel>>;
+    public apiAccountResetPasswordPost(model?: ResetPasswordModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserModel>>;
     public apiAccountResetPasswordPost(model?: ResetPasswordModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -359,7 +379,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/Account/ResetPassword`,
+        return this.httpClient.post<UserModel>(`${this.basePath}/api/Account/ResetPassword`,
             model,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -417,15 +437,18 @@ export class AccountService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiAccountUpdateAccountPost(model?: AccountModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiAccountUpdateAccountPost(model?: AccountModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiAccountUpdateAccountPost(model?: AccountModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiAccountUpdateAccountPost(model?: AccountModel, observe?: 'body', reportProgress?: boolean): Observable<AccountModel>;
+    public apiAccountUpdateAccountPost(model?: AccountModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AccountModel>>;
+    public apiAccountUpdateAccountPost(model?: AccountModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AccountModel>>;
     public apiAccountUpdateAccountPost(model?: AccountModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -444,7 +467,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/Account/UpdateAccount`,
+        return this.httpClient.post<AccountModel>(`${this.basePath}/api/Account/UpdateAccount`,
             model,
             {
                 withCredentials: this.configuration.withCredentials,

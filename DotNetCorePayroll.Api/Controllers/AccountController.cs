@@ -3,10 +3,13 @@ using DotNetCorePayroll.Api.Extensions;
 using DotNetCorePayroll.Api.Providers;
 using DotNetCorePayroll.Data.SearchFilters;
 using DotNetCorePayroll.Data.ViewModels;
+
 using DotNetCorePayroll.ServiceBusinessRules.Services;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+
+using SqsLibraries.Common.Utilities.ResponseObjects;
 
 using System;
 
@@ -27,6 +30,7 @@ namespace DotNetCorePayroll.Api.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(UserModel), 200)]
         public IActionResult Login([FromBody] LoginModel model)
         {
             if (!ModelState.IsValid)
@@ -36,7 +40,7 @@ namespace DotNetCorePayroll.Api.Controllers
 
             var userModel = loginProvider.Login(model);
 
-            return new JsonResult(new { data = userModel });
+            return Ok(userModel);
         }
 
         [HttpPost("{username}")]
@@ -48,6 +52,7 @@ namespace DotNetCorePayroll.Api.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(UserModel), 200)]
         public IActionResult ResetPassword([FromBody] ResetPasswordModel model)
         {
             if (!ModelState.IsValid)
@@ -57,10 +62,11 @@ namespace DotNetCorePayroll.Api.Controllers
 
             var userModel = accountService.ResetPassword(model.ResetPasswordKey, model.Password);
 
-            return new JsonResult(new { data = userModel });
+            return Ok(userModel);
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(UserModel), 200)]
         public IActionResult ChangePassword([FromBody] ChangePasswordModel model)
         {
             if (!ModelState.IsValid)
@@ -70,19 +76,21 @@ namespace DotNetCorePayroll.Api.Controllers
 
             var userModel = accountService.ChangePassword(model.Username, model.Password);
 
-            return new JsonResult(new { data = userModel });
+            return Ok(userModel);
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(Result<AccountModel>), 200)]
         public IActionResult FetchAccounts([FromBody] AccountSearchFilter filter)
         {
             var results = accountService.Get(filter);
 
-            return new JsonResult(new { data = results });
+            return Ok(results);
         }
 
 
         [HttpPost]
+        [ProducesResponseType(typeof(AccountModel), 200)]
         public IActionResult CreateAccount([FromBody] AccountModel model)
         {
             if (!ModelState.IsValid)
@@ -93,10 +101,11 @@ namespace DotNetCorePayroll.Api.Controllers
             model.CreateUserId = UserId;
             var accountModel = accountService.Create(model, configuration);
 
-            return new JsonResult(new { data = accountModel });
+            return Ok(accountModel);
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(AccountModel), 200)]
         public IActionResult UpdateAccount([FromBody] AccountModel model)
         {
             if (!ModelState.IsValid)
@@ -106,7 +115,7 @@ namespace DotNetCorePayroll.Api.Controllers
             
             var accountModel = accountService.Update(model);
 
-            return new JsonResult(new { data = accountModel });
+            return Ok(accountModel);
         }
 
         [HttpPost]
@@ -114,15 +123,16 @@ namespace DotNetCorePayroll.Api.Controllers
         {
             accountService.Delete(accountId);
 
-            return new JsonResult(new { ok = true });
+            return Ok();
         }
 
         [HttpPost("{accountId}")]
+        [ProducesResponseType(typeof(AccountModel), 200)]
         public IActionResult ReadAccount([FromRoute] Guid accountId)
         {
             var accountModel = accountService.Read(accountId);
 
-            return new JsonResult(new { data = accountModel });
+            return Ok(accountModel);
         }
     }
 }
