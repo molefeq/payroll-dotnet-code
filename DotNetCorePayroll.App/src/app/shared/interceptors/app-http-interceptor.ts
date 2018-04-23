@@ -5,11 +5,12 @@ import { AuthenticationService } from '../services/authentication.service';
 import 'rxjs/add/operator/do';
 import { HttpResponse } from 'selenium-webdriver/http';
 import { Router } from '@angular/router';
+import { ServerValidationService } from '../services/server-validation.service';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
 export class AppHttpInterceptor implements HttpInterceptor {
-    constructor(private router: Router, private authenticationService: AuthenticationService) { }
+    constructor(private router: Router, private authenticationService: AuthenticationService, private serverValidationService: ServerValidationService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const authRequest = request.clone({
@@ -23,7 +24,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
             (error: any) => {
                 if (error instanceof HttpErrorResponse) {
                     if (error.status === 442) {
-                        this.router.navigate(['/login']);
+                        this.serverValidationService.setErrors(error.error);
                         return;
                     }
 
