@@ -1,6 +1,5 @@
 @import '../../../../definations';
 @import '../../../../colors';
-
 .login-header {
     text-align: center;
     padding-top: 24px;
@@ -38,8 +37,7 @@ input {
             font-size: 12px;
             a {
                 cursor: pointer;
-
-                &:hover{
+                &:hover {
                     text-decoration: underline;
                 }
             }
@@ -48,6 +46,9 @@ input {
     .login-button {
         @include md-button-bg-color( $teal-400);
         color: white;
+    }
+    .link {
+        margin-bottom: 5px;
     }
 }
 

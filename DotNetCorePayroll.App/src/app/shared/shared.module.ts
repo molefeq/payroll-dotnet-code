@@ -8,31 +8,33 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormValidatorDirective } from './directives/form-validator.directive';
 import { ServerValidationService } from './services/server-validation.service';
-import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
+import { AppValidationMessageDirective } from './directives/app-validation-message.directive';
+import { ApiModule } from './generated';
 
 @NgModule({
-  imports:[
+  imports: [
     MaterialModule,
-    HttpClientModule,    
+    HttpClientModule,
     ReactiveFormsModule,
+    ApiModule
   ],
-  exports:[
+  exports: [
     MaterialModule,
     ReactiveFormsModule,
     PanelWidgetComponent,
     FormValidatorDirective,
-    ValidationMessagesComponent,
+    AppValidationMessageDirective,
   ],
   declarations: [
-    PanelWidgetComponent, 
-    FormValidatorDirective, 
-    ValidationMessagesComponent,
+    PanelWidgetComponent,
+    FormValidatorDirective,
+    AppValidationMessageDirective,
   ],
-  providers:[
+  providers: [
     AuthenticationService,
     AuthorizationGuardService,
     ServerValidationService,
-    {provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true }
   ]
 })
 export class SharedModule { }

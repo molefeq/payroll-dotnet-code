@@ -74,6 +74,10 @@ a {
     }
 }
 
+.mat-form-field.is-invalid {
+    padding: 0 0 15px 0;
+}
+
 @media (max-width: 720px) {
     .cdk-overlay-pane {
         width: 100%;

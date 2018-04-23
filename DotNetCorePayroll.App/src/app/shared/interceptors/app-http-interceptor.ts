@@ -13,9 +13,13 @@ export class AppHttpInterceptor implements HttpInterceptor {
     constructor(private router: Router, private authenticationService: AuthenticationService, private serverValidationService: ServerValidationService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const authRequest = request.clone({
-            headers: request.headers.set('Authorization', this.authenticationService.user.token)
-        });
+        let authRequest = request;
+
+        if (this.authenticationService.user && this.authenticationService.user.token) {
+            authRequest = request.clone({
+                headers: request.headers.set('Authorization', this.authenticationService.user.token)
+            });
+        }
 
         return next.handle(authRequest).do(
             (response: any) => {

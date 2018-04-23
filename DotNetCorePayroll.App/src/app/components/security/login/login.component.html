@@ -4,23 +4,14 @@
     <div class="header-24">Login</div>
   </div>
   <form [formGroup]="loginForm" [appFormValidator]="loginForm">
-    <!-- <mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(loginForm.get('username'))">
       <input matInput type="text" placeholder="Username" formControlName="username">
-      <div class="mat-input-subscript-wrapper mat-form-field-subscript-wrapper" app-validation-messages [vmcontrol]="loginForm.get('username')" [messages]="validationMessages.username"></div>
-      <app-validation-messages [vmcontrol]="loginForm.get('username')" [messages]="validationMessages.username"></app-validation-messages>
-    </mat-form-field> -->
-    <app-validation-messages [placeholder]="'Enter Username'" [type]="'text'" [class.is-invalid]="isControlInvalid(loginForm.get('username'))"  [vmcontrol]="loginForm.get('username')" [messages]="validationMessages.username"></app-validation-messages> 
-    <app-validation-messages [placeholder]="'Enter password'" [type]="'password'" [class.is-invalid]="isControlInvalid(loginForm.get('password'))"  [vmcontrol]="loginForm.get('password')" [messages]="validationMessages.password"></app-validation-messages> 
-   
-    <!-- <mat-form-field>
-      <input matInput type="password" placeholder="Password"  formControlName="password">
-      <mat-error *ngIf="loginForm.get('password').invalid">
-        Password is required
-      </mat-error>
-      <mat-error *ngIf="loginForm.get('password').invalid">
-        Password is required
-      </mat-error>
-    </mat-form-field> -->
+      <mat-error [appValidationMessage]="loginForm.get('username')" [messages]="validationMessages.username"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(loginForm.get('password'))">
+      <input matInput type="password" placeholder="Password" formControlName="password">
+      <mat-error [appValidationMessage]="loginForm.get('password')" [messages]="validationMessages.password"></mat-error>
+    </mat-form-field>
 
     <div class="buttons-container">
       <div class="login-links">
@@ -30,11 +21,9 @@
         </span>
       </div>
       <div class="link">
-        <div class="link">
-          <button mat-raised-button class="login-button" (click)="login()"> LOGIN </button>
-          <p>Form value: {{ loginForm.value | json }}</p>
-        </div>
+        <button mat-raised-button class="login-button" (click)="login()" *ngIf="!isInProgress"> LOGIN </button>
       </div>
+      <mat-progress-bar mode="indeterminate" *ngIf="isInProgress"></mat-progress-bar>
     </div>
 
   </form>
