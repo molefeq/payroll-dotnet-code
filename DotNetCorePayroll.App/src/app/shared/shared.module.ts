@@ -10,6 +10,8 @@ import { FormValidatorDirective } from './directives/form-validator.directive';
 import { ServerValidationService } from './services/server-validation.service';
 import { AppValidationMessageDirective } from './directives/app-validation-message.directive';
 import { ApiModule } from './generated';
+import { AppHttpServerErrorComponent } from './components/app-http-server-error/app-http-server-error.component';
+import { ServerErrorDailogComponent } from './components/app-http-server-error/server-error-dailog/server-error-dailog.component';
 
 @NgModule({
   imports: [
@@ -24,11 +26,17 @@ import { ApiModule } from './generated';
     PanelWidgetComponent,
     FormValidatorDirective,
     AppValidationMessageDirective,
+    AppHttpServerErrorComponent,
   ],
   declarations: [
     PanelWidgetComponent,
     FormValidatorDirective,
     AppValidationMessageDirective,
+    AppHttpServerErrorComponent,
+    ServerErrorDailogComponent,
+  ],
+  entryComponents: [
+    ServerErrorDailogComponent
   ],
   providers: [
     AuthenticationService,

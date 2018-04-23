@@ -27,6 +27,12 @@ export class AppHttpInterceptor implements HttpInterceptor {
             },
             (error: any) => {
                 if (error instanceof HttpErrorResponse) {
+                    if (error.status === 0) {
+                        console.log(error);
+                        this.serverValidationService.setServerErrors('Error with status 0 occurred.');
+                        return;
+                    }
+
                     if (error.status === 442) {
                         this.serverValidationService.setErrors(error.error);
                         return;
