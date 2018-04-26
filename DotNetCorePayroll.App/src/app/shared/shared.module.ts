@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material/material.module';
+
 import { PanelWidgetComponent } from './components/panel-widget/panel-widget.component';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthorizationGuardService } from './services/authorization-guard.service';
@@ -9,9 +10,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormValidatorDirective } from './directives/form-validator.directive';
 import { ServerValidationService } from './services/server-validation.service';
 import { AppValidationMessageDirective } from './directives/app-validation-message.directive';
-import { ApiModule } from './generated';
+import { ApiModule, BASE_PATH } from './generated';
 import { AppHttpServerErrorComponent } from './components/app-http-server-error/app-http-server-error.component';
 import { ServerErrorDailogComponent } from './components/app-http-server-error/server-error-dailog/server-error-dailog.component';
+import { environment } from '../../environments/environment';
+import { SummaryValidationMessagesComponent } from './components/summary-validation-messages/summary-validation-messages.component';
 
 @NgModule({
   imports: [
@@ -34,6 +37,7 @@ import { ServerErrorDailogComponent } from './components/app-http-server-error/s
     AppValidationMessageDirective,
     AppHttpServerErrorComponent,
     ServerErrorDailogComponent,
+    SummaryValidationMessagesComponent,
   ],
   entryComponents: [
     ServerErrorDailogComponent
@@ -42,6 +46,9 @@ import { ServerErrorDailogComponent } from './components/app-http-server-error/s
     AuthenticationService,
     AuthorizationGuardService,
     ServerValidationService,
+    {
+      provide: BASE_PATH, useValue: environment.basePath,
+    },
     { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true }
   ]
 })

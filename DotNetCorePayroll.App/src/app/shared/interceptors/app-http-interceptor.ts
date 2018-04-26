@@ -33,7 +33,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
                         return;
                     }
 
-                    if (error.status === 442) {
+                    if (error.status === 422) {
                         this.serverValidationService.setErrors(error.error);
                         return;
                     }

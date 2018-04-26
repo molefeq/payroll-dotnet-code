@@ -3,7 +3,7 @@
     <mat-icon class="login-account-icon">account_circle</mat-icon>
     <div class="header-24">Login</div>
   </div>
-  <form [formGroup]="loginForm" [appFormValidator]="loginForm">
+  <form [formGroup]="loginForm" [appFormValidator]="loginForm" [validationMessages]="validationMessages">
     <mat-form-field [class.is-invalid]="isControlInvalid(loginForm.get('username'))">
       <input matInput type="text" placeholder="Username" formControlName="username">
       <mat-error [appValidationMessage]="loginForm.get('username')" [messages]="validationMessages.username"></mat-error>

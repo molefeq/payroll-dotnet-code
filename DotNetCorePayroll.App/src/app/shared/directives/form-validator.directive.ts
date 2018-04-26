@@ -10,6 +10,7 @@ import { messageType } from '../models/messageType';
 })
 export class FormValidatorDirective {
   @Input('appFormValidator') form: FormGroup;
+  @Input('validationMessages') validationMessages: any;
 
   subscriptions: Subscription;
   summaryErrors: Array<responseMessage>;
@@ -32,12 +33,16 @@ export class FormValidatorDirective {
           continue;
         }
 
-        if (!Boolean(this.form.get(error.fieldName))) {
+        let fieldName: string = Boolean(error.fieldName) ? error.fieldName.charAt(0).toLowerCase() + error.fieldName.substr(1) : null;
+
+        if (!Boolean(fieldName) || !Boolean(this.form.get(fieldName))) {
           this.summaryErrors.push(error);
           continue;
         }
 
-        this.form.get(error.fieldName).setErrors({ "serverValidation": true });
+
+        this.validationMessages[fieldName]['serverValidation'] = error.message;
+        this.form.get(fieldName).setErrors({ 'serverValidation': true });
       }
 
     }));

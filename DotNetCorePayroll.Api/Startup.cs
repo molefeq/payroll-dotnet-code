@@ -66,6 +66,14 @@ namespace DotNetCorePayroll.Api
                 //c.IncludeXmlComments(xmlPath);
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("all_origins", policy => policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
             services.AddDbContext<PayrollContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Payroll_DB_Local")), ServiceLifetime.Transient);
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
@@ -93,7 +101,7 @@ namespace DotNetCorePayroll.Api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Zenit Payroll API V1");
             });
-
+            app.UseCors("all_origins");
             app.UseMvc();
         }
     }
