@@ -7079,15 +7079,12 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj",
+      "projectUniqueName": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj",
       "projectName": "DotNetCorePayroll.ServiceBusinessRules",
-      "projectPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj",
+      "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj",
       "packagesPath": "C:\\Users\\Qinisela.Molefe\\.nuget\\packages\\",
-      "outputPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.ServiceBusinessRules\\obj\\",
+      "outputPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -7106,14 +7103,14 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj": {
-              "projectPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj"
+            "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj": {
+              "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj"
             },
-            "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj": {
-              "projectPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj"
+            "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj"
             },
-            "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj": {
-              "projectPath": "C:\\Personal\\My Work\\Zenit Work\\Payroll System\\Solution\\DotNetCorePayroll\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj"
+            "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj": {
+              "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj"
             }
           }
         }
