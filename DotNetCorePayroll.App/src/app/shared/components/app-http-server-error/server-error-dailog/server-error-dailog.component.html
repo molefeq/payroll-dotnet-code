@@ -1,4 +1,9 @@
-<p>
-  server-error-dailog works!
-  <button (click)="onNoClick()">OK</button>
-</p>
+<h2 mat-dialog-title>Error</h2>
+<mat-dialog-content>
+  <p>
+      {{data}}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="warn">OK</button>
+</mat-dialog-actions>

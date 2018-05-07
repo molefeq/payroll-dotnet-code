@@ -45,6 +45,10 @@ export class FormValidatorDirective {
         this.form.get(fieldName).setErrors({ 'serverValidation': true });
       }
 
+      if (Boolean(this.summaryErrors) && this.summaryErrors.length > 0) {
+        this.serverValidationService.setSummaryerrors(this.summaryErrors);
+      }
+
     }));
 
     // this.subscriptions.add(this.form.valueChanges.subscribe(data => {

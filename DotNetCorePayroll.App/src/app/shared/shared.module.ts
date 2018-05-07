@@ -30,6 +30,7 @@ import { SummaryValidationMessagesComponent } from './components/summary-validat
     FormValidatorDirective,
     AppValidationMessageDirective,
     AppHttpServerErrorComponent,
+    SummaryValidationMessagesComponent
   ],
   declarations: [
     PanelWidgetComponent,
