@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <Reference Include="SqsLibraries.Common">
-      <HintPath>..\..\..\..\..\..\..\Users\Qinisela.Molefe\source\repos\SqsLibraries\SqsLibraries.Common\bin\Debug\netcoreapp2.0\SqsLibraries.Common.dll</HintPath>
+      <HintPath>..\..\SqsLibraries\SqsLibraries.Common\bin\Debug\netcoreapp2.0\SqsLibraries.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
 

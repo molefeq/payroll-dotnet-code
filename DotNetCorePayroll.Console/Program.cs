@@ -22,9 +22,9 @@ namespace DotNetCorePayroll.Console
 {
     class Program
     {
-        private static IntergrationTestsSetup IntergrationTestsSetup = new IntergrationTestsSetup();
+       // private static IntergrationTestsSetup IntergrationTestsSetup = new IntergrationTestsSetup();
         private static ServiceProvider serviceProvider = new ServiceCollection().AddLogging()
-                                                                                .AddDbContext<PayrollContext>(options => options.UseNpgsql(IntergrationTestsSetup.Configuration.GetConnectionString("Payroll_DB_Local")), ServiceLifetime.Scoped)
+                                                                                .AddDbContext<PayrollContext>(options => options.UseNpgsql("Server=46.101.0.74;Port=5432;User Id=payroll;Password=Manbehind5;Database=payroll_db;"), ServiceLifetime.Scoped)
                                                                                 .AddSingleton<OrganisationBuilder>()
                                                                                 .AddSingleton<OrganisationAdapter>()
                                                                                 .AddScoped<IOgranisationService, OgranisationService>()
@@ -32,6 +32,8 @@ namespace DotNetCorePayroll.Console
                                                                                 .AddSingleton<AccountBusinessRules>()
                                                                                 .AddScoped<IAccountService, AccountService>()
                                                                                 .AddScoped<AccountServiceInvoker>()
+                                                                                .AddSingleton<AccountAdapter>()
+                                                                                .AddTransient<IUnitOfWork, UnitOfWork>()
                                                                                 .BuildServiceProvider();
 
         static void Main(string[] args)

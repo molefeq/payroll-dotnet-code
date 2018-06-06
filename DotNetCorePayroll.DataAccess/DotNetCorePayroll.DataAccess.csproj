@@ -1,15 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+  <RuntimeFrameworkVersion>2.0.7</RuntimeFrameworkVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Npgsql" Version="3.2.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.1" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.1" />
+    <PackageReference Include="Npgsql" Version="3.2.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.2" />
   </ItemGroup>
-
+  <ItemGroup>
+     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetCorePayroll.Common\DotNetCorePayroll.Common.csproj" />
     <ProjectReference Include="..\DotNetCorePayroll.Domain\DotNetCorePayroll.Data.csproj" />
@@ -17,13 +20,7 @@
 
   <ItemGroup>
     <Reference Include="SqsLibraries.Common">
-      <HintPath>..\..\..\..\..\..\..\Users\Qinisela.Molefe\source\repos\SqsLibraries\SqsLibraries.Common\bin\Debug\netcoreapp2.0\SqsLibraries.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="SqsLibraries.DataAccess">
-      <HintPath>..\..\..\..\..\..\..\Users\Qinisela.Molefe\source\repos\SqsLibraries\SqsLibraries.DataAccess\bin\Debug\netcoreapp2.0\SqsLibraries.DataAccess.dll</HintPath>
-    </Reference>
-    <Reference Include="SqsLibraries.PostgresLibrary">
-      <HintPath>..\..\..\..\..\..\..\Users\Qinisela.Molefe\source\repos\SqsLibraries\SqsLibraries.PostgresLibrary\bin\Debug\netcoreapp2.0\SqsLibraries.PostgresLibrary.dll</HintPath>
+      <HintPath>..\..\SqsLibraries\SqsLibraries.Common\bin\Debug\netcoreapp2.0\SqsLibraries.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
 
