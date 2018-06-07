@@ -196,6 +196,15 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
+        }
       }
     }
   },
@@ -656,11 +665,22 @@
         "netstandard.library.2.0.0.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+      "sha512": "mBbTy5+Bu0s8kLcOZuBJK+UaoKtLy6Uv6LIhn15DJwxd5X5IWX13CeNXHCvFJVPmbDenHkd/7rm2yGsDkoSCIg==",
+      "type": "package",
+      "path": "sqslibraries.common.rc.1.0.0/1.0.0",
+      "files": [
+        "lib/netcoreapp2.0/SqsLibraries.Common.dll",
+        "sqslibraries.common.rc.1.0.0.1.0.0.nupkg.sha512",
+        "sqslibraries.common.rc.1.0.0.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "Microsoft.NETCore.App >= 2.0.0"
+      "Microsoft.NETCore.App >= 2.0.0",
+      "SqsLibraries.Common.RC.1.0.0 >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -709,6 +729,10 @@
             "target": "Package",
             "version": "[2.0.0, )",
             "autoReferenced": true
+          },
+          "SqsLibraries.Common.RC.1.0.0": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           }
         },
         "imports": [

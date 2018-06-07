@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "3f63ec4439344d42a5c840885a8174d00f36cddb"
+    "signature": "e3e1a7204ecc9ca1f44691e1dda29c5422abab46"
   },
   "compilationOptions": {
     "defines": [
@@ -33,8 +33,8 @@
           "Serilog.AspNetCore": "2.1.1",
           "Serilog.Settings.Configuration": "2.6.1",
           "Serilog.Sinks.File": "4.0.0",
-          "Swashbuckle.AspNetCore": "2.4.0",
-          "SqsLibraries.Common": "1.0.0.0"
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0",
+          "Swashbuckle.AspNetCore": "2.4.0"
         },
         "runtime": {
           "DotNetCorePayroll.Api.dll": {}
@@ -2764,6 +2764,14 @@
           "lib/netstandard1.1/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+        "runtime": {
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
+        },
+        "compile": {
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
+        }
+      },
       "StackExchange.Redis.StrongName/1.2.4": {
         "dependencies": {
           "NETStandard.Library": "2.0.0",
@@ -4061,6 +4069,7 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration": "2.0.2",
           "Microsoft.Extensions.Configuration.Json": "2.0.2",
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0",
           "System.Drawing.Common": "4.5.0-preview1-25914-04"
         },
         "runtime": {
@@ -4071,6 +4080,9 @@
         }
       },
       "DotNetCorePayroll.Data/1.0.0": {
+        "dependencies": {
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0"
+        },
         "runtime": {
           "DotNetCorePayroll.Data.dll": {}
         },
@@ -4084,7 +4096,8 @@
           "DotNetCorePayroll.Data": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "2.0.3",
           "Npgsql": "3.2.7",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.2"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.2",
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0"
         },
         "runtime": {
           "DotNetCorePayroll.DataAccess.dll": {}
@@ -4109,21 +4122,14 @@
           "DotNetCorePayroll.Common": "1.0.0",
           "DotNetCorePayroll.Data": "1.0.0",
           "DotNetCorePayroll.DataAccess": "1.0.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "2.0.4"
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "2.0.4",
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0"
         },
         "runtime": {
           "DotNetCorePayroll.ServiceBusinessRules.dll": {}
         },
         "compile": {
           "DotNetCorePayroll.ServiceBusinessRules.dll": {}
-        }
-      },
-      "SqsLibraries.Common/1.0.0.0": {
-        "runtime": {
-          "SqsLibraries.Common.dll": {}
-        },
-        "compile": {
-          "SqsLibraries.Common.dll": {}
         }
       },
       "Microsoft.NETCore.App/2.0.0": {
@@ -5717,6 +5723,13 @@
       "path": "sqlitepclraw.provider.e_sqlite3.netstandard11/1.1.7",
       "hashPath": "sqlitepclraw.provider.e_sqlite3.netstandard11.1.1.7.nupkg.sha512"
     },
+    "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mBbTy5+Bu0s8kLcOZuBJK+UaoKtLy6Uv6LIhn15DJwxd5X5IWX13CeNXHCvFJVPmbDenHkd/7rm2yGsDkoSCIg==",
+      "path": "sqslibraries.common.rc.1.0.0/1.0.0",
+      "hashPath": "sqslibraries.common.rc.1.0.0.1.0.0.nupkg.sha512"
+    },
     "StackExchange.Redis.StrongName/1.2.4": {
       "type": "package",
       "serviceable": true,
@@ -6453,11 +6466,6 @@
     },
     "DotNetCorePayroll.ServiceBusinessRules/1.0.0": {
       "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "SqsLibraries.Common/1.0.0.0": {
-      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

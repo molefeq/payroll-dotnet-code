@@ -1,22 +1,22 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    "signature": "4b3557d34f20e2387e5fb46bd0ab22da863fcf0b"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.0": {
       "DotNetCorePayroll.Data/1.0.0": {
         "dependencies": {
-          "SqsLibraries.Common": "1.0.0.0"
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0"
         },
         "runtime": {
           "DotNetCorePayroll.Data.dll": {}
         }
       },
-      "SqsLibraries.Common/1.0.0.0": {
+      "SqsLibraries.Common.RC.1.0.0/1.0.0": {
         "runtime": {
-          "SqsLibraries.Common.dll": {}
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
         }
       }
     }
@@ -27,10 +27,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "SqsLibraries.Common/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
+    "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mBbTy5+Bu0s8kLcOZuBJK+UaoKtLy6Uv6LIhn15DJwxd5X5IWX13CeNXHCvFJVPmbDenHkd/7rm2yGsDkoSCIg==",
+      "path": "sqslibraries.common.rc.1.0.0/1.0.0",
+      "hashPath": "sqslibraries.common.rc.1.0.0.1.0.0.nupkg.sha512"
     }
   }
 }

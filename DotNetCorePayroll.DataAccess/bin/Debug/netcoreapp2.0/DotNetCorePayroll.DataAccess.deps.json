@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "81c6e91ad8936855d18e8aba1727167403b8b524"
+    "signature": "0e64bd6e4e3244bbcce0164105bfb6c6adc26bae"
   },
   "compilationOptions": {},
   "targets": {
@@ -13,7 +13,7 @@
           "Microsoft.EntityFrameworkCore.Design": "2.0.3",
           "Npgsql": "3.2.7",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.2",
-          "SqsLibraries.Common": "1.0.0.0"
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0"
         },
         "runtime": {
           "DotNetCorePayroll.DataAccess.dll": {}
@@ -243,6 +243,11 @@
         },
         "runtime": {
           "lib/netstandard1.0/Remotion.Linq.dll": {}
+        }
+      },
+      "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+        "runtime": {
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
         }
       },
       "System.Collections/4.3.0": {
@@ -659,6 +664,7 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration": "2.0.2",
           "Microsoft.Extensions.Configuration.Json": "2.0.2",
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0",
           "System.Drawing.Common": "4.5.0-preview1-25914-04"
         },
         "runtime": {
@@ -666,13 +672,11 @@
         }
       },
       "DotNetCorePayroll.Data/1.0.0": {
+        "dependencies": {
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0"
+        },
         "runtime": {
           "DotNetCorePayroll.Data.dll": {}
-        }
-      },
-      "SqsLibraries.Common/1.0.0.0": {
-        "runtime": {
-          "SqsLibraries.Common.dll": {}
         }
       }
     }
@@ -850,6 +854,13 @@
       "sha512": "sha512-IJn0BqkvwEDpP+2qjvci7n4/a9f7DhKESLWb2/uG4xQh3rTkGTBUz69bI4IivCoKkTFAqjXxYDZw2K/npohjsw==",
       "path": "remotion.linq/2.1.1",
       "hashPath": "remotion.linq.2.1.1.nupkg.sha512"
+    },
+    "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mBbTy5+Bu0s8kLcOZuBJK+UaoKtLy6Uv6LIhn15DJwxd5X5IWX13CeNXHCvFJVPmbDenHkd/7rm2yGsDkoSCIg==",
+      "path": "sqslibraries.common.rc.1.0.0/1.0.0",
+      "hashPath": "sqslibraries.common.rc.1.0.0.1.0.0.nupkg.sha512"
     },
     "System.Collections/4.3.0": {
       "type": "package",
@@ -1194,11 +1205,6 @@
     },
     "DotNetCorePayroll.Data/1.0.0": {
       "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "SqsLibraries.Common/1.0.0.0": {
-      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

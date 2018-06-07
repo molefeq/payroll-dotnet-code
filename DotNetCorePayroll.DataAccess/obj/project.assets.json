@@ -527,6 +527,15 @@
           "lib/netstandard1.0/Remotion.Linq.dll": {}
         }
       },
+      "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1243,6 +1252,7 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration": "2.0.2",
           "Microsoft.Extensions.Configuration.Json": "2.0.2",
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0",
           "System.Drawing.Common": "4.5.0-preview1-25914-04"
         },
         "compile": {
@@ -1255,6 +1265,9 @@
       "DotNetCorePayroll.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DotNetCorePayroll.Data.dll": {}
         },
@@ -2079,6 +2092,16 @@
         "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.xml",
         "remotion.linq.2.1.1.nupkg.sha512",
         "remotion.linq.nuspec"
+      ]
+    },
+    "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+      "sha512": "mBbTy5+Bu0s8kLcOZuBJK+UaoKtLy6Uv6LIhn15DJwxd5X5IWX13CeNXHCvFJVPmbDenHkd/7rm2yGsDkoSCIg==",
+      "type": "package",
+      "path": "sqslibraries.common.rc.1.0.0/1.0.0",
+      "files": [
+        "lib/netcoreapp2.0/SqsLibraries.Common.dll",
+        "sqslibraries.common.rc.1.0.0.1.0.0.nupkg.sha512",
+        "sqslibraries.common.rc.1.0.0.nuspec"
       ]
     },
     "System.Collections/4.3.0": {
@@ -4712,7 +4735,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 2.0.3",
       "Microsoft.NETCore.App >= 2.0.7",
       "Npgsql >= 3.2.7",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 2.0.2"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 2.0.2",
+      "SqsLibraries.Common.RC.1.0.0 >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4780,6 +4804,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[2.0.2, )"
+          },
+          "SqsLibraries.Common.RC.1.0.0": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           }
         },
         "imports": [

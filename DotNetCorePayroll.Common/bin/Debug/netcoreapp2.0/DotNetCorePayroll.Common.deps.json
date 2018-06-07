@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "144ad6807f4a95646fe3ab9312c189eb27986bbb"
+    "signature": "215643eec93f04596a4058261e1ec51a0ce26011"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,8 +10,8 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration": "2.0.2",
           "Microsoft.Extensions.Configuration.Json": "2.0.2",
-          "System.Drawing.Common": "4.5.0-preview1-25914-04",
-          "SqsLibraries.Common": "1.0.0.0"
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0",
+          "System.Drawing.Common": "4.5.0-preview1-25914-04"
         },
         "runtime": {
           "DotNetCorePayroll.Common.dll": {}
@@ -134,6 +134,11 @@
         },
         "runtime": {
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
+        }
+      },
+      "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+        "runtime": {
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
         }
       },
       "System.Collections/4.3.0": {
@@ -525,11 +530,6 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
         }
-      },
-      "SqsLibraries.Common/1.0.0.0": {
-        "runtime": {
-          "SqsLibraries.Common.dll": {}
-        }
       }
     }
   },
@@ -615,6 +615,13 @@
       "sha512": "sha512-ebWzW9j2nwxQeBo59As2TYn7nYr9BHicqqCwHOD1Vdo+50HBtLPuqdiCYJcLdTRknpYis/DSEOQz5KmZxwrIAg==",
       "path": "newtonsoft.json/10.0.1",
       "hashPath": "newtonsoft.json.10.0.1.nupkg.sha512"
+    },
+    "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mBbTy5+Bu0s8kLcOZuBJK+UaoKtLy6Uv6LIhn15DJwxd5X5IWX13CeNXHCvFJVPmbDenHkd/7rm2yGsDkoSCIg==",
+      "path": "sqslibraries.common.rc.1.0.0/1.0.0",
+      "hashPath": "sqslibraries.common.rc.1.0.0.1.0.0.nupkg.sha512"
     },
     "System.Collections/4.3.0": {
       "type": "package",
@@ -916,11 +923,6 @@
       "sha512": "sha512-lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
-    },
-    "SqsLibraries.Common/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
     }
   }
 }

@@ -1368,6 +1368,15 @@
           }
         }
       },
+      "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/SqsLibraries.Common.dll": {}
+        }
+      },
       "System.AppContext/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -2852,6 +2861,7 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration": "2.0.2",
           "Microsoft.Extensions.Configuration.Json": "2.0.2",
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0",
           "System.Drawing.Common": "4.5.0-preview1-25914-04"
         },
         "compile": {
@@ -2864,6 +2874,9 @@
       "DotNetCorePayroll.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DotNetCorePayroll.Data.dll": {}
         },
@@ -2879,7 +2892,8 @@
           "DotNetCorePayroll.Data": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "2.0.3",
           "Npgsql": "3.2.7",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.2"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.2",
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DotNetCorePayroll.DataAccess.dll": {}
@@ -2895,7 +2909,8 @@
           "DotNetCorePayroll.Common": "1.0.0",
           "DotNetCorePayroll.Data": "1.0.0",
           "DotNetCorePayroll.DataAccess": "1.0.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "2.0.4"
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "2.0.4",
+          "SqsLibraries.Common.RC.1.0.0": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DotNetCorePayroll.ServiceBusinessRules.dll": {}
@@ -4689,6 +4704,16 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "SqsLibraries.Common.RC.1.0.0/1.0.0": {
+      "sha512": "mBbTy5+Bu0s8kLcOZuBJK+UaoKtLy6Uv6LIhn15DJwxd5X5IWX13CeNXHCvFJVPmbDenHkd/7rm2yGsDkoSCIg==",
+      "type": "package",
+      "path": "sqslibraries.common.rc.1.0.0/1.0.0",
+      "files": [
+        "lib/netcoreapp2.0/SqsLibraries.Common.dll",
+        "sqslibraries.common.rc.1.0.0.1.0.0.nupkg.sha512",
+        "sqslibraries.common.rc.1.0.0.nuspec"
       ]
     },
     "System.AppContext/4.1.0": {
