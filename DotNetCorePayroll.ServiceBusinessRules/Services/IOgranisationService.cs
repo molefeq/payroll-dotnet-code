@@ -15,11 +15,11 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services
 
         Result<OrganisationModel> Get(string searchText, PageData pageData);
 
-        Response<OrganisationModel> Add(OrganisationModel organisationModel);
+        OrganisationModel Add(OrganisationModel organisationModel);
 
-        Response<OrganisationModel> Update(OrganisationModel organisationModel);
+        OrganisationModel Update(OrganisationModel organisationModel);
 
-        Response<OrganisationModel> Delete(Guid id);
+        void Delete(Guid id);
 
         void ResizeLogos(OrganisationModel organisationModel, IConfiguration configuration, string rootPath, string currentUrl);
 

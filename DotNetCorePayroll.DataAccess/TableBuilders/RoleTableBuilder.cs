@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotNetCorePayroll.DataAccess.TableBuilders
 {
-    public class RoleBuilder
+    public class RoleTableBuilder
     {
         public static void Build(ModelBuilder modelBuilder)
         {

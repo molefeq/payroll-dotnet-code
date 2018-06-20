@@ -23,13 +23,13 @@ namespace DotNetCorePayroll.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            AccountBuilder.Build(modelBuilder);
-            AddressBuilder.Build(modelBuilder);
-            CompanyBuilder.Build(modelBuilder);
-            CountryBuilder.Build(modelBuilder);
-            OrganisationBuilder.Build(modelBuilder);
-            ProvinceBuilder.Build(modelBuilder);
-            RoleBuilder.Build(modelBuilder);
+            AccountTableBuilder.Build(modelBuilder);
+            AddressTableBuilder.Build(modelBuilder);
+            CompanyTableBuilder.Build(modelBuilder);
+            CountryTableBuilder.Build(modelBuilder);
+            OrganisationTableBuilder.Build(modelBuilder);
+            ProvinceTableBuilder.Build(modelBuilder);
+            RoleTableBuilder.Build(modelBuilder);
         }
 
         public override void Dispose()

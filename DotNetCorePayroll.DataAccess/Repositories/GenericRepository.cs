@@ -125,7 +125,10 @@ namespace DotNetCorePayroll.DataAccess.Repositories
 
         public Result<TEntity> GetPagedEntities(IQueryable<TEntity> query, PageData pageData, string includeProperties = null)
         {
-            Include(query, includeProperties);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                Include(query, includeProperties);
+            }
 
             if (typeof(TEntity).GetProperty(pageData.SortColumn) != null)
             {

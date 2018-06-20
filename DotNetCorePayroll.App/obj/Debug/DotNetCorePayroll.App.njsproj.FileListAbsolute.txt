@@ -2,4 +2,3 @@ C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetC
 C:\Personal\My Work\Zenit Work\Payroll System\Solution\DotNetCorePayroll\DotNetCorePayroll.App\bin\Microsoft.NodejsTools.WebRole.dll
 C:\repos\payroll-dotnet-code\DotNetCorePayroll.App\obj\Debug\DotNetCorePayroll.App.njsproj.CoreCompileInputs.cache
 C:\repos\payroll-dotnet-code\DotNetCorePayroll.App\bin\Microsoft.NodejsTools.WebRole.dll
-C:\repos\payroll-dotnet-code\DotNetCorePayroll.App\obj\Debug\DotNetCorePayroll.App.njsprojAssemblyReference.cache

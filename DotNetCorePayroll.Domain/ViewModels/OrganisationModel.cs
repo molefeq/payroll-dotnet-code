@@ -13,8 +13,10 @@ namespace DotNetCorePayroll.Data.ViewModels
         public string PhysicalAddressSuburb { get; set; }
         public string PhysicalAddressCity { get; set; }
         public string PhysicalAddressPostalCode { get; set; }
+        public long PhysicalAddressId { get; set; }
         public long PhysicalAddressProvinceId { get; set; }
         public long PhysicalAddressCountryId { get; set; }
+        public long? PostalAddressId { get; set; }
         public string PostalAddressLine1 { get; set; }
         public string PostalAddressLine2 { get; set; }
         public string PostalAddressSuburb { get; set; }

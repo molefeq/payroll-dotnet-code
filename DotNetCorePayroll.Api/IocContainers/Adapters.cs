@@ -9,6 +9,7 @@ namespace DotNetCorePayroll.Api.IocContainers
         {
             services.AddSingleton<OrganisationAdapter>();
             services.AddSingleton<AccountAdapter>();
+            services.AddSingleton<RoleAdapter>();
         }
     }
 }

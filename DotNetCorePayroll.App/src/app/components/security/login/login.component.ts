@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.authenticationService.redirectUrl]);
           return;
         }
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
       });
   }
 

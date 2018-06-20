@@ -1,7 +1,5 @@
-﻿using DotNetCorePayroll.Data;
-using DotNetCorePayroll.DataAccess.Repositories;
+﻿using DotNetCorePayroll.DataAccess.Repositories;
 
-using System;
 using System.Threading.Tasks;
 
 namespace DotNetCorePayroll.DataAccess
@@ -9,12 +7,12 @@ namespace DotNetCorePayroll.DataAccess
     public class UnitOfWork : IUnitOfWork
     {
         private PayrollContext context;
-        private bool disposed;
 
         #region Private Repositories Fields
 
         private OrganisationRepository organisation;
         private AccountRepository account;
+        private RoleRepository role;
 
         #endregion
 
@@ -58,6 +56,19 @@ namespace DotNetCorePayroll.DataAccess
                 }
 
                 return account;
+            }
+        }
+        
+        public RoleRepository Role
+        {
+            get
+            {
+                if (role == null)
+                {
+                    role = new RoleRepository(context);
+                }
+
+                return role;
             }
         }
 

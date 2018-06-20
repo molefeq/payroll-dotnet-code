@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-
+using SqsLibraries.Common.Email.Models;
 using SqsLibraries.Common.Extensions;
 
 namespace DotNetCorePayroll.Common.Extensions
@@ -156,35 +156,35 @@ namespace DotNetCorePayroll.Common.Extensions
 
         #region Email Settings
 
-        public static string SmtpAddress(this IConfiguration configuration)
+        public static EmailConfiguration EmailConfiguration(this IConfiguration configuration)
         {
-            return configuration["email:smtpaddress"];
+            return new EmailConfiguration
+            {
+                SmtpServer = configuration["email:configuration:smtpserver"],
+                SmtpPortNumber = configuration["email:configuration:smtpport"].ToInteger(),
+                Username = configuration["email:configuration:username"],
+                Password = configuration["email:configuration:password"]
+            };
         }
 
-        public static int SmtpPortNumber(this IConfiguration configuration)
+        public static EmailAddress InfoAddress(this IConfiguration configuration)
         {
-            return configuration["email:smtpportnumber"].ToInteger();
+            return new EmailAddress
+            {
+                Address = configuration["email:infofrom:address"],
+                Name = configuration["email:infofrom:name"]
+            };
         }
 
-        public static string FromAddress(this IConfiguration configuration)
+        public static EmailAddress ErrorAddress(this IConfiguration configuration)
         {
-            return configuration["email:fromaddress"];
+            return new EmailAddress
+            {
+                Address = configuration["email:error:address"],
+                Name = configuration["email:error:name"]
+            };
         }
 
-        public static string AdminAddress(this IConfiguration configuration)
-        {
-            return configuration["email:adminaddress"];
-        }
-
-        public static string ErrorReciever(this IConfiguration configuration)
-        {
-            return configuration["email:errorreciever"];
-        }
-
-        public static string ErrorSender(this IConfiguration configuration)
-        {
-            return configuration["email:errorsender"];
-        }
         #endregion
 
         public static string SiteUrl(this IConfiguration configuration)

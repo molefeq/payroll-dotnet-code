@@ -39,7 +39,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
             return organisation;
         }
 
-        public OrganisationModel BuildToModel(Organisation organisation)
+        public OrganisationModel BuildModel(Organisation organisation)
         {
             OrganisationModel organisationModel = new OrganisationModel();
 
@@ -50,6 +50,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
             organisationModel.ContactNumber = organisation.ContactNumber;
             organisationModel.EmailAddress = organisationModel.EmailAddress;
             organisationModel.LogoFileName = organisation.LogoFilename;
+            organisationModel.PhysicalAddressId = organisation.PhysicalAddressId;
 
             if (organisation.PhysicalAddress != null)
             {
@@ -60,6 +61,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
                 organisationModel.PhysicalAddressPostalCode = organisation.PhysicalAddress.PostalCode;
             }
 
+            organisationModel.PostalAddressId = organisation.PostalAddressId;
             if (organisation.PostalAddress != null)
             {
                 organisationModel.PostalAddressLine1 = organisation.PostalAddress.Line1;

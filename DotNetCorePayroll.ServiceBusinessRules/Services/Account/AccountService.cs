@@ -9,10 +9,12 @@ using DotNetCorePayroll.ServiceBusinessRules.ModelBuilders;
 using Microsoft.Extensions.Configuration;
 
 using SqsLibraries.Common.Email;
+using SqsLibraries.Common.Email.Models;
 using SqsLibraries.Common.Utilities;
 using SqsLibraries.Common.Utilities.ResponseObjects;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -24,13 +26,15 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
         private AccountBuilder accountBuilder;
         private AccountAdapter accountAdapter;
         private AccountBusinessRules accountBusinessRules;
+        private IEmailHandler emailHandler;
 
-        public AccountService(IUnitOfWork unitOfWork, AccountBuilder accountBuilder, AccountAdapter accountAdapter, AccountBusinessRules accountBusinessRules)
+        public AccountService(IUnitOfWork unitOfWork, AccountBuilder accountBuilder, AccountAdapter accountAdapter, AccountBusinessRules accountBusinessRules, IEmailHandler emailHandler)
         {
             this.unitOfWork = unitOfWork;
             this.accountBuilder = accountBuilder;
             this.accountAdapter = accountAdapter;
             this.accountBusinessRules = accountBusinessRules;
+            this.emailHandler = emailHandler;
         }
 
         public Result<AccountModel> Get(AccountSearchFilter accountSearchFilter)
@@ -68,7 +72,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
             unitOfWork.Account.Insert(accountBuilder.Build(accountModel));
             unitOfWork.Save();
 
-            //SendCreateAccountEmail(accountModel, configuration);
+            SendCreateAccountEmail(accountModel, configuration);
 
             return GetAccountByUsername(accountModel.Username);
         }
@@ -132,9 +136,10 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
 
             account.PasswordResetKey = Guid.NewGuid();
             unitOfWork.Account.Update(account);
+            unitOfWork.Save();
 
             accountModel = accountBuilder.BuildToAccountModel(account);
-            // SendResetPasswordEmail(accountModel, configuration);
+            SendResetPasswordEmail(accountModel, configuration);
 
             return accountModel;
         }
@@ -149,6 +154,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
             account.Password = GeneratePassword.HashedPassword(password, account.PasswordSalt);
 
             unitOfWork.Account.Update(account);
+            unitOfWork.Save();
 
             return accountBuilder.BuildToUserModel(account);
         }
@@ -163,6 +169,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
             account.Password = GeneratePassword.HashedPassword(password, account.PasswordSalt);
 
             unitOfWork.Account.Update(account);
+            unitOfWork.Save();
 
             return accountBuilder.BuildToUserModel(account);
         }
@@ -171,12 +178,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
 
         private void SendCreateAccountEmail(AccountModel accountModel, IConfiguration configuration)
         {
-            string smtpServerAddress = configuration.SmtpAddress();
-            int smtpPortNumber = configuration.SmtpPortNumber();
-            string fromAddress = configuration.FromAddress();
-
             string subject = string.Format("{0} Email notification ... Welcome to {0}!", configuration.SiteName());
-
             StringBuilder sb = new StringBuilder();
 
             // Add email heading
@@ -199,15 +201,20 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
             sb.Append("<li>Insert your credentials as provided in this email and follow the change password steps.</li>");
             sb.Append("</ol>");
 
-            EmailHandler.SendEmail(smtpServerAddress, smtpPortNumber, fromAddress, accountModel.EmailAddress, null, subject, sb.ToString());
+            EmailContent emailContent = new EmailContent
+            {
+                Configuration = configuration.EmailConfiguration(),
+                From = configuration.InfoAddress(),
+                To = new List<EmailAddress> { new EmailAddress { Address = accountModel.EmailAddress, Name = accountModel.Firstname + " " + accountModel.Lastname } },
+                Subject = subject,
+                HtmlBody = sb.ToString()
+            };
+
+            this.emailHandler.SendEmail(emailContent);
         }
 
         private void SendResetPasswordEmail(AccountModel accountModel, IConfiguration configuration)
         {
-            string smtpServerAddress = configuration.SmtpAddress();
-            int smtpPortNumber = configuration.SmtpPortNumber();
-            string fromAddress = configuration.FromAddress();
-
             string subject = string.Format("{0} Email notification ... Password Reset to {1}!", configuration.ApplicationName(), configuration.SiteName());
             string siteLink = configuration.PasswordResetUrl() + "?key=" + accountModel.ForgotPasswordKey.Value.ToString();
 
@@ -222,7 +229,16 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
             sb.Append(string.Format("<a href='{0}'>Click Here</a>", siteLink));
             sb.Append("<br />");
 
-            EmailHandler.SendEmail(smtpServerAddress, smtpPortNumber, fromAddress, accountModel.EmailAddress, null, subject, sb.ToString());
+            EmailContent emailContent = new EmailContent
+            {
+                Configuration = configuration.EmailConfiguration(),
+                From = configuration.InfoAddress(),
+                To = new List<EmailAddress> { new EmailAddress { Address = accountModel.EmailAddress, Name = accountModel.Firstname + " " + accountModel.Lastname } },
+                Subject = subject,
+                HtmlBody = sb.ToString()
+            };
+
+            this.emailHandler.SendEmail(emailContent);
         }
 
         #endregion

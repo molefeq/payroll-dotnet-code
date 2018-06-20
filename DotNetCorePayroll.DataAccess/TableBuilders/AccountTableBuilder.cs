@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotNetCorePayroll.DataAccess.TableBuilders
 {
-    public class AccountBuilder
+    public class AccountTableBuilder
     {
         public static void Build(ModelBuilder modelBuilder)
         {
@@ -46,7 +46,7 @@ namespace DotNetCorePayroll.DataAccess.TableBuilders
                 entity.Property(e => e.IsFirstTimeLogin)
                     .IsRequired()
                     .HasColumnName("isfirsttimelogin")
-                    .HasColumnType("bit");
+                    .HasColumnType("boolean");
 
                 entity.Property(e => e.Lastname)
                     .IsRequired()

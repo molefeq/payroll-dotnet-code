@@ -1,15 +1,17 @@
-﻿//using DotNetCorePayroll.Api.Extensions;
-//using DotNetCorePayroll.Common.Utilities;
-//using DotNetCorePayroll.Data.SearchFilters;
-//using DotNetCorePayroll.Data.ViewModels;
-//using DotNetCorePayroll.ServiceBusinessRules.Services;
+﻿using DotNetCorePayroll.Api.ActionResultHelpers;
+using DotNetCorePayroll.Api.Extensions;
+using DotNetCorePayroll.Common.Extensions;
+using DotNetCorePayroll.Common.Utilities;
+using DotNetCorePayroll.Data.SearchFilters;
+using DotNetCorePayroll.Data.ViewModels;
+using DotNetCorePayroll.ServiceBusinessRules.Services;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-//using SqsLibraries.Common.Utilities.ResponseObjects;
+using SqsLibraries.Common.Utilities.ResponseObjects;
 
 using System;
 using System.IO;
@@ -20,107 +22,118 @@ namespace DotNetCorePayroll.Api.Controllers
     [Route("api/[controller]/[action]")]
     public class OrganisationController : Controller
     {
-        //private IOgranisationService ogranisationService;
-        //private IConfiguration configuration;
-        //private IHostingEnvironment environment;
+        private IOgranisationService ogranisationService;
+        private IConfiguration configuration;
+        private IHostingEnvironment environment;
 
-        //public OrganisationController(IOgranisationService ogranisationService, IConfiguration configuration, IHostingEnvironment environment)
-        //{
-        //    this.ogranisationService = ogranisationService;
-        //    this.configuration = configuration;
-        //    this.environment = environment;
-        //}
+        public OrganisationController(IOgranisationService ogranisationService, IConfiguration configuration, IHostingEnvironment environment)
+        {
+            this.ogranisationService = ogranisationService;
+            this.configuration = configuration;
+            this.environment = environment;
+        }
 
-        //[HttpPost]
-        //public Result<OrganisationModel> GetOrganisations(SearchFilter searchFilter)
-        //{
-        //    Result<OrganisationModel> result = ogranisationService.Get(searchFilter.SearchText, searchFilter.PageData);
+        [HttpPost]
+        [ProducesResponseType(typeof(Result<OrganisationModel>), 200)]
+        public IActionResult GetOrganisations([FromBody]SearchFilter searchFilter)
+        {
+            Result<OrganisationModel> result = ogranisationService.Get(searchFilter.SearchText, searchFilter.PageData);
 
-        //    ogranisationService.MapRelativeLogoPaths(result.Items, configuration, HttpContext.Request.CurrentUrl());
+            ogranisationService.MapRelativeLogoPaths(result.Items, configuration, HttpContext.Request.CurrentUrl());
 
-        //    return result;
-        //}
+            return Ok(result);
+        }
 
-        //[HttpPost]
-        //public Response<OrganisationModel> AddOrganisation(OrganisationModel organisationModel)
-        //{
-        //    Response<OrganisationModel> response = ogranisationService.Add(organisationModel);
+        [HttpPost]
+        [ProducesResponseType(typeof(OrganisationModel), 200)]
+        public IActionResult AddOrganisation([FromBody]OrganisationModel organisationModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new ValidationActionResult(ModelState);
+            }
 
-        //    ImageFixing(response.Item, organisationModel.LogoFileNamePath);
+            OrganisationModel model = ogranisationService.Add(organisationModel);
 
-        //    return response;
-        //}
+            ImageFixing(model, organisationModel.LogoFileNamePath);
 
-        //[HttpPost]
-        //public Response<OrganisationModel> UpdateOrganisation(OrganisationModel organisationModel)
-        //{
-        //    Response<OrganisationModel> response = ogranisationService.Update(organisationModel);
+            return Ok(model);
+        }
 
-        //    ImageFixing(response.Item, organisationModel.LogoFileNamePath);
+        [HttpPost]
+        [ProducesResponseType(typeof(OrganisationModel), 200)]
+        public IActionResult UpdateOrganisation([FromBody]OrganisationModel organisationModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new ValidationActionResult(ModelState);
+            }
+            OrganisationModel model = ogranisationService.Update(organisationModel);
 
-        //    return response;
-        //}
+            ImageFixing(model, organisationModel.LogoFileNamePath);
 
-        //[HttpPost]
-        //public Response<OrganisationModel> DeleteOrganisation(OrganisationModel organisationModel)
-        //{
-        //    Response<OrganisationModel> response = ogranisationService.Delete(organisationModel.Id.Value);
+            return Ok(model);
+        }
 
-        //    ImageFixing(response.Item, organisationModel.LogoFileNamePath);
+        [HttpPost]
+        public IActionResult DeleteOrganisation([FromBody]OrganisationModel organisationModel)
+        {
+            ogranisationService.Delete(organisationModel.Id.Value);
+            
+            return Ok();
+        }
 
-        //    return response;
-        //}
+        [HttpGet]
+        [ProducesResponseType(typeof(OrganisationModel), 200)]
+        public IActionResult FetchOrganisation(Guid organisationId)
+        {
+            OrganisationModel organisationModel = ogranisationService.Find(organisationId);
 
-        //[HttpPost]
-        //public Response<OrganisationModel> FetchOrganisation(Guid organisationId)
-        //{
-        //    Response<OrganisationModel> response = ogranisationService.Find(organisationId);
+            ogranisationService.MapRelativeLogoPath(organisationModel, configuration, HttpContext.Request.CurrentUrl());
 
-        //    ogranisationService.MapRelativeLogoPath(response.Item, configuration, HttpContext.Request.CurrentUrl());
+            return Ok(organisationModel);
+        }
 
-        //    return response;
-        //}
+        [HttpPost]
+        public IActionResult SaveImage(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest(new { message = "Image upload failed, file is required and must not be null." });
+            }
 
-        //[HttpPost]
-        //public IActionResult SaveImage(IFormFile file)
-        //{
-        //    if (file == null || file.Length == 0)
-        //    {
-        //        return BadRequest(new { message = "Image upload failed, file is required and must not be null." });
-        //    }
+            long size = file.Length;
 
-        //    long size = file.Length;
+            string filename = FileHandler.SaveImage(new ImageModel
+            {
+                File = file.OpenReadStream(),
+                OriginalFileName = file.FileName,
+                Width = configuration.OrganisationNormalImageWidth(),
+                Height = configuration.OrganisationNormalImageHeight(),
+                PhysicalDirectory = Path.Combine(environment.WebRootPath, configuration.OrganisationNormalTempDirectory()),
+                RelativeDirectory = new Uri(HttpContext.Request.CurrentUrl() + configuration.OrganisationNormalTempDirectory()).AbsoluteUri
+            });
 
-        //    string filename = FileHandler.SaveImage(new ImageModel
-        //    {
-        //        File = file.OpenReadStream(),
-        //        OriginalFileName = file.FileName,
-        //        Width = configuration.OrganisationNormalImageWidth(),
-        //        Height = configuration.OrganisationNormalImageHeight(),
-        //        PhysicalDirectory = Path.Combine(environment.WebRootPath, configuration.OrganisationNormalTempDirectory()),
-        //        RelativeDirectory = new Uri(HttpContext.Request.CurrentUrl() + configuration.OrganisationNormalTempDirectory()).AbsoluteUri
-        //    });
+            return Ok(new { filename, size });
+        }
 
-        //    return Ok(new { filename, size });
-        //}
+        #region Private Methods
 
-        //#region Private Methods
+        private void ImageFixing(OrganisationModel organisationModel, string logoFileNamePath)
+        {
+            if (organisationModel == null || string.IsNullOrEmpty(logoFileNamePath))
+            {
+                return;
+            }
 
-        //private void ImageFixing(OrganisationModel organisationModel, string logoFileNamePath)
-        //{
-        //    if (organisationModel == null || string.IsNullOrEmpty(logoFileNamePath))
-        //    {
-        //        return;
-        //    }
+            if (logoFileNamePath.Contains(configuration.OrganisationNormalTempDirectory()))
+            {
+                ogranisationService.ResizeLogos(organisationModel, configuration, environment.WebRootPath, HttpContext.Request.CurrentUrl());
+            }
 
-        //    if (logoFileNamePath.Contains(configuration.OrganisationNormalTempDirectory()))
-        //    {
-        //        ogranisationService.ResizeLogos(organisationModel, configuration, environment.WebRootPath, HttpContext.Request.CurrentUrl());
-        //    }
+            ogranisationService.MapRelativeLogoPath(organisationModel, configuration, HttpContext.Request.CurrentUrl());
+        }
 
-        //    ogranisationService.MapRelativeLogoPath(organisationModel, configuration, HttpContext.Request.CurrentUrl());
-        //}
-
-        //#endregion
+        #endregion
     }
 }

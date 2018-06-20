@@ -1,0 +1,5 @@
+C:\repos\payroll-dotnet-code\DotNetCorePayroll.Api
+--output-path=obj\Release\netcoreapp2.0\
+--application-name=DotNetCorePayroll.Api
+--content-root=C:\repos\payroll-dotnet-code\DotNetCorePayroll.Api
+--file=

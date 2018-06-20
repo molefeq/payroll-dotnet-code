@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotNetCorePayroll.DataAccess.TableBuilders
 {
-    public class AddressBuilder
+    public class AddressTableBuilder
     {
         public static void Build(ModelBuilder modelBuilder)
         {

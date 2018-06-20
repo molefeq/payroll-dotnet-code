@@ -40,7 +40,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Organisation
                 throw new ResponseValidationException(ResponseMessage.ToError("Organisation you trying to update does not exist."));
             }
 
-            return organisationBuilder.BuildToModel(organisation);
+            return organisationBuilder.BuildModel(organisation);
         }
 
         public Result<OrganisationModel> Get(string searchText, PageData pageData)
@@ -49,62 +49,48 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Organisation
 
             return new Result<OrganisationModel>
             {
-                Items = results.Items.Select(o => organisationBuilder.BuildToModel(o)).ToList(),
+                Items = results.Items.Select(o => organisationBuilder.BuildModel(o)).ToList(),
                 TotalItems = results.TotalItems
             };
         }
 
-        public Response<OrganisationModel> Add(OrganisationModel organisationModel)
+        public OrganisationModel Add(OrganisationModel organisationModel)
         {
             var organisation = organisationBuilder.Build(organisationModel);
 
             unitOfWork.Organisation.Insert(organisation);
             unitOfWork.Save();
 
-            return new Response<OrganisationModel>
-            {
-                Item = organisationBuilder.BuildToModel(unitOfWork.Organisation.GetById(o => o.Guid == organisation.Guid, "PhysicalAddress, PostalAddress"))
-            };
+            return organisationBuilder.BuildModel(unitOfWork.Organisation.GetById(o => o.Guid == organisation.Guid, "PhysicalAddress, PostalAddress"));
         }
 
-        public Response<OrganisationModel> Update(OrganisationModel organisationModel)
+        public OrganisationModel Update(OrganisationModel organisationModel)
         {
             var organisation = unitOfWork.Organisation.GetById(o => o.Guid == organisationModel.Id.Value, "PhysicalAddress, PostalAddress");
 
             if (organisation == null)
             {
-                return new Response<OrganisationModel>
-                {
-                    Messages = new List<ResponseMessage> { ResponseMessage.ToError("Organisation you trying to update does not exist.") }
-                };
+                throw new ResponseValidationException(ResponseMessage.ToError("Organisation you trying to update does not exist."));
             }
 
             organisationAdapter.Update(organisation, organisationModel);
             unitOfWork.Organisation.Update(organisation);
             unitOfWork.Save();
 
-            return new Response<OrganisationModel>
-            {
-                Item = organisationBuilder.BuildToModel(unitOfWork.Organisation.GetById(o => o.Guid == organisation.Guid, "PhysicalAddress, PostalAddress"))
-            };
+            return organisationBuilder.BuildModel(unitOfWork.Organisation.GetById(o => o.Guid == organisation.Guid, "PhysicalAddress, PostalAddress"));
         }
 
-        public Response<OrganisationModel> Delete(Guid id)
+        public void Delete(Guid id)
         {
             var organisation = unitOfWork.Organisation.GetById(o => o.Guid == id);
 
             if (organisation == null)
             {
-                return new Response<OrganisationModel>
-                {
-                    Messages = new List<ResponseMessage> { ResponseMessage.ToError("Organisation you trying to delete does not exist.") }
-                };
+                throw new ResponseValidationException(ResponseMessage.ToError("Organisation you trying to delete does not exist."));
             }
 
             unitOfWork.Organisation.Delete(organisation);
             unitOfWork.Save();
-
-            return new Response<OrganisationModel>();
         }
 
         public void ResizeLogos(OrganisationModel organisationModel, IConfiguration configuration, string rootPath, string currentUrl)

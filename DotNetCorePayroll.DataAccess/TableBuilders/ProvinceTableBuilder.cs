@@ -4,29 +4,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotNetCorePayroll.DataAccess.TableBuilders
 {
-    public class CountryBuilder
+    public class ProvinceTableBuilder
     {
         public static void Build(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Country>(entity =>
+            modelBuilder.Entity<Province>(entity =>
             {
-                entity.ToTable("country");
-
-                entity.HasIndex(e => e.Code)
-                    .HasName("ck_country_code")
-                    .IsUnique();
+                entity.ToTable("province");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Code)
-                    .IsRequired()
-                    .HasColumnName("code");
+                entity.HasIndex(e => e.Code)
+                    .HasName("ck_province_code")
+                    .IsUnique();
+
+                entity.Property(e => e.Code).HasColumnName("code");
+
+                entity.Property(e => e.CountryId).HasColumnName("countryid");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnName("name");
             });
-
         }
     }
 }

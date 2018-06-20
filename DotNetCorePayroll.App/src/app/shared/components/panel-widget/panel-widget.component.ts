@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panel-widget',
@@ -11,7 +12,7 @@ export class PanelWidgetComponent implements OnInit {
   @Input() panelInformation:String;
   @Input() panelFooter:String ;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }

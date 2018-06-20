@@ -1,4 +1,5 @@
 ﻿using DotNetCorePayroll.DataAccess.Repositories;
+
 using System.Threading.Tasks;
 
 namespace DotNetCorePayroll.DataAccess
@@ -9,6 +10,7 @@ namespace DotNetCorePayroll.DataAccess
 
         AccountRepository Account { get; }
         OrganisationRepository Organisation { get; }
+        RoleRepository Role { get; }
 
         #endregion
 
