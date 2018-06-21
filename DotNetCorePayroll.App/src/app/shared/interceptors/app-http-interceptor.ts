@@ -6,6 +6,7 @@ import 'rxjs/add/operator/do';
 import { HttpResponse } from 'selenium-webdriver/http';
 import { Router } from '@angular/router';
 import { ServerValidationService } from '../services/server-validation.service';
+import { mockBackEndService } from '../mock-backend/mock-back-end-service';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
@@ -14,6 +15,8 @@ export class AppHttpInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let authRequest = request;
+        let url: string = request.url;
+        let method: string = request.method;
 
         if (this.authenticationService.user && this.authenticationService.user.token) {
             authRequest = request.clone({
@@ -21,7 +24,8 @@ export class AppHttpInterceptor implements HttpInterceptor {
             });
         }
 
-        return next.handle(authRequest).do(
+        return mockBackEndService(url, method, request) ||
+         next.handle(authRequest).do(
             (response: any) => {
                 //Do notthing
             },
