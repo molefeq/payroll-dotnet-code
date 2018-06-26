@@ -28,9 +28,19 @@ export function mockBackEndService(url: string, method: string, request: HttpReq
     }
 
     if (url.endsWith('/api/Role/GetRoles') && method === "POST") {
+        var skip = request.body.pageData.skip;
+        var take = request.body.pageData.take + skip;
+        var searchText = request.body.searchText;
+
         var items: RoleModel[] = [];
-        for (var i = 0; i < 100; i++) {
-            items.push({ id: i, name: "role " + i, code: "code " + i });
+
+        for (var i = skip; i < 100; i++) {
+            let role = { id: i, name: "role " + i, code: "code " + i };
+            if (searchText && !(role.name.indexOf(searchText) >= 0 || role.code.indexOf(searchText) >= 0)) {
+                continue;
+            }
+
+            items.push(role);
         }
 
         return new Observable(resp => {
@@ -38,7 +48,7 @@ export function mockBackEndService(url: string, method: string, request: HttpReq
                 status: 200,
                 body: {
                     "totalItems": 100,
-                    "items": items
+                    "items": items.slice(skip, take + skip)
                 }
             }));
 

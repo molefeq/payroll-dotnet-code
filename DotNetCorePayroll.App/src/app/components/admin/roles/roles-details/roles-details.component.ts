@@ -1,84 +1,64 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
-import { RoleService, PageData } from '../../../../shared/generated';
-import { merge } from 'rxjs/observable/merge';
-import { startWith, switchMap, map, catchError } from 'rxjs/operators';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { RoleModel } from '../../../../shared/generated';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { RolesFormComponent } from '../roles-form/roles-form.component';
+import { AdminRoleService } from '../admin-role.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-roles-details',
   templateUrl: './roles-details.component.html',
   styleUrls: ['./roles-details.component.scss']
 })
-export class RolesDetailsComponent implements AfterViewInit {
+export class RolesDetailsComponent implements OnInit {
   displayedColumns = [];
-  dataSource = new MatTableDataSource();
+  subscriptions: Subscription;
 
-  resultsLength = 0;
-  isLoadingResults = false;
+  totalRoles$ = this.adminRoleService.totalRoles$;
+  isBusy$: Observable<boolean> = this.adminRoleService.isBusy$;
 
+  @Output() searchEvent: EventEmitter<string> = new EventEmitter();
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource: RoleModel[] = [];
 
-  constructor(private roleService: RoleService) {
-    this.displayedColumns = ['name', 'code'];
-    console.log(this.displayedColumns);
+  constructor(private adminRoleService: AdminRoleService, private dialog: MatDialog) {
+    this.displayedColumns = ['name', 'code', 'actions'];
   }
 
-  ngAfterViewInit() {
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          console.log({
-            searchText: "",
-            pageData: {
-              includeAllData: false,
-              take: this.paginator.pageSize,
-              skip: this.paginator.pageSize * (this.paginator.pageIndex),
-              sortOrder: this.sort.direction == 'asc' ? PageData.SortOrderEnum.NUMBER_1 : PageData.SortOrderEnum.NUMBER_2,
-              sortColumn: this.sort.active
-            }
-          });
-          this.isLoadingResults = true;
-
-          return this.roleService.apiRoleGetRolesPost(
-            {
-              searchText: "",
-              pageData: {
-                includeAllData: false,
-                take: this.paginator.pageSize,
-                skip: this.paginator.pageSize * (this.paginator.pageIndex),
-                sortOrder: this.sort.direction == 'asc' ? PageData.SortOrderEnum.NUMBER_1 : PageData.SortOrderEnum.NUMBER_2,
-                sortColumn: this.sort.active
-              }
-            });
-        }),
-        map(data => {
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.resultsLength = data.totalItems;
-
-          return data.items;
-        }),
-        catchError(() => {
-          this.isLoadingResults = false;
-          return Observable.of([]);
-        })
-      ).subscribe(data => this.dataSource.data = data);
-
-
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+  ngOnInit() {
+    this.subscriptions = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.subscriptions.add(this.adminRoleService.getRoles(this.paginator, this.sort, this.searchEvent).subscribe(data => this.dataSource = data));
   }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+
+    this.searchEvent.emit(filterValue);
+    this.paginator.pageIndex = 0;
+  }
+
+  addRole() {
+    let dialogRef = this.dialog.open(RolesFormComponent, {
+      width: '250px',
+      height: '250px',
+      data: {},
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  editRole(role) {
+    console.log(role);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
 }

@@ -4,6 +4,7 @@ import { RolesDetailsComponent } from './roles/roles-details/roles-details.compo
 import { RolesFormComponent } from './roles/roles-form/roles-form.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../../shared/shared.module';
+import { AdminRoleService } from './roles/admin-role.service';
 
 @NgModule({
   imports: [
@@ -14,6 +15,10 @@ import { SharedModule } from '../../shared/shared.module';
   exports: [
     RolesDetailsComponent
   ],
-  declarations: [RolesDetailsComponent, RolesFormComponent]
+  entryComponents: [RolesFormComponent],
+  declarations: [RolesDetailsComponent, RolesFormComponent],
+  providers:[
+    AdminRoleService
+  ]
 })
 export class AdminModule { }
