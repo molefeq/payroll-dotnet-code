@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { MatSort, MatPaginator, MatDialog, MatDialogRef } from '@angular/material';
 import { RoleModel } from '../../../../shared/generated';
 import { Observable } from 'rxjs/Observable';
 import { RolesFormComponent } from '../roles-form/roles-form.component';
 import { AdminRoleService } from '../admin-role.service';
 import { Subscription } from 'rxjs';
+import { dialogCloseResponse } from '../../../../shared/models/dialogCloseResponse';
 
 @Component({
   selector: 'app-roles-details',
@@ -14,6 +15,7 @@ import { Subscription } from 'rxjs';
 export class RolesDetailsComponent implements OnInit {
   displayedColumns = [];
   subscriptions: Subscription;
+  searchText: string;
 
   totalRoles$ = this.adminRoleService.totalRoles$;
   isBusy$: Observable<boolean> = this.adminRoleService.isBusy$;
@@ -36,29 +38,47 @@ export class RolesDetailsComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
 
-    this.searchEvent.emit(filterValue);
+    this.searchText = filterValue;
+    this.searchEvent.emit(this.searchText);
     this.paginator.pageIndex = 0;
   }
 
   addRole() {
-    let dialogRef = this.dialog.open(RolesFormComponent, {
-      width: '250px',
-      height: '250px',
-      data: {},
-      disableClose: true
-    });
+    let dialogRef = this.dialog.open(RolesFormComponent, this.roleModalOptions(null));
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    this.closeModal(dialogRef);
   }
 
   editRole(role) {
-    console.log(role);
+    let dialogRef = this.dialog.open(RolesFormComponent, this.roleModalOptions(role));
+
+    this.closeModal(dialogRef);
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  refreshRoles() {
+    this.searchEvent.emit(this.searchText);
+  }
+
+  closeModal(dialogRef: MatDialogRef<RolesFormComponent, any>) {
+    dialogRef.afterClosed().subscribe((result: dialogCloseResponse) => {
+      if (result && result.dataSaved) {
+        console.log(result);
+        this.refreshRoles();
+      }
+    });
+  }
+
+  roleModalOptions(role: RoleModel): any {
+    return {
+      Height: '290px',
+      Width: '320px',
+      data: role,
+      disableClose: true
+    };
   }
 
 }

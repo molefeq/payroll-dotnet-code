@@ -23,7 +23,7 @@ export class AdminRoleService {
         switchMap((event) => {
           let pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
           let searchText = typeof event === 'string' ? event : null;
-          
+
           return this.roleService.apiRoleGetRolesPost(
             {
               searchText: searchText,
@@ -52,6 +52,14 @@ export class AdminRoleService {
         })
       );
   };
+
+  saveRole(roleModel: RoleModel):  Observable<RoleModel>{
+    if(roleModel.id){
+      return  this.roleService.apiRoleUpdateRolePost(roleModel);
+    }
+
+    return  this.roleService.apiRoleAddRolePost(roleModel);
+  }
 
   get isBusy$(): Observable<boolean> {
     return this._isBusy$.asObservable();

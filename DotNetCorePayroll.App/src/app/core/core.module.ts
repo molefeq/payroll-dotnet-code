@@ -3,10 +3,12 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports:[
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [
     FooterComponent,
