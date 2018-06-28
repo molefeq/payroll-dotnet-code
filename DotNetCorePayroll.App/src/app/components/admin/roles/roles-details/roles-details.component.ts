@@ -73,8 +73,8 @@ export class RolesDetailsComponent implements OnInit {
 
   roleModalOptions(role: RoleModel): any {
     return {
-      Height: '290px',
-      Width: '320px',
+      height: '290px',
+      width: '320px',
       data: role,
       disableClose: true
     };

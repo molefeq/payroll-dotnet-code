@@ -20,8 +20,8 @@ export class OrganisationFormComponent implements OnInit {
 
   validationMessages = {
     name: {
-      required: 'Role Name is required',
-      maxlength: 'Role Name cannot be more than 20 characters',
+      required: 'Organisation Name is required',
+      maxlength: 'Organisation Name cannot be more than 20 characters',
       serverValidation: ''
     }
   };
@@ -56,7 +56,7 @@ export class OrganisationFormComponent implements OnInit {
     return FormHelper.isErrorState(control, this.isSubmited);
   }
 
-  saveRole() {
+  saveOrganisation() {
     this.isSubmited = true;
 
     if (this.organisationForm.invalid) {

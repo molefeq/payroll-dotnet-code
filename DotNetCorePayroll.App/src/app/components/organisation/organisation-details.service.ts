@@ -22,14 +22,6 @@ export class OrganisationDetailsService {
           let pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
           let searchText = typeof event === 'string' ? event : null;
 
-          console.log({
-            includeAllData: false,
-            take: pageSize,
-            skip: pageSize * (paginator.pageIndex),
-            sortOrder: sort.direction == 'asc' ? PageData.SortOrderEnum.NUMBER_1 : PageData.SortOrderEnum.NUMBER_2,
-            sortColumn: sort.active
-          });
-
           return this.organisationService.apiOrganisationGetOrganisationsPost(
             {
               searchText: searchText,
@@ -45,6 +37,9 @@ export class OrganisationDetailsService {
         map(data => {
           this._isBusy$.next(false);
           this._totalOrganisations$.next(data.totalItems);
+
+          data.items.forEach(item => this.setAddress(item));
+
           return data.items;
         }),
         catchError((): Observable<OrganisationModel[]> => {
@@ -58,12 +53,12 @@ export class OrganisationDetailsService {
       );
   };
 
-  saveOrganisation(organisationModel: OrganisationModel):  Observable<OrganisationModel>{
-    if(organisationModel.id){
-      return  this.organisationService.apiOrganisationAddOrganisationPost(organisationModel);
+  saveOrganisation(organisationModel: OrganisationModel): Observable<OrganisationModel> {
+    if (organisationModel.id) {
+      return this.organisationService.apiOrganisationAddOrganisationPost(organisationModel);
     }
 
-    return  this.organisationService.apiOrganisationUpdateOrganisationPost(organisationModel);
+    return this.organisationService.apiOrganisationUpdateOrganisationPost(organisationModel);
   }
 
   get isBusy$(): Observable<boolean> {
@@ -74,4 +69,11 @@ export class OrganisationDetailsService {
     return this._totalOrganisations$.asObservable();
   }
 
+  setAddress(organisation: OrganisationModel) {
+    organisation['physicalAddress'] = [organisation.physicalAddressLine1, organisation.physicalAddressLine2, organisation.physicalAddressSuburb,
+    organisation.physicalAddressCity, organisation.physicalAddressPostalCode].filter(Boolean).join(", ");
+
+    organisation['postalAddress'] = [organisation.postalAddressLine1, organisation.postalAddressLine2, organisation.postalAddressSuburb,
+    organisation.postalAddressCity, organisation.postalAddressPostalCode].filter(Boolean).join(", ");
+  }
 }

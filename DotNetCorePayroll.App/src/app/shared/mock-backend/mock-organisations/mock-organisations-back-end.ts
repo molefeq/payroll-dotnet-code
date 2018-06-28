@@ -13,22 +13,45 @@ export function mockOrganisationsBackEndService(url: string, method: string, req
         var items: OrganisationModel[] = [];
 
         for (var i = skip; i < 100; i++) {
-            let organisation = { id: i, name: "role " + i, code: "code " + i };
-            if (searchText && !(organisation.name.indexOf(searchText) >= 0 || organisation.code.indexOf(searchText) >= 0)) {
+            let organisation: OrganisationModel = {
+                id: i,
+                name: "test organisation" + i,
+                description: "organisation description" + i,
+                physicalAddressLine1: "Line " + (i + 1),
+                physicalAddressLine2: "Line " + (i + 2),
+                physicalAddressSuburb: "Suburb " + i,
+                physicalAddressCity: "City " + i,
+                physicalAddressPostalCode: "200 " + i,
+                physicalAddressProvinceId: i,
+                physicalAddressCountryId: i,
+                postalAddressId: i,
+                postalAddressLine1: "Line " + (i + 1),
+                postalAddressLine2: "Line " + (i + 2),
+                postalAddressSuburb: "Suburb " + i,
+                postalAddressCity: "City " + i,
+                postalAddressPostalCode: "200 " + i,
+                postalAddressProvinceId: i,
+                postalAddressCountryId: i,
+                faxNumber: "01178900" + i,
+                emailAddress: "testuser" + i + "@gmail.com",
+                contactNumber: "084621300" + i,
+            };
+
+            if (searchText && !(organisation.name.indexOf(searchText) >= 0 || organisation.description.indexOf(searchText) >= 0)) {
                 continue;
             }
 
             items.push(organisation);
         }
 
-        console.log(items.slice(skip, take));
+       let pagedItems = items.slice(skip, take);
 
         return new Observable(resp => {
             resp.next(new HttpResponse({
                 status: 200,
                 body: {
-                    "totalItems": 100,
-                    "items": items.slice(skip, take)
+                    "totalItems": items.length,
+                    "items": pagedItems
                 }
             }));
 

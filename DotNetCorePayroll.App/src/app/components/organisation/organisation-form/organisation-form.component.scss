@@ -1,0 +1,20 @@
+form {
+    margin: 0 -24px;
+    padding: 0 10px 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: space-evenly;
+    app-summary-validation-messages {
+        flex-grow: 2;
+        max-width: 100%;
+        flex-basis: 100%;
+        padding: 10px;
+    }
+    .mat-form-field {
+        max-width: 50%;
+        flex-basis: 50%;
+        flex-grow: 1;
+        padding: 10px;
+    }
+}

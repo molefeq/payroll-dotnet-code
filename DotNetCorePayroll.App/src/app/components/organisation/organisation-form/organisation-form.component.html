@@ -1,3 +1,56 @@
-<p>
-  organisation-form works!
-</p>
+<h2 mat-dialog-title>Edit Organisation</h2>
+<mat-dialog-content>
+  <form class="form-container" [formGroup]="organisationForm" [appFormValidator]="organisationForm" [validationMessages]="validationMessages">
+    <app-summary-validation-messages [appForm]="organisationForm"></app-summary-validation-messages>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('name'))">
+      <input matInput type="text" placeholder="Name" formControlName="name">
+      <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button (click)="saveOrganisation()" *ngIf="!isInProgress">Save</button>
+  <button mat-button mat-dialog-close *ngIf="!isInProgress">Cancel</button>
+  <mat-progress-bar mode="indeterminate" *ngIf="isInProgress"></mat-progress-bar>
+</mat-dialog-actions>
