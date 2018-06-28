@@ -66,7 +66,6 @@ export class RolesDetailsComponent implements OnInit {
   closeModal(dialogRef: MatDialogRef<RolesFormComponent, any>) {
     dialogRef.afterClosed().subscribe((result: dialogCloseResponse) => {
       if (result && result.dataSaved) {
-        console.log(result);
         this.refreshRoles();
       }
     });

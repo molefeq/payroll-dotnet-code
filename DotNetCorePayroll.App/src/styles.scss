@@ -77,10 +77,16 @@ a {
 .containerX {
     padding-left: 15px;
     padding-right: 15px;
+    .containerX-heading {
+        padding-top: 10px;
+        padding-left: 0;
+        text-align: center;
+    }
     .containerX-header {
         padding: 10px 0 10px 0;
         display: flex;
         flex-direction: row;
+        height: 60px;
         .containerX-header-actions {
             flex-grow: 1;
             flex-shrink: 0;

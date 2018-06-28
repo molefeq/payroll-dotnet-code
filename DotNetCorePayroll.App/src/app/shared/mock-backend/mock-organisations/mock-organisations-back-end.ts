@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { RoleModel } from '../../generated';
+import { RoleModel, OrganisationModel } from '../../generated';
 
-export function mockRoleBackEndService(url: string, method: string, request: HttpRequest<any>): Observable<HttpEvent<any>> {
+export function mockOrganisationsBackEndService(url: string, method: string, request: HttpRequest<any>): Observable<HttpEvent<any>> {
 
-    if (url.endsWith('/api/Role/GetRoles') && method === "POST") {
+    if (url.endsWith('/api/Organisation/GetOrganisations') && method === "POST") {
         var skip = request.body.pageData.skip;
         var take = request.body.pageData.take + skip;
         var searchText = request.body.searchText;
 
-        var items: RoleModel[] = [];
+        var items: OrganisationModel[] = [];
 
         for (var i = skip; i < 100; i++) {
-            let role = { id: i, name: "role " + i, code: "code " + i };
-            if (searchText && !(role.name.indexOf(searchText) >= 0 || role.code.indexOf(searchText) >= 0)) {
+            let organisation = { id: i, name: "role " + i, code: "code " + i };
+            if (searchText && !(organisation.name.indexOf(searchText) >= 0 || organisation.code.indexOf(searchText) >= 0)) {
                 continue;
             }
 
-            items.push(role);
+            items.push(organisation);
         }
+
+        console.log(items.slice(skip, take));
 
         return new Observable(resp => {
             resp.next(new HttpResponse({
@@ -34,21 +36,21 @@ export function mockRoleBackEndService(url: string, method: string, request: Htt
         });
     }
 
-    if (url.endsWith('/api/Role/AddRole') && method === "POST") {
-        let role: RoleModel = request.body;
-        role.id = 100;
+    if (url.endsWith('/api/Organisation/AddOrganisation') && method === "POST") {
+        let organisation: OrganisationModel = request.body;
+        organisation.id = 'gfhgsdj-hgdhdhgjgh-122323234';
 
         return new Observable(resp => {
             resp.next(new HttpResponse({
                 status: 200,
-                body: role
+                body: organisation
             }));
 
             resp.complete();
         });
     }
 
-    if (url.endsWith('/api/Role/UpdateRole') && method === "POST") {
+    if (url.endsWith('/api/Organisation/UpdateOrganisation') && method === "POST") {
         return new Observable(resp => {
             resp.next(new HttpResponse({
                 status: 200,
