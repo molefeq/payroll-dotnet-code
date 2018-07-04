@@ -17,4 +17,8 @@ form {
         flex-grow: 1;
         padding: 10px;
     }
+    .full-width-form-field {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
 }

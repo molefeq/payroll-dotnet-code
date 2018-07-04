@@ -15,6 +15,8 @@ import { AppHttpServerErrorComponent } from './components/app-http-server-error/
 import { ServerErrorDailogComponent } from './components/app-http-server-error/server-error-dailog/server-error-dailog.component';
 import { environment } from '../../environments/environment';
 import { SummaryValidationMessagesComponent } from './components/summary-validation-messages/summary-validation-messages.component';
+import { AppReferenceDataService } from './services/app-reference-data-service';
+import { AppStartUpService } from './services/app-startup-service';
 
 @NgModule({
   imports: [
@@ -47,6 +49,8 @@ import { SummaryValidationMessagesComponent } from './components/summary-validat
     AuthenticationService,
     AuthorizationGuardService,
     ServerValidationService,
+    AppReferenceDataService,
+    AppStartUpService,
     {
       provide: BASE_PATH, useValue: environment.basePath,
     },

@@ -73,7 +73,9 @@ export class OrganisationDetailsComponent implements OnInit {
 
   organisationModalOptions(organisation: OrganisationModel): any {
     return {
-      height: '630px',
+      height: '100%',
+      maxHeight:'800px',
+      minHeight: '600px',
       width: '580px',
       data: organisation,
       disableClose: true

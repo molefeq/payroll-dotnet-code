@@ -1,4 +1,5 @@
-﻿using DotNetCorePayroll.DataAccess.Repositories;
+﻿using DotNetCorePayroll.Data;
+using DotNetCorePayroll.DataAccess.Repositories;
 
 using System.Threading.Tasks;
 
@@ -11,6 +12,8 @@ namespace DotNetCorePayroll.DataAccess
         AccountRepository Account { get; }
         OrganisationRepository Organisation { get; }
         RoleRepository Role { get; }
+        GenericRepository<Country> Country { get; }
+        GenericRepository<Province> Province { get; }
 
         #endregion
 

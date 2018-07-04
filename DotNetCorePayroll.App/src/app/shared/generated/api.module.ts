@@ -5,6 +5,7 @@ import { Configuration } from './configuration';
 
 import { AccountService } from './api/account.service';
 import { OrganisationService } from './api/organisation.service';
+import { ReferenceDataService } from './api/referenceData.service';
 import { RoleService } from './api/role.service';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { RoleService } from './api/role.service';
   providers: [
     AccountService,
     OrganisationService,
+    ReferenceDataService,
     RoleService ]
 })
 export class ApiModule {

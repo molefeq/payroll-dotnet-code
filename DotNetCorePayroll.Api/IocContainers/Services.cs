@@ -1,6 +1,7 @@
 ﻿using DotNetCorePayroll.ServiceBusinessRules.Services;
 using DotNetCorePayroll.ServiceBusinessRules.Services.Account;
 using DotNetCorePayroll.ServiceBusinessRules.Services.Organisation;
+using DotNetCorePayroll.ServiceBusinessRules.Services.ReferenceData;
 using DotNetCorePayroll.ServiceBusinessRules.Services.Role;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ namespace DotNetCorePayroll.Api.IocContainers
             services.AddScoped<IOgranisationService, OgranisationService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IReferenceDataService, ReferenceDataService>();
         }
     }
 }

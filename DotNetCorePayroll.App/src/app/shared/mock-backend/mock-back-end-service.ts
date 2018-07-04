@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpRequest, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { UserModel, RoleModel } from '../generated';
 import { mockRoleBackEndService } from './mock-roles/mock-roles-back-end-services';
 import { mockOrganisationsBackEndService } from './mock-organisations/mock-organisations-back-end';
+import { mockReferenceDataBackEndService } from './mock-reference-data/mock-reference-data-back-end';
 
 export function mockBackEndService(url: string, method: string, request: HttpRequest<any>): Observable<HttpEvent<any>> {
 
@@ -35,5 +34,8 @@ export function mockBackEndService(url: string, method: string, request: HttpReq
 
     if (url.indexOf('/api/Organisation/') >= 0) {
         return mockOrganisationsBackEndService(url, method, request);
+    }
+    if (url.indexOf('/api/ReferenceData/') >= 0) {
+        return mockReferenceDataBackEndService(url, method, request);
     }
 }
