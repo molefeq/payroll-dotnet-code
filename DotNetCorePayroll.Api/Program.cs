@@ -38,6 +38,7 @@ namespace DotNetCorePayroll.Api
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseWebRoot("")
                 .UseStartup<Startup>()
                 .UseSerilog()
                 .Build();

@@ -17,13 +17,16 @@ import { environment } from '../../environments/environment';
 import { SummaryValidationMessagesComponent } from './components/summary-validation-messages/summary-validation-messages.component';
 import { AppReferenceDataService } from './services/app-reference-data-service';
 import { AppStartUpService } from './services/app-startup-service';
+import { LogoComponent } from './components/logo/logo.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ApiModule
+    ApiModule,
+    FileUploadModule 
   ],
   exports: [
     MaterialModule,
@@ -32,7 +35,8 @@ import { AppStartUpService } from './services/app-startup-service';
     FormValidatorDirective,
     AppValidationMessageDirective,
     AppHttpServerErrorComponent,
-    SummaryValidationMessagesComponent
+    SummaryValidationMessagesComponent,
+    LogoComponent,
   ],
   declarations: [
     PanelWidgetComponent,
@@ -41,6 +45,7 @@ import { AppStartUpService } from './services/app-startup-service';
     AppHttpServerErrorComponent,
     ServerErrorDailogComponent,
     SummaryValidationMessagesComponent,
+    LogoComponent,
   ],
   entryComponents: [
     ServerErrorDailogComponent

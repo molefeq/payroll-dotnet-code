@@ -13,7 +13,7 @@ import { OrganisationDetailsService } from './organisation/organisation-details.
     SecurityModule,
     AdminModule,
     ComponentsRoutingModule,
-    SharedModule,
+    SharedModule
   ],
   providers:[
     OrganisationDetailsService
