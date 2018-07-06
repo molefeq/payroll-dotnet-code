@@ -148,6 +148,10 @@ export class OrganisationFormComponent implements OnInit {
       contactNumber: ['', [Validators.required, Validators.maxLength(20), serverValidation()]]
     });
 
+    this.logo = {
+      logoUrl: '',
+      logoFilename: ''
+    };
     this.isSubmited = false;
     this.initialiseForm();
   }

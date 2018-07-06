@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { logoModel } from '../../models/logoModel';
+import { ServerValidationService } from '../../services/server-validation.service';
 
 @Component({
   selector: 'app-logo',
@@ -14,14 +15,14 @@ export class LogoComponent implements OnInit {
 
   public fileUploader: FileUploader;
 
-  constructor() { }
+  constructor(private serverValidationService: ServerValidationService) { }
 
   ngOnInit() {
     this.fileUploader = new FileUploader({
       url: this.apiUrl,
       autoUpload: true,
     });
-    
+
     this.fileUploader.onSuccessItem = (item, response, status, headers) => {
       const jResponse = JSON.parse(response);
       const model: logoModel = {
@@ -31,6 +32,10 @@ export class LogoComponent implements OnInit {
 
       this.logoUrl = model.logoUrl;
       this.logoChanged.emit(model);
+    };
+
+    this.fileUploader.onErrorItem = (item, response, status, headers) => {
+      this.serverValidationService.setServerErrors('File upload failed.');
     };
   }
 

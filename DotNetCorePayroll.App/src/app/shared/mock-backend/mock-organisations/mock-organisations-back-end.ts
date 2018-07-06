@@ -12,26 +12,27 @@ export function mockOrganisationsBackEndService(url: string, method: string, req
 
         var items: OrganisationModel[] = [];
 
-        for (var i = skip; i < 100; i++) {
+        for (var i: number = 1; i < 100; i++) {
+            const valueId = i % 3 + 1;
             let organisation: OrganisationModel = {
-                id: i,
+                id: '451241-tggert-7899po-kujgf' + i,
                 name: "test organisation" + i,
                 description: "organisation description" + i,
                 physicalAddressLine1: "Line " + (i + 1),
                 physicalAddressLine2: "Line " + (i + 2),
                 physicalAddressSuburb: "Suburb " + i,
                 physicalAddressCity: "City " + i,
-                physicalAddressPostalCode: "200 " + i,
-                physicalAddressProvinceId: i,
-                physicalAddressCountryId: i,
+                physicalAddressPostalCode: "200" + i,
+                physicalAddressProvinceId: valueId,
+                physicalAddressCountryId: valueId,
                 postalAddressId: i,
-                postalAddressLine1: "Line " + (i + 1),
-                postalAddressLine2: "Line " + (i + 2),
-                postalAddressSuburb: "Suburb " + i,
-                postalAddressCity: "City " + i,
-                postalAddressPostalCode: "200 " + i,
-                postalAddressProvinceId: i,
-                postalAddressCountryId: i,
+                postalAddressLine1: "Post Line " + (i + 1),
+                postalAddressLine2: "Post Line " + (i + 2),
+                postalAddressSuburb: "Post Suburb " + i,
+                postalAddressCity: "Post City " + i,
+                postalAddressPostalCode: "200" + i,
+                postalAddressProvinceId: valueId,
+                postalAddressCountryId: valueId,
                 faxNumber: "01178900" + i,
                 emailAddress: "testuser" + i + "@gmail.com",
                 contactNumber: "084621300" + i,
@@ -44,7 +45,7 @@ export function mockOrganisationsBackEndService(url: string, method: string, req
             items.push(organisation);
         }
 
-       let pagedItems = items.slice(skip, take);
+        let pagedItems = items.slice(skip, take);
 
         return new Observable(resp => {
             resp.next(new HttpResponse({

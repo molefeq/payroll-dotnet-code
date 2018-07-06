@@ -12,7 +12,7 @@ export function mockReferenceDataBackEndService(url: string, method: string, req
         for (var i = 1; i < 9; i++) {
             let country: ReferenceDataModel = {
                 id: i,
-                name: "country " + i,
+                name: "Country " + i,
                 code: "c_code" + i
             };
 
@@ -22,7 +22,7 @@ export function mockReferenceDataBackEndService(url: string, method: string, req
         for (var i = 1; i < 9; i++) {
             let province: ReferenceDataModel = {
                 id: i,
-                name: "province " + i,
+                name: "Province " + i,
                 code: "p_code" + i
             };
 
