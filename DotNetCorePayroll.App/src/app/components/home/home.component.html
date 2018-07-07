@@ -1,8 +1,8 @@
 <div class="panels-container">
-  <app-panel-widget icon="settings"  panelInformation="Roles" panelFooter="Roles: 1" (click)="goToRoles()"></app-panel-widget>
+  <app-panel-widget icon="settings"  panelInformation="Roles" panelFooter="Roles: 1" (click)="goToModule('/roles')"></app-panel-widget>
   <app-panel-widget icon="account_box"  panelInformation="Users" panelFooter="Users: 1"></app-panel-widget>
   <app-panel-widget icon="storage"  panelInformation="SARS" panelFooter="SARS Tables"></app-panel-widget>
-  <app-panel-widget icon="settings"  panelInformation="Organisations" panelFooter="Organisations: 1"></app-panel-widget>
+  <app-panel-widget icon="settings"  panelInformation="Organisations" panelFooter="Organisations: 1" (click)="goToModule('/organisations')"></app-panel-widget>
   <app-panel-widget icon="settings"  panelInformation="Companies" panelFooter="Companies: 1"></app-panel-widget>
   <app-panel-widget icon="settings"  panelInformation="Employees" panelFooter="Employees: 1"></app-panel-widget>
   <!--<app-panel-widget></app-panel-widget>

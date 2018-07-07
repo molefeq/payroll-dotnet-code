@@ -1,4 +1,5 @@
-﻿using DotNetCorePayroll.DataAccess.Repositories;
+﻿using DotNetCorePayroll.Data;
+using DotNetCorePayroll.DataAccess.Repositories;
 
 using System.Threading.Tasks;
 
@@ -13,6 +14,8 @@ namespace DotNetCorePayroll.DataAccess
         private OrganisationRepository organisation;
         private AccountRepository account;
         private RoleRepository role;
+        private GenericRepository<Country> country;
+        private GenericRepository<Province> province;
 
         #endregion
 
@@ -72,6 +75,32 @@ namespace DotNetCorePayroll.DataAccess
             }
         }
 
+        public GenericRepository<Country> Country
+        {
+            get
+            {
+                if (country == null)
+                {
+                    country = new GenericRepository<Country>(context);
+                }
+
+                return country;
+            }
+        }
+
+
+        public GenericRepository<Province> Province
+        {
+            get
+            {
+                if (province == null)
+                {
+                    province = new GenericRepository<Province>(context);
+                }
+
+                return province;
+            }
+        }
         #endregion
     }
 }

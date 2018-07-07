@@ -15,13 +15,18 @@ import { AppHttpServerErrorComponent } from './components/app-http-server-error/
 import { ServerErrorDailogComponent } from './components/app-http-server-error/server-error-dailog/server-error-dailog.component';
 import { environment } from '../../environments/environment';
 import { SummaryValidationMessagesComponent } from './components/summary-validation-messages/summary-validation-messages.component';
+import { AppReferenceDataService } from './services/app-reference-data-service';
+import { AppStartUpService } from './services/app-startup-service';
+import { LogoComponent } from './components/logo/logo.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ApiModule
+    ApiModule,
+    FileUploadModule 
   ],
   exports: [
     MaterialModule,
@@ -30,7 +35,8 @@ import { SummaryValidationMessagesComponent } from './components/summary-validat
     FormValidatorDirective,
     AppValidationMessageDirective,
     AppHttpServerErrorComponent,
-    SummaryValidationMessagesComponent
+    SummaryValidationMessagesComponent,
+    LogoComponent,
   ],
   declarations: [
     PanelWidgetComponent,
@@ -39,6 +45,7 @@ import { SummaryValidationMessagesComponent } from './components/summary-validat
     AppHttpServerErrorComponent,
     ServerErrorDailogComponent,
     SummaryValidationMessagesComponent,
+    LogoComponent,
   ],
   entryComponents: [
     ServerErrorDailogComponent
@@ -47,6 +54,8 @@ import { SummaryValidationMessagesComponent } from './components/summary-validat
     AuthenticationService,
     AuthorizationGuardService,
     ServerValidationService,
+    AppReferenceDataService,
+    AppStartUpService,
     {
       provide: BASE_PATH, useValue: environment.basePath,
     },

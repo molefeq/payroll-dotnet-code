@@ -79,7 +79,7 @@ namespace DotNetCorePayroll.Api.Controllers
         public IActionResult DeleteOrganisation([FromBody]OrganisationModel organisationModel)
         {
             ogranisationService.Delete(organisationModel.Id.Value);
-            
+
             return Ok();
         }
 
@@ -104,17 +104,23 @@ namespace DotNetCorePayroll.Api.Controllers
 
             long size = file.Length;
 
-            string filename = FileHandler.SaveImage(new ImageModel
+            if (string.IsNullOrWhiteSpace(environment.WebRootPath))
+            {
+                environment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "");
+            }
+
+            ImageModel image = new ImageModel
             {
                 File = file.OpenReadStream(),
                 OriginalFileName = file.FileName,
                 Width = configuration.OrganisationNormalImageWidth(),
                 Height = configuration.OrganisationNormalImageHeight(),
-                PhysicalDirectory = Path.Combine(environment.WebRootPath, configuration.OrganisationNormalTempDirectory()),
+                PhysicalDirectory = environment.WebRootPath + configuration.OrganisationNormalTempDirectory(),
                 RelativeDirectory = new Uri(HttpContext.Request.CurrentUrl() + configuration.OrganisationNormalTempDirectory()).AbsoluteUri
-            });
+            };
+            string filename = FileHandler.SaveImage(image);
 
-            return Ok(new { filename, size });
+            return Ok(new { filename = filename, size = size, imageUrl = image.RelativeFileName });
         }
 
         #region Private Methods

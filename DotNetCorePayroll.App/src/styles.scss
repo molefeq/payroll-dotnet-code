@@ -74,8 +74,52 @@ a {
     }
 }
 
+.containerX {
+    padding-left: 15px;
+    padding-right: 15px;
+    .containerX-heading {
+        padding-top: 10px;
+        padding-left: 0;
+        text-align: center;
+    }
+    .containerX-header {
+        padding: 10px 0 10px 0;
+        display: flex;
+        flex-direction: row;
+        height: 60px;
+        .containerX-header-actions {
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 50px;
+        }
+        .containerX-header-filter {
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-end;
+            .header-search-field {
+                min-width: 150px;
+                max-width: 320px;
+                width: 100%;
+            }
+        }
+    }
+}
+
 .mat-form-field.is-invalid {
     padding: 0 0 15px 0;
+}
+
+.table-header-actions-col,
+.table-cell-actions-col {
+    min-width: 80px;
+    max-width: 180px;
+    width: 100%;
+    font-weight: normal;
+}
+
+.table-cell-actions-col {
+    display: flex;
+    justify-content: flex-end;
 }
 
 @media (max-width: 720px) {

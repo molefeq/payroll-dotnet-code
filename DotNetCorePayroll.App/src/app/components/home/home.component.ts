@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToRoles() {
-    this.router.navigate(['/roles']);
+  goToModule(modulePath:string) {
+    this.router.navigate([modulePath]);
   }
 }

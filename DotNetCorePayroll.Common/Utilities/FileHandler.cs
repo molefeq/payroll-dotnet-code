@@ -19,7 +19,7 @@ namespace DotNetCorePayroll.Common.Utilities
 
             if (imageModel.File.Length > 0)
             {
-                using (var stream = new FileStream(fileName, FileMode.Create))
+                using (var stream = new FileStream(imageModel.PhysicalFileName, FileMode.Create))
                 {
                     imageModel.File.CopyTo(stream);
                 }

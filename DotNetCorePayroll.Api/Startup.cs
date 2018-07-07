@@ -103,7 +103,7 @@ namespace DotNetCorePayroll.Api
             });
 
             app.UseAuthentication();
-
+            app.UseStaticFiles();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Zenit Payroll API V1");
