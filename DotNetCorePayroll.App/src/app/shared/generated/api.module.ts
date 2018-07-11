@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './configuration';
 
 import { AccountService } from './api/account.service';
+import { CompanyService } from './api/company.service';
 import { OrganisationService } from './api/organisation.service';
 import { ReferenceDataService } from './api/referenceData.service';
 import { RoleService } from './api/role.service';
@@ -14,6 +15,7 @@ import { RoleService } from './api/role.service';
   exports:      [],
   providers: [
     AccountService,
+    CompanyService,
     OrganisationService,
     ReferenceDataService,
     RoleService ]

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { mockRoleBackEndService } from './mock-roles/mock-roles-back-end-services';
 import { mockOrganisationsBackEndService } from './mock-organisations/mock-organisations-back-end';
 import { mockReferenceDataBackEndService } from './mock-reference-data/mock-reference-data-back-end';
+import { mockCompaniesBackEndService } from './mock-companies/mock-companies-back-end';
 
 export function mockBackEndService(url: string, method: string, request: HttpRequest<any>): Observable<HttpEvent<any>> {
 
@@ -37,5 +38,8 @@ export function mockBackEndService(url: string, method: string, request: HttpReq
     }
     if (url.indexOf('/api/ReferenceData/') >= 0) {
         return mockReferenceDataBackEndService(url, method, request);
+    }
+    if (url.indexOf('/api/Company/') >= 0) {
+        return mockCompaniesBackEndService(url, method, request);
     }
 }
