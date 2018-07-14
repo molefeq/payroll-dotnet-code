@@ -7,6 +7,7 @@ import { AdminModule } from './admin/admin.module';
 import { OrganisationDetailsComponent } from './organisation/organisation-details.component';
 import { OrganisationFormComponent } from './organisation/organisation-form/organisation-form.component';
 import { OrganisationDetailsService } from './organisation/organisation-details.service';
+import { CompanyDetailsComponent } from './company/company-details.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { OrganisationDetailsService } from './organisation/organisation-details.
     OrganisationDetailsService
   ],
   entryComponents: [OrganisationFormComponent],
-  declarations: [HomeComponent, OrganisationDetailsComponent, OrganisationFormComponent]
+  declarations: [HomeComponent, OrganisationDetailsComponent, OrganisationFormComponent, CompanyDetailsComponent]
 })
 export class ComponentsModule { }

@@ -26,7 +26,7 @@ export class OrganisationDetailsComponent implements OnInit {
   dataSource: OrganisationModel[] = [];
 
   constructor(private organisationDetailsService: OrganisationDetailsService, private dialog: MatDialog) {
-    this.displayedColumns = ['name', 'description', 'physicalAddress', 'postalAddress', 'faxNumber', 'emailAddress', 'contactNumber', 'actions'];
+    this.displayedColumns = ['name', 'description', 'physicalAddress', 'faxNumber', 'emailAddress', 'contactNumber', 'actions'];
   }
 
   ngOnInit() {
@@ -53,6 +53,10 @@ export class OrganisationDetailsComponent implements OnInit {
     let dialogRef = this.dialog.open(OrganisationFormComponent, this.organisationModalOptions(organisation));
 
     this.closeModal(dialogRef);
+  }
+
+  viewOrganisation(organisation: OrganisationModel){
+
   }
 
   ngOnDestroy() {

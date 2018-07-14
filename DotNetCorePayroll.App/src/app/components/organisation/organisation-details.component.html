@@ -1,70 +1,73 @@
 <div class="containerX">
-    <h1 class="mat-headline containerX-heading">Organisations</h1>
-    <div class="containerX-header">
-      <div class="containerX-header-actions">
-        <button mat-raised-button color="primary" (click)="addOrganisation()">Add</button>
-      </div>
-      <div class="containerX-header-filter">
-        <mat-form-field class="header-search-field">
-          <input matInput (keyup)="applyFilter($event.target.value)">
-          <mat-icon matPrefix>search</mat-icon>
-        </mat-form-field>
-      </div>
+  <h1 class="mat-headline containerX-heading">Organisations</h1>
+  <div class="containerX-header">
+    <div class="containerX-header-actions">
+      <!-- <button mat-raised-button color="primary" (click)="addOrganisation()">Add</button> -->
+      <button mat-mini-fab color="primary" (click)="addOrganisation()" matTooltip="Add organisation">
+        <mat-icon aria-label="Button to add new organisation.">add</mat-icon>
+      </button>
     </div>
-    <div class="table-container mat-elevation-z8">
-      <div class="table-loading-shade" *ngIf="isBusy$ | async">
-        <mat-spinner *ngIf="isBusy$ | async" strokeWidth="2"></mat-spinner>
-      </div>
-  
-      <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 material_table" matSort matSortDirection="asc" matSortActive="name">
-  
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
-        </ng-container>
-        
-        <ng-container matColumnDef="description">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row.description }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="physicalAddress">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Physical Address</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row.physicalAddress }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="postalAddress">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Postal Address</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row.postalAddress }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="faxNumber">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Fax</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row.faxNumber }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="emailAddress">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row.emailAddress }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="contactNumber">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Contact Number</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row.contactNumber }}</mat-cell>
-        </ng-container>
-    
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef class="table-header-actions-col"></th>
-          <td mat-cell *matCellDef="let row" class="table-cell-actions-col">
-            <button mat-raised-button color="primary" (click)="editOrganisation(row)">Edit</button>
-          </td>
-        </ng-container>
-  
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  
-      </mat-table>
-      <mat-paginator [length]="totalOrganisations$ | async" [pageSize]="5"></mat-paginator>
+    <div class="containerX-header-filter">
+      <mat-form-field class="header-search-field">
+        <input matInput (keyup)="applyFilter($event.target.value)">
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
     </div>
-  
   </div>
+  <div class="table-container mat-elevation-z8">
+    <div class="table-loading-shade" *ngIf="isBusy$ | async">
+      <mat-spinner *ngIf="isBusy$ | async" strokeWidth="2"></mat-spinner>
+    </div>
+
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 material_table" matSort matSortDirection="asc" matSortActive="name">
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Name</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.name }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-2">Description</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="cell-flex-2">{{ row.description }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="physicalAddress">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-3">Location</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="cell-flex-3">{{ row.physicalAddress }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="faxNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Fax</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.faxNumber }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="emailAddress">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Email</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.emailAddress }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="contactNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Contact Number</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.contactNumber }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="table-header-actions-col"></th>
+        <td mat-cell *matCellDef="let row" class="table-cell-actions-col">
+          <button mat-icon-button color="primary" (click)="viewOrganisation(row)" matTooltip="View organisation">
+            <mat-icon aria-label="Button to view organisation.">create</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="editOrganisation(row)" matTooltip="Edit organisation">
+            <mat-icon aria-label="Button to edit organisation.">create</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+    <mat-paginator [length]="totalOrganisations$ | async" [pageSize]="5"></mat-paginator>
+  </div>
+
+</div>
