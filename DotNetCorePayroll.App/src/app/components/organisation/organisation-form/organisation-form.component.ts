@@ -25,6 +25,7 @@ export class OrganisationFormComponent implements OnInit {
   countries: Array<ReferenceDataModel>;
   provinces: Array<ReferenceDataModel>;
   postSameAsPhyAddress: boolean = false;
+  heading:String = 'Create Organisation';
 
   validationMessages = {
     name: {
@@ -161,6 +162,7 @@ export class OrganisationFormComponent implements OnInit {
       return;
     }
 
+    this.heading = 'Edit Organisation';
     this.logo = {
       logoUrl: this.data.logoFileNamePath,
       logoFilename: this.data.logoFileName

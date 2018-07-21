@@ -8,6 +8,7 @@ import { OrganisationDetailsComponent } from './organisation/organisation-detail
 import { OrganisationFormComponent } from './organisation/organisation-form/organisation-form.component';
 import { OrganisationDetailsService } from './organisation/organisation-details.service';
 import { CompanyDetailsComponent } from './company/company-details.component';
+import { CompanyDetailsService } from './company/company-details.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CompanyDetailsComponent } from './company/company-details.component';
     SharedModule
   ],
   providers:[
-    OrganisationDetailsService
+    OrganisationDetailsService,
+    CompanyDetailsService
   ],
   entryComponents: [OrganisationFormComponent],
   declarations: [HomeComponent, OrganisationDetailsComponent, OrganisationFormComponent, CompanyDetailsComponent]

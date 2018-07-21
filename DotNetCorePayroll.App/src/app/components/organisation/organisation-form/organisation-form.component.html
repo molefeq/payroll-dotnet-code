@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Edit Organisation</h2>
+<h2 mat-dialog-title>{{heading}}</h2>
 <mat-dialog-content>
   <form class="form-container" [formGroup]="organisationForm" [appFormValidator]="organisationForm" [validationMessages]="validationMessages">
     <app-logo class="upload-logo-container" [apiUrl]="apiUrl" [logoUrl]="logo.logoUrl" (logoChanged)="logoChanged($event)"></app-logo>
@@ -53,8 +53,10 @@
       </mat-select>
       <mat-error [appValidationMessage]="organisationForm.get('physicalAddressCountryId')" [messages]="validationMessages.physicalAddressCountryId"></mat-error>
     </mat-form-field>
-    <mat-checkbox (change)="isPostalSameAsPhysicalAddress($event)">Postal address same as physical address</mat-checkbox>
-    <div [hidden]="postSameAsPhyAddress">
+    <div class="post-same-phy-address">
+      <mat-checkbox (change)="isPostalSameAsPhysicalAddress($event)">Postal address same as physical address</mat-checkbox>
+    </div>
+    <div [hidden]="postSameAsPhyAddress" class="address-container">
       <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddressLine1'))" class="full-width-form-field">
         <input type="hidden" formControlName="postalAddressId">
         <input matInput type="text" placeholder="Postal Address" formControlName="postalAddressLine1">
@@ -111,7 +113,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button (click)="saveOrganisation()" *ngIf="!isInProgress">Save</button>
-  <button mat-button mat-dialog-close *ngIf="!isInProgress">Cancel</button>
+  <button mat-raised-button (click)="saveOrganisation()" *ngIf="!isInProgress" color="primary">Save</button>
+  <button mat-raised-button mat-dialog-close *ngIf="!isInProgress">Cancel</button>
   <mat-progress-bar mode="indeterminate" *ngIf="isInProgress"></mat-progress-bar>
 </mat-dialog-actions>

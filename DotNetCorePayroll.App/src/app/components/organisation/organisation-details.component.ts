@@ -5,6 +5,7 @@ import { OrganisationModel } from '../../shared/generated';
 import { dialogCloseResponse } from '../../shared/models/dialogCloseResponse';
 import { OrganisationFormComponent } from './organisation-form/organisation-form.component';
 import { OrganisationDetailsService } from './organisation-details.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-organisation-details',
@@ -25,11 +26,12 @@ export class OrganisationDetailsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: OrganisationModel[] = [];
 
-  constructor(private organisationDetailsService: OrganisationDetailsService, private dialog: MatDialog) {
+  constructor(private organisationDetailsService: OrganisationDetailsService, private dialog: MatDialog, private router: Router) {
     this.displayedColumns = ['name', 'description', 'physicalAddress', 'faxNumber', 'emailAddress', 'contactNumber', 'actions'];
   }
 
-  ngOnInit() {
+  ngOnInit() {    
+    sessionStorage.getItem('organisation');
     this.subscriptions = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.subscriptions.add(this.organisationDetailsService.getOrganisations(this.paginator, this.sort, this.searchEvent).subscribe(data => this.dataSource = data));
   }
@@ -55,8 +57,9 @@ export class OrganisationDetailsComponent implements OnInit {
     this.closeModal(dialogRef);
   }
 
-  viewOrganisation(organisation: OrganisationModel){
-
+  viewOrganisation(organisation: OrganisationModel) {
+    sessionStorage.setItem('organisation', JSON.stringify(organisation));
+    this.router.navigate(['/companies', organisation.id]);
   }
 
   ngOnDestroy() {
@@ -78,7 +81,7 @@ export class OrganisationDetailsComponent implements OnInit {
   organisationModalOptions(organisation: OrganisationModel): any {
     return {
       height: '100%',
-      maxHeight:'800px',
+      maxHeight: '800px',
       minHeight: '600px',
       width: '580px',
       data: organisation,
