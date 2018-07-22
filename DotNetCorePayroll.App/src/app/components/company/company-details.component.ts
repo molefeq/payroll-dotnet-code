@@ -5,6 +5,8 @@ import { MatSort, MatPaginator, MatDialog, MatDialogRef } from '@angular/materia
 import { CompanyDetailsService } from './company-details.service';
 import { CompanyModel, OrganisationModel } from '../../shared/generated';
 import { SessionStorageService } from 'ngx-store';
+import { CompanyFormComponent } from './company-form/company-form.component';
+import { dialogCloseResponse } from '../../shared/models/dialogCloseResponse';
 
 @Component({
   selector: 'app-company-details',
@@ -16,7 +18,7 @@ export class CompanyDetailsComponent implements OnInit {
   displayedColumns = [];
   subscriptions: Subscription;
   searchText: string;
-  organisation:OrganisationModel;
+  organisation: OrganisationModel;
 
   totalCompanies$ = this.companyDetailsService.totalCompanies$;
   isBusy$: Observable<boolean> = this.companyDetailsService.isBusy$;
@@ -46,19 +48,19 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   addCompany() {
-    //let dialogRef = this.dialog.open(OrganisationFormComponent, this.organisationModalOptions(null));
+    let dialogRef = this.dialog.open(CompanyFormComponent, this.CompanyModalOptions(null));
 
-    // this.closeModal(dialogRef);
+    this.closeModal(dialogRef);
   }
 
   editCompany(company: CompanyModel) {
-    //let dialogRef = this.dialog.open(OrganisationFormComponent, this.organisationModalOptions(organisation));
+    let dialogRef = this.dialog.open(CompanyFormComponent, this.CompanyModalOptions(company));
 
-    // this.closeModal(dialogRef);
+    this.closeModal(dialogRef);
   }
 
   viewCompany(company: CompanyModel) {
-    //this.router.navigate(['/companies', organisation.id]);
+    this.router.navigate(['/employees', company.id]);
   }
 
   ngOnDestroy() {
@@ -67,6 +69,14 @@ export class CompanyDetailsComponent implements OnInit {
 
   refreshCompanies() {
     this.searchEvent.emit(this.searchText);
+  }
+
+  closeModal(dialogRef: MatDialogRef<CompanyFormComponent, any>) {
+    dialogRef.afterClosed().subscribe((result: dialogCloseResponse) => {
+      if (result && result.dataSaved) {
+        this.refreshCompanies();
+      }
+    });
   }
 
   CompanyModalOptions(company: CompanyModel): any {

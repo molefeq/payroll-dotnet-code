@@ -9,6 +9,7 @@ import { OrganisationFormComponent } from './organisation/organisation-form/orga
 import { OrganisationDetailsService } from './organisation/organisation-details.service';
 import { CompanyDetailsComponent } from './company/company-details.component';
 import { CompanyDetailsService } from './company/company-details.service';
+import { CompanyFormComponent } from './company/company-form/company-form.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { CompanyDetailsService } from './company/company-details.service';
     OrganisationDetailsService,
     CompanyDetailsService
   ],
-  entryComponents: [OrganisationFormComponent],
-  declarations: [HomeComponent, OrganisationDetailsComponent, OrganisationFormComponent, CompanyDetailsComponent]
+  entryComponents: [OrganisationFormComponent, CompanyFormComponent],
+  declarations: [HomeComponent, OrganisationDetailsComponent, OrganisationFormComponent, CompanyDetailsComponent, CompanyFormComponent]
 })
 export class ComponentsModule { }
