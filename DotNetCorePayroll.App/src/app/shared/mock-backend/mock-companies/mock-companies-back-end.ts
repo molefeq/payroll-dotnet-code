@@ -17,7 +17,7 @@ export function mockCompaniesBackEndService(url: string, method: string, request
                 id: '451241-tggert-7899po-kujgf' + i,
                 organisationId: i,
                 organisationName: 'test organisation' + i,
-                name: "test organisation" + i,
+                name: "Test Company" + i,
                 registeredName: '',
                 tradingName: '',
                 natureOfBusiness: '',
