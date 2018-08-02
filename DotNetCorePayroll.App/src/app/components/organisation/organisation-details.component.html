@@ -1,11 +1,16 @@
 <div class="containerX">
-  <h1 class="mat-headline containerX-heading">Organisations</h1>
+  <div class="containerX-heading-container">
+      <h1 class="mat-headline containerX-heading">Organisations</h1>
+      <div class="containerX-header-actions">
+        <button mat-mini-fab color="primary" (click)="addOrganisation()" matTooltip="Add organisation">
+          <mat-icon aria-label="Button to add new organisation.">add</mat-icon>
+        </button>
+      </div>
+  </div>
   <div class="containerX-header">
     <div class="containerX-header-actions">
       <!-- <button mat-raised-button color="primary" (click)="addOrganisation()">Add</button> -->
-      <button mat-mini-fab color="primary" (click)="addOrganisation()" matTooltip="Add organisation">
-        <mat-icon aria-label="Button to add new organisation.">add</mat-icon>
-      </button>
+
     </div>
     <div class="containerX-header-filter">
       <mat-form-field class="header-search-field">
@@ -31,33 +36,24 @@
         <mat-cell *matCellDef="let row" class="cell-flex-2">{{ row.description }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="physicalAddress">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-3">Location</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="cell-flex-3">{{ row.physicalAddress }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="faxNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Fax</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.faxNumber }}</mat-cell>
-      </ng-container>
-
       <ng-container matColumnDef="emailAddress">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Email</mat-header-cell>
         <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.emailAddress }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="contactNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Contact Number</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.contactNumber }}</mat-cell>
+      <ng-container matColumnDef="companies">
+        <th mat-header-cell *matHeaderCellDef class="table-header-link-col"></th>
+        <td mat-cell *matCellDef="let row" class="table-cell-link-col">
+          <button mat-icon-button color="primary" (click)="viewOrganisation(row)" matTooltip="View companies">
+            <mat-icon aria-label="View companies.">visibility</mat-icon>Companies
+          </button>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="table-header-actions-col"></th>
         <td mat-cell *matCellDef="let row" class="table-cell-actions-col">
-          <button mat-icon-button color="primary" (click)="viewOrganisation(row)" matTooltip="View organisation">
-            <mat-icon aria-label="Button to view organisation.">visibility</mat-icon>
-          </button>
-          <button mat-icon-button color="primary" (click)="editOrganisation(row)" matTooltip="Edit organisation">
+          <button mat-icon-button color="primary" (click)="editOrganisation(row)" matTooltip="Edit">
             <mat-icon aria-label="Button to edit organisation.">create</mat-icon>
           </button>
         </td>

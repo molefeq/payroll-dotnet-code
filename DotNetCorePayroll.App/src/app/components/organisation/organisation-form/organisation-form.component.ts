@@ -1,13 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { OrganisationDetailsService } from '../organisation-details.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatCheckboxChange } from '@angular/material';
 import { OrganisationModel, ReferenceDataModel } from '../../../shared/generated';
 import { serverValidation } from '../../../shared/validators/server-side-validator';
 import { FormHelper } from '../../../shared/utils/form-helper';
 import { finalize } from 'rxjs/operators';
 import { AppReferenceDataService } from '../../../shared/services/app-reference-data-service';
 import { logoModel } from '../../../shared/models/logoModel';
+import { MatCheckboxChange } from '../../../../../node_modules/@angular/material';
 
 @Component({
   selector: 'app-organisation-form',
@@ -16,7 +16,7 @@ import { logoModel } from '../../../shared/models/logoModel';
 })
 export class OrganisationFormComponent implements OnInit {
 
-  apiUrl: string = 'http://localhost:58308/api/Organisation/SaveImage'
+  apiUrl = 'http://localhost:58308/api/Organisation/SaveImage'
   logo: logoModel;
 
   organisationForm: FormGroup;
@@ -24,8 +24,8 @@ export class OrganisationFormComponent implements OnInit {
   isInProgress: boolean;
   countries: Array<ReferenceDataModel>;
   provinces: Array<ReferenceDataModel>;
-  postSameAsPhyAddress: boolean = false;
-  heading:String = 'Create Organisation';
+  postSameAsPhyAddress = false;
+  heading: String = 'Create Organisation';
 
   validationMessages = {
     name: {
@@ -113,8 +113,9 @@ export class OrganisationFormComponent implements OnInit {
     }
   };
 
-  constructor(private fb: FormBuilder, private organisationDetailsService: OrganisationDetailsService, private referenceDataService: AppReferenceDataService,
-    public dialogRef: MatDialogRef<OrganisationFormComponent>, @Inject(MAT_DIALOG_DATA) public data: OrganisationModel) {
+  constructor(private fb: FormBuilder,
+    private organisationDetailsService: OrganisationDetailsService,
+    private referenceDataService: AppReferenceDataService) {
   }
 
   ngOnInit() {
@@ -158,40 +159,40 @@ export class OrganisationFormComponent implements OnInit {
   }
 
   initialiseForm() {
-    if (!this.data) {
+    if (!this.organisationDetailsService.Organisation) {
       return;
     }
 
     this.heading = 'Edit Organisation';
     this.logo = {
-      logoUrl: this.data.logoFileNamePath,
-      logoFilename: this.data.logoFileName
+      logoUrl: this.organisationDetailsService.Organisation.logoFileNamePath,
+      logoFilename: this.organisationDetailsService.Organisation.logoFileName
     };
-    this.organisationForm.get('id').setValue(this.data.id);
-    this.organisationForm.get('name').setValue(this.data.name);
-    this.organisationForm.get('description').setValue(this.data.description);
+    this.organisationForm.get('id').setValue(this.organisationDetailsService.Organisation.id);
+    this.organisationForm.get('name').setValue(this.organisationDetailsService.Organisation.name);
+    this.organisationForm.get('description').setValue(this.organisationDetailsService.Organisation.description);
 
-    this.organisationForm.get('physicalAddressId').setValue(this.data.physicalAddressId);
-    this.organisationForm.get('physicalAddressLine1').setValue(this.data.physicalAddressLine1);
-    this.organisationForm.get('physicalAddressLine2').setValue(this.data.physicalAddressLine2);
-    this.organisationForm.get('physicalAddressSuburb').setValue(this.data.physicalAddressSuburb);
-    this.organisationForm.get('physicalAddressCity').setValue(this.data.physicalAddressCity);
-    this.organisationForm.get('physicalAddressPostalCode').setValue(this.data.physicalAddressPostalCode);
-    this.organisationForm.get('physicalAddressProvinceId').setValue(this.data.physicalAddressProvinceId);
-    this.organisationForm.get('physicalAddressCountryId').setValue(this.data.physicalAddressCountryId);
+    this.organisationForm.get('physicalAddressId').setValue(this.organisationDetailsService.Organisation.physicalAddressId);
+    this.organisationForm.get('physicalAddressLine1').setValue(this.organisationDetailsService.Organisation.physicalAddressLine1);
+    this.organisationForm.get('physicalAddressLine2').setValue(this.organisationDetailsService.Organisation.physicalAddressLine2);
+    this.organisationForm.get('physicalAddressSuburb').setValue(this.organisationDetailsService.Organisation.physicalAddressSuburb);
+    this.organisationForm.get('physicalAddressCity').setValue(this.organisationDetailsService.Organisation.physicalAddressCity);
+    this.organisationForm.get('physicalAddressPostalCode').setValue(this.organisationDetailsService.Organisation.physicalAddressPostalCode);
+    this.organisationForm.get('physicalAddressProvinceId').setValue(this.organisationDetailsService.Organisation.physicalAddressProvinceId);
+    this.organisationForm.get('physicalAddressCountryId').setValue(this.organisationDetailsService.Organisation.physicalAddressCountryId);
 
-    this.organisationForm.get('postalAddressId').setValue(this.data.postalAddressId);
-    this.organisationForm.get('postalAddressLine1').setValue(this.data.postalAddressLine1);
-    this.organisationForm.get('postalAddressLine2').setValue(this.data.postalAddressLine2);
-    this.organisationForm.get('postalAddressSuburb').setValue(this.data.postalAddressSuburb);
-    this.organisationForm.get('postalAddressCity').setValue(this.data.postalAddressCity);
-    this.organisationForm.get('postalAddressPostalCode').setValue(this.data.postalAddressPostalCode);
-    this.organisationForm.get('postalAddressProvinceId').setValue(this.data.postalAddressProvinceId);
-    this.organisationForm.get('postalAddressCountryId').setValue(this.data.postalAddressCountryId);
+    this.organisationForm.get('postalAddressId').setValue(this.organisationDetailsService.Organisation.postalAddressId);
+    this.organisationForm.get('postalAddressLine1').setValue(this.organisationDetailsService.Organisation.postalAddressLine1);
+    this.organisationForm.get('postalAddressLine2').setValue(this.organisationDetailsService.Organisation.postalAddressLine2);
+    this.organisationForm.get('postalAddressSuburb').setValue(this.organisationDetailsService.Organisation.postalAddressSuburb);
+    this.organisationForm.get('postalAddressCity').setValue(this.organisationDetailsService.Organisation.postalAddressCity);
+    this.organisationForm.get('postalAddressPostalCode').setValue(this.organisationDetailsService.Organisation.postalAddressPostalCode);
+    this.organisationForm.get('postalAddressProvinceId').setValue(this.organisationDetailsService.Organisation.postalAddressProvinceId);
+    this.organisationForm.get('postalAddressCountryId').setValue(this.organisationDetailsService.Organisation.postalAddressCountryId);
 
-    this.organisationForm.get('faxNumber').setValue(this.data.faxNumber);
-    this.organisationForm.get('emailAddress').setValue(this.data.emailAddress);
-    this.organisationForm.get('contactNumber').setValue(this.data.contactNumber);
+    this.organisationForm.get('faxNumber').setValue(this.organisationDetailsService.Organisation.faxNumber);
+    this.organisationForm.get('emailAddress').setValue(this.organisationDetailsService.Organisation.emailAddress);
+    this.organisationForm.get('contactNumber').setValue(this.organisationDetailsService.Organisation.contactNumber);
   }
 
   isControlInvalid(control: FormControl): boolean {
@@ -240,9 +241,7 @@ export class OrganisationFormComponent implements OnInit {
         this.isInProgress = false;
       })
     ).subscribe((data: OrganisationModel) => {
-      this.dialogRef.close({
-        dataSaved: true
-      })
+
     });
   }
 

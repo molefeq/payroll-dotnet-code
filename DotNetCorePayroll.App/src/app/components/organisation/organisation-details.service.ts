@@ -9,6 +9,7 @@ import { startWith, switchMap, map, catchError, finalize } from 'rxjs/operators'
 export class OrganisationDetailsService {
   private _isBusy$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private _totalOrganisations$: BehaviorSubject<number> = new BehaviorSubject(0);
+  private _organisation: OrganisationModel = null;
 
   constructor(private organisationService: OrganisationService) { }
 
@@ -19,8 +20,8 @@ export class OrganisationDetailsService {
       .pipe(
         startWith({}),
         switchMap((event) => {
-          let pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
-          let searchText = typeof event === 'string' ? event : null;
+          const pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
+          const searchText = typeof event === 'string' ? event : null;
 
           return this.organisationService.apiOrganisationGetOrganisationsPost(
             {
@@ -29,7 +30,7 @@ export class OrganisationDetailsService {
                 includeAllData: false,
                 take: pageSize,
                 skip: pageSize * (paginator.pageIndex),
-                sortOrder: sort.direction == 'asc' ? PageData.SortOrderEnum.NUMBER_1 : PageData.SortOrderEnum.NUMBER_2,
+                sortOrder: sort.direction === 'asc' ? PageData.SortOrderEnum.NUMBER_1 : PageData.SortOrderEnum.NUMBER_2,
                 sortColumn: sort.active
               }
             });
@@ -51,7 +52,7 @@ export class OrganisationDetailsService {
           this._isBusy$.next(false);
         })
       );
-  };
+  }
 
   saveOrganisation(organisationModel: OrganisationModel): Observable<OrganisationModel> {
     if (organisationModel.id) {
@@ -77,11 +78,27 @@ export class OrganisationDetailsService {
     return this._totalOrganisations$.asObservable();
   }
 
-  setAddress(organisation: OrganisationModel) {
-    organisation['physicalAddress'] = [organisation.physicalAddressLine1, organisation.physicalAddressLine2, organisation.physicalAddressSuburb,
-    organisation.physicalAddressCity, organisation.physicalAddressPostalCode].filter(Boolean).join(", ");
+  set Organisation(organisation: OrganisationModel) {
+    this._organisation = organisation;
+  }
 
-    organisation['postalAddress'] = [organisation.postalAddressLine1, organisation.postalAddressLine2, organisation.postalAddressSuburb,
-    organisation.postalAddressCity, organisation.postalAddressPostalCode].filter(Boolean).join(", ");
+  get Organisation(): OrganisationModel {
+    return this._organisation;
+  }
+
+  setAddress(organisation: OrganisationModel) {
+    organisation['physicalAddress'] = [
+      organisation.physicalAddressLine1,
+      organisation.physicalAddressLine2,
+      organisation.physicalAddressSuburb,
+      organisation.physicalAddressCity,
+      organisation.physicalAddressPostalCode].filter(Boolean).join(', ');
+
+    organisation['postalAddress'] = [
+      organisation.postalAddressLine1,
+      organisation.postalAddressLine2,
+      organisation.postalAddressSuburb,
+      organisation.postalAddressCity,
+      organisation.postalAddressPostalCode].filter(Boolean).join(', ');
   }
 }

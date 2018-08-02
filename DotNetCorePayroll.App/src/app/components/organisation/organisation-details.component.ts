@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { MatSort, MatPaginator, MatDialog, MatDialogRef } from '@angular/material';
 import { OrganisationModel } from '../../shared/generated';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './organisation-details.component.html',
   styleUrls: ['./organisation-details.component.scss']
 })
-export class OrganisationDetailsComponent implements OnInit {
+export class OrganisationDetailsComponent implements OnInit, OnDestroy {
 
   displayedColumns = [];
   subscriptions: Subscription;
@@ -27,13 +27,14 @@ export class OrganisationDetailsComponent implements OnInit {
   dataSource: OrganisationModel[] = [];
 
   constructor(private organisationDetailsService: OrganisationDetailsService, private dialog: MatDialog, private router: Router) {
-    this.displayedColumns = ['name', 'description', 'physicalAddress', 'faxNumber', 'emailAddress', 'contactNumber', 'actions'];
+    this.displayedColumns = ['name', 'description', 'emailAddress', 'companies', 'actions'];
   }
 
-  ngOnInit() {    
+  ngOnInit() {
     sessionStorage.getItem('organisation');
     this.subscriptions = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    this.subscriptions.add(this.organisationDetailsService.getOrganisations(this.paginator, this.sort, this.searchEvent).subscribe(data => this.dataSource = data));
+    this.subscriptions.add(this.organisationDetailsService.getOrganisations(this.paginator, this.sort, this.searchEvent)
+      .subscribe(data => this.dataSource = data));
   }
 
   applyFilter(filterValue: string) {
@@ -46,15 +47,19 @@ export class OrganisationDetailsComponent implements OnInit {
   }
 
   addOrganisation() {
-    let dialogRef = this.dialog.open(OrganisationFormComponent, this.organisationModalOptions(null));
+    this.router.navigate(['/organisation']);
+   // const dialogRef = this.dialog.open(OrganisationFormComponent, this.organisationModalOptions(null));
 
-    this.closeModal(dialogRef);
+    // this.closeModal(dialogRef);
   }
 
   editOrganisation(organisation: OrganisationModel) {
-    let dialogRef = this.dialog.open(OrganisationFormComponent, this.organisationModalOptions(organisation));
+    this.organisationDetailsService.Organisation = organisation;
+    this.router.navigate(['/organisation', organisation.id]);
 
-    this.closeModal(dialogRef);
+   // const dialogRef = this.dialog.open(OrganisationFormComponent, this.organisationModalOptions(organisation));
+
+   // this.closeModal(dialogRef);
   }
 
   viewOrganisation(organisation: OrganisationModel) {
