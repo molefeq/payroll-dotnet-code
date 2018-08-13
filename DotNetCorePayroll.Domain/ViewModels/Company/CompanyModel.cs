@@ -2,7 +2,7 @@
 
 using System;
 
-namespace DotNetCorePayroll.Data.ViewModels
+namespace DotNetCorePayroll.Data.ViewModels.Company
 {
     public class CompanyModel
     {

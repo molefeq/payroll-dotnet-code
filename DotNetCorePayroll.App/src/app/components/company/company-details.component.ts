@@ -54,9 +54,7 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   editCompany(company: CompanyModel) {
-    let dialogRef = this.dialog.open(CompanyFormComponent, this.CompanyModalOptions(company));
-
-    this.closeModal(dialogRef);
+    this.router.navigate(['/edit-company', this.organisation.id]);
   }
 
   viewCompany(company: CompanyModel) {
