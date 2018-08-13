@@ -1,8 +1,10 @@
 <div class="page-breadcrumbs">
-    <ol class="breadcrumbs">
-        <li><a  routerLink="/organisations">Organisations</a></li>
-        <li class="active">Edit Organisation</li>
-    </ol>
+  <ol class="breadcrumbs">
+    <li>
+      <a routerLink="/organisations">Organisations</a>
+    </li>
+    <li class="active">Edit Organisation</li>
+  </ol>
 </div>
 
 <div class="page-container">
@@ -10,14 +12,14 @@
     <app-logo class="upload-logo-container" [apiUrl]="apiUrl" [logoUrl]="logo.logoUrl" (logoChanged)="logoChanged($event)"></app-logo>
   </div>
   <div class="none-flex-form-container">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <section class="mat-typography">
+          <h3>Organisation</h3>
+        </section>
+      </mat-toolbar-row>
+    </mat-toolbar>
     <mat-card class="organisation-card">
-      <mat-card-header>
-        <mat-card-title>
-          <section class="mat-typography">
-            <h1>Organisation</h1>
-          </section>
-        </mat-card-title>
-      </mat-card-header>
       <mat-card-content>
         <form [formGroup]="organisationForm" [appFormValidator]="organisationForm" [validationMessages]="validationMessages">
 
