@@ -1,25 +1,88 @@
-form {
-    margin: 0 -24px;
-    padding: 0 10px 0 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: space-evenly;
-    app-summary-validation-messages {
-        flex-grow: 2;
-        max-width: 100%;
-        flex-basis: 100%;
-        padding: 10px;
-    }
-    .mat-form-field {
-        max-width: 50%;
-        flex-basis: 50%;
-        flex-grow: 1;
-        padding: 10px;
-    }
-    .full-width-form-field {
-        max-width: 100%;
-        flex-basis: 100%;
+.page-breadcrumbs {
+    height: 40px;
+    width: 100%;
+}
+
+.page-container {
+    height: 95%;
+}
+
+.none-flex-form-container {
+    flex: 4 0 80%;
+    max-width: 80%;
+    .organisation-card {
+        height: 100%;
+        .mat-card-header {
+            height: 40px;
+        }
+        .mat-card-actions {
+            height: 50px;
+        }
+        .mat-card-content {
+            height: 90%;
+            form {
+                padding: 0 10px 20px 10px;
+                display: flex;
+                flex-wrap: wrap;
+                overflow-y: auto;
+                box-sizing: border-box;
+                height: 100%;
+                .form-row {
+                    flex: 1 0 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    .mat-form-field {
+                        flex: 1 0 40%;
+                        max-width: 45%;
+                    }
+                }
+                .form-address {
+                    flex: 1 0 50%;
+                    max-width: 50%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    .mat-form-field {
+                        flex: 1 0 100%;
+                        max-width: 90%;
+                    }
+                    .post-same-phy-address {
+                        height: 50px;
+                        padding-left: 10%;
+                    }
+                    .address-container {
+                        flex: 1 0 100%;
+                        flex-wrap: wrap;
+                        display: flex;
+                        padding-left: 10%;
+                        .mat-form-field {
+                            flex: 1 0 100%;
+                            max-width: 90%;
+                        }
+                    }
+                }
+                app-summary-validation-messages {
+                    flex-basis: 100%;
+                    padding: 10px;
+                    min-height: 50px;
+                    width: 100%;
+                    display: block;
+                    box-sizing: border-box;
+                }
+                .mat-form-field {
+                    max-width: 50%;
+                    flex-basis: 50%;
+                    flex-grow: 1;
+                    padding: 10px;
+                }
+                .full-width-form-field {
+                    max-width: 100%;
+                    flex-basis: 100%;
+                }
+            }
+        }
+        .buttons-container {
+            padding: 0px 10px 0px 20px;
+        }
     }
 }
 
