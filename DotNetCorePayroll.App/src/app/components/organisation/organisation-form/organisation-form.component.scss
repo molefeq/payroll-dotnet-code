@@ -1,15 +1,22 @@
-.page-breadcrumbs {
-    height: 40px;
+.page-heading {
+    padding: 15px 15px 0 15px;
+    display: flex;
     width: 100%;
+    section {
+        flex: 1 0 50%;
+    }
 }
 
 .page-container {
     height: 95%;
+    padding-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .none-flex-form-container {
     flex: 4 0 80%;
-    max-width: 80%;
+    max-width: calc(80% - 15px);
     .organisation-card {
         height: 100%;
         .mat-card-header {
@@ -31,6 +38,10 @@
                     flex: 1 0 100%;
                     display: flex;
                     justify-content: space-between;
+                    .full-width-form-field {
+                        flex: 1 0 96% !important;
+                        max-width: 96% !important;
+                    }
                     .mat-form-field {
                         flex: 1 0 40%;
                         max-width: 45%;
@@ -89,7 +100,7 @@
 /* Default class applied to drop zones on over */
 
 .upload-logo-container {
-    max-width: 100%;
+    width: 100%;
     -ms-flex-preferred-size: 50%;
     flex-basis: 100%;
     -webkit-box-flex: 1;
@@ -97,4 +108,11 @@
     flex-grow: 1;
     padding: 10px;
     text-align: center;
+}
+
+.logo-content {
+    margin-right: 15px;
+    .mat-card-content {
+        width: 100%;
+    }
 }

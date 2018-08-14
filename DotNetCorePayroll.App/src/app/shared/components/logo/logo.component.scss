@@ -2,36 +2,40 @@
     position: relative;
     overflow: hidden;
     display: inline-block;
-    width: 150px;
-    height: 150px;
-    border-radius: 150px;
+    width: 90%;
+    height: 40%;
+    border-radius: 100%;
     border: 1px dashed;
     cursor: pointer;
     opacity: 0.6;
-
     img {
         width: 100%;
         height: 100%;
         position: absolute;
         left: 0;
         top: 0;
+        cursor: pointer;
+    }
+    img:hover {
+        cursor: pointer;
     }
     div {
-        font-size: 14px;
-        line-height: 150px;
-        text-align: center;
-        font-style: pointer;
+        font-size: 25px;
         cursor: pointer;
         font-style: italic;
+        position: absolute;
+        top: 45%;
+        margin: auto;
+        width: 100%;
     }
     input[type=file] {
         font-size: 150px;
         position: absolute;
-        left: 0;
-        top: 0;
+        left: 10%;
+        top: 10%;
         opacity: 0;
         cursor: pointer;
-        width: 150px;
-        height: 150px;
+        width: 80%;
+        height: 80%;
     }
 }
