@@ -1,9 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
-import { MatSort, MatPaginator, MatDialog, MatDialogRef } from '@angular/material';
+import { MatSort, MatPaginator } from '@angular/material';
 import { OrganisationModel } from '../../shared/generated';
-import { dialogCloseResponse } from '../../shared/models/dialogCloseResponse';
-import { OrganisationFormComponent } from './organisation-form/organisation-form.component';
 import { OrganisationDetailsService } from './organisation-details.service';
 import { Router } from '@angular/router';
 
@@ -26,12 +24,12 @@ export class OrganisationDetailsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: OrganisationModel[] = [];
 
-  constructor(private organisationDetailsService: OrganisationDetailsService, private dialog: MatDialog, private router: Router) {
+  constructor(private organisationDetailsService: OrganisationDetailsService, private router: Router) {
     this.displayedColumns = ['name', 'description', 'emailAddress', 'companies', 'actions'];
   }
 
   ngOnInit() {
-    sessionStorage.getItem('organisation');
+    this.organisationDetailsService.Organisation = null;
     this.subscriptions = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.subscriptions.add(this.organisationDetailsService.getOrganisations(this.paginator, this.sort, this.searchEvent)
       .subscribe(data => this.dataSource = data));
@@ -48,22 +46,15 @@ export class OrganisationDetailsComponent implements OnInit, OnDestroy {
 
   addOrganisation() {
     this.router.navigate(['/organisation']);
-   // const dialogRef = this.dialog.open(OrganisationFormComponent, this.organisationModalOptions(null));
-
-    // this.closeModal(dialogRef);
   }
 
   editOrganisation(organisation: OrganisationModel) {
     this.organisationDetailsService.Organisation = organisation;
     this.router.navigate(['/organisation', organisation.id]);
-
-   // const dialogRef = this.dialog.open(OrganisationFormComponent, this.organisationModalOptions(organisation));
-
-   // this.closeModal(dialogRef);
   }
 
   viewOrganisation(organisation: OrganisationModel) {
-    sessionStorage.setItem('organisation', JSON.stringify(organisation));
+    this.organisationDetailsService.Organisation = organisation;
     this.router.navigate(['/companies', organisation.id]);
   }
 
@@ -74,24 +65,4 @@ export class OrganisationDetailsComponent implements OnInit, OnDestroy {
   refreshOrganisations() {
     this.searchEvent.emit(this.searchText);
   }
-
-  closeModal(dialogRef: MatDialogRef<OrganisationFormComponent, any>) {
-    dialogRef.afterClosed().subscribe((result: dialogCloseResponse) => {
-      if (result && result.dataSaved) {
-        this.refreshOrganisations();
-      }
-    });
-  }
-
-  organisationModalOptions(organisation: OrganisationModel): any {
-    return {
-      height: '100%',
-      maxHeight: '800px',
-      minHeight: '600px',
-      width: '580px',
-      data: organisation,
-      disableClose: true
-    };
-  }
-
 }

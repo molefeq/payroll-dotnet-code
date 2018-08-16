@@ -6,7 +6,7 @@
     <li>
       <a routerLink="/organisations">Organisations</a>
     </li>
-    <li class="active">Edit Organisation</li>
+    <li class="active">{{heading}}</li>
   </ol>
 </div>
 
@@ -31,14 +31,12 @@
               <mat-error [appValidationMessage]="organisationForm.get('name')" [messages]="validationMessages.name"></mat-error>
             </mat-form-field>
           </div>
-
           <div class="form-row">
             <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('description'))" class="full-width-form-field">
               <textarea matInput placeholder="Description" formControlName="description"></textarea>
               <mat-error [appValidationMessage]="organisationForm.get('description')" [messages]="validationMessages.description"></mat-error>
             </mat-form-field>
           </div>
-
           <div class="form-address">
             <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddressLine1'))" class="full-width-form-field">
               <input type="hidden" formControlName="physicalAddressId">

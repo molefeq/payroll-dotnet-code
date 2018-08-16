@@ -79,11 +79,25 @@ export class OrganisationDetailsService {
   }
 
   set Organisation(organisation: OrganisationModel) {
+    if (!Boolean(organisation)) {
+      this._organisation = null;
+      sessionStorage.removeItem('organisation');
+    }
+
+    sessionStorage.setItem('organisation', JSON.stringify(organisation));
     this._organisation = organisation;
   }
 
   get Organisation(): OrganisationModel {
-    return this._organisation;
+    if (Boolean(this._organisation)) {
+      return this._organisation;
+    }
+
+    if (Boolean(sessionStorage.getItem('organisation'))) {
+      return JSON.parse(sessionStorage.getItem('organisation'));
+    }
+
+    return null;
   }
 
   setAddress(organisation: OrganisationModel) {

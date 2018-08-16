@@ -5,9 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthorizationGuardService } from '../shared/services/authorization-guard.service';
 import { OrganisationDetailsComponent } from './organisation/organisation-details.component';
 import { CompanyDetailsComponent } from './company/company-details.component';
-import { EditCompanyFormComponent } from './company/edit-company-form/edit-company-form.component';
-import { CompanyDetailFormComponent } from './company/company-detail-form/company-detail-form.component';
 import { OrganisationFormComponent } from './organisation/organisation-form/organisation-form.component';
+import { CompanyFormComponent } from './company/company-form/company-form.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthorizationGuardService] },
@@ -15,17 +14,7 @@ const routes: Routes = [
   { path: 'organisation/:organisationId', component: OrganisationFormComponent, canActivate: [AuthorizationGuardService] },
   { path: 'organisation', component: OrganisationFormComponent, canActivate: [AuthorizationGuardService] },
   { path: 'companies/:organisationId', component: CompanyDetailsComponent, canActivate: [AuthorizationGuardService] },
-  {
-    path: 'edit-company/:organisationId',
-    component: EditCompanyFormComponent,
-    canActivate: [AuthorizationGuardService],
-    children: [
-      {
-        path: '',
-        component: CompanyDetailFormComponent
-      }
-    ]
-  },
+  { path: 'company/:companyId', component: CompanyFormComponent, canActivate: [AuthorizationGuardService] },
 ];
 
 @NgModule({

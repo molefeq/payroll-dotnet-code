@@ -1,5 +1,19 @@
+<div class="page-heading">
+  <section class="mat-typography">
+    <h1>{{organisation.name}} Companies</h1>
+  </section>
+  <ol class="breadcrumbs">
+    <li>
+      <a routerLink="/organisations">Organisations</a>
+    </li>
+    <li>
+      <a routerLink="/organisation/{{organisation.id}}">{{organisation.name}}</a>
+    </li>
+    <li class="active">Companies</li>
+  </ol>
+</div>
+
 <div class="containerX">
-  <h1 class="mat-headline containerX-heading">{{organisation.name}} Companies</h1>
   <div class="containerX-header">
     <div class="containerX-header-actions">
       <button mat-mini-fab color="primary" (click)="addCompany()" matTooltip="Add Company" matTooltipPosition="right">
@@ -28,11 +42,6 @@
       <ng-container matColumnDef="physicalAddress">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-3">Location</mat-header-cell>
         <mat-cell *matCellDef="let row" class="cell-flex-3">{{ row.physicalAddress }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="faxNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Fax</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.faxNumber }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="emailAddress">

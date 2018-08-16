@@ -19,7 +19,10 @@ import { AppStartUpService } from './shared/services/app-startup-service';
     ComponentsModule,
     AppRoutingModule,
   ],
-  providers: [{ provide: APP_INITIALIZER, useFactory: (config: AppStartUpService) => () => config.load(), deps: [AppStartUpService], multi: true}],
+  providers: [{
+    provide: APP_INITIALIZER,
+    useFactory: (config: AppStartUpService) => () => config.load(), deps: [AppStartUpService], multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

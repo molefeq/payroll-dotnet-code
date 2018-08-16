@@ -1,19 +1,17 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
-import { MatSort, MatPaginator, MatDialog, MatDialogRef } from '@angular/material';
+import { MatSort, MatPaginator } from '@angular/material';
 import { CompanyDetailsService } from './company-details.service';
 import { CompanyModel, OrganisationModel } from '../../shared/generated';
-import { SessionStorageService } from 'ngx-store';
-import { CompanyFormComponent } from './company-form/company-form.component';
-import { dialogCloseResponse } from '../../shared/models/dialogCloseResponse';
+import { OrganisationDetailsService } from '../organisation/organisation-details.service';
 
 @Component({
   selector: 'app-company-details',
   templateUrl: './company-details.component.html',
   styleUrls: ['./company-details.component.scss']
 })
-export class CompanyDetailsComponent implements OnInit {
+export class CompanyDetailsComponent implements OnInit, OnDestroy {
 
   displayedColumns = [];
   subscriptions: Subscription;
@@ -28,14 +26,18 @@ export class CompanyDetailsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: CompanyModel[] = [];
 
-  constructor(private companyDetailsService: CompanyDetailsService, private dialog: MatDialog, private router: Router) {
-    this.displayedColumns = ['name', 'physicalAddress', 'faxNumber', 'emailAddress', 'contactNumber', 'actions'];
+  constructor(private organisationDetailsService: OrganisationDetailsService,
+    private companyDetailsService: CompanyDetailsService,
+    private router: Router) {
+    this.displayedColumns = ['name', 'physicalAddress', 'emailAddress', 'contactNumber', 'actions'];
   }
 
   ngOnInit() {
-    this.organisation = JSON.parse(sessionStorage.getItem('organisation'));
+    this.organisation = this.organisationDetailsService.Organisation;
+    this.companyDetailsService.Company = null;
     this.subscriptions = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    this.subscriptions.add(this.companyDetailsService.getCompanies(this.paginator, this.sort, this.searchEvent).subscribe(data => this.dataSource = data));
+    this.subscriptions.add(this.companyDetailsService.getCompanies(this.paginator, this.sort, this.searchEvent)
+      .subscribe(data => this.dataSource = data));
   }
 
   applyFilter(filterValue: string) {
@@ -48,17 +50,17 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   addCompany() {
-    let dialogRef = this.dialog.open(CompanyFormComponent, this.CompanyModalOptions(null));
-
-    this.closeModal(dialogRef);
+    this.router.navigate(['/company']);
   }
 
   editCompany(company: CompanyModel) {
-    this.router.navigate(['/edit-company', this.organisation.id]);
+    this.companyDetailsService.Company = company;
+    this.router.navigate(['/company', company.id]);
   }
 
   viewCompany(company: CompanyModel) {
-    this.router.navigate(['/employees', company.id]);
+    this.companyDetailsService.Company = company;
+    this.router.navigate(['/company', company.id]);
   }
 
   ngOnDestroy() {
@@ -68,24 +70,4 @@ export class CompanyDetailsComponent implements OnInit {
   refreshCompanies() {
     this.searchEvent.emit(this.searchText);
   }
-
-  closeModal(dialogRef: MatDialogRef<CompanyFormComponent, any>) {
-    dialogRef.afterClosed().subscribe((result: dialogCloseResponse) => {
-      if (result && result.dataSaved) {
-        this.refreshCompanies();
-      }
-    });
-  }
-
-  CompanyModalOptions(company: CompanyModel): any {
-    return {
-      height: '100%',
-      maxHeight: '800px',
-      minHeight: '600px',
-      width: '580px',
-      data: company,
-      disableClose: true
-    };
-  }
-
 }
