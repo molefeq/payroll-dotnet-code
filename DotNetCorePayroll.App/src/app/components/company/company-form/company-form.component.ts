@@ -11,6 +11,7 @@ import { finalize } from 'rxjs/operators';
 import { CompanyConstants } from './company-constants';
 import { OrganisationDetailsService } from '../../organisation/organisation-details.service';
 import { Router } from '@angular/router';
+import { Constants } from '../../../shared/utils/constants';
 
 @Component({
   selector: 'app-company-form',
@@ -49,7 +50,7 @@ export class CompanyFormComponent implements OnInit {
   createForm() {
     this.companyForm = this.fb.group({
       id: [null, []],
-      name: ['', [Validators.required, Validators.maxLength(20), serverValidation()]],
+      name: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
       registeredName: ['', [Validators.maxLength(20), serverValidation()]],
       tradingName: ['', [Validators.maxLength(20), serverValidation()]],
       natureOfBusiness: ['', [Validators.maxLength(20), serverValidation()]],
