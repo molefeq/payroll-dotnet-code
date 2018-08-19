@@ -18,9 +18,11 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
+import { CompanyBankDetailModel } from '../model/companyBankDetailModel';
+import { CompanyContactDetailModel } from '../model/companyContactDetailModel';
 import { CompanyModel } from '../model/companyModel';
+import { CompanySearchFilter } from '../model/companySearchFilter';
 import { ResultCompanyModel } from '../model/resultCompanyModel';
-import { SearchFilter } from '../model/searchFilter';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -199,10 +201,10 @@ export class CompanyService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiCompanyGetCompaniesPost(searchFilter?: SearchFilter, observe?: 'body', reportProgress?: boolean): Observable<ResultCompanyModel>;
-    public apiCompanyGetCompaniesPost(searchFilter?: SearchFilter, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResultCompanyModel>>;
-    public apiCompanyGetCompaniesPost(searchFilter?: SearchFilter, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResultCompanyModel>>;
-    public apiCompanyGetCompaniesPost(searchFilter?: SearchFilter, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiCompanyGetCompaniesPost(searchFilter?: CompanySearchFilter, observe?: 'body', reportProgress?: boolean): Observable<ResultCompanyModel>;
+    public apiCompanyGetCompaniesPost(searchFilter?: CompanySearchFilter, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResultCompanyModel>>;
+    public apiCompanyGetCompaniesPost(searchFilter?: CompanySearchFilter, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResultCompanyModel>>;
+    public apiCompanyGetCompaniesPost(searchFilter?: CompanySearchFilter, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -229,6 +231,98 @@ export class CompanyService {
 
         return this.httpClient.post<ResultCompanyModel>(`${this.basePath}/api/Company/GetCompanies`,
             searchFilter,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param model 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiCompanySaveBankingDetailsPost(model?: CompanyBankDetailModel, observe?: 'body', reportProgress?: boolean): Observable<CompanyBankDetailModel>;
+    public apiCompanySaveBankingDetailsPost(model?: CompanyBankDetailModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CompanyBankDetailModel>>;
+    public apiCompanySaveBankingDetailsPost(model?: CompanyBankDetailModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CompanyBankDetailModel>>;
+    public apiCompanySaveBankingDetailsPost(model?: CompanyBankDetailModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json-patch+json',
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<CompanyBankDetailModel>(`${this.basePath}/api/Company/SaveBankingDetails`,
+            model,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param companyContactDetail 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiCompanySaveCompanyContactDetailsPost(companyContactDetail?: CompanyContactDetailModel, observe?: 'body', reportProgress?: boolean): Observable<CompanyModel>;
+    public apiCompanySaveCompanyContactDetailsPost(companyContactDetail?: CompanyContactDetailModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CompanyModel>>;
+    public apiCompanySaveCompanyContactDetailsPost(companyContactDetail?: CompanyContactDetailModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CompanyModel>>;
+    public apiCompanySaveCompanyContactDetailsPost(companyContactDetail?: CompanyContactDetailModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json-patch+json',
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<CompanyModel>(`${this.basePath}/api/Company/SaveCompanyContactDetails`,
+            companyContactDetail,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

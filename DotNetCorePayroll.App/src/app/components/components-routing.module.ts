@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'organisation', component: OrganisationFormComponent, canActivate: [AuthorizationGuardService] },
   { path: 'companies/:organisationId', component: CompanyDetailsComponent, canActivate: [AuthorizationGuardService] },
   { path: 'company/:companyId', component: CompanyFormComponent, canActivate: [AuthorizationGuardService] },
+  { path: 'company', component: CompanyFormComponent, canActivate: [AuthorizationGuardService] },
 ];
 
 @NgModule({

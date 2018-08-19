@@ -3,6 +3,7 @@ using DotNetCorePayroll.Api.Extensions;
 using DotNetCorePayroll.Common.Extensions;
 using DotNetCorePayroll.Common.Utilities;
 using DotNetCorePayroll.Data.SearchFilters;
+using DotNetCorePayroll.Data.ViewModels;
 using DotNetCorePayroll.Data.ViewModels.Company;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -88,6 +89,24 @@ namespace DotNetCorePayroll.Api.Controllers
 
             return Ok(new CompanyModel());
         }
+
+
+        [HttpPost]
+        [ProducesResponseType(typeof(CompanyModel), 200)]
+        public IActionResult SaveCompanyContactDetails([FromBody]CompanyContactDetailModel companyContactDetail)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new ValidationActionResult(ModelState);
+            }
+
+            //OrganisationModel model = ogranisationService.Update(organisationModel);
+
+            //ImageFixing(model, organisationModel.LogoFileNamePath);
+
+            return Ok(new CompanyModel());
+        }
+
 
         [HttpPost]
         public IActionResult SaveImage(IFormFile file)

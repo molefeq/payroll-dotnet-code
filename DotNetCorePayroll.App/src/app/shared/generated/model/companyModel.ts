@@ -9,6 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { CompanyContactDetailModel } from './companyContactDetailModel';
 
 
 export interface CompanyModel {
@@ -26,27 +27,12 @@ export interface CompanyModel {
     uifCompanyReferenceNumber?: string;
     sarsUifNumber?: string;
     paysdlInd?: boolean;
-    physicalAddressId?: number;
-    physicalAddressLine1?: string;
-    physicalAddressLine2?: string;
-    physicalAddressSuburb?: string;
-    physicalAddressCity?: string;
-    physicalAddressPostalCode?: string;
-    physicalAddressProvinceId?: number;
-    physicalAddressCountryId?: number;
-    postalAddressId?: number;
-    postalAddressLine1?: string;
-    postalAddressLine2?: string;
-    postalAddressSuburb?: string;
-    postalAddressCity?: string;
-    postalAddressPostalCode?: string;
-    postalAddressProvinceId?: number;
-    postalAddressCountryId?: number;
     faxNumber?: string;
     emailAddress?: string;
     contactNumber?: string;
     logoFileName?: string;
     logoFileNamePath?: string;
+    contactDetails?: CompanyContactDetailModel;
     crudStatus?: CompanyModel.CrudStatusEnum;
 }
 export namespace CompanyModel {
