@@ -9,7 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { CompanyBankDetailModel } from './companyBankDetailModel';
 import { CompanyContactDetailModel } from './companyContactDetailModel';
+import { CompanyPayrollSettingModel } from './companyPayrollSettingModel';
 
 
 export interface CompanyModel {
@@ -33,6 +35,8 @@ export interface CompanyModel {
     logoFileName?: string;
     logoFileNamePath?: string;
     contactDetails?: CompanyContactDetailModel;
+    payrollSettings?: CompanyPayrollSettingModel;
+    bankingDetails?: CompanyBankDetailModel;
     crudStatus?: CompanyModel.CrudStatusEnum;
 }
 export namespace CompanyModel {

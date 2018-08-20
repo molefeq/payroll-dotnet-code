@@ -11,6 +11,8 @@ import { CompanyDetailsComponent } from './company/company-details.component';
 import { CompanyDetailsService } from './company/company-details.service';
 import { CompanyFormComponent } from './company/company-form/company-form.component';
 import { CompanyAddressFormComponent } from './company/company-form/company-address-form/company-address-form.component';
+import { CompanyPayrollSettingsFormComponent } from './company/company-form/company-payroll-settings-form/company-payroll-settings-form.component';
+import { CompanyBankingDetailsComponent } from './company/company-form/company-banking-details/company-banking-details.component';
 
 @NgModule({
   imports: [
@@ -31,6 +33,8 @@ import { CompanyAddressFormComponent } from './company/company-form/company-addr
     CompanyDetailsComponent,
     CompanyFormComponent,
     CompanyAddressFormComponent,
+    CompanyPayrollSettingsFormComponent,
+    CompanyBankingDetailsComponent,
   ]
 })
 export class ComponentsModule { }

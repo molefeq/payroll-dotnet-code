@@ -11,18 +11,18 @@
  */
 
 
-export interface CompanyBankDetailModel {
+export interface CompanyPayrollSettingModel {
+    id?: number;
     companyId?: string;
-    bankId?: number;
-    bankName?: string;
-    accountHolderName?: string;
-    accountType?: string;
-    branchCode?: string;
-    branchName?: string;
-    accountNumber?: string;
-    crudStatus?: CompanyBankDetailModel.CrudStatusEnum;
+    monthPeriods?: number;
+    hoursPerDay?: number;
+    weeklyPeriods?: number;
+    hoursPerWeek?: number;
+    daysPerMonth?: number;
+    payslipMessage?: string;
+    crudStatus?: CompanyPayrollSettingModel.CrudStatusEnum;
 }
-export namespace CompanyBankDetailModel {
+export namespace CompanyPayrollSettingModel {
     export type CrudStatusEnum = 1 | 2 | 3 | 4;
     export const CrudStatusEnum = {
         NUMBER_1: 1 as CrudStatusEnum,

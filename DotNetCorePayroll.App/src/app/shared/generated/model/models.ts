@@ -4,6 +4,7 @@ export * from './changePasswordModel';
 export * from './companyBankDetailModel';
 export * from './companyContactDetailModel';
 export * from './companyModel';
+export * from './companyPayrollSettingModel';
 export * from './companySearchFilter';
 export * from './iFormFile';
 export * from './loginModel';

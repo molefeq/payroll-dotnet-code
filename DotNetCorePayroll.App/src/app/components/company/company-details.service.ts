@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { CompanyService, CompanyModel, PageData, CompanyContactDetailModel } from '../../shared/generated';
+import { CompanyService, CompanyModel, PageData, CompanyContactDetailModel, CompanyPayrollSettingModel, CompanyBankDetailModel } from '../../shared/generated';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatPaginator, MatSort } from '@angular/material';
 import { merge } from 'rxjs/observable/merge';
@@ -65,6 +65,14 @@ export class CompanyDetailsService {
 
   saveContactDetails(companyContactDetailModel: CompanyContactDetailModel): Observable<CompanyModel> {
     return this.companyService.apiCompanySaveCompanyContactDetailsPost(companyContactDetailModel);
+  }
+
+  savePayrollSettings(companyPayrollSettingModel: CompanyPayrollSettingModel): Observable<CompanyModel> {
+    return this.companyService.apiCompanySaveCompanyPayrollSettingsPost(companyPayrollSettingModel);
+  }
+
+  saveBankingDetails(companyBankDetailModel: CompanyBankDetailModel): Observable<CompanyModel> {
+    return this.companyService.apiCompanySaveBankingDetailsPost(companyBankDetailModel);
   }
 
   /*saveImage(organisationModel: OrganisationModel): Observable<OrganisationModel> {

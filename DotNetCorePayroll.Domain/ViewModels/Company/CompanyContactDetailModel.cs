@@ -1,7 +1,7 @@
 ﻿using System;
 using SqsLibraries.Common.Enums;
 
-namespace DotNetCorePayroll.Data.ViewModels
+namespace DotNetCorePayroll.Data.ViewModels.Company
 {
     public class CompanyContactDetailModel
     {

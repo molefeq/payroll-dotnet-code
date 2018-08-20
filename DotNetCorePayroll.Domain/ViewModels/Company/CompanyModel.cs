@@ -26,6 +26,8 @@ namespace DotNetCorePayroll.Data.ViewModels.Company
         public string LogoFileName { get; set; }
         public string LogoFileNamePath { get; set; }
         public CompanyContactDetailModel ContactDetails { get; set; }
+        public CompanyPayrollSettingModel PayrollSettings { get; set; }
+        public CompanyBankDetailModel BankingDetails { get; set; }
         public CrudStatus CrudStatus { get; set; }
     }
 }

@@ -113,22 +113,10 @@
         <app-company-address-form></app-company-address-form>
       </mat-tab>
       <mat-tab label="Settings">
-        <mat-card class="organisation-card">
-          <mat-card-content>
-            <form [formGroup]="companySettingsForm" [appFormValidator]="companySettingsForm" [validationMessages]="validationmessages">
-              <app-summary-validation-messages [appForm]="companySettingsForm"></app-summary-validation-messages>
-
-            </form>
-          </mat-card-content>
-          <mat-card-actions>
-            <div class="buttons-container">
-              <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-              <button mat-raised-button (click)="save()" *ngIf="!isInProgress" color="primary">Save</button>
-              <button mat-raised-button *ngIf="!isInProgress" (click)="cancel()">Cancel</button>
-              <mat-progress-bar mode="indeterminate" *ngIf="isInProgress"></mat-progress-bar>
-            </div>
-          </mat-card-actions>
-        </mat-card>
+        <app-company-payroll-settings-form></app-company-payroll-settings-form>
+      </mat-tab>
+      <mat-tab label="Banking Details">
+        <app-company-banking-details></app-company-banking-details>
       </mat-tab>
     </mat-tab-group>
     <!-- <form [formGroup]="companyForm" [appFormValidator]="companyForm" [validationMessages]="validationMessages">

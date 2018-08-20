@@ -103,7 +103,7 @@ export class CompanyAddressFormComponent implements OnInit {
   }
 
   initialiseForm() {
-    if (!this.companyDetailsService.Company.contactDetails) {
+    if (!this.companyDetailsService.Company || !this.companyDetailsService.Company.contactDetails) {
       return;
     }
 
