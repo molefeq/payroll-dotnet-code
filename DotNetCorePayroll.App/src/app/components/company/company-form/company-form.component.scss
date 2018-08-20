@@ -1,11 +1,17 @@
-.page-heading{
-    .mat-typography{
-        h1{
-            text-transform: capitalize;
-        }
+.page-heading {
+  .mat-typography {
+    h1 {
+      text-transform: capitalize;
     }
+  }
+  .breadcrumbs {
+    text-transform: capitalize;
+  }
+}
 
-    .breadcrumbs{
-        text-transform: capitalize;
-    }
+.mat-tab-group {
+  height: 100%;
+}
+.none-flex-form-container .mat-card {
+    height: 95%;
 }
