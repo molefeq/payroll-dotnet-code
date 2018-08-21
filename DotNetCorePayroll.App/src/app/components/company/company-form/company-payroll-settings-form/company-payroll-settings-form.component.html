@@ -1,0 +1,40 @@
+<mat-card class="organisation-card">
+  <mat-card-content>
+    <form [formGroup]="companyPayrollSettingsForm" [appFormValidator]="companyPayrollSettingsForm" [validationMessages]="validationMessages">
+      <app-summary-validation-messages [appForm]="companyPayrollSettingsForm"></app-summary-validation-messages>
+      
+      <mat-form-field [class.is-invalid]="isControlInvalid(companyPayrollSettingsForm.get('monthPeriods'))">
+        <input matInput type="text" placeholder="Month Periods" formControlName="monthPeriods">
+        <mat-error [appValidationMessage]="companyPayrollSettingsForm.get('monthPeriods')" [messages]="validationMessages.monthPeriods"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field [class.is-invalid]="isControlInvalid(companyPayrollSettingsForm.get('weeklyPeriods'))">
+        <input matInput type="text" placeholder="Weekly Periods" formControlName="weeklyPeriods">
+        <mat-error [appValidationMessage]="companyPayrollSettingsForm.get('weeklyPeriods')" [messages]="validationMessages.weeklyPeriods"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field [class.is-invalid]="isControlInvalid(companyPayrollSettingsForm.get('hoursPerDay'))">
+        <input matInput type="text" placeholder="Hours Per Day" formControlName="hoursPerDay">
+        <mat-error [appValidationMessage]="companyPayrollSettingsForm.get('hoursPerDay')" [messages]="validationMessages.hoursPerDay"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field [class.is-invalid]="isControlInvalid(companyPayrollSettingsForm.get('hoursPerWeek'))">
+        <input matInput type="text" placeholder="Hours Per Week" formControlName="hoursPerWeek">
+        <mat-error [appValidationMessage]="companyPayrollSettingsForm.get('hoursPerWeek')" [messages]="validationMessages.hoursPerWeek"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field [class.is-invalid]="isControlInvalid(companyPayrollSettingsForm.get('daysPerMonth'))">
+        <input matInput type="text" placeholder="Days Per Month" formControlName="daysPerMonth">
+        <mat-error [appValidationMessage]="companyPayrollSettingsForm.get('daysPerMonth')" [messages]="validationMessages.daysPerMonth"></mat-error>
+      </mat-form-field>
+
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="buttons-container">
+      <button mat-raised-button (click)="save()" *ngIf="!isInProgress" color="primary">Save</button>
+      <button mat-raised-button *ngIf="!isInProgress" (click)="cancel()">Cancel</button>
+      <mat-progress-bar mode="indeterminate" *ngIf="isInProgress"></mat-progress-bar>
+    </div>
+  </mat-card-actions>
+</mat-card> 
