@@ -15,4 +15,7 @@ import { ReferenceDataModel } from './referenceDataModel';
 export interface StaticDataModel {
     provinces?: Array<ReferenceDataModel>;
     countries?: Array<ReferenceDataModel>;
+    accountTypes?: Array<ReferenceDataModel>;
+    languages?: Array<ReferenceDataModel>;
+    maritalStatuses?: Array<ReferenceDataModel>;
 }

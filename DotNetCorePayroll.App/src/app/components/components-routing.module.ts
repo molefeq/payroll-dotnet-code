@@ -7,6 +7,7 @@ import { OrganisationDetailsComponent } from './organisation/organisation-detail
 import { CompanyDetailsComponent } from './company/company-details.component';
 import { OrganisationFormComponent } from './organisation/organisation-form/organisation-form.component';
 import { CompanyFormComponent } from './company/company-form/company-form.component';
+import { EmployeeDetailsComponent } from './employee/employee-details/employee-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthorizationGuardService] },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'companies/:organisationId', component: CompanyDetailsComponent, canActivate: [AuthorizationGuardService] },
   { path: 'company/:companyId', component: CompanyFormComponent, canActivate: [AuthorizationGuardService] },
   { path: 'company', component: CompanyFormComponent, canActivate: [AuthorizationGuardService] },
+  { path: 'employees/:companyId', component: EmployeeDetailsComponent, canActivate: [AuthorizationGuardService] },
 ];
 
 @NgModule({

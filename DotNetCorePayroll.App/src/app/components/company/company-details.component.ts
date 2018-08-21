@@ -29,7 +29,7 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
   constructor(private organisationDetailsService: OrganisationDetailsService,
     private companyDetailsService: CompanyDetailsService,
     private router: Router) {
-    this.displayedColumns = ['name', 'physicalAddress', 'emailAddress', 'contactNumber', 'actions'];
+    this.displayedColumns = ['name', 'physicalAddress', 'emailAddress', 'contactNumber', 'employees', 'actions'];
   }
 
   ngOnInit() {
@@ -60,7 +60,7 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
 
   viewCompany(company: CompanyModel) {
     this.companyDetailsService.Company = company;
-    this.router.navigate(['/company', company.id]);
+    this.router.navigate(['/employees', company.id]);
   }
 
   ngOnDestroy() {
