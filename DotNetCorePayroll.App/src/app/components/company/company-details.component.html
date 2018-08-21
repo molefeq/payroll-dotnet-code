@@ -54,12 +54,18 @@
         <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.contactNumber }}</mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="employees">
+        <th mat-header-cell *matHeaderCellDef class="table-header-link-col"></th>
+        <td mat-cell *matCellDef="let row" class="table-cell-link-col">
+          <button mat-icon-button color="primary" (click)="viewCompany(row)" matTooltip="View employees">
+            <mat-icon aria-label="View employees.">visibility</mat-icon>Employees
+          </button>
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="table-header-actions-col"></th>
         <td mat-cell *matCellDef="let row" class="table-cell-actions-col">
-          <button mat-icon-button color="primary" (click)="viewCompany(row)" matTooltip="View company">
-            <mat-icon aria-label="Button to view company.">visibility</mat-icon>
-          </button>
           <button mat-icon-button color="primary" (click)="editCompany(row)" matTooltip="Edit company">
             <mat-icon aria-label="Button to edit company.">create</mat-icon>
           </button>

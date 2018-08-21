@@ -1,5 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { CompanyService, CompanyModel, PageData, CompanyContactDetailModel, CompanyPayrollSettingModel, CompanyBankDetailModel } from '../../shared/generated';
+import {
+  CompanyService, CompanyModel, PageData,
+  CompanyContactDetailModel, CompanyPayrollSettingModel,
+  CompanyBankDetailModel
+} from '../../shared/generated';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatPaginator, MatSort } from '@angular/material';
 import { merge } from 'rxjs/observable/merge';

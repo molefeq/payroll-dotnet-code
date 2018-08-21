@@ -1,6 +1,10 @@
-.none-flex-form-container .mat-card {
+.organisation-card {
   height: 95%;
   .mat-card-content {
     height: 85% !important;
+
+    form{
+      height: auto!important;
+    }
   }
 }

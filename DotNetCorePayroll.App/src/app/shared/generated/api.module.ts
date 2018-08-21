@@ -5,6 +5,7 @@ import { Configuration } from './configuration';
 
 import { AccountService } from './api/account.service';
 import { CompanyService } from './api/company.service';
+import { EmployeeService } from './api/employee.service';
 import { OrganisationService } from './api/organisation.service';
 import { ReferenceDataService } from './api/referenceData.service';
 import { RoleService } from './api/role.service';
@@ -16,6 +17,7 @@ import { RoleService } from './api/role.service';
   providers: [
     AccountService,
     CompanyService,
+    EmployeeService,
     OrganisationService,
     ReferenceDataService,
     RoleService ]
