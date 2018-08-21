@@ -1,4 +1,4 @@
-import { ValidatorFn, AbstractControl } from "@angular/forms";
+import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 export function serverValidation(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {

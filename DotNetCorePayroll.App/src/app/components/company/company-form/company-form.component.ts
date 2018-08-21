@@ -12,6 +12,7 @@ import { CompanyConstants } from './company-constants';
 import { OrganisationDetailsService } from '../../organisation/organisation-details.service';
 import { Router } from '@angular/router';
 import { Constants } from '../../../shared/utils/constants';
+import { FormFieldValidator } from '../../../shared/utils/form-fields-validator';
 
 @Component({
   selector: 'app-company-form',
@@ -20,18 +21,31 @@ import { Constants } from '../../../shared/utils/constants';
 })
 export class CompanyFormComponent implements OnInit {
 
+  navLinks = [
+    {
+      path: '/organisations',
+      label: 'Company Details',
+      isActive: true
+    }, {
+      path: '/company',
+      label: 'Contact Details',
+      isActive: false
+    }, {
+      path: '/company',
+      label: 'Settings',
+      isActive: false
+    }];
+
   apiUrl: String = CompanyConstants.UPLOAD_IMAGE_URL;
   logo: logoModel;
 
   companyForm: FormGroup;
+  companySettingsForm: FormGroup;
   isSubmited: boolean;
   isInProgress: boolean;
   heading: String = 'Create Company';
-  countries: Array<ReferenceDataModel>;
-  provinces: Array<ReferenceDataModel>;
   organisation: OrganisationModel;
   validationMessages = CompanyConstants.VALIDATION_MESSAGES;
-  postSameAsPhyAddress = false;
 
   constructor(private fb: FormBuilder,
     private organisationDetailsService: OrganisationDetailsService,
@@ -42,50 +56,61 @@ export class CompanyFormComponent implements OnInit {
 
   ngOnInit() {
     this.organisation = this.organisationDetailsService.Organisation;
-    this.countries = this.referenceDataService.getCountries();
-    this.provinces = this.referenceDataService.getProvinces();
     this.createForm();
   }
 
   createForm() {
     this.companyForm = this.fb.group({
       id: [null, []],
-      name: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
-      registeredName: ['', [Validators.maxLength(20), serverValidation()]],
-      tradingName: ['', [Validators.maxLength(20), serverValidation()]],
+      name: ['', [Validators.required, Validators.maxLength(200), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      registeredName: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      tradingName: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
       natureOfBusiness: ['', [Validators.maxLength(20), serverValidation()]],
-      companyRegistrationNumber: ['', [Validators.maxLength(20), serverValidation()]],
-      taxNumber: ['', [Validators.maxLength(20), serverValidation()]],
-      uifReferenceNumber: ['', [Validators.maxLength(20), serverValidation()]],
-      payeReferenceNumber: ['', [Validators.maxLength(20), serverValidation()]],
-      uifCompanyReferenceNumber: ['', [Validators.maxLength(20), serverValidation()]],
-      sarsUifNumber: ['', [Validators.maxLength(20), serverValidation()]],
+      companyRegistrationNumber: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      // tslint:disable-next-line:max-line-length
+      taxNumber: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      // tslint:disable-next-line:max-line-length
+      payeReferenceNumber: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      // tslint:disable-next-line:max-line-length
+      uifReferenceNumber: ['', [Validators.maxLength(50), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      // tslint:disable-next-line:max-line-length
+      uifCompanyReferenceNumber: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      // tslint:disable-next-line:max-line-length
+      sarsUifNumber: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
       paysdlInd: ['', [serverValidation()]],
       physicalAddressId: ['', [serverValidation()]],
-      physicalAddressLine1: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      physicalAddressLine2: ['', [serverValidation()]],
-      physicalAddressSuburb: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      physicalAddressCity: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      physicalAddressPostalCode: ['', [Validators.required, Validators.maxLength(10), serverValidation()]],
+      // tslint:disable-next-line:max-line-length
+      physicalAddressLine1: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      physicalAddressLine2: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      // tslint:disable-next-line:max-line-length
+      physicalAddressSuburb: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      // tslint:disable-next-line:max-line-length
+      physicalAddressCity: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      // tslint:disable-next-line:max-line-length
+      physicalAddressPostalCode: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
       physicalAddressProvinceId: ['', [Validators.required, serverValidation()]],
       physicalAddressCountryId: ['', [Validators.required, serverValidation()]],
       postalAddressId: ['', [serverValidation()]],
-      postalAddressLine1: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      postalAddressLine2: ['', [serverValidation()]],
-      postalAddressSuburb: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      postalAddressCity: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      postalAddressPostalCode: ['', [Validators.required, Validators.maxLength(10), serverValidation()]],
-      postalAddressProvinceId: ['', [Validators.required, serverValidation()]],
-      postalAddressCountryId: ['', [Validators.required, serverValidation()]],
-      faxNumber: ['', [serverValidation()]],
-      emailAddress: ['', [Validators.required, Validators.maxLength(500), serverValidation()]],
-      contactNumber: ['', [Validators.required, Validators.maxLength(20), serverValidation()]]
+      postalAddressLine1: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      postalAddressLine2: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      postalAddressSuburb: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      postalAddressCity: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
+      postalAddressPostalCode: ['', [Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), Validators.maxLength(10), serverValidation()]],
+      postalAddressProvinceId: ['', [serverValidation()]],
+      postalAddressCountryId: ['', [serverValidation()]],
+      faxNumber: ['', [Validators.pattern(Constants.TELEPHONE_REG_EXP), Validators.maxLength(20), serverValidation()]],
+      emailAddress: ['', [Validators.required, Validators.email, Validators.maxLength(500), serverValidation()]],
+      // tslint:disable-next-line:max-line-length
+      contactNumber: ['', [Validators.required, Validators.pattern(Constants.TELEPHONE_REG_EXP), Validators.maxLength(20), serverValidation()]]
     });
+
+    this.companySettingsForm = this.fb.group({});
 
     this.logo = {
       logoUrl: '',
       logoFilename: ''
     };
+
     this.isSubmited = false;
     this.initialiseForm();
   }
@@ -111,6 +136,7 @@ export class CompanyFormComponent implements OnInit {
   save() {
     if (this.companyForm.invalid) {
       this.isSubmited = false;
+      FormFieldValidator.validateAllFormFields(this.companyForm);
       return;
     }
 
@@ -127,23 +153,6 @@ export class CompanyFormComponent implements OnInit {
       })
     ).subscribe((data: CompanyModel) => {
     });
-  }
-
-  isPostalSameAsPhysicalAddress(event: MatCheckboxChange) {
-    this.postSameAsPhyAddress = event.checked;
-
-    if (!event.checked) {
-      return;
-    }
-
-    this.companyForm.get('postalAddressId').setValue(this.companyForm.get('physicalAddressId').value);
-    this.companyForm.get('postalAddressLine1').setValue(this.companyForm.get('physicalAddressLine1').value);
-    this.companyForm.get('postalAddressLine2').setValue(this.companyForm.get('physicalAddressLine2').value);
-    this.companyForm.get('postalAddressSuburb').setValue(this.companyForm.get('physicalAddressSuburb').value);
-    this.companyForm.get('postalAddressCity').setValue(this.companyForm.get('physicalAddressCity').value);
-    this.companyForm.get('postalAddressPostalCode').setValue(this.companyForm.get('physicalAddressPostalCode').value);
-    this.companyForm.get('postalAddressProvinceId').setValue(this.companyForm.get('physicalAddressProvinceId').value);
-    this.companyForm.get('postalAddressCountryId').setValue(this.companyForm.get('physicalAddressCountryId').value);
   }
 
   cancel() {

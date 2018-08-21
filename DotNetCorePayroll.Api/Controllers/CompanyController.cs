@@ -3,6 +3,7 @@ using DotNetCorePayroll.Api.Extensions;
 using DotNetCorePayroll.Common.Extensions;
 using DotNetCorePayroll.Common.Utilities;
 using DotNetCorePayroll.Data.SearchFilters;
+using DotNetCorePayroll.Data.ViewModels;
 using DotNetCorePayroll.Data.ViewModels.Company;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -88,6 +89,38 @@ namespace DotNetCorePayroll.Api.Controllers
 
             return Ok(new CompanyModel());
         }
+        
+        [HttpPost]
+        [ProducesResponseType(typeof(CompanyModel), 200)]
+        public IActionResult SaveCompanyContactDetails([FromBody]CompanyContactDetailModel companyContactDetail)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new ValidationActionResult(ModelState);
+            }
+
+            //OrganisationModel model = ogranisationService.Update(organisationModel);
+
+            //ImageFixing(model, organisationModel.LogoFileNamePath);
+
+            return Ok(new CompanyModel());
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(CompanyModel), 200)]
+        public IActionResult SaveCompanyPayrollSettings([FromBody]CompanyPayrollSettingModel companyPayrollSettingModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new ValidationActionResult(ModelState);
+            }
+
+            //OrganisationModel model = ogranisationService.Update(organisationModel);
+
+            //ImageFixing(model, organisationModel.LogoFileNamePath);
+
+            return Ok(new CompanyModel());
+        }
 
         [HttpPost]
         public IActionResult SaveImage(IFormFile file)
@@ -119,10 +152,9 @@ namespace DotNetCorePayroll.Api.Controllers
         }
 
         #region Company Bank Details
-
-
+        
         [HttpPost]
-        [ProducesResponseType(typeof(CompanyBankDetailModel), 200)]
+        [ProducesResponseType(typeof(CompanyModel), 200)]
         public IActionResult SaveBankingDetails([FromBody]CompanyBankDetailModel model)
         {
             if (!ModelState.IsValid)
@@ -134,8 +166,9 @@ namespace DotNetCorePayroll.Api.Controllers
 
             //ImageFixing(model, organisationModel.LogoFileNamePath);
 
-            return Ok(new CompanyBankDetailModel());
+            return Ok(new CompanyModel());
         }
+
         #endregion
 
         #region Private Methods

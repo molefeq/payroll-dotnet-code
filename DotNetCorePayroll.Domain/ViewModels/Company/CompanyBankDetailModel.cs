@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SqsLibraries.Common.Enums;
+﻿using SqsLibraries.Common.Enums;
+using System;
 
 namespace DotNetCorePayroll.Data.ViewModels.Company
 {
     public class CompanyBankDetailModel
     {
-        public int? Id { get; set; }
-        public int Companies_Id { get; set; }
-        public int BankId { get; set; }
+        public Guid? CompanyId { get; set; }
+        public long? BankId { get; set; }
         public string BankName { get; set; }
         public string AccountHolderName { get; set; }
         public string AccountType { get; set; }

@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { CompanyService, CompanyModel, PageData } from '../../shared/generated';
+import { CompanyService, CompanyModel, PageData, CompanyContactDetailModel, CompanyPayrollSettingModel, CompanyBankDetailModel } from '../../shared/generated';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatPaginator, MatSort } from '@angular/material';
 import { merge } from 'rxjs/observable/merge';
@@ -63,6 +63,18 @@ export class CompanyDetailsService {
     return this.companyService.apiCompanyUpdateCompanyPost(companyModel);
   }
 
+  saveContactDetails(companyContactDetailModel: CompanyContactDetailModel): Observable<CompanyModel> {
+    return this.companyService.apiCompanySaveCompanyContactDetailsPost(companyContactDetailModel);
+  }
+
+  savePayrollSettings(companyPayrollSettingModel: CompanyPayrollSettingModel): Observable<CompanyModel> {
+    return this.companyService.apiCompanySaveCompanyPayrollSettingsPost(companyPayrollSettingModel);
+  }
+
+  saveBankingDetails(companyBankDetailModel: CompanyBankDetailModel): Observable<CompanyModel> {
+    return this.companyService.apiCompanySaveBankingDetailsPost(companyBankDetailModel);
+  }
+
   /*saveImage(organisationModel: OrganisationModel): Observable<OrganisationModel> {
     if (organisationModel.id) {
       return this.organisationService.apiOrganisationAddOrganisationPost(organisationModel);
@@ -102,16 +114,16 @@ export class CompanyDetailsService {
   }
 
   setAddress(company: CompanyModel) {
-    company['physicalAddress'] = [company.physicalAddressLine1,
-    company.physicalAddressLine2,
-    company.physicalAddressSuburb,
-    company.physicalAddressCity,
-    company.physicalAddressPostalCode].filter(Boolean).join(', ');
+    company['physicalAddress'] = [company.contactDetails.physicalAddressLine1,
+    company.contactDetails.physicalAddressLine2,
+    company.contactDetails.physicalAddressSuburb,
+    company.contactDetails.physicalAddressCity,
+    company.contactDetails.physicalAddressPostalCode].filter(Boolean).join(', ');
 
-    company['postalAddress'] = [company.postalAddressLine1,
-    company.postalAddressLine2,
-    company.postalAddressSuburb,
-    company.postalAddressCity,
-    company.postalAddressPostalCode].filter(Boolean).join(', ');
+    company['postalAddress'] = [company.contactDetails.postalAddressLine1,
+    company.contactDetails.postalAddressLine2,
+    company.contactDetails.postalAddressSuburb,
+    company.contactDetails.postalAddressCity,
+    company.contactDetails.postalAddressPostalCode].filter(Boolean).join(', ');
   }
 }

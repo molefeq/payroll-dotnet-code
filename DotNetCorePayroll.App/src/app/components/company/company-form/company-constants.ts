@@ -30,8 +30,8 @@ export class CompanyConstants {
             pattern: 'Characters entered for the Tax Number are not allowed.',
             serverValidation: ''
         },
-        vatNumber: {
-            maxlength: 'VAT Number cannot be more than 50 characters.',
+        vatReferenceNumber: {
+            maxlength: 'VAT Reference Number cannot be more than 50 characters.',
             pattern: 'Characters entered for the VAT Reference Number are not allowed.',
             serverValidation: ''
         },
@@ -39,6 +39,11 @@ export class CompanyConstants {
             required: 'PAYE Reference Number is required.',
             maxlength: 'PAYE Reference Number cannot be more than 50 characters.',
             pattern: 'Characters entered for the PAYE Reference Number are not allowed.',
+            serverValidation: ''
+        },
+        uifReferenceNumber: {
+            maxlength: 'UIF Registration Number cannot be more than 50 characters.',
+            pattern: 'Characters entered for the UIF Registration Number are not allowed.',
             serverValidation: ''
         },
         uifCompanyReferenceNumber: {
@@ -109,6 +114,7 @@ export class CompanyConstants {
             serverValidation: ''
         },
         postalAddressSuburb: {
+            required: 'Suburb is required.',
             maxlength: 'Suburb cannot be more than 100 characters.',
             pattern: 'Characters entered for the Suburb are not allowed.',
             serverValidation: ''
@@ -119,16 +125,17 @@ export class CompanyConstants {
             serverValidation: ''
         },
         postalAddressCity: {
+            required: 'City is required.',
             maxlength: 'City cannot be more than 100 characters.',
             pattern: '"Characters entered for the City are not allowed.',
             serverValidation: ''
         },
         postalAddressProvinceId: {
-            required: 'Province is required',
+            required: 'Province is required.',
             serverValidation: ''
         },
         postalAddressCountryId: {
-            required: 'Country is required',
+            required: 'Country is required.',
             serverValidation: ''
         },
         faxNumber: {

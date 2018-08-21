@@ -9,6 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { CompanyBankDetailModel } from './companyBankDetailModel';
+import { CompanyContactDetailModel } from './companyContactDetailModel';
+import { CompanyPayrollSettingModel } from './companyPayrollSettingModel';
 
 
 export interface CompanyModel {
@@ -26,27 +29,14 @@ export interface CompanyModel {
     uifCompanyReferenceNumber?: string;
     sarsUifNumber?: string;
     paysdlInd?: boolean;
-    physicalAddressId?: number;
-    physicalAddressLine1?: string;
-    physicalAddressLine2?: string;
-    physicalAddressSuburb?: string;
-    physicalAddressCity?: string;
-    physicalAddressPostalCode?: string;
-    physicalAddressProvinceId?: number;
-    physicalAddressCountryId?: number;
-    postalAddressId?: number;
-    postalAddressLine1?: string;
-    postalAddressLine2?: string;
-    postalAddressSuburb?: string;
-    postalAddressCity?: string;
-    postalAddressPostalCode?: string;
-    postalAddressProvinceId?: number;
-    postalAddressCountryId?: number;
     faxNumber?: string;
     emailAddress?: string;
     contactNumber?: string;
     logoFileName?: string;
     logoFileNamePath?: string;
+    contactDetails?: CompanyContactDetailModel;
+    payrollSettings?: CompanyPayrollSettingModel;
+    bankingDetails?: CompanyBankDetailModel;
     crudStatus?: CompanyModel.CrudStatusEnum;
 }
 export namespace CompanyModel {
