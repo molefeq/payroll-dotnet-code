@@ -9,9 +9,9 @@ import { FormFieldValidator } from '../../../../shared/utils/form-fields-validat
 import { MatCheckboxChange } from '../../../../../../node_modules/@angular/material';
 import { OrganisationDetailsService } from '../../../organisation/organisation-details.service';
 import { Router } from '../../../../../../node_modules/@angular/router';
-import { CompanyAddressFormConstants } from './company-form-constants';
 import { FormHelper } from '../../../../shared/utils/form-helper';
 import { finalize } from '../../../../../../node_modules/rxjs/operators';
+import { CompanyAddressFormConstants } from './company-address-form-constants';
 
 @Component({
   selector: 'app-company-address-form',
