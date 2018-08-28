@@ -31,70 +31,104 @@
             <form [formGroup]="employeeForm" [appFormValidator]="employeeForm" [validationMessages]="validationMessages">
               <app-summary-validation-messages [appForm]="employeeForm"></app-summary-validation-messages>
               <div class="form-row">
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('name'))">
-                  <input matInput type="text" placeholder="Name" formControlName="name">
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('employeeNumber'))">
+                  <input matInput type="text" placeholder="Employee Number" formControlName="employeeNumber">
                   <input type="hidden" formControlName="id">
-                  <mat-error [appValidationMessage]="employeeForm.get('name')" [messages]="validationMessages.name"></mat-error>
+                  <mat-error [appValidationMessage]="employeeForm.get('employeeNumber')" [messages]="validationMessages.employeeNumber"></mat-error>
                 </mat-form-field>
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('registeredName'))">
-                  <input matInput type="text" placeholder="Registered As" formControlName="registeredName">
-                  <mat-error [appValidationMessage]="employeeForm.get('registeredName')" [messages]="validationMessages.registeredName"></mat-error>
-                </mat-form-field>
-              </div>
-              <div class="form-row">
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('tradingName'))">
-                  <input matInput type="text" placeholder="Trading As" formControlName="tradingName">
-                  <mat-error [appValidationMessage]="employeeForm.get('tradingName')" [messages]="validationMessages.tradingName"></mat-error>
-                </mat-form-field>
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('natureOfBusiness'))">
-                  <input matInput type="text" placeholder="Nature Of Business" formControlName="natureOfBusiness">
-                  <mat-error [appValidationMessage]="employeeForm.get('natureOfBusiness')" [messages]="validationMessages.natureOfBusiness"></mat-error>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('title'))">
+                  <input matInput type="text" placeholder="Title" formControlName="title">
+                  <mat-error [appValidationMessage]="employeeForm.get('title')" [messages]="validationMessages.title"></mat-error>
                 </mat-form-field>
               </div>
               <div class="form-row">
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('companyRegistrationNumber'))">
-                  <input matInput type="text" placeholder="Company Registration Number" formControlName="companyRegistrationNumber">
-                  <mat-error [appValidationMessage]="employeeForm.get('companyRegistrationNumber')" [messages]="validationMessages.companyRegistrationNumber"></mat-error>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('firstName'))">
+                  <input matInput type="text" placeholder="Trading As" formControlName="firstName">
+                  <mat-error [appValidationMessage]="employeeForm.get('firstName')" [messages]="validationMessages.firstName"></mat-error>
                 </mat-form-field>
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('taxNumber'))">
-                  <input matInput type="text" placeholder="Tax Number" formControlName="taxNumber">
-                  <mat-error [appValidationMessage]="employeeForm.get('taxNumber')" [messages]="validationMessages.taxNumber"></mat-error>
-                </mat-form-field>
-              </div>
-              <div class="form-row">
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('uifReferenceNumber'))">
-                  <input matInput type="text" placeholder="UIF Reference Number" formControlName="uifReferenceNumber">
-                  <mat-error [appValidationMessage]="employeeForm.get('uifReferenceNumber')" [messages]="validationMessages.uifReferenceNumber"></mat-error>
-                </mat-form-field>
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('payeReferenceNumber'))">
-                  <input matInput type="text" placeholder="PAYE Reference Number" formControlName="payeReferenceNumber">
-                  <mat-error [appValidationMessage]="employeeForm.get('payeReferenceNumber')" [messages]="validationMessages.payeReferenceNumber"></mat-error>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('initials'))">
+                  <input matInput type="text" placeholder="Nature Of Business" formControlName="initials">
+                  <mat-error [appValidationMessage]="employeeForm.get('initials')" [messages]="validationMessages.initials"></mat-error>
                 </mat-form-field>
               </div>
               <div class="form-row">
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('uifCompanyReferenceNumber'))">
-                  <input matInput type="text" placeholder="UIF Company Reference Number" formControlName="uifCompanyReferenceNumber">
-                  <mat-error [appValidationMessage]="employeeForm.get('uifCompanyReferenceNumber')" [messages]="validationMessages.uifCompanyReferenceNumber"></mat-error>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('lastName'))">
+                  <input matInput type="text" placeholder="Company Registration Number" formControlName="lastName">
+                  <mat-error [appValidationMessage]="employeeForm.get('lastName')" [messages]="validationMessages.lastName"></mat-error>
                 </mat-form-field>
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('sarsUifNumber'))">
-                  <input matInput type="text" placeholder="SARS UIF Number" formControlName="sarsUifNumber">
-                  <mat-error [appValidationMessage]="employeeForm.get('sarsUifNumber')" [messages]="validationMessages.sarsUifNumber"></mat-error>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('nickName'))">
+                  <input matInput type="text" placeholder="Tax Number" formControlName="nickName">
+                  <mat-error [appValidationMessage]="employeeForm.get('nickName')" [messages]="validationMessages.nickName"></mat-error>
                 </mat-form-field>
               </div>
               <div class="form-row">
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('contactNumber'))">
-                  <input matInput type="text" placeholder="Contact" formControlName="contactNumber">
-                  <mat-error [appValidationMessage]="employeeForm.get('contactNumber')" [messages]="validationMessages.contactNumber"></mat-error>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('dateOfBirth'))">
+                  <input matInput type="text" placeholder="UIF Reference Number" formControlName="dateOfBirth">
+                  <mat-error [appValidationMessage]="employeeForm.get('dateOfBirth')" [messages]="validationMessages.dateOfBirth"></mat-error>
                 </mat-form-field>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('isSouthAfricanCitizen'))">
+                  <input matInput type="text" placeholder="PAYE Reference Number" formControlName="isSouthAfricanCitizen">
+                  <mat-error [appValidationMessage]="employeeForm.get('isSouthAfricanCitizen')" [messages]="validationMessages.isSouthAfricanCitizen"></mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-row">
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('idOrPassportNumber'))">
+                  <input matInput type="text" placeholder="UIF Company Reference Number" formControlName="idOrPassportNumber">
+                  <mat-error [appValidationMessage]="employeeForm.get('idOrPassportNumber')" [messages]="validationMessages.idOrPassportNumber"></mat-error>
+                </mat-form-field>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('ethnicGroup'))">
+                  <input matInput type="text" placeholder="SARS UIF Number" formControlName="ethnicGroup">
+                  <mat-error [appValidationMessage]="employeeForm.get('ethnicGroup')" [messages]="validationMessages.ethnicGroup"></mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-row">
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('gender'))">
+                  <input matInput type="text" placeholder="Contact" formControlName="gender">
+                  <mat-error [appValidationMessage]="employeeForm.get('gender')" [messages]="validationMessages.gender"></mat-error>
+                </mat-form-field>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('hasDisability'))">
+                  <input matInput type="text" placeholder="Email" formControlName="hasDisability">
+                  <mat-error [appValidationMessage]="employeeForm.get('hasDisability')" [messages]="validationMessages.hasDisability"></mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-row">
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('disabilityDescription'))">
+                  <input matInput type="text" placeholder="Fax" formControlName="disabilityDescription">
+                  <mat-error [appValidationMessage]="employeeForm.get('disabilityDescription')" [messages]="validationMessages.disabilityDescription"></mat-error>
+                </mat-form-field>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('maritalStatus'))">
+                  <input matInput type="text" placeholder="Email" formControlName="maritalStatus">
+                  <mat-error [appValidationMessage]="employeeForm.get('maritalStatus')" [messages]="validationMessages.maritalStatus"></mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-row">
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('homeLanguage'))">
+                  <input matInput type="text" placeholder="Fax" formControlName="homeLanguage">
+                  <mat-error [appValidationMessage]="employeeForm.get('homeLanguage')" [messages]="validationMessages.homeLanguage"></mat-error>
+                </mat-form-field>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('taxReferenceNumber'))">
+                  <input matInput type="text" placeholder="Email" formControlName="taxReferenceNumber">
+                  <mat-error [appValidationMessage]="employeeForm.get('taxReferenceNumber')" [messages]="validationMessages.taxReferenceNumber"></mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-row">
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('emailAddress'))">
-                  <input matInput type="text" placeholder="Email" formControlName="emailAddress">
+                  <input matInput type="text" placeholder="Fax" formControlName="emailAddress">
                   <mat-error [appValidationMessage]="employeeForm.get('emailAddress')" [messages]="validationMessages.emailAddress"></mat-error>
                 </mat-form-field>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('workNumber'))">
+                  <input matInput type="text" placeholder="Email" formControlName="workNumber">
+                  <mat-error [appValidationMessage]="employeeForm.get('workNumber')" [messages]="validationMessages.workNumber"></mat-error>
+                </mat-form-field>
               </div>
               <div class="form-row">
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('faxNumber'))">
-                  <input matInput type="text" placeholder="Fax" formControlName="faxNumber">
-                  <mat-error [appValidationMessage]="employeeForm.get('faxNumber')" [messages]="validationMessages.faxNumber"></mat-error>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('homeNumber'))">
+                  <input matInput type="text" placeholder="Fax" formControlName="homeNumber">
+                  <mat-error [appValidationMessage]="employeeForm.get('homeNumber')" [messages]="validationMessages.homeNumber"></mat-error>
+                </mat-form-field>
+                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('mobileNumber'))">
+                  <input matInput type="text" placeholder="Email" formControlName="mobileNumber">
+                  <mat-error [appValidationMessage]="employeeForm.get('mobileNumber')" [messages]="validationMessages.mobileNumber"></mat-error>
                 </mat-form-field>
               </div>
             </form>
