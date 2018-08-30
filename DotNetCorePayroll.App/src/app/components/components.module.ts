@@ -16,6 +16,10 @@ import { CompanyPayrollSettingsFormComponent } from './company/company-form/comp
 import { CompanyBankingDetailsComponent } from './company/company-form/company-banking-details/company-banking-details.component';
 import { EmployeeDetailsComponent } from './employee/employee-details/employee-details.component';
 import { EmployeeDetailsService } from './employee/employee-details.service';
+import { EmployeeFormComponent } from './employee/employee-form/employee-form.component';
+import { EmployeeAddressFormComponent } from './employee/employee-form/employee-address-form/employee-address-form.component';
+import { EmployeeBankingDetailsFormComponent } from './employee/employee-form/employee-banking-details-form/employee-banking-details-form.component';
+import { EmployeeSettingsFormComponent } from './employee/employee-form/employee-settings-form/employee-settings-form.component';
 
 @NgModule({
   imports: [
@@ -40,6 +44,10 @@ import { EmployeeDetailsService } from './employee/employee-details.service';
     CompanyPayrollSettingsFormComponent,
     CompanyBankingDetailsComponent,
     EmployeeDetailsComponent,
+    EmployeeFormComponent,
+    EmployeeAddressFormComponent,
+    EmployeeBankingDetailsFormComponent,
+    EmployeeSettingsFormComponent,
   ]
 })
 export class ComponentsModule { }

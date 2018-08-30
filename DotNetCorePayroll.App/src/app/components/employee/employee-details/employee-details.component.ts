@@ -28,7 +28,7 @@ export class EmployeeDetailsComponent implements OnInit, OnDestroy {
   constructor(private companyDetailsService: CompanyDetailsService,
     private employeeDetailsSerivce: EmployeeDetailsService,
     private router: Router) {
-    this.displayedColumns = ['name', 'physicalAddress', 'emailAddress', 'contactNumber', 'actions'];
+    this.displayedColumns = ['name', 'physicalAddress', 'emailAddress', 'actions'];
   }
 
   ngOnInit() {

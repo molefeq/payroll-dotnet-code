@@ -4,6 +4,7 @@ import { mockRoleBackEndService } from './mock-roles/mock-roles-back-end-service
 import { mockOrganisationsBackEndService } from './mock-organisations/mock-organisations-back-end';
 import { mockReferenceDataBackEndService } from './mock-reference-data/mock-reference-data-back-end';
 import { mockCompaniesBackEndService } from './mock-companies/mock-companies-back-end';
+import { mockEmployeesBackEndService } from './mock-employees/mock-employees-back-end';
 
 export function mockBackEndService(url: string, method: string, request: HttpRequest<any>): Observable<HttpEvent<any>> {
 
@@ -41,5 +42,8 @@ export function mockBackEndService(url: string, method: string, request: HttpReq
     }
     if (url.indexOf('/api/Company/') >= 0) {
         return mockCompaniesBackEndService(url, method, request);
+    }
+    if (url.indexOf('/api/Employee/') >= 0) {
+        return mockEmployeesBackEndService(url, method, request);
     }
 }

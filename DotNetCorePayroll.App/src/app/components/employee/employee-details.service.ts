@@ -117,6 +117,7 @@ export class EmployeeDetailsService {
   }
 
   setAddress(employee: EmployeeModel) {
+    employee['name'] = [employee.title, employee.firstName, employee.lastName].filter(Boolean).join(', ');
     employee['physicalAddress'] = [employee.contactDetail.physicalAddressLine1,
     employee.contactDetail.physicalAddressLine2,
     employee.contactDetail.physicalAddressSuburb,
