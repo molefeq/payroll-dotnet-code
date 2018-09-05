@@ -14,8 +14,9 @@ namespace DotNetCorePayroll.Data.ViewModels.Employee
         public string LastName { get; set; }
         public string NickName { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public bool IsSouthAfricanCitizen { get; set; }
         public string EthnicGroup { get; set; }
+        public bool IsSouthAfricanCitizen { get; set; }
+        public string IdOrPassportNumber { get; set; }
         public string Gender { get; set; }
         public bool HasDisability { get; set; }
         public string DisabilityDescription { get; set; }
