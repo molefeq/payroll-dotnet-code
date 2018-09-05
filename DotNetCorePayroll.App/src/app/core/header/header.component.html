@@ -4,9 +4,7 @@
       <a id="logo" routerLink="/home" class="display-1">Zenit Payroll</a>
     </div>
     <div id="menu-container">
-      <button mat-button>About Us</button>
-      <button mat-button>Contact Us</button>
-      <button mat-button>Services</button>
+     
     </div>
     <div id="login-container">
       <button aria-label="GitHub Repository" rel="login" [matMenuTriggerFor]="loginMenu" class="docs-button docs-navbar-show-small mat-icon-button"
@@ -16,11 +14,9 @@
         </span>
       </button>
       <mat-menu #loginMenu="matMenu" overlapTrigger="false">
-        <button mat-menu-item>About Us</button>
+        <button mat-menu-item>Change Password</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item>Contact Us</button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item>Services</button>
+        <button mat-menu-item>Logout</button>
       </mat-menu>
     </div>
   </mat-toolbar-row>
@@ -49,11 +45,9 @@
         </span>
       </button>
       <mat-menu #loginMenu="matMenu" overlapTrigger="false">
-        <button mat-menu-item>About Us</button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item>Contact Us</button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item>Services</button>
+          <button mat-menu-item>Change Password</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>Logout</button>
       </mat-menu>
     </div>
   </mat-toolbar-row>
