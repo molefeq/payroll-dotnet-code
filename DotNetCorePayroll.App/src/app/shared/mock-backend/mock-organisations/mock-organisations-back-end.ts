@@ -36,6 +36,7 @@ export function mockOrganisationsBackEndService(url: string, method: string, req
                 faxNumber: "01178900" + i,
                 emailAddress: "testuser" + i + "@gmail.com",
                 contactNumber: "084621300" + i,
+                logoFileNamePath: 'https://material.angular.io/assets/img/examples/shiba2.jpg'
             };
 
             if (searchText && !(organisation.name.indexOf(searchText) >= 0 || organisation.description.indexOf(searchText) >= 0)) {
