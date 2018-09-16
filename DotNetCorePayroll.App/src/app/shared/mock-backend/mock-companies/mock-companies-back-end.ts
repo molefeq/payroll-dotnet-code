@@ -11,7 +11,7 @@ export function mockCompaniesBackEndService(url: string, method: string, request
 
         const items: CompanyModel[] = [];
 
-        for (let i = 1; i < 100; i++) {
+        for (let i = 1; i < 2; i++) {
             const valueId = i % 3 + 1;
             const company: CompanyModel = {
                 id: '451241-tggert-7899po-kujgf' + i,
@@ -49,6 +49,7 @@ export function mockCompaniesBackEndService(url: string, method: string, request
                 faxNumber: '01178900' + i,
                 emailAddress: 'testuser' + i + '@gmail.com',
                 contactNumber: '084621300' + i,
+                logoFileNamePath: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
             };
 
             if (searchText && !(company.name.indexOf(searchText) >= 0 || company.organisationName.indexOf(searchText) >= 0)) {
@@ -58,18 +59,18 @@ export function mockCompaniesBackEndService(url: string, method: string, request
             items.push(company);
         }
 
-        const pagedItems = items.slice(skip, take);
-
         return new Observable(resp => {
-            resp.next(new HttpResponse({
-                status: 200,
-                body: {
-                    'totalItems': items.length,
-                    'items': pagedItems
-                }
-            }));
+            setTimeout(() => {
+                resp.next(new HttpResponse({
+                    status: 200,
+                    body: {
+                        'totalItems': items.length,
+                        'items': items
+                    }
+                }));
 
-            resp.complete();
+                resp.complete();
+            }, 2002);
         });
     }
 

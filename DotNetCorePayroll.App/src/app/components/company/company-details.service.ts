@@ -7,7 +7,7 @@ import {
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatPaginator, MatSort } from '@angular/material';
 import { merge } from 'rxjs/observable/merge';
-import { startWith, switchMap, map, catchError, finalize } from 'rxjs/operators';
+import { startWith, switchMap, map, catchError, finalize, delay } from 'rxjs/operators';
 
 
 @Injectable()
@@ -18,12 +18,46 @@ export class CompanyDetailsService {
 
   constructor(private companyService: CompanyService) { }
 
+  getAllCompanies(searchEvent: EventEmitter<string>): Observable<CompanyModel[]> {
+    const that = this;
+    
+    return searchEvent.pipe(
+      startWith(null),
+      delay(0),
+      switchMap((event) => {
+        that._isBusy$.next(true);
+        const searchText = typeof event === 'string' ? event : null;
+
+        return that.companyService.apiCompanyGetCompaniesPost(
+          {
+            searchText: searchText,
+            pageData: {
+              includeAllData: false,
+              sortOrder: PageData.SortOrderEnum.NUMBER_1,
+              sortColumn: 'name'
+            }
+          });
+      }),
+      map(data => {
+        that._isBusy$.next(false);
+        data.items.forEach(item => that.setAddress(item));
+
+        return data.items;
+      }),
+      catchError((): Observable<CompanyModel[]> => {
+        that._isBusy$.next(false);
+
+        return Observable.of([]);
+      })
+    );
+  }
+
   getCompanies(paginator: MatPaginator, sort: MatSort, searchEvent: EventEmitter<string>): Observable<CompanyModel[]> {
     this._isBusy$.next(true);
 
     return merge(sort.sortChange, paginator.page, searchEvent)
       .pipe(
-        startWith({}),
+        startWith(null),
         switchMap((event) => {
           const pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
           const searchText = typeof event === 'string' ? event : null;

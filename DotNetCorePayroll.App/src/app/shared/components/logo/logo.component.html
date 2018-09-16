@@ -1,5 +1,9 @@
-<div class="upload-logo-wrapper">
-  <div>Upload logo</div>
-  <img [src]="logoUrl" />
-  <input type="file" ng2FileSelect [uploader]="fileUploader" />
+<div class="upload-container">
+    <div class="upload-logo-wrapper">
+      <img [src]="logoUrl" *ngIf="logoUrl"/>
+    </div>
+    <div class="upload-button-wrapper">
+      Click To Upload Logo
+      <input type="file" ng2FileSelect [uploader]="fileUploader" />
+    </div>    
 </div>

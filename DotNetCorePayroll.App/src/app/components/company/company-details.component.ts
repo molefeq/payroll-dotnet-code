@@ -1,7 +1,6 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription, Observable } from 'rxjs';
-import { MatSort, MatPaginator } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 import { CompanyDetailsService } from './company-details.service';
 import { CompanyModel, OrganisationModel } from '../../shared/generated';
 import { OrganisationDetailsService } from '../organisation/organisation-details.service';
@@ -11,42 +10,27 @@ import { OrganisationDetailsService } from '../organisation/organisation-details
   templateUrl: './company-details.component.html',
   styleUrls: ['./company-details.component.scss']
 })
-export class CompanyDetailsComponent implements OnInit, OnDestroy {
+export class CompanyDetailsComponent implements OnInit {
 
-  displayedColumns = [];
-  subscriptions: Subscription;
   searchText: string;
   organisation: OrganisationModel;
-
-  totalCompanies$ = this.companyDetailsService.totalCompanies$;
   isBusy$: Observable<boolean> = this.companyDetailsService.isBusy$;
-
   @Output() searchEvent: EventEmitter<string> = new EventEmitter();
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  dataSource: CompanyModel[] = [];
+  dataSource$ = this.companyDetailsService.getAllCompanies(this.searchEvent);
 
   constructor(private organisationDetailsService: OrganisationDetailsService,
     private companyDetailsService: CompanyDetailsService,
     private router: Router) {
-    this.displayedColumns = ['name', 'physicalAddress', 'emailAddress', 'contactNumber', 'employees', 'actions'];
   }
 
   ngOnInit() {
     this.organisation = this.organisationDetailsService.Organisation;
     this.companyDetailsService.Company = null;
-    this.subscriptions = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    this.subscriptions.add(this.companyDetailsService.getCompanies(this.paginator, this.sort, this.searchEvent)
-      .subscribe(data => this.dataSource = data));
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-
-    this.searchText = filterValue;
+    this.searchText = filterValue.trim().toLowerCase();
     this.searchEvent.emit(this.searchText);
-    this.paginator.pageIndex = 0;
   }
 
   addCompany() {
@@ -61,10 +45,6 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
   viewCompany(company: CompanyModel) {
     this.companyDetailsService.Company = company;
     this.router.navigate(['/employees', company.id]);
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
   }
 
   refreshCompanies() {

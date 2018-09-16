@@ -22,15 +22,12 @@
     </div>
   </div>
 
-  <div class="items-container mat-elevation-z8">
-      <div class="table-loading-shade" *ngIf="isBusy$ | async">
-        <mat-spinner *ngIf="isBusy$ | async" strokeWidth="2"></mat-spinner>
-      </div>
+  <div class="items-container">
+    <div class="table-loading-shade" *ngIf="isBusy$ | async as isBusy">
+      <mat-spinner strokeWidth="10"></mat-spinner>
+    </div>
 
-
-  
-
-    <mat-card class="items-card" *ngFor="let item of dataSource; let i = index">
+    <mat-card class="items-card" *ngFor="let item of dataSource$ | async">
       <img mat-card-image src="{{item.logoFileNamePath}}" alt="Organisation logo">
       <mat-card-header>
         <mat-card-title>{{ item.name }}</mat-card-title>
@@ -44,91 +41,6 @@
         </button>
       </mat-card-actions>
     </mat-card>
-    </div>  
-
-
-  <!-- <div class="table-container mat-elevation-z8">
-    <div class="table-loading-shade" *ngIf="isBusy$ | async">
-      <mat-spinner *ngIf="isBusy$ | async" strokeWidth="2"></mat-spinner>
-    </div>
-    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 material_table" matSort matSortDirection="asc"
-      matSortActive="name">
-
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Name</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.name }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-2">Description</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="cell-flex-2">{{ row.description }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="emailAddress">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Email</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.emailAddress }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="companies">
-        <th mat-header-cell *matHeaderCellDef class="table-header-link-col"></th>
-        <td mat-cell *matCellDef="let row" class="table-cell-link-col">
-          <button mat-icon-button color="primary" (click)="viewOrganisation(row)" matTooltip="View companies">
-            <mat-icon aria-label="View companies.">visibility</mat-icon>Companies
-          </button>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef class="table-header-actions-col"></th>
-        <td mat-cell *matCellDef="let row" class="table-cell-actions-col">
-          <button mat-icon-button color="primary" (click)="editOrganisation(row)" matTooltip="Edit">
-            <mat-icon aria-label="Button to edit organisation.">create</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-    </mat-table>
-  </div> -->
-    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 material_table" matSort matSortDirection="asc"
-    matSortActive="name"><ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Name</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.name }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-2">Description</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="cell-flex-2">{{ row.description }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="emailAddress">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Email</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.emailAddress }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="companies">
-        <th mat-header-cell *matHeaderCellDef class="table-header-link-col"></th>
-        <td mat-cell *matCellDef="let row" class="table-cell-link-col">
-          <button mat-icon-button color="primary" (click)="viewOrganisation(row)" matTooltip="View companies">
-            <mat-icon aria-label="View companies.">visibility</mat-icon>Companies
-          </button>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef class="table-header-actions-col"></th>
-        <td mat-cell *matCellDef="let row" class="table-cell-actions-col">
-          <button mat-icon-button color="primary" (click)="editOrganisation(row)" matTooltip="Edit">
-            <mat-icon aria-label="Button to edit organisation.">create</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-    <mat-paginator [length]="totalOrganisations$ | async" [pageSize]="5"></mat-paginator>
+  </div>
 
 </div>

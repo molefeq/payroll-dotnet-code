@@ -1,17 +1,55 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { OrganisationService, OrganisationModel, PageData } from '../../shared/generated';
 import { MatPaginator, MatSort } from '@angular/material';
 import { merge } from 'rxjs/observable/merge';
-import { startWith, switchMap, map, catchError, finalize } from 'rxjs/operators';
+import { startWith, switchMap, map, catchError, finalize, delay } from 'rxjs/operators';
 
 @Injectable()
 export class OrganisationDetailsService {
-  private _isBusy$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private _isBusy$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private _totalOrganisations$: BehaviorSubject<number> = new BehaviorSubject(0);
   private _organisation: OrganisationModel = null;
 
   constructor(private organisationService: OrganisationService) { }
+
+  getAllOrganisations(searchEvent: EventEmitter<string>): Observable<OrganisationModel[]> {
+    const that = this;
+
+    return searchEvent.pipe(
+      startWith(null),
+      delay(0),
+      switchMap((event) => {
+
+        that._isBusy$.next(true);
+        const searchText = typeof event === 'string' ? event : null;
+
+        return that.organisationService.apiOrganisationGetOrganisationsPost(
+          {
+            searchText: searchText,
+            pageData: {
+              includeAllData: true,
+              sortOrder: PageData.SortOrderEnum.NUMBER_1,
+              sortColumn: 'name'
+            }
+          });
+      }),
+      map(data => {
+        that._totalOrganisations$.next(data.totalItems);
+
+        data.items.forEach(item => that.setAddress(item));
+        that._isBusy$.next(false);
+
+        return data.items;
+      }),
+      catchError((): Observable<OrganisationModel[]> => {
+        that._isBusy$.next(false);
+
+        return Observable.of([]);
+      })
+    );
+  }
 
   getOrganisations(paginator: MatPaginator, sort: MatSort, searchEvent: EventEmitter<string>): Observable<OrganisationModel[]> {
     this._isBusy$.next(true);
