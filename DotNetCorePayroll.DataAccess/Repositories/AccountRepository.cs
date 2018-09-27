@@ -10,6 +10,7 @@ namespace DotNetCorePayroll.DataAccess.Repositories
 {
     public class AccountRepository : GenericRepository<Account>
     {
+        public AccountRepository() : base() { }
         public AccountRepository(PayrollContext context) : base(context) { }
         
         public Result<Account> Get(AccountSearchFilter filter)

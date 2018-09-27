@@ -20,6 +20,7 @@ import { FormFieldValidator } from '../../../shared/utils/form-fields-validator'
   styleUrls: ['./company-form.component.scss']
 })
 export class CompanyFormComponent implements OnInit {
+  opened = true;
 
   navLinks = [
     {

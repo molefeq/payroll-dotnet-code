@@ -1,16 +1,13 @@
 ﻿using DotNetCorePayroll.DataAccess.Tests.Setup;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using System.Linq;
 
-namespace DotNetCorePayroll.DataAccess.Tests.IntergrationTests
+namespace DotNetCorePayroll.DataAccess.Tests.UnitTests.Repositories
 {
     [TestClass]
-    public class AddressTest
+    public class AccountRepositoryTest
     {
         private IntergrationTestsSetup IntergrationTestsSetup { get; set; }
-
 
         [TestInitialize]
         public void Before()
@@ -19,13 +16,13 @@ namespace DotNetCorePayroll.DataAccess.Tests.IntergrationTests
         }
 
         [TestMethod]
-        public void Test_Address_Fetch()
+        public void Get_Returns_Accounts()
         {
             using (var context = new PayrollContext(IntergrationTestsSetup.ContextOptions))
             {
-                var addresses = context.Address.ToList();
+                var accounts = context.Account.ToList();
 
-                Assert.IsTrue(addresses.Count == 0);
+                Assert.IsTrue(accounts.Count == 0);
             }
         }
     }

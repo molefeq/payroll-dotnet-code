@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "logo-page-layout.scss"
+        "logo-page-layout.scss",
+        "side-menu-page.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

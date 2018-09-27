@@ -8,6 +8,7 @@ namespace DotNetCorePayroll.DataAccess.Repositories
 {
     public class OrganisationRepository : GenericRepository<Organisation>
     {
+        public OrganisationRepository() : base() { }
         public OrganisationRepository(PayrollContext context) : base(context) { }
 
         public Result<Organisation> Get(string searchText, PageData pageData)

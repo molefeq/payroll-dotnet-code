@@ -5,10 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DotNetCorePayroll.DataAccess.Tests.IntergrationTests
+namespace DotNetCorePayroll.DataAccess.Tests.UnitTests.Repositories
 {
     [TestClass]
-    public class CountryTest
+    public class CountryRepositoryTest
     {
         private IntergrationTestsSetup IntergrationTestsSetup { get; set; }
 

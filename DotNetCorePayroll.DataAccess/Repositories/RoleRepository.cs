@@ -9,6 +9,8 @@ namespace DotNetCorePayroll.DataAccess.Repositories
 {
     public class RoleRepository : GenericRepository<Role>
     {
+        public RoleRepository() : base() { }
+
         public RoleRepository(PayrollContext context) : base(context) { }
 
         public Result<Role> Get(SearchFilter filter)
@@ -17,7 +19,7 @@ namespace DotNetCorePayroll.DataAccess.Repositories
                         select role; ;
 
             var searchText = filter.SearchText;
-            
+
             if (!string.IsNullOrEmpty(filter.SearchText))
             {
                 query = from role in query

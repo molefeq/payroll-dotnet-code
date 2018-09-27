@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
-      "iTextSharp.LGPLv2.Core/1.4.3": {
+      "iTextSharp.LGPLv2.Core/1.4.4": {
         "type": "package",
         "dependencies": {
           "Portable.BouncyCastle": "1.8.2",
@@ -1217,12 +1217,12 @@
     }
   },
   "libraries": {
-    "iTextSharp.LGPLv2.Core/1.4.3": {
-      "sha512": "wBBS5fooHCPgU3SSQjiSDpccpfS9QG4mio0rLNdmmMEsugwvDIDDpa99nFZDVabAHYrFG/Ua1aAHUszR48vxSQ==",
+    "iTextSharp.LGPLv2.Core/1.4.4": {
+      "sha512": "TDlt6f/g9q80YYH8kQynI7bVvn/aK8QJ/lnrzitQA9yr5vloVHNkpDWjm6fWcp4wGbhBIRXjFfD/u+9YIvGc6g==",
       "type": "package",
-      "path": "itextsharp.lgplv2.core/1.4.3",
+      "path": "itextsharp.lgplv2.core/1.4.4",
       "files": [
-        "itextsharp.lgplv2.core.1.4.3.nupkg.sha512",
+        "itextsharp.lgplv2.core.1.4.4.nupkg.sha512",
         "itextsharp.lgplv2.core.nuspec",
         "lib/net40/iTextSharp.LGPLv2.Core.dll",
         "lib/net40/iTextSharp.LGPLv2.Core.xml",
@@ -4345,7 +4345,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "Microsoft.NETCore.App >= 2.0.0",
-      "iTextSharp.LGPLv2.Core >= 1.4.3"
+      "iTextSharp.LGPLv2.Core >= 1.4.4"
     ]
   },
   "packageFolders": {
@@ -4397,7 +4397,7 @@
           },
           "iTextSharp.LGPLv2.Core": {
             "target": "Package",
-            "version": "[1.4.3, )"
+            "version": "[1.4.4, )"
           }
         },
         "imports": [

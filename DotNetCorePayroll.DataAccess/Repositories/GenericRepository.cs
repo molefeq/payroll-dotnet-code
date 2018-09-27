@@ -21,10 +21,21 @@ namespace DotNetCorePayroll.DataAccess.Repositories
         internal PayrollContext context;
         internal DbSet<TEntity> dbSet;
 
+        public GenericRepository() { }
+
         public GenericRepository(PayrollContext context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();
+        }
+        
+        public PayrollContext Context
+        {
+            set
+            {
+                context = value;
+                this.dbSet = context.Set<TEntity>();
+            }
         }
 
         public virtual async Task<IEnumerable<TEntity>> GetEntitiesAsync(Expression<Func<TEntity, bool>> filter = null,
@@ -111,7 +122,12 @@ namespace DotNetCorePayroll.DataAccess.Repositories
             return await query.CountAsync();
         }
 
-        public virtual TEntity GetById(Expression<Func<TEntity, bool>> filter, string includeProperties = "")
+        public virtual TEntity GetById(Expression<Func<TEntity, bool>> filter)
+        {
+            return GetById(filter, "");
+        }
+
+        public virtual TEntity GetById(Expression<Func<TEntity, bool>> filter, string includeProperties)
         {
             IQueryable<TEntity> query = dbSet;
 

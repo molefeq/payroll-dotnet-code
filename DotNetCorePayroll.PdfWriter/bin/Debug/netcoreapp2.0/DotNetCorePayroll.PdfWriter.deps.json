@@ -1,20 +1,20 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "7ee2b6e8f50d77d400dfef99ee49923063be66d2"
+    "signature": "f01bb961a1599a9dbb5093fc2cbeb789deeb3514"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.0": {
       "DotNetCorePayroll.PdfWriter/1.0.0": {
         "dependencies": {
-          "iTextSharp.LGPLv2.Core": "1.4.3"
+          "iTextSharp.LGPLv2.Core": "1.4.4"
         },
         "runtime": {
           "DotNetCorePayroll.PdfWriter.dll": {}
         }
       },
-      "iTextSharp.LGPLv2.Core/1.4.3": {
+      "iTextSharp.LGPLv2.Core/1.4.4": {
         "dependencies": {
           "Portable.BouncyCastle": "1.8.2",
           "System.Collections.NonGeneric": "4.3.0",
@@ -718,12 +718,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "iTextSharp.LGPLv2.Core/1.4.3": {
+    "iTextSharp.LGPLv2.Core/1.4.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wBBS5fooHCPgU3SSQjiSDpccpfS9QG4mio0rLNdmmMEsugwvDIDDpa99nFZDVabAHYrFG/Ua1aAHUszR48vxSQ==",
-      "path": "itextsharp.lgplv2.core/1.4.3",
-      "hashPath": "itextsharp.lgplv2.core.1.4.3.nupkg.sha512"
+      "sha512": "sha512-TDlt6f/g9q80YYH8kQynI7bVvn/aK8QJ/lnrzitQA9yr5vloVHNkpDWjm6fWcp4wGbhBIRXjFfD/u+9YIvGc6g==",
+      "path": "itextsharp.lgplv2.core/1.4.4",
+      "hashPath": "itextsharp.lgplv2.core.1.4.4.nupkg.sha512"
     },
     "Microsoft.NETCore.Targets/1.1.0": {
       "type": "package",

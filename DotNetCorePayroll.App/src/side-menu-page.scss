@@ -1,0 +1,18 @@
+.side-menu {
+  max-width: 250px;
+  width: 15%;
+  padding-top: 5%;
+
+  .mat-list-text {
+    font-size: 90%;
+  }
+}
+
+.sidenav-container {
+  position: absolute !important;
+  top: 56px;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+
+}
