@@ -5,7 +5,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
 {
     public class RoleBuilder
     {
-        public Role Build(RoleModel roleModel)
+        public virtual Role Build(RoleModel roleModel)
         {
             Role role = new Role
             {
@@ -16,7 +16,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
             return role;
         }
 
-        public RoleModel BuildModel(Role role)
+        public virtual RoleModel BuildModel(Role role)
         {
             RoleModel roleModel = new RoleModel
             {

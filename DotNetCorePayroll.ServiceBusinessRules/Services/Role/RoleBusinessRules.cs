@@ -10,7 +10,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Role
 {
     public class RoleBusinessRules
     {
-        public void CreateCheck(RoleModel roleModel, RoleRepository roleRepository)
+        public virtual void CreateCheck(RoleModel roleModel, RoleRepository roleRepository)
         {
             var role = roleRepository.GetById(a => a.Name == roleModel.Name);
 
@@ -27,7 +27,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Role
             }
         }
 
-        public void UpdateCheck(RoleModel roleModel, RoleRepository roleRepository)
+        public virtual void UpdateCheck(RoleModel roleModel, RoleRepository roleRepository)
         {
             var role = roleRepository.GetById(a => a.Id == roleModel.Id);
 
@@ -51,7 +51,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Role
             }
         }
 
-        public void DeleteCheck(long rolId, RoleRepository roleRepository)
+        public virtual void DeleteCheck(long rolId, RoleRepository roleRepository)
         {
             var role = roleRepository.GetById(a => a.Id == rolId);
 

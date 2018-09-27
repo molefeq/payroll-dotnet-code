@@ -13,7 +13,7 @@ namespace DotNetCorePayroll.DataAccess.Repositories
 
         public RoleRepository(PayrollContext context) : base(context) { }
 
-        public Result<Role> Get(SearchFilter filter)
+        public virtual Result<Role> Get(SearchFilter filter)
         {
             var query = from role in dbSet
                         select role; ;

@@ -1,5 +1,6 @@
 ﻿using DotNetCorePayroll.Data;
 using DotNetCorePayroll.Data.ViewModels;
+using SqsLibraries.Common.Utilities.ResponseObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -51,5 +52,28 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Tests.TestData
         {
             return new RoleModel { Name = "User Update", Code = "USER_UP" };
         }
+
+        public static RoleModel GetAdminRoleModel()
+        {
+            return new RoleModel { Id = 2, Code = "Admin", Name = "Admin" };
+        }
+
+        public static Result<Data.Role> GetNullRoleResult()
+        {
+            return null;
+        }
+
+        public static Result<Data.Role> GetRoleResult()
+        {
+            return new Result<Data.Role>
+            {
+                Items = new List<Data.Role>
+                {
+                    GetAdminRole()
+                },
+                TotalItems = 1
+            };
+        }
     }
+
 }

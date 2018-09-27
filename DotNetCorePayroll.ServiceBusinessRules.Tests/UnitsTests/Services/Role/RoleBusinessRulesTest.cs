@@ -14,8 +14,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Tests.UnitsTests.Services.Role
     {
         private RoleBusinessRules roleBusinessRules;
         private Mock<RoleRepository> roleRepository;
-
-
+        
         [TestInitialize]
         public void Before()
         {
@@ -70,6 +69,34 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Tests.UnitsTests.Services.Role
 
             roleRepository.Setup(r => r.GetById(It.Is<Expression<Func<Data.Role, bool>>>(e => AreEqual<Data.Role, bool>(e, "roleModel.Id")))).Returns(role);
             roleRepository.Setup(r => r.GetById(It.Is<Expression<Func<Data.Role, bool>>>(e => AreEqual<Data.Role, bool>(e, "roleModel.Code")))).Returns(RoleTestData.GetNullRole());
+            roleRepository.Setup(r => r.GetById(It.Is<Expression<Func<Data.Role, bool>>>(e => AreEqual<Data.Role, bool>(e, "roleModel.Name")))).Returns(RoleTestData.GetNullRole());
+
+            roleBusinessRules.UpdateCheck(roleModel, roleRepository.Object);
+        }
+
+        [TestCategory("Update_Check"), TestMethod]
+        [ExpectedException(typeof(ResponseValidationException))]
+        public void Role_Update_Check_Should_Throw_Exception_Role_Name_Already_Exists()
+        {
+            var roleModel = RoleTestData.GetUserRoleModel();
+            var role = RoleTestData.GetUserRole();
+
+            roleRepository.Setup(r => r.GetById(It.Is<Expression<Func<Data.Role, bool>>>(e => AreEqual<Data.Role, bool>(e, "roleModel.Id")))).Returns(role);
+            roleRepository.Setup(r => r.GetById(It.Is<Expression<Func<Data.Role, bool>>>(e => AreEqual<Data.Role, bool>(e, "roleModel.Code")))).Returns(RoleTestData.GetNullRole());
+            roleRepository.Setup(r => r.GetById(It.Is<Expression<Func<Data.Role, bool>>>(e => AreEqual<Data.Role, bool>(e, "roleModel.Name")))).Returns(role);
+
+            roleBusinessRules.UpdateCheck(roleModel, roleRepository.Object);
+        }
+
+        [TestCategory("Update_Check"), TestMethod]
+        [ExpectedException(typeof(ResponseValidationException))]
+        public void Role_Update_Check_Should_Throw_Exception_Role_Code_Already_Exists()
+        {
+            var roleModel = RoleTestData.GetUserRoleModel();
+            var role = RoleTestData.GetUserRole();
+
+            roleRepository.Setup(r => r.GetById(It.Is<Expression<Func<Data.Role, bool>>>(e => AreEqual<Data.Role, bool>(e, "roleModel.Id")))).Returns(role);
+            roleRepository.Setup(r => r.GetById(It.Is<Expression<Func<Data.Role, bool>>>(e => AreEqual<Data.Role, bool>(e, "roleModel.Code")))).Returns(role);
             roleRepository.Setup(r => r.GetById(It.Is<Expression<Func<Data.Role, bool>>>(e => AreEqual<Data.Role, bool>(e, "roleModel.Name")))).Returns(RoleTestData.GetNullRole());
 
             roleBusinessRules.UpdateCheck(roleModel, roleRepository.Object);

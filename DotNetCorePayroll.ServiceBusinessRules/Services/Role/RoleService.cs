@@ -32,7 +32,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Role
 
             if (result == null)
             {
-                new Result<RoleModel>();
+                return new Result<RoleModel>();
             }
 
             return new Result<RoleModel>
@@ -41,7 +41,6 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Role
                 Items = result.Items.Select(a => roleBuilder.BuildModel(a)).ToList()
             };
         }
-
 
         public RoleModel Create(RoleModel roleModel)
         {
