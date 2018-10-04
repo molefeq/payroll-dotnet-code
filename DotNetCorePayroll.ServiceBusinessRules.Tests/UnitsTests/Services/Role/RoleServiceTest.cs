@@ -1,4 +1,5 @@
-﻿using DotNetCorePayroll.Data.SearchFilters;
+﻿using DotNetCorePayroll.Common.Exceptions;
+using DotNetCorePayroll.Data.SearchFilters;
 using DotNetCorePayroll.Data.ViewModels;
 using DotNetCorePayroll.DataAccess;
 using DotNetCorePayroll.DataAccess.Repositories;
@@ -8,6 +9,7 @@ using DotNetCorePayroll.ServiceBusinessRules.Services.Role;
 using DotNetCorePayroll.ServiceBusinessRules.Tests.TestData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using SqsLibraries.Common.Utilities.ResponseObjects;
 using System;
 using System.Linq.Expressions;
 
@@ -80,6 +82,26 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Tests.UnitsTests.Services.Role
             roleBuilder.Verify(x => x.Build(It.IsAny<RoleModel>()), Times.Once);
             unitOfWork.Verify(x => x.Role.GetById(It.IsAny<Expression<Func<Data.Role, bool>>>()), Times.Once);
             roleBuilder.Verify(x => x.BuildModel(It.IsAny<Data.Role>()), Times.Once);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ResponseValidationException))]
+        public void Should_Fail_To_Create_Role_When_SaveCheck_Throws_Excpetion()
+        {
+            // Arrange
+            roleBusinessRules.Setup(x => x.CreateCheck(It.IsAny<RoleModel>(), It.IsAny<RoleRepository>())).Throws(new ResponseValidationException(ResponseMessage.ToError("Role Create throws exception.")));
+            
+            // Act
+            var result = roleService.Create(RoleTestData.GetUserRoleModel());
+
+            // Assert
+            roleBusinessRules.Verify(x => x.CreateCheck(It.IsAny<RoleModel>(), It.IsAny<RoleRepository>()), Times.Once);
+            roleBuilder.Verify(x => x.Build(It.IsAny<RoleModel>()), Times.Never);
+            roleBuilder.Verify(x => x.BuildModel(It.IsAny<Data.Role>()), Times.Never);
+            unitOfWork.Verify(x => x.Save(), Times.Never);
+            unitOfWork.Verify(x => x.Role.Insert(It.IsAny<Data.Role>()), Times.Never);
+            unitOfWork.Verify(x => x.Role.GetById(It.IsAny<Expression<Func<Data.Role, bool>>>()), Times.Never);
         }
     }
 }
