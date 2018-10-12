@@ -23,7 +23,7 @@ namespace DotNetCorePayroll.Data.ViewModels
 
         [Required(ErrorMessage = "Email Address is required.")]
         [EmailAddress(ErrorMessage = "Email Address must be a valid email address.")]
-        [MaxLength(100, ErrorMessage = "Email Address cannot not be more than 500 characters.")]
+        [MaxLength(500, ErrorMessage = "Email Address cannot not be more than 500 characters.")]
         public string EmailAddress { get; set; }
 
         public string ContactNumber { get; set; }

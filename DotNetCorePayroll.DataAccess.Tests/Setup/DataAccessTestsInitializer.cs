@@ -1,4 +1,5 @@
 ﻿using DotNetCorePayroll.DataAccess.Tests.TestData;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DotNetCorePayroll.DataAccess.Tests.Setup
@@ -19,14 +20,12 @@ namespace DotNetCorePayroll.DataAccess.Tests.Setup
                 context.Country.AddRange(CountryTestData.InitialCountries());
                 context.Province.AddRange(ProvinceTestData.InitialProvinces());
                 context.Role.AddRange(RoleTestData.InitialRoles());
+                context.Address.AddRange(AddressTestData.InitialAddresses());
+                context.Organisation.AddRange(OrganisationTestData.InitialOrganisations());
+                context.Account.AddRange(AccountTestData.InitialAccounts());
 
                 context.SaveChanges();
             }
-
-            //using (var context = new PayrollContext(dbSetup.ContextOptions))
-            //{
-            //    context.Database.ExecuteSqlCommand("INSERT INTO role(code, name)VALUES('ADMIN', 'Admin');");
-            //}
         }
 
         

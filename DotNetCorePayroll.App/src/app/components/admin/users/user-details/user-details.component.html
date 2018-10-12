@@ -1,0 +1,51 @@
+<div class="containerX">
+  <h1 class="mat-headline containerX-heading">Roles</h1>
+  <div class="containerX-header">
+    <div class="containerX-header-actions">
+      <button mat-raised-button color="primary" (click)="addUser()">Add</button>
+    </div>
+    <div class="containerX-header-filter">
+      <mat-form-field class="header-search-field">
+        <input matInput (keyup)="searchText$.next($event.target.value)">
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="table-container mat-elevation-z8">
+    <div class="table-loading-shade" *ngIf="isBusy$ | async">
+      <mat-spinner *ngIf="isBusy$ | async" strokeWidth="2"></mat-spinner>
+    </div>
+
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 material_table" matSort matSortDirection="asc"
+      matSortActive="name">
+
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="firstname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Firstname</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.firstname }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Lastname</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.lastname }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="table-header-actions-col"></th>
+        <td mat-cell *matCellDef="let row" class="table-cell-actions-col">
+          <button mat-raised-button color="primary" (click)="editUser(row)">Edit</button>
+        </td>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+    <mat-paginator [length]="totalUsers$ | async" [pageSize]="5"></mat-paginator>
+  </div>
+
+</div>

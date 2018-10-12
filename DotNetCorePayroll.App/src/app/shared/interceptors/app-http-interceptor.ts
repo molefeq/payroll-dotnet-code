@@ -11,12 +11,14 @@ import { mockBackEndService } from '../mock-backend/mock-back-end-service';
 /** Pass untouched request through to the next request handler. */
 @Injectable()
 export class AppHttpInterceptor implements HttpInterceptor {
-    constructor(private router: Router, private authenticationService: AuthenticationService, private serverValidationService: ServerValidationService) { }
+    constructor(private router: Router,
+        private authenticationService: AuthenticationService,
+        private serverValidationService: ServerValidationService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let authRequest = request;
-        let url: string = request.url;
-        let method: string = request.method;
+        const url: string = request.url;
+        const method: string = request.method;
 
         if (this.authenticationService.user && this.authenticationService.user.token) {
             authRequest = request.clone({
@@ -25,29 +27,29 @@ export class AppHttpInterceptor implements HttpInterceptor {
         }
 
         return mockBackEndService(url, method, request) ||
-         next.handle(authRequest).do(
-            (response: any) => {
-                //Do notthing
-            },
-            (error: any) => {
-                if (error instanceof HttpErrorResponse) {
-                    if (error.status === 0) {
-                        console.log(error);
-                        this.serverValidationService.setServerErrors('Error with status 0 occurred.');
-                        return;
-                    }
+            next.handle(authRequest).do(
+                (response: any) => {
+                    // Do notthing
+                },
+                (error: any) => {
+                    if (error instanceof HttpErrorResponse) {
+                        if (error.status === 0) {
+                            console.log(error);
+                            this.serverValidationService.setServerErrors('Error with status 0 occurred.');
+                            return;
+                        }
 
-                    if (error.status === 422) {
-                        this.serverValidationService.setErrors(error.error);
-                        return;
-                    }
+                        if (error.status === 422) {
+                            this.serverValidationService.setErrors(error.error);
+                            return;
+                        }
 
-                    if (error.status === 401) {
-                        this.router.navigate(['/login']);
-                        return;
+                        if (error.status === 401) {
+                            this.router.navigate(['/login']);
+                            return;
+                        }
                     }
                 }
-            }
-        );
+            );
     }
 }

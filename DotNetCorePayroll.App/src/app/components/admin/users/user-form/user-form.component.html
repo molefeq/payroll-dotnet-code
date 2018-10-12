@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Edit User</h2>
+<mat-dialog-content>
+  <form class="form-container" [formGroup]="userForm" [appFormValidator]="userForm" [validationMessages]="validationMessages">
+    <app-summary-validation-messages [appForm]="userForm"></app-summary-validation-messages>
+    <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('username'))">
+      <input matInput type="text" placeholder="Username" formControlName="username">
+      <mat-error [appValidationMessage]="userForm.get('username')" [messages]="validationMessages.username"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('firstname'))">
+      <input matInput type="text" placeholder="Firstname" formControlName="firstname">
+      <mat-error [appValidationMessage]="userForm.get('firstname')" [messages]="validationMessages.firstname"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('lastname'))">
+      <input matInput type="text" placeholder="Lastname" formControlName="lastname">
+      <mat-error [appValidationMessage]="userForm.get('lastname')" [messages]="validationMessages.lastname"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('emailAddress'))">
+      <input matInput type="text" placeholder="Email Address" formControlName="emailAddress">
+      <mat-error [appValidationMessage]="userForm.get('emailAddress')" [messages]="validationMessages.emailAddress"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('organisationId'))">
+      <input matInput type="text" placeholder="Organisation" formControlName="organisationId">
+      <mat-error [appValidationMessage]="userForm.get('organisationId')" [messages]="validationMessages.organisationId"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('companyId'))">
+      <input matInput type="text" placeholder="Company" formControlName="companyId">
+      <mat-error [appValidationMessage]="userForm.get('companyId')" [messages]="validationMessages.companyId"></mat-error>
+    </mat-form-field>
+    <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('roleId'))">
+      <input matInput type="text" placeholder="Role" formControlName="roleId">
+      <mat-error [appValidationMessage]="userForm.get('roleId')" [messages]="validationMessages.roleId"></mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button (click)="saveRole()" *ngIf="!isInProgress">Save</button>
+  <button mat-button mat-dialog-close *ngIf="!isInProgress">Cancel</button>
+  <mat-progress-bar mode="indeterminate" *ngIf="isInProgress"></mat-progress-bar>
+</mat-dialog-actions>

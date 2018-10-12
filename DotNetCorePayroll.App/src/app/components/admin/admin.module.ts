@@ -5,6 +5,9 @@ import { RolesFormComponent } from './roles/roles-form/roles-form.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { AdminRoleService } from './roles/admin-role.service';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { AdminUserService } from './users/admin-user.service';
+import { UserFormComponent } from './users/user-form/user-form.component';
 
 @NgModule({
   imports: [
@@ -15,10 +18,19 @@ import { AdminRoleService } from './roles/admin-role.service';
   exports: [
     RolesDetailsComponent
   ],
-  entryComponents: [RolesFormComponent],
-  declarations: [RolesDetailsComponent, RolesFormComponent],
-  providers:[
-    AdminRoleService
+  entryComponents: [
+    RolesFormComponent,
+    UserFormComponent
+  ],
+  declarations: [
+    RolesDetailsComponent,
+    RolesFormComponent,
+    UserDetailsComponent,
+    UserFormComponent
+  ],
+  providers: [
+    AdminRoleService,
+    AdminUserService
   ]
 })
 export class AdminModule { }

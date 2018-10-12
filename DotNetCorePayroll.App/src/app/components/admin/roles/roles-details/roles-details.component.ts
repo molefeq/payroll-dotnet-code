@@ -16,7 +16,7 @@ export class RolesDetailsComponent implements OnInit, OnDestroy {
   displayedColumns = [];
   subscriptions: Subscription;
   searchText$ = new Subject<string>();
-  searchText :string;
+  searchText: string;
 
   totalRoles$ = this.adminRoleService.totalRoles$;
   isBusy$: Observable<boolean> = this.adminRoleService.isBusy$;
@@ -37,19 +37,11 @@ export class RolesDetailsComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.searchText$.debounceTime(400).distinctUntilChanged().subscribe((searchText: string) => {
       this.searchText = searchText;
+      this.paginator.pageIndex = 0;
       this.searchEvent.emit(searchText);
     }));
 
   }
-
-  // applyFilter(filterValue: string) {
-  //   filterValue = filterValue.trim(); // Remove whitespace
-  //   filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-
-  //   this.searchText = filterValue;
-  //   this.searchEvent.emit(this.searchText).debounceTime(400).distinctUntilChanged();
-  //   this.paginator.pageIndex = 0;
-  // }
 
   addRole() {
     const dialogRef = this.dialog.open(RolesFormComponent, this.roleModalOptions(null));

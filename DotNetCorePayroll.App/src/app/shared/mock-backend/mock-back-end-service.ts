@@ -5,10 +5,11 @@ import { mockOrganisationsBackEndService } from './mock-organisations/mock-organ
 import { mockReferenceDataBackEndService } from './mock-reference-data/mock-reference-data-back-end';
 import { mockCompaniesBackEndService } from './mock-companies/mock-companies-back-end';
 import { mockEmployeesBackEndService } from './mock-employees/mock-employees-back-end';
+import { mockAccountsBackEndService } from './mock-accounts/mock-accounts-back-end';
 
 export function mockBackEndService(url: string, method: string, request: HttpRequest<any>): Observable<HttpEvent<any>> {
 
-    if (url.endsWith('/api/Account/Login') && method === "POST") {
+    if (url.endsWith('/api/Account/Login') && method === 'POST') {
         return new Observable(resp => {
             resp.next(new HttpResponse({
                 status: 200,
@@ -45,5 +46,8 @@ export function mockBackEndService(url: string, method: string, request: HttpReq
     }
     if (url.indexOf('/api/Employee/') >= 0) {
         return mockEmployeesBackEndService(url, method, request);
+    }
+    if (url.indexOf('/api/Account/') >= 0) {
+        return mockAccountsBackEndService(url, method, request);
     }
 }
