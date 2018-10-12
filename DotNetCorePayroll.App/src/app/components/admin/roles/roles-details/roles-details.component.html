@@ -6,7 +6,7 @@
     </div>
     <div class="containerX-header-filter">
       <mat-form-field class="header-search-field">
-        <input matInput (keyup)="applyFilter($event.target.value)">
+        <input matInput (keyup)="searchText$.next($event.target.value)">
         <mat-icon matPrefix>search</mat-icon>
       </mat-form-field>
     </div>

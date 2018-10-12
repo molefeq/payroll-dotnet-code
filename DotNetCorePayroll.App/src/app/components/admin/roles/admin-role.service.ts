@@ -6,6 +6,7 @@ import { merge } from 'rxjs/observable/merge';
 import { startWith, switchMap, map, catchError, finalize } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/of';
+import { FieldHelper } from '../../../shared/utils/field-helper';
 
 @Injectable()
 export class AdminRoleService {
@@ -21,8 +22,8 @@ export class AdminRoleService {
       .pipe(
         startWith({}),
         switchMap((event) => {
-          let pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
-          let searchText = typeof event === 'string' ? event : null;
+          const pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
+          const searchText = typeof event === 'string' ? event : null;
 
           return this.roleService.apiRoleGetRolesPost(
             {
@@ -31,8 +32,8 @@ export class AdminRoleService {
                 includeAllData: false,
                 take: pageSize,
                 skip: pageSize * (paginator.pageIndex),
-                sortOrder: sort.direction == 'asc' ? PageData.SortOrderEnum.NUMBER_1 : PageData.SortOrderEnum.NUMBER_2,
-                sortColumn: sort.active
+                sortOrder: sort.direction === 'desc' ? PageData.SortOrderEnum.NUMBER_2 : PageData.SortOrderEnum.NUMBER_1,
+                sortColumn: Boolean(sort.active) ? FieldHelper.toCamelCase(sort.active) : 'Name'
               }
             });
         }),
@@ -51,14 +52,14 @@ export class AdminRoleService {
           this._isBusy$.next(false);
         })
       );
-  };
+  }
 
-  saveRole(roleModel: RoleModel):  Observable<RoleModel>{
-    if(roleModel.id){
-      return  this.roleService.apiRoleUpdateRolePost(roleModel);
+  saveRole(roleModel: RoleModel): Observable<RoleModel> {
+    if (roleModel.id) {
+      return this.roleService.apiRoleUpdateRolePost(roleModel);
     }
 
-    return  this.roleService.apiRoleAddRolePost(roleModel);
+    return this.roleService.apiRoleAddRolePost(roleModel);
   }
 
   get isBusy$(): Observable<boolean> {

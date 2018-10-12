@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { MatSort, MatPaginator, MatDialog, MatDialogRef } from '@angular/material';
 import { RoleModel } from '../../../../shared/generated';
 import { Observable } from 'rxjs/Observable';
 import { RolesFormComponent } from '../roles-form/roles-form.component';
 import { AdminRoleService } from '../admin-role.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { dialogCloseResponse } from '../../../../shared/models/dialogCloseResponse';
 
 @Component({
@@ -12,10 +12,11 @@ import { dialogCloseResponse } from '../../../../shared/models/dialogCloseRespon
   templateUrl: './roles-details.component.html',
   styleUrls: ['./roles-details.component.scss']
 })
-export class RolesDetailsComponent implements OnInit {
+export class RolesDetailsComponent implements OnInit, OnDestroy {
   displayedColumns = [];
   subscriptions: Subscription;
-  searchText: string;
+  searchText$ = new Subject<string>();
+  searchText :string;
 
   totalRoles$ = this.adminRoleService.totalRoles$;
   isBusy$: Observable<boolean> = this.adminRoleService.isBusy$;
@@ -31,26 +32,33 @@ export class RolesDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.subscriptions = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    this.subscriptions.add(this.adminRoleService.getRoles(this.paginator, this.sort, this.searchEvent).subscribe(data => this.dataSource = data));
+    this.subscriptions.add(this.adminRoleService.getRoles(this.paginator, this.sort, this.searchEvent)
+      .subscribe(data => this.dataSource = data));
+
+    this.subscriptions.add(this.searchText$.debounceTime(400).distinctUntilChanged().subscribe((searchText: string) => {
+      this.searchText = searchText;
+      this.searchEvent.emit(searchText);
+    }));
+
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+  // applyFilter(filterValue: string) {
+  //   filterValue = filterValue.trim(); // Remove whitespace
+  //   filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
 
-    this.searchText = filterValue;
-    this.searchEvent.emit(this.searchText);
-    this.paginator.pageIndex = 0;
-  }
+  //   this.searchText = filterValue;
+  //   this.searchEvent.emit(this.searchText).debounceTime(400).distinctUntilChanged();
+  //   this.paginator.pageIndex = 0;
+  // }
 
   addRole() {
-    let dialogRef = this.dialog.open(RolesFormComponent, this.roleModalOptions(null));
+    const dialogRef = this.dialog.open(RolesFormComponent, this.roleModalOptions(null));
 
     this.closeModal(dialogRef);
   }
 
   editRole(role) {
-    let dialogRef = this.dialog.open(RolesFormComponent, this.roleModalOptions(role));
+    const dialogRef = this.dialog.open(RolesFormComponent, this.roleModalOptions(role));
 
     this.closeModal(dialogRef);
   }

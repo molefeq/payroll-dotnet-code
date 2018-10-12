@@ -14471,23 +14471,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Qinisela.Molefe\\.nuget\\packages\\": {},
+    "C:\\Users\\bbdnet1168\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Api\\DotNetCorePayroll.Api.csproj",
+      "projectUniqueName": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Api\\DotNetCorePayroll.Api.csproj",
       "projectName": "DotNetCorePayroll.Api",
-      "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Api\\DotNetCorePayroll.Api.csproj",
-      "packagesPath": "C:\\Users\\Qinisela.Molefe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Api\\obj\\",
+      "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Api\\DotNetCorePayroll.Api.csproj",
+      "packagesPath": "C:\\Users\\bbdnet1168\\.nuget\\packages\\",
+      "outputPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Qinisela.Molefe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\bbdnet1168\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -14495,25 +14495,22 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\Qinisela.Molefe\\source\\repos\\LocalNugetRepository": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://github.com/molefeq/localpackages": {},
-        "https://molefeq.pkgs.visualstudio.com/_packaging/WOMEN_ESSENTAIL@Release/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj": {
-              "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj"
+            "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj": {
+              "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj"
             },
-            "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj": {
-              "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj"
+            "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj": {
+              "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj"
             },
-            "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj": {
-              "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj"
+            "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj": {
+              "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj"
             },
-            "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj": {
-              "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj"
+            "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj": {
+              "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj"
             }
           }
         }
