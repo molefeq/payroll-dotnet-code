@@ -43,7 +43,6 @@ export class AdminRoleService {
           return data.items;
         }),
         catchError((): Observable<RoleModel[]> => {
-          const items: RoleModel[] = [];
           this._isBusy$.next(false);
 
           return Observable.of([]);
@@ -54,6 +53,25 @@ export class AdminRoleService {
       );
   }
 
+  getRolesRefrenceData(): Observable<RoleModel[]> {
+
+    return this.roleService.apiRoleGetRolesPost(
+      {
+        searchText: '',
+        pageData: {
+          includeAllData: true,
+          sortOrder: PageData.SortOrderEnum.NUMBER_1,
+          sortColumn: 'Name'
+        }
+      }).pipe(
+        map(data => {
+          return data.items;
+        }),
+        catchError((): Observable<RoleModel[]> => {
+          return Observable.of([]);
+        })
+      );
+  }
   saveRole(roleModel: RoleModel): Observable<RoleModel> {
     if (roleModel.id) {
       return this.roleService.apiRoleUpdateRolePost(roleModel);

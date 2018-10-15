@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { OrganisationService, OrganisationModel, PageData } from '../../shared/generated';
+import { OrganisationService, OrganisationModel, PageData, ResultOrganisationModel } from '../../shared/generated';
 import { MatPaginator, MatSort } from '@angular/material';
 import { merge } from 'rxjs/observable/merge';
 import { startWith, switchMap, map, catchError, finalize, delay } from 'rxjs/operators';
@@ -49,6 +49,25 @@ export class OrganisationDetailsService {
         return Observable.of([]);
       })
     );
+  }
+
+  getOrganisationsReferenceData(): Observable<OrganisationModel[]> {
+    return this.organisationService.apiOrganisationGetOrganisationsPost(
+      {
+        searchText: '',
+        pageData: {
+          includeAllData: true,
+          sortOrder: PageData.SortOrderEnum.NUMBER_1,
+          sortColumn: 'name'
+        }
+      }).pipe(
+        map((response: ResultOrganisationModel) => {
+          return response.items;
+        }),
+        catchError((): Observable<OrganisationModel[]> => {
+          return Observable.of([]);
+        })
+      );
   }
 
   getOrganisations(paginator: MatPaginator, sort: MatSort, searchEvent: EventEmitter<string>): Observable<OrganisationModel[]> {

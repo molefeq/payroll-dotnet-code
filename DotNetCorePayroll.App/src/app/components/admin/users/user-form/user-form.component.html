@@ -19,7 +19,12 @@
       <mat-error [appValidationMessage]="userForm.get('emailAddress')" [messages]="validationMessages.emailAddress"></mat-error>
     </mat-form-field>
     <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('organisationId'))">
-      <input matInput type="text" placeholder="Organisation" formControlName="organisationId">
+        <mat-select placeholder="Organisation" formControlName="organisationId">
+            <mat-option></mat-option>
+            <mat-option *ngFor="let organisation of organisations$ | async" [value]="organisation.id">
+              {{organisation.name}}
+            </mat-option>
+          </mat-select>
       <mat-error [appValidationMessage]="userForm.get('organisationId')" [messages]="validationMessages.organisationId"></mat-error>
     </mat-form-field>
     <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('companyId'))">
@@ -27,7 +32,12 @@
       <mat-error [appValidationMessage]="userForm.get('companyId')" [messages]="validationMessages.companyId"></mat-error>
     </mat-form-field>
     <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('roleId'))">
-      <input matInput type="text" placeholder="Role" formControlName="roleId">
+      <mat-select placeholder="Role" formControlName="roleId">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let role of roles$ | async" [value]="role.id">
+            {{role.name}}
+          </mat-option>
+        </mat-select>
       <mat-error [appValidationMessage]="userForm.get('roleId')" [messages]="validationMessages.roleId"></mat-error>
     </mat-form-field>
   </form>

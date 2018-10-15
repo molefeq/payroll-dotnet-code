@@ -2,11 +2,14 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AdminUserService } from '../admin-user.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AccountModel } from '../../../../shared/generated';
+import { AccountModel, OrganisationModel, RoleModel } from '../../../../shared/generated';
 import { serverValidation } from '../../../../shared/validators/server-side-validator';
 import { FormHelper } from '../../../../shared/utils/form-helper';
 import { finalize } from 'rxjs/operators';
 import { FormFieldValidator } from '../../../../shared/utils/form-fields-validator';
+import { OrganisationDetailsService } from '../../../organisation/organisation-details.service';
+import { Observable } from 'rxjs';
+import { AdminRoleService } from '../../roles/admin-role.service';
 
 @Component({
   selector: 'app-user-form',
@@ -18,6 +21,8 @@ export class UserFormComponent implements OnInit {
   userForm: FormGroup;
   isSubmited: boolean;
   isInProgress: boolean;
+  organisations$: Observable<OrganisationModel[]> = this.organisationDetailsService.getOrganisationsReferenceData();
+  roles$: Observable<RoleModel[]> = this.adminRoleService.getRolesRefrenceData();
 
   validationMessages = {
     username: {
@@ -56,6 +61,8 @@ export class UserFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private adminUserService: AdminUserService,
+    private organisationDetailsService: OrganisationDetailsService,
+    private adminRoleService: AdminRoleService,
     public dialogRef: MatDialogRef<UserFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AccountModel) { }
 
