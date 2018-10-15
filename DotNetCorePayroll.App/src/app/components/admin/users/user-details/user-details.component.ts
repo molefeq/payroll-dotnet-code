@@ -24,7 +24,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   @Output() searchEvent: EventEmitter<string> = new EventEmitter();
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  dataSource: AccountModel[] = [];
+  dataSource$: Observable<AccountModel[]>;
 
   constructor(private adminUserService: AdminUserService, private dialog: MatDialog) {
     this.displayedColumns = ['username', 'firstname', 'lastname', 'emailAddress', 'actions'];
@@ -32,14 +32,13 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    this.subscriptions.add(this.adminUserService.getUsers(this.paginator, this.sort, this.searchEvent)
-      .subscribe(data => this.dataSource = data));
 
     this.subscriptions.add(this.searchText$.debounceTime(400).distinctUntilChanged().subscribe((searchText: string) => {
       this.searchText = searchText;
       this.paginator.pageIndex = 0;
       this.searchEvent.emit(searchText);
     }));
+    this.dataSource$ = this.adminUserService.getUsers(this.paginator, this.sort, this.searchEvent);
   }
 
   addUser() {

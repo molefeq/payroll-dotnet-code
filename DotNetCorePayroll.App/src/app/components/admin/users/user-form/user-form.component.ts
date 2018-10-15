@@ -6,6 +6,7 @@ import { AccountModel } from '../../../../shared/generated';
 import { serverValidation } from '../../../../shared/validators/server-side-validator';
 import { FormHelper } from '../../../../shared/utils/form-helper';
 import { finalize } from 'rxjs/operators';
+import { FormFieldValidator } from '../../../../shared/utils/form-fields-validator';
 
 @Component({
   selector: 'app-user-form',
@@ -90,11 +91,12 @@ export class UserFormComponent implements OnInit {
     return FormHelper.isErrorState(control, this.isSubmited);
   }
 
-  saveRole() {
+  saveUser() {
     this.isSubmited = true;
 
     if (this.userForm.invalid) {
       this.isSubmited = false;
+      FormFieldValidator.validateAllFormFields(this.userForm);
       return;
     }
 

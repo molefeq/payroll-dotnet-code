@@ -1,5 +1,5 @@
 <div class="containerX">
-  <h1 class="mat-headline containerX-heading">Roles</h1>
+  <h1 class="mat-headline containerX-heading">Users</h1>
   <div class="containerX-header">
     <div class="containerX-header-actions">
       <button mat-raised-button color="primary" (click)="addUser()">Add</button>
@@ -16,7 +16,7 @@
       <mat-spinner *ngIf="isBusy$ | async" strokeWidth="2"></mat-spinner>
     </div>
 
-    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 material_table" matSort matSortDirection="asc"
+    <mat-table #table [dataSource]="dataSource$" class="mat-elevation-z8 material_table" matSort matSortDirection="asc"
       matSortActive="name">
 
       <ng-container matColumnDef="username">

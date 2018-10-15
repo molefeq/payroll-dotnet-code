@@ -34,7 +34,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button (click)="saveRole()" *ngIf="!isInProgress">Save</button>
+  <button mat-button (click)="saveUser()" *ngIf="!isInProgress">Save</button>
   <button mat-button mat-dialog-close *ngIf="!isInProgress">Cancel</button>
   <mat-progress-bar mode="indeterminate" *ngIf="isInProgress"></mat-progress-bar>
 </mat-dialog-actions>
