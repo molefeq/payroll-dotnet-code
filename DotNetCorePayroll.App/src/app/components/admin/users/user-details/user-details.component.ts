@@ -27,7 +27,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   dataSource: AccountModel[] = [];
 
   constructor(private adminUserService: AdminUserService, private dialog: MatDialog) {
-    this.displayedColumns = ['username', 'firstname', 'lastname', 'actions'];
+    this.displayedColumns = ['username', 'firstname', 'lastname', 'emailAddress', 'actions'];
   }
 
   ngOnInit() {
