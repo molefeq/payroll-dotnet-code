@@ -11,7 +11,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services
 {
     public interface IOgranisationService
     {
-        OrganisationModel Find(Guid id);
+        OrganisationModel Find(long id);
 
         Result<OrganisationModel> Get(string searchText, PageData pageData);
 
@@ -19,7 +19,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services
 
         OrganisationModel Update(OrganisationModel organisationModel);
 
-        void Delete(Guid id);
+        void Delete(long id);
 
         void ResizeLogos(OrganisationModel organisationModel, IConfiguration configuration, string rootPath, string currentUrl);
 

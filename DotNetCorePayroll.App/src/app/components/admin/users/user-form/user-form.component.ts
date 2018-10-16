@@ -2,13 +2,13 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AdminUserService } from '../admin-user.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AccountModel, OrganisationModel, RoleModel } from '../../../../shared/generated';
+import { AccountModel, OrganisationModel, RoleModel, CompanyModel } from '../../../../shared/generated';
 import { serverValidation } from '../../../../shared/validators/server-side-validator';
 import { FormHelper } from '../../../../shared/utils/form-helper';
 import { finalize } from 'rxjs/operators';
 import { FormFieldValidator } from '../../../../shared/utils/form-fields-validator';
 import { OrganisationDetailsService } from '../../../organisation/organisation-details.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AdminRoleService } from '../../roles/admin-role.service';
 
 @Component({
@@ -22,7 +22,9 @@ export class UserFormComponent implements OnInit {
   isSubmited: boolean;
   isInProgress: boolean;
   organisations$: Observable<OrganisationModel[]> = this.organisationDetailsService.getOrganisationsReferenceData();
+  companies$: Observable<CompanyModel[]> = this.adminUserService.companies$;
   roles$: Observable<RoleModel[]> = this.adminRoleService.getRolesRefrenceData();
+  subscriptions: Subscription;
 
   validationMessages = {
     username: {
@@ -91,7 +93,15 @@ export class UserFormComponent implements OnInit {
       return;
     }
 
+    this.adminUserService.getOrganisationCompanies(this.data.organisationId);
+
     this.userForm.patchValue(this.data);
+
+    this.userForm.get('organisationId').valueChanges.subscribe((value) => {
+      this.userForm.get('companyId').setValue(null);
+
+      this.adminUserService.getOrganisationCompanies(value);
+    });
   }
 
   isControlInvalid(control: FormControl): boolean {

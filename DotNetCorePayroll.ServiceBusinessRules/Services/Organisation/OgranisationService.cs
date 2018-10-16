@@ -31,9 +31,9 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Organisation
             this.organisationAdapter = organisationAdapter;
         }
 
-        public OrganisationModel Find(Guid Id)
+        public OrganisationModel Find(long Id)
         {
-            var organisation = unitOfWork.Organisation.GetById(o => o.Guid == Id, "PhysicalAddress, PostalAddress");
+            var organisation = unitOfWork.Organisation.GetById(o => o.Id == Id, "PhysicalAddress, PostalAddress");
 
             if (organisation == null)
             {
@@ -61,12 +61,12 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Organisation
             unitOfWork.Organisation.Insert(organisation);
             unitOfWork.Save();
 
-            return organisationBuilder.BuildModel(unitOfWork.Organisation.GetById(o => o.Guid == organisation.Guid, "PhysicalAddress, PostalAddress"));
+            return organisationBuilder.BuildModel(unitOfWork.Organisation.GetById(o => o.Id == organisation.Id, "PhysicalAddress, PostalAddress"));
         }
 
         public OrganisationModel Update(OrganisationModel organisationModel)
         {
-            var organisation = unitOfWork.Organisation.GetById(o => o.Guid == organisationModel.Id.Value, "PhysicalAddress, PostalAddress");
+            var organisation = unitOfWork.Organisation.GetById(o => o.Id == organisationModel.Id.Value, "PhysicalAddress, PostalAddress");
 
             if (organisation == null)
             {
@@ -77,12 +77,12 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Organisation
             unitOfWork.Organisation.Update(organisation);
             unitOfWork.Save();
 
-            return organisationBuilder.BuildModel(unitOfWork.Organisation.GetById(o => o.Guid == organisation.Guid, "PhysicalAddress, PostalAddress"));
+            return organisationBuilder.BuildModel(unitOfWork.Organisation.GetById(o => o.Id == organisation.Id, "PhysicalAddress, PostalAddress"));
         }
 
-        public void Delete(Guid id)
+        public void Delete(long id)
         {
-            var organisation = unitOfWork.Organisation.GetById(o => o.Guid == id);
+            var organisation = unitOfWork.Organisation.GetById(o => o.Id == id);
 
             if (organisation == null)
             {

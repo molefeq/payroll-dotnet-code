@@ -43,7 +43,8 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
         {
             OrganisationModel organisationModel = new OrganisationModel();
 
-            organisationModel.Id = organisation.Guid;
+            organisationModel.Id = organisation.Id;
+            organisationModel.Guid = organisation.Guid;
             organisationModel.Name = organisation.Name;
             organisationModel.Description = organisation.Description;
             organisationModel.FaxNumber = organisation.FaxNumber;

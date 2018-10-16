@@ -12,7 +12,7 @@
 
 
 export interface OrganisationModel {
-    id?: string;
+    id?: number;
     name?: string;
     description?: string;
     physicalAddressLine1?: string;
@@ -36,6 +36,7 @@ export interface OrganisationModel {
     contactNumber?: string;
     logoFileName?: string;
     logoFileNamePath?: string;
+    guid?: string;
     crudStatus?: OrganisationModel.CrudStatusEnum;
 }
 export namespace OrganisationModel {

@@ -20,7 +20,7 @@ export class CompanyDetailsService {
 
   getAllCompanies(searchEvent: EventEmitter<string>): Observable<CompanyModel[]> {
     const that = this;
-    
+
     return searchEvent.pipe(
       startWith(null),
       delay(0),
@@ -90,6 +90,27 @@ export class CompanyDetailsService {
         finalize(() => {
           this._isBusy$.next(false);
         })
+      );
+  }
+
+  getCompaniesReferenceData(organisationId): Observable<CompanyModel[]> {
+    return this.companyService.apiCompanyGetCompaniesPost(
+      {
+        searchText: '',
+        organisationId: organisationId,
+        pageData: {
+          includeAllData: true,
+          sortOrder: PageData.SortOrderEnum.NUMBER_1,
+          sortColumn: 'Name'
+        }
+      }).pipe(
+
+        map(data => {
+          return data.items;
+        }),
+        catchError((): Observable<CompanyModel[]> => {
+          return Observable.of([]);
+        }),
       );
   }
 

@@ -24,8 +24,9 @@ export interface EmployeeModel {
     lastName?: string;
     nickName?: string;
     dateOfBirth?: Date;
-    isSouthAfricanCitizen?: boolean;
     ethnicGroup?: string;
+    isSouthAfricanCitizen?: boolean;
+    idOrPassportNumber?: string;
     gender?: string;
     hasDisability?: boolean;
     disabilityDescription?: string;

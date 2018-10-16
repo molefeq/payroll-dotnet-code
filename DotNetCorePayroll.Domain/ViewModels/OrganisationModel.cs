@@ -5,7 +5,7 @@ namespace DotNetCorePayroll.Data.ViewModels
 {
     public class OrganisationModel
     {
-        public Guid? Id { get; set; }
+        public long? Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string PhysicalAddressLine1 { get; set; }
@@ -29,6 +29,7 @@ namespace DotNetCorePayroll.Data.ViewModels
         public string ContactNumber { get; set; }
         public string LogoFileName { get; set; }
         public string LogoFileNamePath { get; set; }
+        public Guid? Guid { get; set; }
         public CrudStatus CrudStatus { get; set; }
     }
 }

@@ -19,7 +19,8 @@ namespace DotNetCorePayroll.Console.ServiceInvokers
         {
             return new OrganisationModel
             {
-                Id = new Guid("5aa98f75-357b-4c44-ace1-dee96702afb4"),
+                Id = 2,
+                Guid = new Guid("5aa98f75-357b-4c44-ace1-dee96702afb4"),
                 Name = "Test Organisation 2",
                 Description = "Test Organisation 2 Description",
                 PhysicalAddressLine1 = "Unit 08 Sonwaba",

@@ -156,10 +156,10 @@ export class OrganisationService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiOrganisationFetchOrganisationGet(organisationId?: string, observe?: 'body', reportProgress?: boolean): Observable<OrganisationModel>;
-    public apiOrganisationFetchOrganisationGet(organisationId?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<OrganisationModel>>;
-    public apiOrganisationFetchOrganisationGet(organisationId?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<OrganisationModel>>;
-    public apiOrganisationFetchOrganisationGet(organisationId?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiOrganisationFetchOrganisationGet(organisationId?: number, observe?: 'body', reportProgress?: boolean): Observable<OrganisationModel>;
+    public apiOrganisationFetchOrganisationGet(organisationId?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<OrganisationModel>>;
+    public apiOrganisationFetchOrganisationGet(organisationId?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<OrganisationModel>>;
+    public apiOrganisationFetchOrganisationGet(organisationId?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
         if (organisationId !== undefined) {

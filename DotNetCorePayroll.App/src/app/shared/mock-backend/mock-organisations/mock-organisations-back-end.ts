@@ -14,7 +14,8 @@ export function mockOrganisationsBackEndService(url: string, method: string, req
         for (let i = 1; i < 100; i++) {
             const valueId = i % 3 + 1;
             const organisation: OrganisationModel = {
-                id: '451241-tggert-7899po-kujgf' + i,
+                id: i,
+                guid: '451241-tggert-7899po-kujgf' + i,
                 name: 'test organisation' + i,
                 description: 'organisation description' + i,
                 physicalAddressLine1: 'Line ' + (i + 1),
@@ -62,7 +63,8 @@ export function mockOrganisationsBackEndService(url: string, method: string, req
 
     if (url.endsWith('/api/Organisation/AddOrganisation') && method === 'POST') {
         const organisation: OrganisationModel = request.body;
-        organisation.id = 'gfhgsdj-hgdhdhgjgh-122323234';
+        organisation.guid = 'gfhgsdj-hgdhdhgjgh-122323234';
+        organisation.id = 1;
 
         return new Observable(resp => {
             resp.next(new HttpResponse({

@@ -85,7 +85,7 @@ namespace DotNetCorePayroll.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(OrganisationModel), 200)]
-        public IActionResult FetchOrganisation(Guid organisationId)
+        public IActionResult FetchOrganisation(long organisationId)
         {
             OrganisationModel organisationModel = ogranisationService.Find(organisationId);
 

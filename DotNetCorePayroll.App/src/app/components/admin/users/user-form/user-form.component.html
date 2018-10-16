@@ -28,7 +28,12 @@
       <mat-error [appValidationMessage]="userForm.get('organisationId')" [messages]="validationMessages.organisationId"></mat-error>
     </mat-form-field>
     <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('companyId'))">
-      <input matInput type="text" placeholder="Company" formControlName="companyId">
+      <mat-select placeholder="Company" formControlName="companyId">
+        <mat-option></mat-option>
+        <mat-option *ngFor="let company of companies$ | async" [value]="company.id">
+          {{company.name}}
+        </mat-option>
+      </mat-select>
       <mat-error [appValidationMessage]="userForm.get('companyId')" [messages]="validationMessages.companyId"></mat-error>
     </mat-form-field>
     <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('roleId'))">

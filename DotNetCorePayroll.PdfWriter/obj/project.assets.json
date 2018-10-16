@@ -4349,23 +4349,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Qinisela.Molefe\\.nuget\\packages\\": {},
+    "C:\\Users\\bbdnet1168\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj",
+      "projectUniqueName": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj",
       "projectName": "DotNetCorePayroll.PdfWriter",
-      "projectPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj",
-      "packagesPath": "C:\\Users\\Qinisela.Molefe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Qinisela.Molefe\\Documents\\Visual Studio 2017\\Projects\\Payroll\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\obj\\",
+      "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj",
+      "packagesPath": "C:\\Users\\bbdnet1168\\.nuget\\packages\\",
+      "outputPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Qinisela.Molefe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\bbdnet1168\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4373,10 +4373,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\Qinisela.Molefe\\source\\repos\\LocalNugetRepository": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://github.com/molefeq/localpackages": {},
-        "https://molefeq.pkgs.visualstudio.com/_packaging/WOMEN_ESSENTAIL@Release/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
