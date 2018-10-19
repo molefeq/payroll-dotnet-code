@@ -18,38 +18,18 @@
       <input matInput type="text" placeholder="Email Address" formControlName="emailAddress">
       <mat-error [appValidationMessage]="userForm.get('emailAddress')" [messages]="validationMessages.emailAddress"></mat-error>
     </mat-form-field>
-    <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('organisationId'))">
-        <mat-select placeholder="Organisation" formControlName="organisationId">
-            <mat-option></mat-option>
-            <mat-option *ngFor="let organisation of organisations$ | async" [value]="organisation.id">
-              {{organisation.name}}
-            </mat-option>
-          </mat-select>
-      <mat-error [appValidationMessage]="userForm.get('organisationId')" [messages]="validationMessages.organisationId"></mat-error>
-    </mat-form-field>
-    <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('companyId'))">
-      <mat-select placeholder="Company" formControlName="companyId">
-        <mat-option></mat-option>
-        <mat-option *ngFor="let company of companies$ | async" [value]="company.id">
-          {{company.name}}
-        </mat-option>
-      </mat-select>
-      <mat-error [appValidationMessage]="userForm.get('companyId')" [messages]="validationMessages.companyId"></mat-error>
-    </mat-form-field>
-    <mat-form-field [class.is-invalid]="isControlInvalid(userForm.get('roleId'))">
-      <mat-select placeholder="Role" formControlName="roleId">
-          <mat-option></mat-option>
-          <mat-option *ngFor="let role of roles$ | async" [value]="role.id">
-            {{role.name}}
-          </mat-option>
-        </mat-select>
-      <mat-error [appValidationMessage]="userForm.get('roleId')" [messages]="validationMessages.roleId"></mat-error>
-    </mat-form-field>
+    <app-app-async-dropdownlist [isControlValid]="isControlInvalid(userForm.get('organisationId'))" [placeholder]="'Organisation'"
+      [dropDownFormControl]="userForm.get('organisationId')" [messages]="validationMessages.organisationId"
+      [dataSource]="organisationsData"></app-app-async-dropdownlist>
+    <app-app-async-dropdownlist [isControlValid]="isControlInvalid(userForm.get('companyId'))" [placeholder]="'Company'"
+      [dropDownFormControl]="userForm.get('companyId')" [messages]="validationMessages.companyId" [dataSource]="companiesData">
+    </app-app-async-dropdownlist>
+    <app-app-async-dropdownlist [isControlValid]="isControlInvalid(userForm.get('roleId'))" [placeholder]="'Role'"
+      [dropDownFormControl]="userForm.get('roleId')" [messages]="validationMessages.roleId" [dataSource]="rolesData"></app-app-async-dropdownlist>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button (click)="saveUser()" *ngIf="!isInProgress">Save</button>
-  <button mat-button mat-dialog-close *ngIf="!isInProgress">Cancel</button>
-  <mat-progress-bar mode="indeterminate" *ngIf="isInProgress"></mat-progress-bar>
+  <button mat-button (click)="saveUser()" *ngIf="!(isInProgress$ | async)">Save</button>
+  <button mat-button mat-dialog-close *ngIf="!(isInProgress$ | async)">Cancel</button>
+  <mat-progress-bar mode="indeterminate" *ngIf="isInProgress$ | async"></mat-progress-bar>
 </mat-dialog-actions>

@@ -1,0 +1,10 @@
+<mat-form-field [class.is-invalid]="isControlValid">
+  <mat-select [placeholder]="placeholder" [disabled]="dataSource.inprogess$ | async" [formControl]="dropDownFormControl">
+    <mat-option></mat-option>
+    <mat-option *ngFor="let item of dataSource.data$ | async" [value]="item.id">
+      {{item.name}}
+    </mat-option>
+  </mat-select>
+<mat-error [appValidationMessage]="dropDownFormControl" [messages]="messages"></mat-error>
+</mat-form-field>
+<mat-progress-bar mode="indeterminate" *ngIf="dataSource.inprogess$ | async"></mat-progress-bar>

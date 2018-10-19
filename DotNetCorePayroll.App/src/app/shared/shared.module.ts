@@ -19,6 +19,7 @@ import { AppReferenceDataService } from './services/app-reference-data-service';
 import { AppStartUpService } from './services/app-startup-service';
 import { LogoComponent } from './components/logo/logo.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { AppAsyncDropdownlistComponent } from './components/app-async-dropdownlist/app-async-dropdownlist.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     HttpClientModule,
     ReactiveFormsModule,
     ApiModule,
-    FileUploadModule 
+    FileUploadModule
   ],
   exports: [
     MaterialModule,
@@ -37,6 +38,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     AppHttpServerErrorComponent,
     SummaryValidationMessagesComponent,
     LogoComponent,
+    AppAsyncDropdownlistComponent,
   ],
   declarations: [
     PanelWidgetComponent,
@@ -46,6 +48,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     ServerErrorDailogComponent,
     SummaryValidationMessagesComponent,
     LogoComponent,
+    AppAsyncDropdownlistComponent,
   ],
   entryComponents: [
     ServerErrorDailogComponent
