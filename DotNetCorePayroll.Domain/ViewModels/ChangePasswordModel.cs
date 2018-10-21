@@ -9,9 +9,9 @@ namespace DotNetCorePayroll.Data.ViewModels
         public string Username { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "password is required and empty spaces are not allowed.")]
-        public string Password { get; set; }
+        public string OldPassword { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "password is required and empty spaces are not allowed.")]
-        public string ConfirmPassword { get; set; }
+        public string NewPassword { get; set; }
     }
 }

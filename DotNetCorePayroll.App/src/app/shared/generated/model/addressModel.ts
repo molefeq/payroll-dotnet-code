@@ -11,8 +11,14 @@
  */
 
 
-export interface ChangePasswordModel {
-    username: string;
-    oldPassword: string;
-    newPassword: string;
+export interface AddressModel {
+    id?: number;
+    line1?: string;
+    line2?: string;
+    suburb?: string;
+    city?: string;
+    provinceId?: number;
+    countryId?: number;
+    postalCode?: string;
+    location?: string;
 }

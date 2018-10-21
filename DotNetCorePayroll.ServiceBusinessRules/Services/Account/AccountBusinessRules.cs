@@ -46,7 +46,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
             }
         }
 
-        public void ChangePasswordCheck(string username, AccountRepository accountRepository)
+        public void ChangePasswordCheck(string username, string oldPassword, AccountRepository accountRepository)
         {
             var account = accountRepository.GetById(a => a.Username == username);
 
@@ -54,7 +54,17 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
             {
                 throw new ResponseValidationException(ResponseMessage.ToError("Password change failed, user does not exists."));
             }
+
+            byte[] hashedPassword = GeneratePassword.HashedPassword(oldPassword, account.PasswordSalt);
+
+            account = accountRepository.GetById(a => a.Username == username && a.Password == hashedPassword);
+
+            if (account == null)
+            {
+                throw new ResponseValidationException(ResponseMessage.ToError("Password change failed, username or old password is incorrect."));
+            }
         }
+
         public void ResetPasswordCheck(Guid forgotPasswordKey, AccountRepository accountRepository)
         {
             var account = accountRepository.GetById(a => a.PasswordResetKey == forgotPasswordKey);

@@ -23,19 +23,26 @@ namespace DotNetCorePayroll.Console.ServiceInvokers
                 Guid = new Guid("5aa98f75-357b-4c44-ace1-dee96702afb4"),
                 Name = "Test Organisation 2",
                 Description = "Test Organisation 2 Description",
-                PhysicalAddressLine1 = "Unit 08 Sonwaba",
-                PhysicalAddressLine2 = "South African Drive",
-                PhysicalAddressSuburb = "Cosmo City",
-                PhysicalAddressCity = "Randburg",
+
+                PhysicalAddress = new AddressModel
+                {
+                    Line1 = "Unit 08 Sonwaba",
+                    Line2 = "South African Drive",
+                    Suburb = "Cosmo City",
+                    City = "Randburg"
+                },
                 EmailAddress = "molefeq@gmail.com",
                 ContactNumber = "0114475309",
                 LogoFileName = "/images/logo.gif",
                 FaxNumber = "0117841256",
-                PostalAddressLine1 = "Investec Building",
-                PostalAddressLine2 = "120 Grayston Drive",
-                PostalAddressSuburb = "Sandton",
-                PostalAddressCity = "Sandton",
-                PostalAddressPostalCode = "2189"
+                PostalAddress = new AddressModel
+                {
+                    Line1 = "Investec Building",
+                    Line2 = "120 Grayston Drive",
+                    Suburb = "Sandton",
+                    City = "Sandton",
+                    PostalCode = "2189"
+                }
             };
         }
 
@@ -45,19 +52,25 @@ namespace DotNetCorePayroll.Console.ServiceInvokers
             {
                 Name = "Organisation 2",
                 Description = "My Organisation 2",
-                PhysicalAddressLine1 = "Unit 03 Sonwaba",
-                PhysicalAddressLine2 = "South African Drive",
-                PhysicalAddressSuburb = "Cosmo City",
-                PhysicalAddressCity = "Randburg",
+                PhysicalAddress = new AddressModel
+                {
+                    Line1 = "Unit 03 Sonwaba",
+                    Line2 = "South African Drive",
+                    Suburb = "Cosmo City",
+                    City = "Randburg"
+                },
                 EmailAddress = "molefeq@gmail.com",
                 ContactNumber = "0114475309",
                 LogoFileName = "/images/logo.gif",
                 FaxNumber = "0117841256",
-                PostalAddressLine1 = "Investec",
-                PostalAddressLine2 = "100 Grayston Drive",
-                PostalAddressSuburb = "Sandton",
-                PostalAddressCity = "Sandton",
-                PostalAddressPostalCode = "2189"
+                PostalAddress = new AddressModel
+                {
+                    Line1 = "Investec",
+                    Line2 = "100 Grayston Drive",
+                    Suburb = "Sandton",
+                    City = "Sandton",
+                    PostalCode = "2189"
+                }
             };
         }
 

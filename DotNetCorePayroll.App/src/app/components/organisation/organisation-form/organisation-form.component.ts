@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { OrganisationDetailsService } from '../organisation-details.service';
 import { OrganisationModel, ReferenceDataModel } from '../../../shared/generated';
-import { serverValidation } from '../../../shared/validators/server-side-validator';
 import { FormHelper } from '../../../shared/utils/form-helper';
 import { finalize } from 'rxjs/operators';
 import { AppReferenceDataService } from '../../../shared/services/app-reference-data-service';
@@ -45,30 +44,9 @@ export class OrganisationFormComponent implements OnInit {
   }
 
   createForm() {
-    this.organisationForm = this.fb.group({
-      id: [null, []],
-      name: ['', [Validators.required, Validators.maxLength(20), serverValidation()]],
-      description: ['', [serverValidation()]],
-      physicalAddressId: ['', [serverValidation()]],
-      physicalAddressLine1: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      physicalAddressLine2: ['', [serverValidation()]],
-      physicalAddressSuburb: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      physicalAddressCity: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      physicalAddressPostalCode: ['', [Validators.required, Validators.maxLength(10), serverValidation()]],
-      physicalAddressProvinceId: ['', [Validators.required, serverValidation()]],
-      physicalAddressCountryId: ['', [Validators.required, serverValidation()]],
-      postalAddressId: ['', [serverValidation()]],
-      postalAddressLine1: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      postalAddressLine2: ['', [serverValidation()]],
-      postalAddressSuburb: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      postalAddressCity: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-      postalAddressPostalCode: ['', [Validators.required, Validators.maxLength(10), serverValidation()]],
-      postalAddressProvinceId: ['', [Validators.required, serverValidation()]],
-      postalAddressCountryId: ['', [Validators.required, serverValidation()]],
-      faxNumber: ['', [serverValidation()]],
-      emailAddress: ['', [Validators.required, Validators.maxLength(500), serverValidation()]],
-      contactNumber: ['', [Validators.required, Validators.maxLength(20), serverValidation()]]
-    });
+    this.organisationForm = this.fb.group(OrganisationConstants.FORM_FIELDS);
+    this.organisationForm.addControl('physicalAddress', this.fb.group(OrganisationConstants.ADDRESS_FORM_FIELDS));
+    this.organisationForm.addControl('postalAddress', this.fb.group(OrganisationConstants.ADDRESS_FORM_FIELDS));
 
     this.logo = {
       logoUrl: '',
@@ -131,14 +109,17 @@ export class OrganisationFormComponent implements OnInit {
       return;
     }
 
-    this.organisationForm.get('postalAddressId').setValue(this.organisationForm.get('physicalAddressId').value);
+    this.organisationForm.get('postalAddress')
+      .setValue(Object.assign(Object.create(null), this.organisationForm.get('physicalAddress').value));
+
+    /*this.organisationForm.get('postalAddressId').setValue(this.organisationForm.get('physicalAddressId').value);
     this.organisationForm.get('postalAddressLine1').setValue(this.organisationForm.get('physicalAddressLine1').value);
     this.organisationForm.get('postalAddressLine2').setValue(this.organisationForm.get('physicalAddressLine2').value);
     this.organisationForm.get('postalAddressSuburb').setValue(this.organisationForm.get('physicalAddressSuburb').value);
     this.organisationForm.get('postalAddressCity').setValue(this.organisationForm.get('physicalAddressCity').value);
     this.organisationForm.get('postalAddressPostalCode').setValue(this.organisationForm.get('physicalAddressPostalCode').value);
     this.organisationForm.get('postalAddressProvinceId').setValue(this.organisationForm.get('physicalAddressProvinceId').value);
-    this.organisationForm.get('postalAddressCountryId').setValue(this.organisationForm.get('physicalAddressCountryId').value);
+    this.organisationForm.get('postalAddressCountryId').setValue(this.organisationForm.get('physicalAddressCountryId').value);*/
   }
 
   logoChanged(event: logoModel) {

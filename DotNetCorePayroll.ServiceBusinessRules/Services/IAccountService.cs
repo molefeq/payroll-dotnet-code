@@ -12,7 +12,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services
     public interface IAccountService
     {
         UserModel Login(LoginModel loginModel);
-        UserModel ChangePassword(string username, string password);
+        UserModel ChangePassword(string username, string oldPassword, string password);
         AccountModel PasswordResetRequest(string username, IConfiguration configuration);
         UserModel ResetPassword(Guid forgotPasswordKey, string password);
         AccountModel GetAccountByUsername(string username);

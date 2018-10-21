@@ -112,20 +112,12 @@ export class OrganisationDetailsService {
   }
 
   saveOrganisation(organisationModel: OrganisationModel): Observable<OrganisationModel> {
-    if (organisationModel.id) {
+    if (!Boolean(organisationModel.id)) {
       return this.organisationService.apiOrganisationAddOrganisationPost(organisationModel);
     }
 
     return this.organisationService.apiOrganisationUpdateOrganisationPost(organisationModel);
   }
-
-  /*saveImage(organisationModel: OrganisationModel): Observable<OrganisationModel> {
-    if (organisationModel.id) {
-      return this.organisationService.apiOrganisationAddOrganisationPost(organisationModel);
-    }
-
-    return this.organisationService.apiOrganisationSaveImagePost(organisationModel);
-  }*/
 
   get isBusy$(): Observable<boolean> {
     return this._isBusy$.asObservable();

@@ -4,7 +4,7 @@
       <a id="logo" routerLink="/home" class="display-1">Zenit Payroll</a>
     </div>
     <div id="menu-container">
-     
+
     </div>
     <div id="login-container">
       <button aria-label="GitHub Repository" rel="login" [matMenuTriggerFor]="loginMenu" class="docs-button docs-navbar-show-small mat-icon-button"
@@ -14,23 +14,13 @@
         </span>
       </button>
       <mat-menu #loginMenu="matMenu" overlapTrigger="false">
-        <button mat-menu-item>Change Password</button>
+        <button mat-menu-item (click)="changePassword()">Change Password</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item>Logout</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
       </mat-menu>
     </div>
   </mat-toolbar-row>
   <mat-toolbar-row id="mobile-toolbar">
-    <mat-menu #appMenu="matMenu" overlapTrigger="false">
-      <button mat-menu-item>About Us</button>
-      <mat-divider></mat-divider>
-      <button mat-menu-item>Contact Us</button>
-      <mat-divider></mat-divider>
-      <button mat-menu-item>Services</button>
-    </mat-menu>
-    <button mat-icon-button [matMenuTriggerFor]="appMenu" id="menu-button">
-      <mat-icon>reorder</mat-icon>
-    </button>
     <div id="logo-container">
       <a id="logo">Zenit Payroll</a>
     </div>
@@ -45,9 +35,9 @@
         </span>
       </button>
       <mat-menu #loginMenu="matMenu" overlapTrigger="false">
-          <button mat-menu-item>Change Password</button>
-          <mat-divider></mat-divider>
-          <button mat-menu-item>Logout</button>
+        <button mat-menu-item (click)="changePassword()">Change Password</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">Logout</button>
       </mat-menu>
     </div>
   </mat-toolbar-row>

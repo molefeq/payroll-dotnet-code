@@ -9,28 +9,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { AddressModel } from './addressModel';
 
 
 export interface OrganisationModel {
     id?: number;
     name?: string;
     description?: string;
-    physicalAddressLine1?: string;
-    physicalAddressLine2?: string;
-    physicalAddressSuburb?: string;
-    physicalAddressCity?: string;
-    physicalAddressPostalCode?: string;
-    physicalAddressId?: number;
-    physicalAddressProvinceId?: number;
-    physicalAddressCountryId?: number;
-    postalAddressId?: number;
-    postalAddressLine1?: string;
-    postalAddressLine2?: string;
-    postalAddressSuburb?: string;
-    postalAddressCity?: string;
-    postalAddressPostalCode?: string;
-    postalAddressProvinceId?: number;
-    postalAddressCountryId?: number;
+    physicalAddress?: AddressModel;
+    postalAddress?: AddressModel;
     faxNumber?: string;
     emailAddress?: string;
     contactNumber?: string;

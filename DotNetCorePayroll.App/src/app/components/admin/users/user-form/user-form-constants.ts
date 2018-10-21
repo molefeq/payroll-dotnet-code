@@ -1,5 +1,5 @@
-import { Validators } from "@angular/forms";
-import { serverValidation } from "../../../../shared/validators/server-side-validator";
+import { Validators } from '@angular/forms';
+import { serverValidation } from '../../../../shared/validators/server-side-validator';
 
 export class UserConstants {
     static readonly VALIDATION_MESSAGES = {

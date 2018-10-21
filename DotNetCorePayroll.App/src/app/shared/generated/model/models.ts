@@ -1,5 +1,6 @@
 export * from './accountModel';
 export * from './accountSearchFilter';
+export * from './addressModel';
 export * from './changePasswordModel';
 export * from './companyBankDetailModel';
 export * from './companyContactDetailModel';

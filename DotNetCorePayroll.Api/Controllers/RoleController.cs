@@ -2,13 +2,14 @@
 using DotNetCorePayroll.Data.SearchFilters;
 using DotNetCorePayroll.Data.ViewModels;
 using DotNetCorePayroll.ServiceBusinessRules.Services;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using SqsLibraries.Common.Utilities.ResponseObjects;
 
 namespace DotNetCorePayroll.Api.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]
     public class RoleController : Controller

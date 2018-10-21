@@ -22,7 +22,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
 
         if (this.authenticationService.user && this.authenticationService.user.token) {
             authRequest = request.clone({
-                headers: request.headers.set('Authorization', this.authenticationService.user.token)
+                headers: request.headers.set('Authorization', `Bearer ${this.authenticationService.user.token}`)
             });
         }
 

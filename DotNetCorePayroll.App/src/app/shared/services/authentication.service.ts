@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserModel } from '../generated/model/userModel';
-import { AccountService } from '../generated';
+import { AccountService, ChangePasswordModel } from '../generated';
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators/tap';
 
@@ -14,6 +14,14 @@ export class AuthenticationService {
         this.user = userModel;
       })
     );
+  }
+
+  logout(): void {
+    localStorage.removeItem('user');
+  }
+
+  changePassword(model: ChangePasswordModel): Observable<UserModel> {
+    return this.accountService.apiAccountChangePasswordPost(model);
   }
 
   set redirectUrl(value: string) {
@@ -31,7 +39,7 @@ export class AuthenticationService {
   }
 
   get user(): UserModel {
-    var user = localStorage.getItem('user');
+    const user = localStorage.getItem('user');
 
     if (Boolean(user)) {
       return JSON.parse(user);

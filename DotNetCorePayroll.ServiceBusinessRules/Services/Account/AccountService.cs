@@ -144,9 +144,9 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Account
             return accountModel;
         }
 
-        public UserModel ChangePassword(string username, string password)
+        public UserModel ChangePassword(string username, string oldPassword, string password)
         {
-            accountBusinessRules.ChangePasswordCheck(username, unitOfWork.Account);
+            accountBusinessRules.ChangePasswordCheck(username, oldPassword, unitOfWork.Account);
 
             var account = unitOfWork.Account.GetById(a => a.Username == username, "Organisation, Company, Role");
 

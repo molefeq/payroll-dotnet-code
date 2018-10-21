@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { serverValidation } from '../../../shared/validators/server-side-validator';
 import { FormHelper } from '../../../shared/utils/form-helper';
 import { AuthenticationService } from '../../../shared/services/authentication.service';
-import { startWith, finalize } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { UserModel } from '../../../shared/generated';
 
 @Component({
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
     this.isSubmited = false;
     this.isInProgress = true;
 
-    this.authenticationService.login(this.loginForm.get("username").value, this.loginForm.get("password").value).pipe(
+    this.authenticationService.login(this.loginForm.get('username').value, this.loginForm.get('password').value).pipe(
       finalize(() => {
         this.isInProgress = false;
       })).subscribe((data: UserModel) => {

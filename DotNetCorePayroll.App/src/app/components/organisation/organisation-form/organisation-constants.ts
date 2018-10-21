@@ -1,3 +1,6 @@
+import { Validators } from '@angular/forms';
+import { serverValidation } from '../../../shared/validators/server-side-validator';
+
 export class OrganisationConstants {
     static readonly VALIDATION_MESSAGES = {
         name: {
@@ -83,6 +86,26 @@ export class OrganisationConstants {
             maxlength: 'Contact cannot be more than 20 characters',
             serverValidation: ''
         }
+    };
+
+    static readonly ADDRESS_FORM_FIELDS = {
+        Id: ['', [serverValidation()]],
+        Line1: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+        Line2: ['', [serverValidation()]],
+        Suburb: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+        City: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+        PostalCode: ['', [Validators.required, Validators.maxLength(10), serverValidation()]],
+        ProvinceId: ['', [Validators.required, serverValidation()]],
+        CountryId: ['', [Validators.required, serverValidation()]],
+    };
+
+    static readonly FORM_FIELDS = {
+        id: [null, []],
+        name: ['', [Validators.required, Validators.maxLength(20), serverValidation()]],
+        description: ['', [serverValidation()]],
+        faxNumber: ['', [serverValidation()]],
+        emailAddress: ['', [Validators.required, Validators.maxLength(500), serverValidation()]],
+        contactNumber: ['', [Validators.required, Validators.maxLength(20), serverValidation()]]
     };
 
     static readonly UPLOAD_IMAGE_URL: String = 'http://localhost:58308/api/Organisation/SaveImage';

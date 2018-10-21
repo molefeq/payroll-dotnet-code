@@ -6,6 +6,13 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
 {
     public class OrganisationBuilder
     {
+        private AddressBuilder addressBuilder;
+
+        public OrganisationBuilder(AddressBuilder addressBuilder)
+        {
+            this.addressBuilder = addressBuilder;
+        }
+
         public Organisation Build(OrganisationModel organisationModel)
         {
             Organisation organisation = new Organisation();
@@ -17,25 +24,10 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
             organisation.ContactNumber = organisationModel.ContactNumber;
             organisation.EmailAddress = organisationModel.EmailAddress;
             organisation.LogoFilename = organisationModel.LogoFileName;
-            
-            organisation.PhysicalAddress = new Address
-            {
-                Line1 = organisationModel.PhysicalAddressLine1,
-                Line2 = organisationModel.PhysicalAddressLine2,
-                Suburb = organisationModel.PhysicalAddressSuburb,
-                City = organisationModel.PhysicalAddressCity,
-                PostalCode = organisationModel.PhysicalAddressPostalCode
-            };
 
-            organisation.PostalAddress = new Address
-            {
-                Line1 = organisationModel.PostalAddressLine1,
-                Line2 = organisationModel.PostalAddressLine2,
-                Suburb = organisationModel.PostalAddressSuburb,
-                City = organisationModel.PostalAddressCity,
-                PostalCode = organisationModel.PostalAddressPostalCode
-            };
-            
+            organisation.PhysicalAddress = addressBuilder.Build(organisationModel.PhysicalAddress);
+            organisation.PostalAddress = addressBuilder.Build(organisationModel.PostalAddress);
+                        
             return organisation;
         }
 
@@ -51,26 +43,8 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
             organisationModel.ContactNumber = organisation.ContactNumber;
             organisationModel.EmailAddress = organisationModel.EmailAddress;
             organisationModel.LogoFileName = organisation.LogoFilename;
-            organisationModel.PhysicalAddressId = organisation.PhysicalAddressId;
-
-            if (organisation.PhysicalAddress != null)
-            {
-                organisationModel.PhysicalAddressLine1 = organisation.PhysicalAddress.Line1;
-                organisationModel.PhysicalAddressLine2 = organisation.PhysicalAddress.Line2;
-                organisationModel.PhysicalAddressSuburb = organisation.PhysicalAddress.Suburb;
-                organisationModel.PhysicalAddressCity = organisation.PhysicalAddress.City;
-                organisationModel.PhysicalAddressPostalCode = organisation.PhysicalAddress.PostalCode;
-            }
-
-            organisationModel.PostalAddressId = organisation.PostalAddressId;
-            if (organisation.PostalAddress != null)
-            {
-                organisationModel.PostalAddressLine1 = organisation.PostalAddress.Line1;
-                organisationModel.PostalAddressLine2 = organisation.PostalAddress.Line2;
-                organisationModel.PostalAddressSuburb = organisation.PostalAddress.Suburb;
-                organisationModel.PostalAddressCity = organisation.PostalAddress.City;
-                organisationModel.PostalAddressPostalCode = organisation.PostalAddress.PostalCode;
-            }
+            organisationModel.PhysicalAddress = addressBuilder.BuildToModel(organisation.PhysicalAddress);
+            organisationModel.PostalAddress = addressBuilder.BuildToModel(organisation.PostalAddress);
             
             return organisationModel;
         }

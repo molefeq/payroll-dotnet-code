@@ -5,7 +5,7 @@ using DotNetCorePayroll.Data.SearchFilters;
 using DotNetCorePayroll.Data.ViewModels;
 
 using DotNetCorePayroll.ServiceBusinessRules.Services;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -17,6 +17,7 @@ namespace DotNetCorePayroll.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]
+    [Authorize]
     public class AccountController : BaseController
     {
         private LoginProvider loginProvider;
@@ -32,6 +33,7 @@ namespace DotNetCorePayroll.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(UserModel), 200)]
+        [AllowAnonymous]
         public IActionResult Login([FromBody] LoginModel model)
         {
             if (!ModelState.IsValid)
@@ -45,6 +47,7 @@ namespace DotNetCorePayroll.Api.Controllers
         }
 
         [HttpPost("{username}")]
+        [AllowAnonymous]
         public IActionResult ResetPasswordRequest([FromRoute] string username)
         {
             accountService.PasswordResetRequest(username, configuration);
@@ -54,6 +57,7 @@ namespace DotNetCorePayroll.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(UserModel), 200)]
+        [AllowAnonymous]
         public IActionResult ResetPassword([FromBody] ResetPasswordModel model)
         {
             if (!ModelState.IsValid)
@@ -75,7 +79,7 @@ namespace DotNetCorePayroll.Api.Controllers
                 return new ValidationActionResult(ModelState);
             }
 
-            var userModel = accountService.ChangePassword(model.Username, model.Password);
+            var userModel = accountService.ChangePassword(model.Username, model.OldPassword, model.NewPassword);
 
             return Ok(userModel);
         }
