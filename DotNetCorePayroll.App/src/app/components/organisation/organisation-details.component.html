@@ -28,7 +28,7 @@
     </div>
 
     <mat-card class="items-card" *ngFor="let item of dataSource$ | async">
-      <img mat-card-image src="{{item.logoFileNamePath}}" alt="Organisation logo">
+      <img mat-card-image src="{{item.logoFileNamePath}}" alt="Organisation logo" onError="this.src='../../assets/no_image_available.png';">
       <mat-card-header>
         <mat-card-title>{{ item.name }}</mat-card-title>
       </mat-card-header>

@@ -150,18 +150,22 @@ export class OrganisationDetailsService {
   }
 
   setAddress(organisation: OrganisationModel) {
-    organisation['physicalAddress'] = [
-      organisation.physicalAddressLine1,
-      organisation.physicalAddressLine2,
-      organisation.physicalAddressSuburb,
-      organisation.physicalAddressCity,
-      organisation.physicalAddressPostalCode].filter(Boolean).join(', ');
+    if (Boolean(organisation.physicalAddress)) {
+      organisation['physicalAddressText'] = [
+        organisation.physicalAddress.line1,
+        organisation.physicalAddress.line2,
+        organisation.physicalAddress.suburb,
+        organisation.physicalAddress.city,
+        organisation.physicalAddress.postalCode].filter(Boolean).join(', ');
+    }
 
-    organisation['postalAddress'] = [
-      organisation.postalAddressLine1,
-      organisation.postalAddressLine2,
-      organisation.postalAddressSuburb,
-      organisation.postalAddressCity,
-      organisation.postalAddressPostalCode].filter(Boolean).join(', ');
+    if (Boolean(organisation.postalAddress)) {
+      organisation['physicalAddressText'] = [
+        organisation.postalAddress.line1,
+        organisation.postalAddress.line2,
+        organisation.postalAddress.suburb,
+        organisation.postalAddress.city,
+        organisation.postalAddress.postalCode].filter(Boolean).join(', ');
+    }
   }
 }

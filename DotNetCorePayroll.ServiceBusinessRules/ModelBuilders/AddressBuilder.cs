@@ -29,23 +29,22 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
 
         public AddressModel BuildToModel(Address address)
         {
+            AddressModel addressModel = new AddressModel();
+
             if (address == null)
             {
-                return null;
+                return addressModel;
             }
 
-            AddressModel addressModel = new AddressModel
-            {
-                Id = address.Id,
-                Line1 = address.Line1,
-                Line2 = address.Line2,
-                Suburb = address.Suburb,
-                City = address.City,
-                ProvinceId = address.ProvinceId,
-                CountryId = address.CountryId,
-                PostalCode = address.PostalCode,
-                Location = address.Location
-            };
+            addressModel.Id = address.Id;
+            addressModel.Line1 = address.Line1;
+            addressModel.Line2 = address.Line2;
+            addressModel.Suburb = address.Suburb;
+            addressModel.City = address.City;
+            addressModel.ProvinceId = address.ProvinceId;
+            addressModel.CountryId = address.CountryId;
+            addressModel.PostalCode = address.PostalCode;
+            addressModel.Location = address.Location;
 
             return addressModel;
         }

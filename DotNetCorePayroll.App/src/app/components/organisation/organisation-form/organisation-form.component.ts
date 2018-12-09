@@ -44,9 +44,7 @@ export class OrganisationFormComponent implements OnInit {
   }
 
   createForm() {
-    this.organisationForm = this.fb.group(OrganisationConstants.FORM_FIELDS);
-    this.organisationForm.addControl('physicalAddress', this.fb.group(OrganisationConstants.ADDRESS_FORM_FIELDS));
-    this.organisationForm.addControl('postalAddress', this.fb.group(OrganisationConstants.ADDRESS_FORM_FIELDS));
+    this.organisationForm = OrganisationConstants.getForm(this.fb);
 
     this.logo = {
       logoUrl: '',
@@ -111,15 +109,6 @@ export class OrganisationFormComponent implements OnInit {
 
     this.organisationForm.get('postalAddress')
       .setValue(Object.assign(Object.create(null), this.organisationForm.get('physicalAddress').value));
-
-    /*this.organisationForm.get('postalAddressId').setValue(this.organisationForm.get('physicalAddressId').value);
-    this.organisationForm.get('postalAddressLine1').setValue(this.organisationForm.get('physicalAddressLine1').value);
-    this.organisationForm.get('postalAddressLine2').setValue(this.organisationForm.get('physicalAddressLine2').value);
-    this.organisationForm.get('postalAddressSuburb').setValue(this.organisationForm.get('physicalAddressSuburb').value);
-    this.organisationForm.get('postalAddressCity').setValue(this.organisationForm.get('physicalAddressCity').value);
-    this.organisationForm.get('postalAddressPostalCode').setValue(this.organisationForm.get('physicalAddressPostalCode').value);
-    this.organisationForm.get('postalAddressProvinceId').setValue(this.organisationForm.get('physicalAddressProvinceId').value);
-    this.organisationForm.get('postalAddressCountryId').setValue(this.organisationForm.get('physicalAddressCountryId').value);*/
   }
 
   logoChanged(event: logoModel) {

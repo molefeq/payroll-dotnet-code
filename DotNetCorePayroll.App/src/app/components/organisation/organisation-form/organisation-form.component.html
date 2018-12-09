@@ -37,45 +37,46 @@
               <mat-error [appValidationMessage]="organisationForm.get('description')" [messages]="validationMessages.description"></mat-error>
             </mat-form-field>
           </div>
-          <div class="form-address">
-            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddressLine1'))" class="full-width-form-field">
-              <input type="hidden" formControlName="physicalAddressId">
-              <input matInput type="text" placeholder="Address" formControlName="physicalAddressLine1">
-              <mat-error [appValidationMessage]="organisationForm.get('physicalAddressLine1')" [messages]="validationMessages.physicalAddressLine1"></mat-error>
+          <div class="form-address" formGroupName="physicalAddress">
+            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddress.line1'))" class="full-width-form-field">
+              <input type="hidden" formControlName="id">
+              <input matInput type="text" placeholder="Address" formControlName="line1">
+              <mat-error [appValidationMessage]="organisationForm.get('physicalAddress.line1')" [messages]="validationMessages.physicalAddress.line1"></mat-error>
             </mat-form-field>
-            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddressLine2'))" class="full-width-form-field">
-              <input matInput type="text" placeholder="Address 2" formControlName="physicalAddressLine2">
-              <mat-error [appValidationMessage]="organisationForm.get('physicalAddressLine2')" [messages]="validationMessages.physicalAddressLine2"></mat-error>
+            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddress.line2'))" class="full-width-form-field">
+              <input matInput type="text" placeholder="Address 2" formControlName="line2">
+              <mat-error [appValidationMessage]="organisationForm.get('physicalAddress.line2')" [messages]="validationMessages.physicalAddress.line2"></mat-error>
             </mat-form-field>
-            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddressSuburb'))">
-              <input matInput type="text" placeholder="Suburb" formControlName="physicalAddressSuburb">
-              <mat-error [appValidationMessage]="organisationForm.get('physicalAddressSuburb')" [messages]="validationMessages.physicalAddressSuburb"></mat-error>
+            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddress.suburb'))">
+              <input matInput type="text" placeholder="Suburb" formControlName="suburb">
+              <mat-error [appValidationMessage]="organisationForm.get('physicalAddress.suburb')" [messages]="validationMessages.physicalAddress.suburb"></mat-error>
             </mat-form-field>
-            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddressCity'))">
-              <input matInput type="text" placeholder="City" formControlName="physicalAddressCity">
-              <mat-error [appValidationMessage]="organisationForm.get('physicalAddressCity')" [messages]="validationMessages.physicalAddressCity"></mat-error>
+            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddress.city'))">
+              <input matInput type="text" placeholder="City" formControlName="city">
+              <mat-error [appValidationMessage]="organisationForm.get('physicalAddress.city')" [messages]="validationMessages.physicalAddress.city"></mat-error>
             </mat-form-field>
-            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddressPostalCode'))">
-              <input matInput type="text" placeholder="Postal Code" formControlName="physicalAddressPostalCode">
-              <mat-error [appValidationMessage]="organisationForm.get('physicalAddressPostalCode')" [messages]="validationMessages.physicalAddressPostalCode"></mat-error>
+            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddress.postalCode'))">
+              <input matInput type="text" placeholder="Postal Code" formControlName="postalCode">
+              <mat-error [appValidationMessage]="organisationForm.get('physicalAddress.postalCode')" [messages]="validationMessages.physicalAddress.postalCode"></mat-error>
             </mat-form-field>
-            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddressProvinceId'))">
-              <mat-select placeholder="Province" formControlName="physicalAddressProvinceId">
+            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddress.provinceId'))">
+              <mat-select placeholder="Province" formControlName="provinceId">
                 <mat-option></mat-option>
                 <mat-option *ngFor="let province of provinces" [value]="province.id">
                   {{province.name}}
                 </mat-option>
               </mat-select>
-              <mat-error [appValidationMessage]="organisationForm.get('physicalAddressProvinceId')" [messages]="validationMessages.physicalAddressProvinceId"></mat-error>
+              <mat-error [appValidationMessage]="organisationForm.get('physicalAddress.provinceId')" [messages]="validationMessages.physicalAddress.provinceId"></mat-error>
             </mat-form-field>
-            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddressCountryId'))" class="full-width-form-field">
-              <mat-select placeholder="Country" formControlName="physicalAddressCountryId">
+            <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('physicalAddress.countryId'))"
+              class="full-width-form-field">
+              <mat-select placeholder="Country" formControlName="countryId">
                 <mat-option></mat-option>
                 <mat-option *ngFor="let country of countries" [value]="country.id">
                   {{country.name}}
                 </mat-option>
               </mat-select>
-              <mat-error [appValidationMessage]="organisationForm.get('physicalAddressCountryId')" [messages]="validationMessages.physicalAddressCountryId"></mat-error>
+              <mat-error [appValidationMessage]="organisationForm.get('physicalAddress.countryId')" [messages]="validationMessages.physicalAddress.countryId"></mat-error>
             </mat-form-field>
           </div>
 
@@ -83,45 +84,46 @@
             <div class="post-same-phy-address">
               <mat-checkbox (change)="isPostalSameAsPhysicalAddress($event)">Postal address same as physical address</mat-checkbox>
             </div>
-            <div [hidden]="postSameAsPhyAddress" class="address-container">
-              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddressLine1'))" class="full-width-form-field">
-                <input type="hidden" formControlName="postalAddressId">
-                <input matInput type="text" placeholder="Postal Address" formControlName="postalAddressLine1">
-                <mat-error [appValidationMessage]="organisationForm.get('postalAddressLine1')" [messages]="validationMessages.postalAddressLine1"></mat-error>
+            <div [hidden]="postSameAsPhyAddress" class="address-container" formGroupName="postalAddress">
+              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddress.line1'))" class="full-width-form-field">
+                <input type="hidden" formControlName="id">
+                <input matInput type="text" placeholder="Postal Address" formControlName="line1">
+                <mat-error [appValidationMessage]="organisationForm.get('postalAddress.line1')" [messages]="validationMessages.postalAddress.line1"></mat-error>
               </mat-form-field>
-              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddressLine2'))" class="full-width-form-field">
-                <input matInput type="text" placeholder="Address 2" formControlName="postalAddressLine2">
-                <mat-error [appValidationMessage]="organisationForm.get('postalAddressLine2')" [messages]="validationMessages.postalAddressLine2"></mat-error>
+              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddress.line2'))" class="full-width-form-field">
+                <input matInput type="text" placeholder="Address 2" formControlName="line2">
+                <mat-error [appValidationMessage]="organisationForm.get('postalAddress.line2')" [messages]="validationMessages.postalAddress.line2"></mat-error>
               </mat-form-field>
-              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddressSuburb'))">
-                <input matInput type="text" placeholder="Suburb" formControlName="postalAddressSuburb">
-                <mat-error [appValidationMessage]="organisationForm.get('postalAddressSuburb')" [messages]="validationMessages.postalAddressSuburb"></mat-error>
+              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddress.suburb'))">
+                <input matInput type="text" placeholder="Suburb" formControlName="suburb">
+                <mat-error [appValidationMessage]="organisationForm.get('postalAddress.suburb')" [messages]="validationMessages.postalAddress.suburb"></mat-error>
               </mat-form-field>
-              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddressCity'))">
-                <input matInput type="text" placeholder="City" formControlName="postalAddressCity">
-                <mat-error [appValidationMessage]="organisationForm.get('postalAddressCity')" [messages]="validationMessages.postalAddressCity"></mat-error>
+              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddress.city'))">
+                <input matInput type="text" placeholder="City" formControlName="city">
+                <mat-error [appValidationMessage]="organisationForm.get('postalAddress.city')" [messages]="validationMessages.postalAddress.city"></mat-error>
               </mat-form-field>
-              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddressPostalCode'))">
-                <input matInput type="text" placeholder="Postal Code" formControlName="postalAddressPostalCode">
-                <mat-error [appValidationMessage]="organisationForm.get('postalAddressPostalCode')" [messages]="validationMessages.postalAddressPostalCode"></mat-error>
+              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddress.postalCode'))">
+                <input matInput type="text" placeholder="Postal Code" formControlName="postalCode">
+                <mat-error [appValidationMessage]="organisationForm.get('postalAddress.postalCode')" [messages]="validationMessages.postalAddress.postalCode"></mat-error>
               </mat-form-field>
-              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddressProvinceId'))">
-                <mat-select placeholder="Province" formControlName="postalAddressProvinceId">
+              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddress.rovinceId'))">
+                <mat-select placeholder="Province" formControlName="provinceId">
                   <mat-option></mat-option>
                   <mat-option *ngFor="let province of provinces" [value]="province.id">
                     {{province.name}}
                   </mat-option>
                 </mat-select>
-                <mat-error [appValidationMessage]="organisationForm.get('postalAddressProvinceId')" [messages]="validationMessages.postalAddressProvinceId"></mat-error>
+                <mat-error [appValidationMessage]="organisationForm.get('postalAddress.provinceId')" [messages]="validationMessages.postalAddress.provinceId"></mat-error>
               </mat-form-field>
-              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddressCountryId'))" class="full-width-form-field">
-                <mat-select placeholder="Country" formControlName="postalAddressCountryId">
+              <mat-form-field [class.is-invalid]="isControlInvalid(organisationForm.get('postalAddress.countryId'))"
+                class="full-width-form-field">
+                <mat-select placeholder="Country" formControlName="countryId">
                   <mat-option></mat-option>
                   <mat-option *ngFor="let country of countries" [value]="country.id">
                     {{country.name}}
                   </mat-option>
                 </mat-select>
-                <mat-error [appValidationMessage]="organisationForm.get('postalAddressCountryId')" [messages]="validationMessages.postalAddressCountryId"></mat-error>
+                <mat-error [appValidationMessage]="organisationForm.get('postalAddress.countryId')" [messages]="validationMessages.postalAddress.countryId"></mat-error>
               </mat-form-field>
             </div>
           </div>

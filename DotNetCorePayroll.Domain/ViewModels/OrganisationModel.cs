@@ -5,11 +5,13 @@ namespace DotNetCorePayroll.Data.ViewModels
 {
     public class OrganisationModel
     {
+
+
         public long? Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public AddressModel PhysicalAddress { get; set; }
-        public AddressModel PostalAddress { get; set; }
+        public AddressModel PhysicalAddress { get; set; } = new AddressModel();
+        public AddressModel PostalAddress { get; set; } = new AddressModel();
         public string FaxNumber { get; set; }
         public string EmailAddress { get; set; }
         public string ContactNumber { get; set; }

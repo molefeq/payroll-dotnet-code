@@ -1,4 +1,4 @@
-import { Validators } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { serverValidation } from '../../../shared/validators/server-side-validator';
 
 export class OrganisationConstants {
@@ -11,67 +11,72 @@ export class OrganisationConstants {
         description: {
             serverValidation: ''
         },
-        physicalAddressLine1: {
-            required: 'Address is required',
-            maxlength: 'Address cannot be more than 200 characters',
-            serverValidation: ''
+        physicalAddress:
+        {
+            line1: {
+                required: 'Address is required',
+                maxlength: 'Address cannot be more than 200 characters',
+                serverValidation: ''
+            },
+            line2: {
+                serverValidation: ''
+            },
+            suburb: {
+                required: 'Suburb is required',
+                maxlength: 'Suburb cannot be more than 200 characters',
+                serverValidation: ''
+            },
+            postalCode: {
+                required: 'Postal Code is required',
+                maxlength: 'Postal Code cannot be more than 10 characters',
+                serverValidation: ''
+            },
+            city: {
+                required: 'City is required',
+                maxlength: 'City cannot be more than 200 characters',
+                serverValidation: ''
+            },
+            provinceId: {
+                required: 'Province is required',
+                serverValidation: ''
+            },
+            countryId: {
+                required: 'Country is required',
+                serverValidation: ''
+            },
         },
-        physicalAddressLine2: {
-            serverValidation: ''
-        },
-        physicalAddressSuburb: {
-            required: 'Suburb is required',
-            maxlength: 'Suburb cannot be more than 200 characters',
-            serverValidation: ''
-        },
-        physicalAddressPostalCode: {
-            required: 'Postal Code is required',
-            maxlength: 'Postal Code cannot be more than 10 characters',
-            serverValidation: ''
-        },
-        physicalAddressCity: {
-            required: 'City is required',
-            maxlength: 'City cannot be more than 200 characters',
-            serverValidation: ''
-        },
-        physicalAddressProvinceId: {
-            required: 'Province is required',
-            serverValidation: ''
-        },
-        physicalAddressCountryId: {
-            required: 'Country is required',
-            serverValidation: ''
-        },
-        postalAddressLine1: {
-            required: 'Postal Address is required',
-            maxlength: 'Postal Address cannot be more than 200 characters',
-            serverValidation: ''
-        },
-        postalAddressLine2: {
-            serverValidation: ''
-        },
-        postalAddressSuburb: {
-            required: 'Suburb is required',
-            maxlength: 'Suburb cannot be more than 200 characters',
-            serverValidation: ''
-        },
-        postalAddressPostalCode: {
-            required: 'Postal Code is required',
-            maxlength: 'Postal Code cannot be more than 10 characters',
-            serverValidation: ''
-        },
-        postalAddressCity: {
-            required: 'City is required',
-            maxlength: 'City cannot be more than 200 characters',
-            serverValidation: ''
-        },
-        postalAddressProvinceId: {
-            required: 'Province is required',
-            serverValidation: ''
-        },
-        postalAddressCountryId: {
-            required: 'Country is required',
-            serverValidation: ''
+        postalAddress: {
+            line1: {
+                required: 'Postal Address is required',
+                maxlength: 'Postal Address cannot be more than 200 characters',
+                serverValidation: ''
+            },
+            line2: {
+                serverValidation: ''
+            },
+            suburb: {
+                required: 'Suburb is required',
+                maxlength: 'Suburb cannot be more than 200 characters',
+                serverValidation: ''
+            },
+            postalCode: {
+                required: 'Postal Code is required',
+                maxlength: 'Postal Code cannot be more than 10 characters',
+                serverValidation: ''
+            },
+            city: {
+                required: 'City is required',
+                maxlength: 'City cannot be more than 200 characters',
+                serverValidation: ''
+            },
+            provinceId: {
+                required: 'Province is required',
+                serverValidation: ''
+            },
+            countryId: {
+                required: 'Country is required',
+                serverValidation: ''
+            },
         },
         faxNumber: {
             serverValidation: ''
@@ -89,14 +94,14 @@ export class OrganisationConstants {
     };
 
     static readonly ADDRESS_FORM_FIELDS = {
-        Id: ['', [serverValidation()]],
-        Line1: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-        Line2: ['', [serverValidation()]],
-        Suburb: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-        City: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
-        PostalCode: ['', [Validators.required, Validators.maxLength(10), serverValidation()]],
-        ProvinceId: ['', [Validators.required, serverValidation()]],
-        CountryId: ['', [Validators.required, serverValidation()]],
+        id: ['', [serverValidation()]],
+        line1: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+        line2: ['', [serverValidation()]],
+        suburb: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+        city: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+        postalCode: ['', [Validators.required, Validators.maxLength(10), serverValidation()]],
+        provinceId: ['', [Validators.required, serverValidation()]],
+        countryId: ['', [Validators.required, serverValidation()]],
     };
 
     static readonly FORM_FIELDS = {
@@ -109,4 +114,40 @@ export class OrganisationConstants {
     };
 
     static readonly UPLOAD_IMAGE_URL: String = 'http://localhost:58308/api/Organisation/SaveImage';
+
+    static getForm(fb: FormBuilder) {
+
+        const form: FormGroup = fb.group({
+            id: [null, []],
+            name: ['', [Validators.required, Validators.maxLength(20), serverValidation()]],
+            description: ['', [serverValidation()]],
+            faxNumber: ['', [serverValidation()]],
+            emailAddress: ['', [Validators.required, Validators.maxLength(500), serverValidation()]],
+            contactNumber: ['', [Validators.required, Validators.maxLength(20), serverValidation()]],
+            postalAddress:
+                fb.group({
+                    id: ['', [serverValidation()]],
+                    line1: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+                    line2: ['', [serverValidation()]],
+                    suburb: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+                    city: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+                    postalCode: ['', [Validators.required, Validators.maxLength(10), serverValidation()]],
+                    provinceId: ['', [Validators.required, serverValidation()]],
+                    countryId: ['', [Validators.required, serverValidation()]],
+                }),
+            physicalAddress:
+                fb.group({
+                    id: ['', [serverValidation()]],
+                    line1: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+                    line2: ['', [serverValidation()]],
+                    suburb: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+                    city: ['', [Validators.required, Validators.maxLength(200), serverValidation()]],
+                    postalCode: ['', [Validators.required, Validators.maxLength(10), serverValidation()]],
+                    provinceId: ['', [Validators.required, serverValidation()]],
+                    countryId: ['', [Validators.required, serverValidation()]],
+                })
+        });
+
+        return form;
+    }
 }
