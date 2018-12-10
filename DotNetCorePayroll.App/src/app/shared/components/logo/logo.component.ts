@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { logoModel } from '../../models/logoModel';
 import { ServerValidationService } from '../../services/server-validation.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-logo',
@@ -15,12 +16,14 @@ export class LogoComponent implements OnInit {
 
   public fileUploader: FileUploader;
 
-  constructor(private serverValidationService: ServerValidationService) { }
+  constructor(private serverValidationService: ServerValidationService,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.fileUploader = new FileUploader({
       url: this.apiUrl,
       autoUpload: true,
+      authToken: `Bearer ${this.authenticationService.user.token}`
     });
 
     this.fileUploader.onSuccessItem = (item, response, status, headers) => {
@@ -28,7 +31,7 @@ export class LogoComponent implements OnInit {
       const model: logoModel = {
         logoUrl: jResponse['imageUrl'],
         logoFilename: jResponse['filename']
-      }
+      };
 
       this.logoUrl = model.logoUrl;
       this.logoChanged.emit(model);

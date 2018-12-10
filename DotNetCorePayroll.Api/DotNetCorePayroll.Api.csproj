@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="logos\organisation\preview\" />
+    <Folder Include="logos\organisation\thumbnail\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

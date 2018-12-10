@@ -144,7 +144,7 @@ namespace DotNetCorePayroll.DataAccess.Repositories
         {
             if (!string.IsNullOrEmpty(includeProperties))
             {
-                Include(query, includeProperties);
+                query = Include(query, includeProperties);
             }
 
             if (typeof(TEntity).GetProperty(pageData.SortColumn) != null)

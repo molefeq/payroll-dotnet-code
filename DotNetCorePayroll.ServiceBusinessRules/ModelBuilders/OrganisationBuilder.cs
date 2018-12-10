@@ -41,7 +41,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
             organisationModel.Description = organisation.Description;
             organisationModel.FaxNumber = organisation.FaxNumber;
             organisationModel.ContactNumber = organisation.ContactNumber;
-            organisationModel.EmailAddress = organisationModel.EmailAddress;
+            organisationModel.EmailAddress = organisation.EmailAddress;
             organisationModel.LogoFileName = organisation.LogoFilename;
             organisationModel.PhysicalAddress = addressBuilder.BuildToModel(organisation.PhysicalAddress);
             organisationModel.PostalAddress = addressBuilder.BuildToModel(organisation.PostalAddress);

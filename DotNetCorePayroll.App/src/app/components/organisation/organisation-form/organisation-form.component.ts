@@ -86,13 +86,14 @@ export class OrganisationFormComponent implements OnInit {
     const organisationModel: OrganisationModel = Object.assign(Object.create(null), this.organisationForm.getRawValue());
 
     organisationModel.logoFileName = this.logo.logoFilename;
+    organisationModel.logoFileNamePath = this.logo.logoUrl;
 
     this.organisationDetailsService.saveOrganisation(organisationModel).pipe(
       finalize(() => {
         this.isInProgress = false;
       })
     ).subscribe((data: OrganisationModel) => {
-
+      this.router.navigate(['/organisations']);
     });
   }
 

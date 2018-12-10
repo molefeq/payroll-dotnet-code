@@ -95,7 +95,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Organisation
 
         public void ResizeLogos(OrganisationModel organisationModel, IConfiguration configuration, string rootPath, string currentUrl)
         {
-            string tempPhysicalTempDirectory = Path.Combine(rootPath, configuration.OrganisationNormalTempDirectory());
+            string tempPhysicalTempDirectory = rootPath + configuration.OrganisationNormalTempDirectory();
             string logoFileName = FileHandler.GetPhysicalFileName(tempPhysicalTempDirectory, organisationModel.LogoFileName);
 
             FileHandler.ResizeImage(logoFileName, organisationModel.LogoFileName,
@@ -104,7 +104,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Organisation
 
                     Width = configuration.OrganisationNormalImageWidth(),
                     Height = configuration.OrganisationNormalImageHeight(),
-                    PhysicalDirectory = Path.Combine(rootPath, configuration.OrganisationNormalDirectory()),
+                    PhysicalDirectory = rootPath + configuration.OrganisationNormalDirectory(),
                     RelativeDirectory = new Uri(currentUrl + configuration.OrganisationNormalDirectory()).AbsoluteUri
                 });
 
@@ -113,7 +113,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Organisation
                 {
                     Width = configuration.OrganisationThumbnailImageWidth(),
                     Height = configuration.OrganisationThumbnailImageHeight(),
-                    PhysicalDirectory = Path.Combine(rootPath, configuration.OrganisationThumbnailDirectory()),
+                    PhysicalDirectory = rootPath + configuration.OrganisationThumbnailDirectory(),
                     RelativeDirectory = new Uri(currentUrl + configuration.OrganisationThumbnailDirectory()).AbsoluteUri
                 });
 
@@ -122,7 +122,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Organisation
                 {
                     Width = configuration.OrganisationPreviewImageWidth(),
                     Height = configuration.OrganisationPreviewImageHeight(),
-                    PhysicalDirectory = Path.Combine(rootPath, configuration.OrganisationPreviewDirectory()),
+                    PhysicalDirectory = rootPath + configuration.OrganisationPreviewDirectory(),
                     RelativeDirectory = new Uri(currentUrl + configuration.OrganisationPreviewDirectory()).AbsoluteUri
                 });
         }
