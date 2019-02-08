@@ -3,7 +3,6 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
 import { Observable } from 'rxjs/Observable';
 import { AuthenticationService } from '../services/authentication.service';
 import 'rxjs/add/operator/do';
-import { HttpResponse } from 'selenium-webdriver/http';
 import { Router } from '@angular/router';
 import { ServerValidationService } from '../services/server-validation.service';
 import { mockBackEndService } from '../mock-backend/mock-back-end-service';

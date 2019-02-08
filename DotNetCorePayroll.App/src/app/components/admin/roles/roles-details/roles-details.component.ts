@@ -6,6 +6,7 @@ import { RolesFormComponent } from '../roles-form/roles-form.component';
 import { AdminRoleService } from '../admin-role.service';
 import { Subscription, Subject } from 'rxjs';
 import { dialogCloseResponse } from '../../../../shared/models/dialogCloseResponse';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-roles-details',
@@ -35,7 +36,10 @@ export class RolesDetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.adminRoleService.getRoles(this.paginator, this.sort, this.searchEvent)
       .subscribe(data => this.dataSource = data));
 
-    this.subscriptions.add(this.searchText$.debounceTime(400).distinctUntilChanged().subscribe((searchText: string) => {
+    this.subscriptions.add(this.searchText$.pipe(
+      debounceTime(400),
+      distinctUntilChanged()
+    ).subscribe((searchText: string) => {
       this.searchText = searchText;
       this.paginator.pageIndex = 0;
       this.searchEvent.emit(searchText);

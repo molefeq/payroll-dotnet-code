@@ -6,6 +6,7 @@ import { AccountModel } from '../../../../shared/generated';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { dialogCloseResponse } from '../../../../shared/models/dialogCloseResponse';
 import { Subscription, Subject } from 'rxjs';
+import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-details',
@@ -33,7 +34,10 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
-    this.subscriptions.add(this.searchText$.debounceTime(400).distinctUntilChanged().subscribe((searchText: string) => {
+    this.subscriptions.add(this.searchText$.pipe(
+      debounceTime(400),
+      distinctUntilChanged()
+    ).subscribe((searchText: string) => {
       this.searchText = searchText;
       this.paginator.pageIndex = 0;
       this.searchEvent.emit(searchText);
