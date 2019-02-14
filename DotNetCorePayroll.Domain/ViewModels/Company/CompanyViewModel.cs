@@ -1,13 +1,12 @@
-﻿using SqsLibraries.Common.Enums;
-
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace DotNetCorePayroll.Data.ViewModels.Company
 {
-    public class CompanyModel
+    class CompanyViewModel
     {
-        public long? Id { get; set; }
-        public Guid? Guid { get; set; }
+        public Guid? Id { get; set; }
         public long OrganisationId { get; set; }
         public string OrganisationName { get; set; }
         public string Name { get; set; }
@@ -26,9 +25,5 @@ namespace DotNetCorePayroll.Data.ViewModels.Company
         public string ContactNumber { get; set; }
         public string LogoFileName { get; set; }
         public string LogoFileNamePath { get; set; }
-        public CompanyContactDetailModel ContactDetails { get; set; }
-        public CompanyPayrollSettingModel PayrollSettings { get; set; }
-        public CompanyBankDetailModel BankingDetails { get; set; }
-        public CrudStatus CrudStatus { get; set; }
     }
 }

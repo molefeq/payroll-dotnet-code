@@ -1,5 +1,6 @@
 ﻿using DotNetCorePayroll.ServiceBusinessRules.Services;
 using DotNetCorePayroll.ServiceBusinessRules.Services.Account;
+using DotNetCorePayroll.ServiceBusinessRules.Services.Company;
 using DotNetCorePayroll.ServiceBusinessRules.Services.Organisation;
 using DotNetCorePayroll.ServiceBusinessRules.Services.ReferenceData;
 using DotNetCorePayroll.ServiceBusinessRules.Services.Role;
@@ -15,6 +16,7 @@ namespace DotNetCorePayroll.Api.IocContainers
         {
             services.AddScoped<IEmailHandler, SmtpMailGunEmailHandler>();
             services.AddScoped<IOgranisationService, OgranisationService>();
+            services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IReferenceDataService, ReferenceDataService>();

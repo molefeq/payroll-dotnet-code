@@ -47,6 +47,7 @@ export class CompanyFormComponent implements OnInit {
   heading: String = 'Create Company';
   organisation: OrganisationModel;
   validationMessages = CompanyConstants.VALIDATION_MESSAGES;
+  isCompanyNew = true;
 
   constructor(private fb: FormBuilder,
     private organisationDetailsService: OrganisationDetailsService,
@@ -79,26 +80,6 @@ export class CompanyFormComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       sarsUifNumber: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
       paysdlInd: ['', [serverValidation()]],
-      physicalAddressId: ['', [serverValidation()]],
-      // tslint:disable-next-line:max-line-length
-      physicalAddressLine1: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
-      physicalAddressLine2: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
-      // tslint:disable-next-line:max-line-length
-      physicalAddressSuburb: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
-      // tslint:disable-next-line:max-line-length
-      physicalAddressCity: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
-      // tslint:disable-next-line:max-line-length
-      physicalAddressPostalCode: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
-      physicalAddressProvinceId: ['', [Validators.required, serverValidation()]],
-      physicalAddressCountryId: ['', [Validators.required, serverValidation()]],
-      postalAddressId: ['', [serverValidation()]],
-      postalAddressLine1: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
-      postalAddressLine2: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
-      postalAddressSuburb: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
-      postalAddressCity: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
-      postalAddressPostalCode: ['', [Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), Validators.maxLength(10), serverValidation()]],
-      postalAddressProvinceId: ['', [serverValidation()]],
-      postalAddressCountryId: ['', [serverValidation()]],
       faxNumber: ['', [Validators.pattern(Constants.TELEPHONE_REG_EXP), Validators.maxLength(20), serverValidation()]],
       emailAddress: ['', [Validators.required, Validators.email, Validators.maxLength(500), serverValidation()]],
       // tslint:disable-next-line:max-line-length
@@ -121,6 +102,7 @@ export class CompanyFormComponent implements OnInit {
       return;
     }
 
+    this.isCompanyNew = false;
     this.heading = 'Edit Company';
     this.logo = {
       logoUrl: this.companyDetailsService.Company.logoFileNamePath,

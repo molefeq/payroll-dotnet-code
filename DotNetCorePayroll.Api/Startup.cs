@@ -69,10 +69,11 @@ namespace DotNetCorePayroll.Api
 
             services.AddCors(options =>
             {
-                options.AddPolicy("all_origins", policy => policy.AllowAnyOrigin()
+                options.AddPolicy("all_origins", policy => policy.WithOrigins("http://localhost:4300")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .AllowCredentials());
+                        .AllowCredentials()
+                        );
             });
 
             services.AddDbContext<PayrollContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Payroll_DB_Local")), ServiceLifetime.Transient);

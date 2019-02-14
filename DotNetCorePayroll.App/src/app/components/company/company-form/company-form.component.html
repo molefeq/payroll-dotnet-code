@@ -1,24 +1,4 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav class="side-menu" mode="side" [(opened)]="opened">
-    <mat-nav-list>
-      <mat-list-item>
-        <a matLine>Company Details</a>
-      </mat-list-item>
-      <mat-list-item>
-        <a matLine>Address</a>
-      </mat-list-item>
-      <mat-list-item>
-        <a matLine>Banking Details</a>
-      </mat-list-item>
-    </mat-nav-list>
-
-    <mat-selection-list>
-      <mat-list-option>
-        Settings
-      </mat-list-option>
-    </mat-selection-list>
-  </mat-sidenav>
-
   <mat-sidenav-content>
 
     <div class="page-heading">
@@ -132,13 +112,13 @@
               </mat-card-actions>
             </mat-card>
           </mat-tab>
-          <mat-tab label="Address">
+          <mat-tab label="Address" [disabled]="isCompanyNew">
             <app-company-address-form></app-company-address-form>
           </mat-tab>
-          <mat-tab label="Settings">
+          <mat-tab label="Settings" [disabled]="isCompanyNew">
             <app-company-payroll-settings-form></app-company-payroll-settings-form>
           </mat-tab>
-          <mat-tab label="Banking Details">
+          <mat-tab label="Banking Details" [disabled]="isCompanyNew">
             <app-company-banking-details></app-company-banking-details>
           </mat-tab>
         </mat-tab-group>

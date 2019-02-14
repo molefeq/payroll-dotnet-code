@@ -12,6 +12,7 @@ namespace DotNetCorePayroll.DataAccess
         #region Private Repositories Fields
 
         private OrganisationRepository organisation;
+        private CompanyRepository company;
         private AccountRepository account;
         private RoleRepository role;
         private GenericRepository<Country> country;
@@ -46,6 +47,20 @@ namespace DotNetCorePayroll.DataAccess
                 }
 
                 return organisation;
+            }
+        }
+
+
+        public CompanyRepository Company
+        {
+            get
+            {
+                if (company == null)
+                {
+                    company = new CompanyRepository(context);
+                }
+
+                return company;
             }
         }
 

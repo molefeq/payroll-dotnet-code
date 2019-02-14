@@ -6,6 +6,7 @@ import { RoleModel } from '../../../../shared/generated';
 import { finalize } from 'rxjs/operators';
 import { AdminRoleService } from '../admin-role.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormFieldValidator } from '../../../../shared/utils/form-fields-validator';
 
 @Component({
   selector: 'app-roles-form',
@@ -69,6 +70,7 @@ export class RolesFormComponent implements OnInit {
 
     if (this.roleForm.invalid) {
       this.isSubmited = false;
+      FormFieldValidator.validateAllFormFields(this.roleForm);
       return;
     }
 

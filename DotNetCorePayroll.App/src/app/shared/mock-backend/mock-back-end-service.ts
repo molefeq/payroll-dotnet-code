@@ -41,9 +41,9 @@ export function mockBackEndService(url: string, method: string, request: HttpReq
     // if (url.indexOf('/api/ReferenceData/') >= 0) {
     //     return mockReferenceDataBackEndService(url, method, request);
     // }
-    if (url.indexOf('/api/Company/') >= 0) {
-        return mockCompaniesBackEndService(url, method, request);
-    }
+    // if (url.indexOf('/api/Company/') >= 0) {
+    //     return mockCompaniesBackEndService(url, method, request);
+    // }
     if (url.indexOf('/api/Employee/') >= 0) {
         return mockEmployeesBackEndService(url, method, request);
     }

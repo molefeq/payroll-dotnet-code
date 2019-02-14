@@ -5,6 +5,7 @@ using DotNetCorePayroll.Common.Utilities;
 using DotNetCorePayroll.Data.SearchFilters;
 using DotNetCorePayroll.Data.ViewModels;
 using DotNetCorePayroll.Data.ViewModels.Company;
+using DotNetCorePayroll.ServiceBusinessRules.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,11 +20,14 @@ namespace DotNetCorePayroll.Api.Controllers
     [Route("api/[controller]/[action]")]
     public class CompanyController : Controller
     {
+        private ICompanyService companyService;
+
         private IConfiguration configuration;
         private IHostingEnvironment environment;
 
-        public CompanyController(IConfiguration configuration, IHostingEnvironment environment)
+        public CompanyController(ICompanyService companyService, IConfiguration configuration, IHostingEnvironment environment)
         {
+            this.companyService = companyService;
             this.configuration = configuration;
             this.environment = environment;
         }
@@ -32,9 +36,9 @@ namespace DotNetCorePayroll.Api.Controllers
         [ProducesResponseType(typeof(Result<CompanyModel>), 200)]
         public IActionResult GetCompanies([FromBody]CompanySearchFilter searchFilter)
         {
-            //Result<OrganisationModel> result = ogranisationService.Get(searchFilter.SearchText, searchFilter.PageData);
+            Result<CompanyModel> result = companyService.Get(searchFilter.OrganisationId.Value, searchFilter.SearchText, searchFilter.PageData);
 
-            //ogranisationService.MapRelativeLogoPaths(result.Items, configuration, HttpContext.Request.CurrentUrl());
+            companyService.MapRelativeLogoPaths(result.Items, configuration, HttpContext.Request.CurrentUrl());
 
             return Ok(new Result<CompanyModel>());
         }
@@ -48,11 +52,11 @@ namespace DotNetCorePayroll.Api.Controllers
                 return new ValidationActionResult(ModelState);
             }
 
-            // OrganisationModel model = ogranisationService.Add(organisationModel);
+            CompanyModel model = companyService.Add(companyModel);
 
-            //ImageFixing(model, organisationModel.LogoFileNamePath);
+            ImageFixing(model, companyModel.LogoFileNamePath);
 
-            return Ok(new CompanyModel());
+            return Ok(model);
         }
 
         [HttpPost]
@@ -64,32 +68,32 @@ namespace DotNetCorePayroll.Api.Controllers
                 return new ValidationActionResult(ModelState);
             }
 
-            //OrganisationModel model = ogranisationService.Update(organisationModel);
+            CompanyModel model = companyService.Update(companyModel);
 
-            //ImageFixing(model, organisationModel.LogoFileNamePath);
+            ImageFixing(model, companyModel.LogoFileNamePath);
 
-            return Ok(new CompanyModel());
+            return Ok(model);
         }
 
         [HttpPost]
         public IActionResult DeleteCompany([FromBody]CompanyModel companyModel)
         {
-            //ogranisationService.Delete(organisationModel.Id.Value);
+            companyService.Delete(companyModel.Id.Value);
 
             return Ok();
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(CompanyModel), 200)]
-        public IActionResult FetchCompany(Guid companyId)
+        public IActionResult FetchCompany(long companyId)
         {
-            //CompanyModel organisationModel = ogranisationService.Find(organisationId);
+            CompanyModel model = companyService.Find(companyId);
 
-            //ogranisationService.MapRelativeLogoPath(organisationModel, configuration, HttpContext.Request.CurrentUrl());
+            companyService.MapRelativeLogoPath(model, configuration, HttpContext.Request.CurrentUrl());
 
             return Ok(new CompanyModel());
         }
-        
+
         [HttpPost]
         [ProducesResponseType(typeof(CompanyModel), 200)]
         public IActionResult SaveCompanyContactDetails([FromBody]CompanyContactDetailModel companyContactDetail)
@@ -152,7 +156,7 @@ namespace DotNetCorePayroll.Api.Controllers
         }
 
         #region Company Bank Details
-        
+
         [HttpPost]
         [ProducesResponseType(typeof(CompanyModel), 200)]
         public IActionResult SaveBankingDetails([FromBody]CompanyBankDetailModel model)

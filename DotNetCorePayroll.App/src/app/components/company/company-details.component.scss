@@ -1,11 +1,37 @@
-.page-heading{
-    .mat-typography{
-        h1{
-            text-transform: capitalize;
-        }
+.page-heading {
+  .mat-typography {
+    h1 {
+      text-transform: capitalize;
+      font: 400 32px/32px 'Raleway', sans-serif;
+    }
+  }
+
+  .breadcrumbs {
+    text-transform: capitalize;
+  }
+}
+
+
+.companies {
+
+  justify-content: center;
+
+  .items-card {
+    max-width: 200px;
+    font: 400 32px/32px 'Raleway', sans-serif;
+
+    .mat-card-header .mat-card-title {
+      font-size: 16px;
     }
 
-    .breadcrumbs{
-        text-transform: capitalize;
+    .mat-card-image {
+      margin: inherit;
+      width: 150px;
+      height: 150px;
     }
+
+    .mat-button {
+      font-size: 11px;
+    }
+  }
 }

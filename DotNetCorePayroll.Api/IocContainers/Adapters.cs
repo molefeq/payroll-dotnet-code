@@ -11,6 +11,7 @@ namespace DotNetCorePayroll.Api.IocContainers
             services.AddSingleton<AccountAdapter>();
             services.AddSingleton<RoleAdapter>();
             services.AddSingleton<AddressAdapter>();
+            services.AddSingleton<CompanyAdapter>();
         }
     }
 }
