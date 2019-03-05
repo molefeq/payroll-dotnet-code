@@ -12,7 +12,7 @@
 import { EmployeeModel } from './employeeModel';
 
 
-export interface ResultEmployeeModel {
+export interface ResultEmployeeModel { 
     totalItems?: number;
     items?: Array<EmployeeModel>;
 }

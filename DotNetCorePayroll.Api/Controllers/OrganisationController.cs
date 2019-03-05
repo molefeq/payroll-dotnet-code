@@ -96,6 +96,7 @@ namespace DotNetCorePayroll.Api.Controllers
         }
 
         [HttpPost]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult SaveImage(IFormFile file)
         {
             if (file == null || file.Length == 0)

@@ -11,8 +11,8 @@
  */
 
 
-export interface ResetPasswordModel {
+export interface ResetPasswordModel { 
     password: string;
     confirmPassword: string;
-    resetPasswordKey?: string;
+    resetPasswordKey: string;
 }

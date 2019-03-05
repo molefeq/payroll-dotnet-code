@@ -9,7 +9,7 @@ export class AuthenticationService {
   constructor(private accountService: AccountService) { }
 
   login(username: string, password: string): Observable<UserModel> {
-    return this.accountService.apiAccountLoginPost({ username: username, password: password }).pipe(
+    return this.accountService.login({ username: username, password: password }).pipe(
       tap((userModel: UserModel) => {
         this.user = userModel;
       })
@@ -21,7 +21,7 @@ export class AuthenticationService {
   }
 
   changePassword(model: ChangePasswordModel): Observable<UserModel> {
-    return this.accountService.apiAccountChangePasswordPost(model);
+    return this.accountService.changePassword(model);
   }
 
   set redirectUrl(value: string) {

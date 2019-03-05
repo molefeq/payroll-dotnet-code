@@ -25,7 +25,7 @@ export class OrganisationDetailsService {
         that._isBusy$.next(true);
         const searchText = typeof event === 'string' ? event : null;
 
-        return that.organisationService.apiOrganisationGetOrganisationsPost(
+        return that.organisationService.getOrganisations(
           {
             searchText: searchText,
             pageData: {
@@ -52,7 +52,7 @@ export class OrganisationDetailsService {
   }
 
   getOrganisationsReferenceData(): Observable<OrganisationModel[]> {
-    return this.organisationService.apiOrganisationGetOrganisationsPost(
+    return this.organisationService.getOrganisations(
       {
         searchText: '',
         pageData: {
@@ -80,7 +80,7 @@ export class OrganisationDetailsService {
           const pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
           const searchText = typeof event === 'string' ? event : null;
 
-          return this.organisationService.apiOrganisationGetOrganisationsPost(
+          return this.organisationService.getOrganisations(
             {
               searchText: searchText,
               pageData: {
@@ -113,10 +113,10 @@ export class OrganisationDetailsService {
 
   saveOrganisation(organisationModel: OrganisationModel): Observable<OrganisationModel> {
     if (!Boolean(organisationModel.id)) {
-      return this.organisationService.apiOrganisationAddOrganisationPost(organisationModel);
+      return this.organisationService.addOrganisation(organisationModel);
     }
 
-    return this.organisationService.apiOrganisationUpdateOrganisationPost(organisationModel);
+    return this.organisationService.updateOrganisation(organisationModel);
   }
 
   get isBusy$(): Observable<boolean> {

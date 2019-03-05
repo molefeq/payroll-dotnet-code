@@ -20,6 +20,10 @@ namespace DotNetCorePayroll.DataAccess
         public virtual DbSet<Organisation> Organisation { get; set; }
         public virtual DbSet<Province> Province { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<CompanyBankDetail> CompanyBankDetail { get; set; }
+        public virtual DbSet<CompanyPayrollSetting> CompanyPayrollSetting { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<EmployeeCompanyDetail> EmployeeCompanyDetail { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +34,10 @@ namespace DotNetCorePayroll.DataAccess
             OrganisationTableBuilder.Build(modelBuilder);
             ProvinceTableBuilder.Build(modelBuilder);
             RoleTableBuilder.Build(modelBuilder);
+            CompanyBankDetailTableBuilder.Build(modelBuilder);
+            CompanyPayrollSettingTableBuilder.Build(modelBuilder);
+            EmployeeTableBuilder.Build(modelBuilder);
+            EmployeeCompanyDetailTableBuilder.Build(modelBuilder);
         }
 
         public override void Dispose()

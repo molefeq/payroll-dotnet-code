@@ -12,7 +12,7 @@
 import { AccountModel } from './accountModel';
 
 
-export interface ResultAccountModel {
+export interface ResultAccountModel { 
     totalItems?: number;
     items?: Array<AccountModel>;
 }

@@ -45,8 +45,7 @@ namespace DotNetCorePayroll.DataAccess.TableBuilders
                 entity.Property(e => e.PayeReferenceNumber).HasColumnName("payereferencenumber");
 
                 entity.Property(e => e.PaysdlInd)
-                    .HasColumnName("paysdlind")
-                    .HasDefaultValueSql("0");
+                    .HasColumnName("paysdlind");
 
                 entity.Property(e => e.RegisteredName)
                     .IsRequired()

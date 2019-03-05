@@ -54,7 +54,7 @@ export class CompanyBankingDetailsComponent implements OnInit {
   }
 
   initialiseForm() {
-    if (!this.companyDetailsService.Company || !this.companyDetailsService.Company.contactDetails) {
+    if (!this.companyDetailsService.Company || !this.companyDetailsService.Company.address) {
       return;
     }
 
@@ -76,7 +76,7 @@ export class CompanyBankingDetailsComponent implements OnInit {
     this.isInProgress = true;
 
     // tslint:disable-next-line:max-line-length
-    const companyBankingDetailModel: CompanyBankDetailModel = Object.assign(Object.create(null), this.companyBankingDetailsForm.getRawValue());
+    /*const companyBankingDetailModel: CompanyBankDetailModel = Object.assign(Object.create(null), this.companyBankingDetailsForm.getRawValue());
 
     companyBankingDetailModel.companyId = this.companyDetailsService.Company.id;
 
@@ -87,7 +87,7 @@ export class CompanyBankingDetailsComponent implements OnInit {
     ).subscribe((data: CompanyModel) => {
       this.companyDetailsService.Company = data;
       this.initialiseForm();
-    });
+    });*/
   }
 
   cancel() {

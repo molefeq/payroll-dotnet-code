@@ -1,9 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DotNetCorePayroll.Data
 {
     public class Company
     {
+        public Company()
+        {
+            CompanyBankDetails = new HashSet<CompanyBankDetail>();
+            CompanyPayrollSettings = new HashSet<CompanyPayrollSetting>();
+            Employees = new HashSet<Employee>();
+        }
+
         public long Id { get; set; }
         public long OrganisationId { get; set; }
         public string Name { get; set; }
@@ -28,5 +36,8 @@ namespace DotNetCorePayroll.Data
         public Organisation Organisation { get; set; }
         public virtual Address PhysicalAddress { get; set; }
         public virtual Address PostalAddress { get; set; }
+        public virtual ICollection<CompanyBankDetail> CompanyBankDetails { get; set; }
+        public virtual ICollection<CompanyPayrollSetting> CompanyPayrollSettings { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

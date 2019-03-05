@@ -12,7 +12,7 @@
 import { CompanyModel } from './companyModel';
 
 
-export interface ResultCompanyModel {
+export interface ResultCompanyModel { 
     totalItems?: number;
     items?: Array<CompanyModel>;
 }

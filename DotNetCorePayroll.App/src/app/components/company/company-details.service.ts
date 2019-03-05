@@ -1,8 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import {
   CompanyService, CompanyModel, PageData,
-  CompanyContactDetailModel, CompanyPayrollSettingModel,
-  CompanyBankDetailModel
+  CompanyPayrollSettingModel,
+  CompanyBankDetailModel,
+  CompanyAddressModel
 } from '../../shared/generated';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatPaginator, MatSort } from '@angular/material';
@@ -28,7 +29,7 @@ export class CompanyDetailsService {
         that._isBusy$.next(true);
         const searchText = typeof event === 'string' ? event : null;
 
-        return that.companyService.apiCompanyGetCompaniesPost(
+        return that.companyService.getCompanies(
           {
             searchText: searchText,
             pageData: {
@@ -62,7 +63,7 @@ export class CompanyDetailsService {
           const pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
           const searchText = typeof event === 'string' ? event : null;
 
-          return this.companyService.apiCompanyGetCompaniesPost(
+          return this.companyService.getCompanies(
             {
               searchText: searchText,
               pageData: {
@@ -94,7 +95,7 @@ export class CompanyDetailsService {
   }
 
   getCompaniesReferenceData(organisationId): Observable<CompanyModel[]> {
-    return this.companyService.apiCompanyGetCompaniesPost(
+    return this.companyService.getCompanies(
       {
         searchText: '',
         organisationId: organisationId,
@@ -116,25 +117,25 @@ export class CompanyDetailsService {
 
   saveCompany(companyModel: CompanyModel): Observable<CompanyModel> {
     if (companyModel.id) {
-      return this.companyService.apiCompanyAddCompanyPost(companyModel);
+      return this.companyService.addCompany(companyModel);
     }
 
-    return this.companyService.apiCompanyUpdateCompanyPost(companyModel);
+    return this.companyService.updateCompany(companyModel);
   }
 
-  saveContactDetails(companyContactDetailModel: CompanyContactDetailModel): Observable<CompanyModel> {
-    return this.companyService.apiCompanySaveCompanyContactDetailsPost(companyContactDetailModel);
+  saveContactDetails(CompanyAddressModel: CompanyAddressModel): Observable<CompanyModel> {
+    return this.companyService.saveCompanyAddress(CompanyAddressModel);
   }
 
-  savePayrollSettings(companyPayrollSettingModel: CompanyPayrollSettingModel): Observable<CompanyModel> {
-    return this.companyService.apiCompanySaveCompanyPayrollSettingsPost(companyPayrollSettingModel);
+  /* savePayrollSettings(companyPayrollSettingModel: CompanyPayrollSettingModel): Observable<CompanyModel> {
+    return this.companyService.saveCompanyAddress(companyPayrollSettingModel);
   }
 
   saveBankingDetails(companyBankDetailModel: CompanyBankDetailModel): Observable<CompanyModel> {
     return this.companyService.apiCompanySaveBankingDetailsPost(companyBankDetailModel);
   }
 
-  /*saveImage(organisationModel: OrganisationModel): Observable<OrganisationModel> {
+ saveImage(organisationModel: OrganisationModel): Observable<OrganisationModel> {
     if (organisationModel.id) {
       return this.organisationService.apiOrganisationAddOrganisationPost(organisationModel);
     }
@@ -173,16 +174,22 @@ export class CompanyDetailsService {
   }
 
   setAddress(company: CompanyModel) {
-    company['physicalAddress'] = [company.contactDetails.physicalAddressLine1,
-    company.contactDetails.physicalAddressLine2,
-    company.contactDetails.physicalAddressSuburb,
-    company.contactDetails.physicalAddressCity,
-    company.contactDetails.physicalAddressPostalCode].filter(Boolean).join(', ');
+    if (Boolean(company.address) && Boolean(company.address.physicalAddress)) {
+      company['physicalAddressText'] = [
+        company.address.physicalAddress.line1,
+        company.address.physicalAddress.line2,
+        company.address.physicalAddress.suburb,
+        company.address.physicalAddress.city,
+        company.address.physicalAddress.postalCode].filter(Boolean).join(', ');
+    }
 
-    company['postalAddress'] = [company.contactDetails.postalAddressLine1,
-    company.contactDetails.postalAddressLine2,
-    company.contactDetails.postalAddressSuburb,
-    company.contactDetails.postalAddressCity,
-    company.contactDetails.postalAddressPostalCode].filter(Boolean).join(', ');
+    if (Boolean(company.address) && Boolean(company.address.postalAddress)) {
+      company['physicalAddressText'] = [
+        company.address.postalAddress.line1,
+        company.address.postalAddress.line2,
+        company.address.postalAddress.suburb,
+        company.address.postalAddress.city,
+        company.address.postalAddress.postalCode].filter(Boolean).join(', ');
+    }
   }
 }

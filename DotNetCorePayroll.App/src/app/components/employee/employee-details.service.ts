@@ -27,7 +27,7 @@ export class EmployeeDetailsService {
           const pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
           const searchText = typeof event === 'string' ? event : null;
 
-          return this.employeeService.apiEmployeeGetEmployeesPost(
+          return this.employeeService.getEmployees(
             {
               searchText: searchText,
               pageData: {
@@ -60,22 +60,22 @@ export class EmployeeDetailsService {
 
   saveEmployee(employeeModel: EmployeeModel): Observable<EmployeeModel> {
     if (employeeModel.id) {
-      return this.employeeService.apiEmployeeAddEmployeePost(employeeModel);
+      return this.employeeService.addEmployee(employeeModel);
     }
 
-    return this.employeeService.apiEmployeeUpdateEmployeePost(employeeModel);
+    return this.employeeService.updateEmployee(employeeModel);
   }
 
   saveContactDetails(companyContactDetailModel: EmployeeContactDetailModel): Observable<EmployeeModel> {
-    return this.employeeService.apiEmployeeSaveEmployeeContactDetailsPost(companyContactDetailModel);
+    return this.employeeService.saveEmployeeContactDetails(companyContactDetailModel);
   }
 
   saveNextOfKinDetails(employeeNextOfKinDetailModel: EmployeeNextOfKinDetailModel): Observable<EmployeeModel> {
-    return this.employeeService.apiEmployeeSaveEmployeeNextOfKinPost(employeeNextOfKinDetailModel);
+    return this.employeeService.saveEmployeeNextOfKin(employeeNextOfKinDetailModel);
   }
 
   saveBankingDetails(employeeBankDetailModel: EmployeeBankDetailModel): Observable<EmployeeModel> {
-    return this.employeeService.apiEmployeeSaveEmployeeBankingDetailsPost(employeeBankDetailModel);
+    return this.employeeService.saveEmployeeBankingDetails(employeeBankDetailModel);
   }
 
   /*saveImage(organisationModel: OrganisationModel): Observable<OrganisationModel> {

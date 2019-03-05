@@ -51,7 +51,7 @@ export class CompanyPayrollSettingsFormComponent implements OnInit {
   }
 
   initialiseForm() {
-    if (!this.companyDetailsService.Company || !this.companyDetailsService.Company.contactDetails) {
+    if (!this.companyDetailsService.Company || !this.companyDetailsService.Company.address) {
       return;
     }
 
@@ -75,7 +75,7 @@ export class CompanyPayrollSettingsFormComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     const companyContactDetailModel: CompanyPayrollSettingModel = Object.assign(Object.create(null), this.companyPayrollSettingsForm.getRawValue());
 
-    companyContactDetailModel.companyId = this.companyDetailsService.Company.id;
+    /*companyContactDetailModel.companyId = this.companyDetailsService.Company.id;
 
     this.companyDetailsService.savePayrollSettings(companyContactDetailModel).pipe(
       finalize(() => {
@@ -84,7 +84,7 @@ export class CompanyPayrollSettingsFormComponent implements OnInit {
     ).subscribe((data: CompanyModel) => {
       this.companyDetailsService.Company = data;
       this.initialiseForm();
-    });
+    });*/
   }
 
   cancel() {

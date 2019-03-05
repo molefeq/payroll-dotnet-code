@@ -25,7 +25,7 @@ export class AdminRoleService {
           const pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
           const searchText = typeof event === 'string' ? event : null;
 
-          return this.roleService.apiRoleGetRolesPost(
+          return this.roleService.getRoles(
             {
               searchText: searchText,
               pageData: {
@@ -55,7 +55,7 @@ export class AdminRoleService {
 
   getRolesRefrenceData(): Observable<RoleModel[]> {
 
-    return this.roleService.apiRoleGetRolesPost(
+    return this.roleService.getRoles(
       {
         searchText: '',
         pageData: {
@@ -74,10 +74,10 @@ export class AdminRoleService {
   }
   saveRole(roleModel: RoleModel): Observable<RoleModel> {
     if (roleModel.id) {
-      return this.roleService.apiRoleUpdateRolePost(roleModel);
+      return this.roleService.updateRole(roleModel);
     }
 
-    return this.roleService.apiRoleAddRolePost(roleModel);
+    return this.roleService.addRole(roleModel);
   }
 
   get isBusy$(): Observable<boolean> {

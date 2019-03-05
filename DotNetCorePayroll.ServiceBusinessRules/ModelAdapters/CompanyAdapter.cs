@@ -1,11 +1,20 @@
 ﻿using DotNetCorePayroll.Data;
 using DotNetCorePayroll.Data.ViewModels.Company;
+using DotNetCorePayroll.ServiceBusinessRules.ModelBuilders;
+using System;
 
 namespace DotNetCorePayroll.ServiceBusinessRules.ModelAdapters
 {
     public class CompanyAdapter
     {
-        public CompanyAdapter() { }
+        private AddressBuilder addressBuilder;
+        private AddressAdapter addressAdapter;
+
+        public CompanyAdapter(AddressBuilder addressBuilder, AddressAdapter addressAdapter)
+        {
+            this.addressBuilder = addressBuilder;
+            this.addressAdapter = addressAdapter;
+        }
 
         public void Update(Company company, CompanyModel companyModel)
         {
@@ -25,6 +34,28 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelAdapters
             company.EmailAddress = companyModel.EmailAddress;
             company.ContactNumber = companyModel.ContactNumber;
             company.LogoFileName = companyModel.LogoFileName;
+        }
+
+        public void UpdateAddressDetails(Company company, CompanyAddressModel addressModel)
+        {
+
+            if (company.PostalAddressId == null)
+            {
+                company.PostalAddress = addressBuilder.Build(addressModel.PostalAddress);
+            }
+            else
+            {
+                addressAdapter.Update(company.PostalAddress, addressModel.PostalAddress);
+            }
+
+            if (company.PhysicalAddress == null)
+            {
+                company.PhysicalAddress = addressBuilder.Build(addressModel.PhysicalAddress);
+            }
+            else
+            {
+                addressAdapter.Update(company.PhysicalAddress, addressModel.PhysicalAddress);
+            }
         }
     }
 }

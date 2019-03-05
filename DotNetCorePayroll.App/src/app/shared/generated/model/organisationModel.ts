@@ -12,7 +12,7 @@
 import { AddressModel } from './addressModel';
 
 
-export interface OrganisationModel {
+export interface OrganisationModel { 
     id?: number;
     name?: string;
     description?: string;
@@ -33,5 +33,5 @@ export namespace OrganisationModel {
         NUMBER_2: 2 as CrudStatusEnum,
         NUMBER_3: 3 as CrudStatusEnum,
         NUMBER_4: 4 as CrudStatusEnum
-    }
+    };
 }

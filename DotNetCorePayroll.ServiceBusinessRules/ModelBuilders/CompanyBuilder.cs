@@ -1,10 +1,18 @@
 ﻿using DotNetCorePayroll.Data;
 using DotNetCorePayroll.Data.ViewModels.Company;
+using System;
 
 namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
 {
     public class CompanyBuilder
     {
+        private AddressBuilder addressBuilder;
+
+        public CompanyBuilder(AddressBuilder addressBuilder)
+        {
+            this.addressBuilder = addressBuilder;
+        }
+
         public Company Build(CompanyModel companyModel)
         {
             Company company = new Company
@@ -21,7 +29,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
                 UifCompanyReferenceNumber = companyModel.UifCompanyReferenceNumber,
                 SarsUifNumber = companyModel.SarsUifNumber,
                 PaysdlInd = companyModel.PaysdlInd,
-                FaxNumber = companyModel.FaxNumber,
+            FaxNumber = companyModel.FaxNumber,
                 EmailAddress = companyModel.EmailAddress,
                 ContactNumber = companyModel.ContactNumber,
                 LogoFileName = companyModel.LogoFileName
@@ -52,6 +60,13 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
                 EmailAddress = company.EmailAddress,
                 ContactNumber = company.ContactNumber,
                 LogoFileName = company.LogoFileName
+            };
+
+            companyModel.Address = new CompanyAddressModel
+            {
+                CompanyId = company.Id,
+                PhysicalAddress = addressBuilder.BuildToModel(company.PhysicalAddress),
+                PostalAddress = addressBuilder.BuildToModel(company.PostalAddress)
             };
 
             return companyModel;

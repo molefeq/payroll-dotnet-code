@@ -52,7 +52,7 @@ export class EmployeeService {
      */
     private canConsumeForm(consumes: string[]): boolean {
         const form = 'multipart/form-data';
-        for (let consume of consumes) {
+        for (const consume of consumes) {
             if (form === consume) {
                 return true;
             }
@@ -68,10 +68,11 @@ export class EmployeeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiEmployeeAddEmployeePost(employeeModel?: EmployeeModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
-    public apiEmployeeAddEmployeePost(employeeModel?: EmployeeModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
-    public apiEmployeeAddEmployeePost(employeeModel?: EmployeeModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
-    public apiEmployeeAddEmployeePost(employeeModel?: EmployeeModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public addEmployee(employeeModel?: EmployeeModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
+    public addEmployee(employeeModel?: EmployeeModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
+    public addEmployee(employeeModel?: EmployeeModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
+    public addEmployee(employeeModel?: EmployeeModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
@@ -79,21 +80,21 @@ export class EmployeeService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<EmployeeModel>(`${this.basePath}/api/Employee/AddEmployee`,
@@ -114,31 +115,33 @@ export class EmployeeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiEmployeeDeleteEmployeePost(employeeModel?: EmployeeModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiEmployeeDeleteEmployeePost(employeeModel?: EmployeeModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiEmployeeDeleteEmployeePost(employeeModel?: EmployeeModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiEmployeeDeleteEmployeePost(employeeModel?: EmployeeModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteEmployee(employeeModel?: EmployeeModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteEmployee(employeeModel?: EmployeeModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteEmployee(employeeModel?: EmployeeModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteEmployee(employeeModel?: EmployeeModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<any>(`${this.basePath}/api/Employee/DeleteEmployee`,
@@ -159,13 +162,14 @@ export class EmployeeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiEmployeeFetchEmployeeGet(employeeId?: string, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
-    public apiEmployeeFetchEmployeeGet(employeeId?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
-    public apiEmployeeFetchEmployeeGet(employeeId?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
-    public apiEmployeeFetchEmployeeGet(employeeId?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public fetchEmployee(employeeId?: string, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
+    public fetchEmployee(employeeId?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
+    public fetchEmployee(employeeId?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
+    public fetchEmployee(employeeId?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (employeeId !== undefined) {
+        if (employeeId !== undefined && employeeId !== null) {
             queryParameters = queryParameters.set('employeeId', <any>employeeId);
         }
 
@@ -175,13 +179,13 @@ export class EmployeeService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
         ];
 
         return this.httpClient.get<EmployeeModel>(`${this.basePath}/api/Employee/FetchEmployee`,
@@ -202,10 +206,11 @@ export class EmployeeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiEmployeeGetEmployeesPost(searchFilter?: EmployeeSearchFilter, observe?: 'body', reportProgress?: boolean): Observable<ResultEmployeeModel>;
-    public apiEmployeeGetEmployeesPost(searchFilter?: EmployeeSearchFilter, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResultEmployeeModel>>;
-    public apiEmployeeGetEmployeesPost(searchFilter?: EmployeeSearchFilter, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResultEmployeeModel>>;
-    public apiEmployeeGetEmployeesPost(searchFilter?: EmployeeSearchFilter, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getEmployees(searchFilter?: EmployeeSearchFilter, observe?: 'body', reportProgress?: boolean): Observable<ResultEmployeeModel>;
+    public getEmployees(searchFilter?: EmployeeSearchFilter, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResultEmployeeModel>>;
+    public getEmployees(searchFilter?: EmployeeSearchFilter, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResultEmployeeModel>>;
+    public getEmployees(searchFilter?: EmployeeSearchFilter, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
@@ -213,21 +218,21 @@ export class EmployeeService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<ResultEmployeeModel>(`${this.basePath}/api/Employee/GetEmployees`,
@@ -248,10 +253,11 @@ export class EmployeeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiEmployeeSaveEmployeeBankingDetailsPost(model?: EmployeeBankDetailModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
-    public apiEmployeeSaveEmployeeBankingDetailsPost(model?: EmployeeBankDetailModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
-    public apiEmployeeSaveEmployeeBankingDetailsPost(model?: EmployeeBankDetailModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
-    public apiEmployeeSaveEmployeeBankingDetailsPost(model?: EmployeeBankDetailModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public saveEmployeeBankingDetails(model?: EmployeeBankDetailModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
+    public saveEmployeeBankingDetails(model?: EmployeeBankDetailModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
+    public saveEmployeeBankingDetails(model?: EmployeeBankDetailModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
+    public saveEmployeeBankingDetails(model?: EmployeeBankDetailModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
@@ -259,21 +265,21 @@ export class EmployeeService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<EmployeeModel>(`${this.basePath}/api/Employee/SaveEmployeeBankingDetails`,
@@ -294,10 +300,11 @@ export class EmployeeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiEmployeeSaveEmployeeContactDetailsPost(employeeContactDetail?: EmployeeContactDetailModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
-    public apiEmployeeSaveEmployeeContactDetailsPost(employeeContactDetail?: EmployeeContactDetailModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
-    public apiEmployeeSaveEmployeeContactDetailsPost(employeeContactDetail?: EmployeeContactDetailModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
-    public apiEmployeeSaveEmployeeContactDetailsPost(employeeContactDetail?: EmployeeContactDetailModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeContactDetailModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
+    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeContactDetailModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
+    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeContactDetailModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
+    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeContactDetailModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
@@ -305,21 +312,21 @@ export class EmployeeService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<EmployeeModel>(`${this.basePath}/api/Employee/SaveEmployeeContactDetails`,
@@ -340,10 +347,11 @@ export class EmployeeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiEmployeeSaveEmployeeNextOfKinPost(employeeNextOfKinModel?: EmployeeNextOfKinDetailModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
-    public apiEmployeeSaveEmployeeNextOfKinPost(employeeNextOfKinModel?: EmployeeNextOfKinDetailModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
-    public apiEmployeeSaveEmployeeNextOfKinPost(employeeNextOfKinModel?: EmployeeNextOfKinDetailModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
-    public apiEmployeeSaveEmployeeNextOfKinPost(employeeNextOfKinModel?: EmployeeNextOfKinDetailModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public saveEmployeeNextOfKin(employeeNextOfKinModel?: EmployeeNextOfKinDetailModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
+    public saveEmployeeNextOfKin(employeeNextOfKinModel?: EmployeeNextOfKinDetailModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
+    public saveEmployeeNextOfKin(employeeNextOfKinModel?: EmployeeNextOfKinDetailModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
+    public saveEmployeeNextOfKin(employeeNextOfKinModel?: EmployeeNextOfKinDetailModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
@@ -351,21 +359,21 @@ export class EmployeeService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<EmployeeModel>(`${this.basePath}/api/Employee/SaveEmployeeNextOfKin`,
@@ -382,57 +390,15 @@ export class EmployeeService {
     /**
      * 
      * 
-     * @param file 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiEmployeeSaveImagePost(file?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiEmployeeSaveImagePost(file?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiEmployeeSaveImagePost(file?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiEmployeeSaveImagePost(file?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (file !== undefined) {
-            queryParameters = queryParameters.set('file', <any>file);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.post<any>(`${this.basePath}/api/Employee/SaveImage`,
-            null,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
      * @param employeeModel 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiEmployeeUpdateEmployeePost(employeeModel?: EmployeeModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
-    public apiEmployeeUpdateEmployeePost(employeeModel?: EmployeeModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
-    public apiEmployeeUpdateEmployeePost(employeeModel?: EmployeeModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
-    public apiEmployeeUpdateEmployeePost(employeeModel?: EmployeeModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateEmployee(employeeModel?: EmployeeModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
+    public updateEmployee(employeeModel?: EmployeeModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
+    public updateEmployee(employeeModel?: EmployeeModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
+    public updateEmployee(employeeModel?: EmployeeModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
@@ -440,21 +406,21 @@ export class EmployeeService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<EmployeeModel>(`${this.basePath}/api/Employee/UpdateEmployee`,

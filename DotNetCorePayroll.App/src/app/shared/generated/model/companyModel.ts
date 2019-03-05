@@ -9,13 +9,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { CompanyAddressModel } from './companyAddressModel';
 import { CompanyBankDetailModel } from './companyBankDetailModel';
-import { CompanyContactDetailModel } from './companyContactDetailModel';
 import { CompanyPayrollSettingModel } from './companyPayrollSettingModel';
 
 
-export interface CompanyModel {
-    id?: string;
+export interface CompanyModel { 
+    id?: number;
+    guid?: string;
     organisationId?: number;
     organisationName?: string;
     name?: string;
@@ -34,7 +35,7 @@ export interface CompanyModel {
     contactNumber?: string;
     logoFileName?: string;
     logoFileNamePath?: string;
-    contactDetails?: CompanyContactDetailModel;
+    address?: CompanyAddressModel;
     payrollSettings?: CompanyPayrollSettingModel;
     bankingDetails?: CompanyBankDetailModel;
     crudStatus?: CompanyModel.CrudStatusEnum;
@@ -46,5 +47,5 @@ export namespace CompanyModel {
         NUMBER_2: 2 as CrudStatusEnum,
         NUMBER_3: 3 as CrudStatusEnum,
         NUMBER_4: 4 as CrudStatusEnum
-    }
+    };
 }

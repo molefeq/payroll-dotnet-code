@@ -18,6 +18,8 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services
 
         CompanyModel Update(CompanyModel companyModel);
 
+        CompanyModel SaveAddressDetails(CompanyAddressModel companyAddressModel);
+
         void Delete(long id);
 
         void ResizeLogos(CompanyModel companyModel, IConfiguration configuration, string rootPath, string currentUrl);

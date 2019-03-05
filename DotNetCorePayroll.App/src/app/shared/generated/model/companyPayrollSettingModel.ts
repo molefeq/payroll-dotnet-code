@@ -11,7 +11,7 @@
  */
 
 
-export interface CompanyPayrollSettingModel {
+export interface CompanyPayrollSettingModel { 
     id?: number;
     companyId?: string;
     monthPeriods?: number;
@@ -29,5 +29,5 @@ export namespace CompanyPayrollSettingModel {
         NUMBER_2: 2 as CrudStatusEnum,
         NUMBER_3: 3 as CrudStatusEnum,
         NUMBER_4: 4 as CrudStatusEnum
-    }
+    };
 }

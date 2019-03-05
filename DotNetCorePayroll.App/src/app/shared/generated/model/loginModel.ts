@@ -11,7 +11,7 @@
  */
 
 
-export interface LoginModel {
+export interface LoginModel { 
     username: string;
     password: string;
 }

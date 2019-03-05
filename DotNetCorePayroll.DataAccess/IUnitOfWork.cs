@@ -15,6 +15,7 @@ namespace DotNetCorePayroll.DataAccess
         RoleRepository Role { get; }
         GenericRepository<Country> Country { get; }
         GenericRepository<Province> Province { get; }
+        EmployeeRepository Employee { get; }
 
         #endregion
 

@@ -11,7 +11,7 @@
  */
 
 
-export interface AddressModel {
+export interface AddressModel { 
     id?: number;
     line1?: string;
     line2?: string;

@@ -12,7 +12,7 @@
 import { PageData } from './pageData';
 
 
-export interface SearchFilter {
+export interface SearchFilter { 
     searchText?: string;
     pageData?: PageData;
 }

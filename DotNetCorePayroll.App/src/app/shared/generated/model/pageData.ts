@@ -11,7 +11,7 @@
  */
 
 
-export interface PageData {
+export interface PageData { 
     take?: number;
     skip?: number;
     sortOrder?: PageData.SortOrderEnum;
@@ -23,5 +23,5 @@ export namespace PageData {
     export const SortOrderEnum = {
         NUMBER_1: 1 as SortOrderEnum,
         NUMBER_2: 2 as SortOrderEnum
-    }
+    };
 }

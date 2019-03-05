@@ -25,7 +25,7 @@ export class AdminUserService {
           const pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
           const searchText = typeof event === 'string' ? event : null;
 
-          return this.accountService.apiAccountFetchAccountsPost(
+          return this.accountService.fetchAccounts(
             {
               searchText: searchText,
               pageData: {
@@ -55,10 +55,10 @@ export class AdminUserService {
   }
 
   saveUser(accountModel: AccountModel): Observable<AccountModel> {
-    let savedUser$: Observable<AccountModel> = this.accountService.apiAccountCreateAccountPost(accountModel);
+    let savedUser$: Observable<AccountModel> = this.accountService.createAccount(accountModel);
 
     if (accountModel.id) {
-      savedUser$ = this.accountService.apiAccountUpdateAccountPost(accountModel);
+      savedUser$ = this.accountService.updateAccount(accountModel);
     }
 
     return savedUser$.pipe(

@@ -130,29 +130,69 @@ namespace DotNetCorePayroll.Common.Extensions
 
         #endregion
 
-        #region Employee Normal Image Information 
 
-        public static string EmployeeTempDirectory(this IConfiguration configuration)
-        {
-            return configuration["logos:employee:tempdirectory"];
-        }
-
-        public static string EmployeeDirectory(this IConfiguration configuration)
+        #region Employee Preview Image Information 
+        
+        public static string EmployeePreviewDirectory(this IConfiguration configuration)
         {
             return configuration["logos:employee:directory"];
         }
 
-        public static int EmployeeImageWidth(this IConfiguration configuration)
+        public static int EmployeePreviewImageWidth(this IConfiguration configuration)
         {
             return configuration["logos:employee:width"].ToInteger();
         }
 
-        public static int EmployeeImageHeight(this IConfiguration configuration)
+        public static int EmployeePreviewImageHeight(this IConfiguration configuration)
         {
             return configuration["logos:employee:height"].ToInteger();
         }
 
         #endregion
+
+        #region Employee Normal Image Information 
+
+        public static string EmployeeNormalTempDirectory(this IConfiguration configuration)
+        {
+            return configuration["logos:employee:tempdirectory"];
+        }
+
+        public static string EmployeeNormalDirectory(this IConfiguration configuration)
+        {
+            return configuration["logos:employee:directory"];
+        }
+
+        public static int EmployeeNormalImageWidth(this IConfiguration configuration)
+        {
+            return configuration["logos:employee:width"].ToInteger();
+        }
+
+        public static int EmployeeNormalImageHeight(this IConfiguration configuration)
+        {
+            return configuration["logos:employee:height"].ToInteger();
+        }
+
+        #endregion
+
+        #region Employee Thumbnail Image Information 
+
+        public static string EmployeeThumbnailDirectory(this IConfiguration configuration)
+        {
+            return configuration["logos:employee:directory"];
+        }
+
+        public static int EmployeeThumbnailImageWidth(this IConfiguration configuration)
+        {
+            return configuration["logos:employee:width"].ToInteger();
+        }
+
+        public static int EmployeeThumbnailImageHeight(this IConfiguration configuration)
+        {
+            return configuration["logos:employee:height"].ToInteger();
+        }
+
+        #endregion
+
 
         #region Email Settings
 

@@ -12,7 +12,7 @@
 import { OrganisationModel } from './organisationModel';
 
 
-export interface ResultOrganisationModel {
+export interface ResultOrganisationModel { 
     totalItems?: number;
     items?: Array<OrganisationModel>;
 }

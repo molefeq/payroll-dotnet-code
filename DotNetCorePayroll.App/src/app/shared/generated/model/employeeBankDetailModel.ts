@@ -11,7 +11,7 @@
  */
 
 
-export interface EmployeeBankDetailModel {
+export interface EmployeeBankDetailModel { 
     id?: number;
     employeeId?: string;
     bankName?: string;
@@ -29,5 +29,5 @@ export namespace EmployeeBankDetailModel {
         NUMBER_2: 2 as CrudStatusEnum,
         NUMBER_3: 3 as CrudStatusEnum,
         NUMBER_4: 4 as CrudStatusEnum
-    }
+    };
 }

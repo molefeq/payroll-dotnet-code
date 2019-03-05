@@ -12,7 +12,7 @@
 import { RoleModel } from './roleModel';
 
 
-export interface ResultRoleModel {
+export interface ResultRoleModel { 
     totalItems?: number;
     items?: Array<RoleModel>;
 }

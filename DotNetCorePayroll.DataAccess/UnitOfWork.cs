@@ -17,6 +17,7 @@ namespace DotNetCorePayroll.DataAccess
         private RoleRepository role;
         private GenericRepository<Country> country;
         private GenericRepository<Province> province;
+        private EmployeeRepository employee;
 
         #endregion
 
@@ -116,6 +117,20 @@ namespace DotNetCorePayroll.DataAccess
                 return province;
             }
         }
+
+        public EmployeeRepository Employee
+        {
+            get
+            {
+                if (employee == null)
+                {
+                    employee = new EmployeeRepository(context);
+                }
+
+                return employee;
+            }
+        }
+
         #endregion
     }
 }

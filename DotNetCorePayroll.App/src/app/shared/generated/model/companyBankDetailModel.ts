@@ -11,7 +11,7 @@
  */
 
 
-export interface CompanyBankDetailModel {
+export interface CompanyBankDetailModel { 
     companyId?: string;
     bankId?: number;
     bankName?: string;
@@ -29,5 +29,5 @@ export namespace CompanyBankDetailModel {
         NUMBER_2: 2 as CrudStatusEnum,
         NUMBER_3: 3 as CrudStatusEnum,
         NUMBER_4: 4 as CrudStatusEnum
-    }
+    };
 }

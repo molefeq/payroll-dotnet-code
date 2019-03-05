@@ -11,7 +11,7 @@
  */
 
 
-export interface EmployeeContactDetailModel {
+export interface EmployeeContactDetailModel { 
     employeeId?: string;
     physicalAddressId?: number;
     physicalAddressLine1?: string;
@@ -38,5 +38,5 @@ export namespace EmployeeContactDetailModel {
         NUMBER_2: 2 as CrudStatusEnum,
         NUMBER_3: 3 as CrudStatusEnum,
         NUMBER_4: 4 as CrudStatusEnum
-    }
+    };
 }

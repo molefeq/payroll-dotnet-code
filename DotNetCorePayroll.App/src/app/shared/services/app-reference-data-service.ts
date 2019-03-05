@@ -67,7 +67,7 @@ export class AppReferenceDataService {
     }
 
     getOrganisations(): Observable<ReferenceDataModel[]> {
-        return this.organisationService.apiOrganisationGetOrganisationsPost(
+        return this.organisationService.getOrganisations(
             {
                 searchText: '',
                 pageData: {
@@ -115,7 +115,7 @@ export class AppReferenceDataService {
     }
 
     getRoles(): Observable<ReferenceDataModel[]> {
-        return this.roleService.apiRoleGetRolesPost(
+        return this.roleService.getRoles(
             {
                 searchText: '',
                 pageData: {

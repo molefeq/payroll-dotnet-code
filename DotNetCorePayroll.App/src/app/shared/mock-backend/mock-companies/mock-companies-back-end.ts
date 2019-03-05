@@ -14,7 +14,8 @@ export function mockCompaniesBackEndService(url: string, method: string, request
         for (let i = 1; i < 2; i++) {
             const valueId = i % 3 + 1;
             const company: CompanyModel = {
-                id: '451241-tggert-7899po-kujgf' + i,
+                id: i,
+                guid: '451241-tggert-7899po-kujgf' + i,
                 organisationId: i,
                 organisationName: 'test organisation' + i,
                 name: 'Test Company' + i,
@@ -28,22 +29,28 @@ export function mockCompaniesBackEndService(url: string, method: string, request
                 uifCompanyReferenceNumber: '',
                 sarsUifNumber: '',
                 paysdlInd: i % 3 === 0,
-                contactDetails: {
-                    physicalAddressLine1: 'Line ' + (i + 1),
-                    physicalAddressLine2: 'Line ' + (i + 2),
-                    physicalAddressSuburb: 'Suburb ' + i,
-                    physicalAddressCity: 'City ' + i,
-                    physicalAddressPostalCode: '200' + i,
-                    physicalAddressProvinceId: valueId,
-                    physicalAddressCountryId: valueId,
-                    postalAddressId: i,
-                    postalAddressLine1: 'Post Line ' + (i + 1),
-                    postalAddressLine2: 'Post Line ' + (i + 2),
-                    postalAddressSuburb: 'Post Suburb ' + i,
-                    postalAddressCity: 'Post City ' + i,
-                    postalAddressPostalCode: '200' + i,
-                    postalAddressProvinceId: valueId,
-                    postalAddressCountryId: valueId,
+                address: {
+                    physicalAddress: {
+                        id: i,
+                        line1: 'Line ' + (i + 1),
+                        line2: 'Line ' + (i + 2),
+                        suburb: 'Suburb ' + i,
+                        city: 'City ' + i,
+                        postalCode: '200' + i,
+                        provinceId: valueId,
+                        countryId: valueId,
+                    },
+                    postalAddress:
+                    {
+                        id: i,
+                        line1: 'Post Line ' + (i + 1),
+                        line2: 'Post Line ' + (i + 2),
+                        suburb: 'Post Suburb ' + i,
+                        city: 'Post City ' + i,
+                        postalCode: '200' + i,
+                        provinceId: valueId,
+                        countryId: valueId
+                    }
 
                 },
                 faxNumber: '01178900' + i,
@@ -76,7 +83,7 @@ export function mockCompaniesBackEndService(url: string, method: string, request
 
     if (url.endsWith('/api/Company/AddCompany') && method === 'POST') {
         const company: CompanyModel = request.body;
-        company.id = 'gfhgsdj-hgdhdhgjgh-122323234';
+        company.guid = 'gfhgsdj-hgdhdhgjgh-122323234';
 
         return new Observable(resp => {
             resp.next(new HttpResponse({

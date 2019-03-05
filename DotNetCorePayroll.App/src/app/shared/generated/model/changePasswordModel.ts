@@ -11,7 +11,7 @@
  */
 
 
-export interface ChangePasswordModel {
+export interface ChangePasswordModel { 
     username: string;
     oldPassword: string;
     newPassword: string;

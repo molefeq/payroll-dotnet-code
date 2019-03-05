@@ -10,7 +10,7 @@ export class AppStartUpService {
 
   public load() {
     return new Promise((resolve, reject) => {
-      this.referenceDataService.apiReferenceDataGetStaticDataGet()
+      this.referenceDataService.getStaticData()
       .catch((error: any) => {
         console.error('Error fetching reference data.');
         resolve(error);

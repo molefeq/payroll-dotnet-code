@@ -5,7 +5,8 @@ namespace DotNetCorePayroll.Data.ViewModels.Employee
 {
     public class EmployeeModel
     {
-        public Guid? Id { get; set; }
+        public long? Id { get; set; }
+        public Guid? Guid { get; set; }
         public Guid CompanyId { get; set; }
         public string EmployeeNumber { get; set; }
         public string Title { get; set; }
@@ -32,10 +33,11 @@ namespace DotNetCorePayroll.Data.ViewModels.Employee
         public string WorkNumber { get; set; }
         public string HomeNumber { get; set; }
         public string MobileNumber { get; set; }
+        public long UserId { get; set; }
         public CrudStatus CrudStatus { get; set; }
 
-        public EmployeeContactDetailModel ContactDetail { get; set; }
-        public EmployeeNextOfKinDetailModel NextOfKinDetail { get; set; }
-        public EmployeeBankDetailModel BankDetail { get; set; }
+        public EmployeeAddressModel Address { get; set; }
+        public EmployeeCompanyDetailModel CompanyDetailModel { get; set; }
+        //public EmployeeBankDetailModel BankDetail { get; set; }
     }
 }

@@ -49,7 +49,7 @@ export class OrganisationService {
      */
     private canConsumeForm(consumes: string[]): boolean {
         const form = 'multipart/form-data';
-        for (let consume of consumes) {
+        for (const consume of consumes) {
             if (form === consume) {
                 return true;
             }
@@ -65,10 +65,11 @@ export class OrganisationService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiOrganisationAddOrganisationPost(organisationModel?: OrganisationModel, observe?: 'body', reportProgress?: boolean): Observable<OrganisationModel>;
-    public apiOrganisationAddOrganisationPost(organisationModel?: OrganisationModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<OrganisationModel>>;
-    public apiOrganisationAddOrganisationPost(organisationModel?: OrganisationModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<OrganisationModel>>;
-    public apiOrganisationAddOrganisationPost(organisationModel?: OrganisationModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public addOrganisation(organisationModel?: OrganisationModel, observe?: 'body', reportProgress?: boolean): Observable<OrganisationModel>;
+    public addOrganisation(organisationModel?: OrganisationModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<OrganisationModel>>;
+    public addOrganisation(organisationModel?: OrganisationModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<OrganisationModel>>;
+    public addOrganisation(organisationModel?: OrganisationModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
@@ -76,21 +77,21 @@ export class OrganisationService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<OrganisationModel>(`${this.basePath}/api/Organisation/AddOrganisation`,
@@ -111,31 +112,33 @@ export class OrganisationService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiOrganisationDeleteOrganisationPost(organisationModel?: OrganisationModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiOrganisationDeleteOrganisationPost(organisationModel?: OrganisationModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiOrganisationDeleteOrganisationPost(organisationModel?: OrganisationModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiOrganisationDeleteOrganisationPost(organisationModel?: OrganisationModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteOrganisation(organisationModel?: OrganisationModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteOrganisation(organisationModel?: OrganisationModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteOrganisation(organisationModel?: OrganisationModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteOrganisation(organisationModel?: OrganisationModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<any>(`${this.basePath}/api/Organisation/DeleteOrganisation`,
@@ -156,13 +159,14 @@ export class OrganisationService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiOrganisationFetchOrganisationGet(organisationId?: number, observe?: 'body', reportProgress?: boolean): Observable<OrganisationModel>;
-    public apiOrganisationFetchOrganisationGet(organisationId?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<OrganisationModel>>;
-    public apiOrganisationFetchOrganisationGet(organisationId?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<OrganisationModel>>;
-    public apiOrganisationFetchOrganisationGet(organisationId?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public fetchOrganisation(organisationId?: number, observe?: 'body', reportProgress?: boolean): Observable<OrganisationModel>;
+    public fetchOrganisation(organisationId?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<OrganisationModel>>;
+    public fetchOrganisation(organisationId?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<OrganisationModel>>;
+    public fetchOrganisation(organisationId?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (organisationId !== undefined) {
+        if (organisationId !== undefined && organisationId !== null) {
             queryParameters = queryParameters.set('organisationId', <any>organisationId);
         }
 
@@ -172,13 +176,13 @@ export class OrganisationService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
         ];
 
         return this.httpClient.get<OrganisationModel>(`${this.basePath}/api/Organisation/FetchOrganisation`,
@@ -199,10 +203,11 @@ export class OrganisationService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiOrganisationGetOrganisationsPost(searchFilter?: SearchFilter, observe?: 'body', reportProgress?: boolean): Observable<ResultOrganisationModel>;
-    public apiOrganisationGetOrganisationsPost(searchFilter?: SearchFilter, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResultOrganisationModel>>;
-    public apiOrganisationGetOrganisationsPost(searchFilter?: SearchFilter, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResultOrganisationModel>>;
-    public apiOrganisationGetOrganisationsPost(searchFilter?: SearchFilter, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getOrganisations(searchFilter?: SearchFilter, observe?: 'body', reportProgress?: boolean): Observable<ResultOrganisationModel>;
+    public getOrganisations(searchFilter?: SearchFilter, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResultOrganisationModel>>;
+    public getOrganisations(searchFilter?: SearchFilter, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResultOrganisationModel>>;
+    public getOrganisations(searchFilter?: SearchFilter, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
@@ -210,21 +215,21 @@ export class OrganisationService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<ResultOrganisationModel>(`${this.basePath}/api/Organisation/GetOrganisations`,
@@ -241,57 +246,15 @@ export class OrganisationService {
     /**
      * 
      * 
-     * @param file 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiOrganisationSaveImagePost(file?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiOrganisationSaveImagePost(file?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiOrganisationSaveImagePost(file?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiOrganisationSaveImagePost(file?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (file !== undefined) {
-            queryParameters = queryParameters.set('file', <any>file);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.post<any>(`${this.basePath}/api/Organisation/SaveImage`,
-            null,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
      * @param organisationModel 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiOrganisationUpdateOrganisationPost(organisationModel?: OrganisationModel, observe?: 'body', reportProgress?: boolean): Observable<OrganisationModel>;
-    public apiOrganisationUpdateOrganisationPost(organisationModel?: OrganisationModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<OrganisationModel>>;
-    public apiOrganisationUpdateOrganisationPost(organisationModel?: OrganisationModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<OrganisationModel>>;
-    public apiOrganisationUpdateOrganisationPost(organisationModel?: OrganisationModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateOrganisation(organisationModel?: OrganisationModel, observe?: 'body', reportProgress?: boolean): Observable<OrganisationModel>;
+    public updateOrganisation(organisationModel?: OrganisationModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<OrganisationModel>>;
+    public updateOrganisation(organisationModel?: OrganisationModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<OrganisationModel>>;
+    public updateOrganisation(organisationModel?: OrganisationModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
 
         let headers = this.defaultHeaders;
 
@@ -299,21 +262,21 @@ export class OrganisationService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/_*+json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         return this.httpClient.post<OrganisationModel>(`${this.basePath}/api/Organisation/UpdateOrganisation`,

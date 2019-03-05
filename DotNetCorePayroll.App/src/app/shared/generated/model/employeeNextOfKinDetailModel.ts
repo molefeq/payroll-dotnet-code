@@ -11,7 +11,7 @@
  */
 
 
-export interface EmployeeNextOfKinDetailModel {
+export interface EmployeeNextOfKinDetailModel { 
     id?: number;
     employeeId?: string;
     firstName?: string;
@@ -29,5 +29,5 @@ export namespace EmployeeNextOfKinDetailModel {
         NUMBER_2: 2 as CrudStatusEnum,
         NUMBER_3: 3 as CrudStatusEnum,
         NUMBER_4: 4 as CrudStatusEnum
-    }
+    };
 }

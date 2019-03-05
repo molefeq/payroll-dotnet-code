@@ -11,7 +11,7 @@
  */
 
 
-export interface ReferenceDataModel {
+export interface ReferenceDataModel { 
     id?: number;
     name?: string;
     code?: string;

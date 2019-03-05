@@ -4,7 +4,7 @@ import { serverValidation } from '../../../../shared/validators/server-side-vali
 import { Constants } from '../../../../shared/utils/constants';
 import { CompanyDetailsService } from '../../company-details.service';
 import { AppReferenceDataService } from '../../../../shared/services/app-reference-data-service';
-import { ReferenceDataModel, CompanyContactDetailModel, CompanyModel } from '../../../../shared/generated';
+import { ReferenceDataModel, CompanyAddressModel, CompanyModel } from '../../../../shared/generated';
 import { FormFieldValidator } from '../../../../shared/utils/form-fields-validator';
 import { MatCheckboxChange } from '../../../../../../node_modules/@angular/material';
 import { OrganisationDetailsService } from '../../../organisation/organisation-details.service';
@@ -103,11 +103,11 @@ export class CompanyAddressFormComponent implements OnInit {
   }
 
   initialiseForm() {
-    if (!this.companyDetailsService.Company || !this.companyDetailsService.Company.contactDetails) {
+    if (!this.companyDetailsService.Company || !this.companyDetailsService.Company.address) {
       return;
     }
 
-    this.companyAddressForm.patchValue(this.companyDetailsService.Company.contactDetails);
+    this.companyAddressForm.patchValue(this.companyDetailsService.Company.address);
   }
 
   save() {
@@ -120,11 +120,11 @@ export class CompanyAddressFormComponent implements OnInit {
     this.isSubmited = false;
     this.isInProgress = true;
 
-    const companyContactDetailModel: CompanyContactDetailModel = Object.assign(Object.create(null), this.companyAddressForm.getRawValue());
+    const companyAddressModel: CompanyAddressModel = Object.assign(Object.create(null), this.companyAddressForm.getRawValue());
 
-    companyContactDetailModel.companyId = this.companyDetailsService.Company.id;
+    companyAddressModel.companyId = this.companyDetailsService.Company.id;
 
-    this.companyDetailsService.saveContactDetails(companyContactDetailModel).pipe(
+    this.companyDetailsService.saveContactDetails(companyAddressModel).pipe(
       finalize(() => {
         this.isInProgress = false;
       })

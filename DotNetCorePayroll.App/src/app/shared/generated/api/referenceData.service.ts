@@ -48,7 +48,7 @@ export class ReferenceDataService {
      */
     private canConsumeForm(consumes: string[]): boolean {
         const form = 'multipart/form-data';
-        for (let consume of consumes) {
+        for (const consume of consumes) {
             if (form === consume) {
                 return true;
             }
@@ -63,10 +63,10 @@ export class ReferenceDataService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiReferenceDataGetCountriesGet(observe?: 'body', reportProgress?: boolean): Observable<Array<ReferenceDataModel>>;
-    public apiReferenceDataGetCountriesGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReferenceDataModel>>>;
-    public apiReferenceDataGetCountriesGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReferenceDataModel>>>;
-    public apiReferenceDataGetCountriesGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getCountries(observe?: 'body', reportProgress?: boolean): Observable<Array<ReferenceDataModel>>;
+    public getCountries(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReferenceDataModel>>>;
+    public getCountries(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReferenceDataModel>>>;
+    public getCountries(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -74,13 +74,13 @@ export class ReferenceDataService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
         ];
 
         return this.httpClient.get<Array<ReferenceDataModel>>(`${this.basePath}/api/ReferenceData/GetCountries`,
@@ -99,10 +99,10 @@ export class ReferenceDataService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiReferenceDataGetProvincesGet(observe?: 'body', reportProgress?: boolean): Observable<Array<ReferenceDataModel>>;
-    public apiReferenceDataGetProvincesGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReferenceDataModel>>>;
-    public apiReferenceDataGetProvincesGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReferenceDataModel>>>;
-    public apiReferenceDataGetProvincesGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getProvinces(observe?: 'body', reportProgress?: boolean): Observable<Array<ReferenceDataModel>>;
+    public getProvinces(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReferenceDataModel>>>;
+    public getProvinces(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReferenceDataModel>>>;
+    public getProvinces(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -110,13 +110,13 @@ export class ReferenceDataService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
         ];
 
         return this.httpClient.get<Array<ReferenceDataModel>>(`${this.basePath}/api/ReferenceData/GetProvinces`,
@@ -135,10 +135,10 @@ export class ReferenceDataService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiReferenceDataGetStaticDataGet(observe?: 'body', reportProgress?: boolean): Observable<StaticDataModel>;
-    public apiReferenceDataGetStaticDataGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<StaticDataModel>>;
-    public apiReferenceDataGetStaticDataGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<StaticDataModel>>;
-    public apiReferenceDataGetStaticDataGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getStaticData(observe?: 'body', reportProgress?: boolean): Observable<StaticDataModel>;
+    public getStaticData(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<StaticDataModel>>;
+    public getStaticData(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<StaticDataModel>>;
+    public getStaticData(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -146,13 +146,13 @@ export class ReferenceDataService {
         let httpHeaderAccepts: string[] = [
             'application/json'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
         ];
 
         return this.httpClient.get<StaticDataModel>(`${this.basePath}/api/ReferenceData/GetStaticData`,

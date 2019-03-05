@@ -3,7 +3,6 @@ using DotNetCorePayroll.Api.Extensions;
 using DotNetCorePayroll.Common.Extensions;
 using DotNetCorePayroll.Common.Utilities;
 using DotNetCorePayroll.Data.SearchFilters;
-using DotNetCorePayroll.Data.ViewModels;
 using DotNetCorePayroll.Data.ViewModels.Company;
 using DotNetCorePayroll.ServiceBusinessRules.Services;
 using Microsoft.AspNetCore.Hosting;
@@ -40,7 +39,7 @@ namespace DotNetCorePayroll.Api.Controllers
 
             companyService.MapRelativeLogoPaths(result.Items, configuration, HttpContext.Request.CurrentUrl());
 
-            return Ok(new Result<CompanyModel>());
+            return Ok(result);
         }
 
         [HttpPost]
@@ -96,18 +95,18 @@ namespace DotNetCorePayroll.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(CompanyModel), 200)]
-        public IActionResult SaveCompanyContactDetails([FromBody]CompanyContactDetailModel companyContactDetail)
+        public IActionResult SaveCompanyAddress([FromBody]CompanyAddressModel companyAddressModel)
         {
             if (!ModelState.IsValid)
             {
                 return new ValidationActionResult(ModelState);
             }
 
-            //OrganisationModel model = ogranisationService.Update(organisationModel);
+            CompanyModel model = companyService.SaveAddressDetails(companyAddressModel);
 
-            //ImageFixing(model, organisationModel.LogoFileNamePath);
+            companyService.MapRelativeLogoPath(model, configuration, HttpContext.Request.CurrentUrl());
 
-            return Ok(new CompanyModel());
+            return Ok(model);
         }
 
         [HttpPost]
@@ -127,6 +126,7 @@ namespace DotNetCorePayroll.Api.Controllers
         }
 
         [HttpPost]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult SaveImage(IFormFile file)
         {
             if (file == null || file.Length == 0)

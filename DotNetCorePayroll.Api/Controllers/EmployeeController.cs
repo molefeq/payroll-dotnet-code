@@ -91,7 +91,7 @@ namespace DotNetCorePayroll.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(EmployeeModel), 200)]
-        public IActionResult SaveEmployeeContactDetails([FromBody]EmployeeContactDetailModel employeeContactDetail)
+        public IActionResult SaveEmployeeContactDetails([FromBody]EmployeeAddressModel employeeContactDetail)
         {
             if (!ModelState.IsValid)
             {
@@ -122,6 +122,7 @@ namespace DotNetCorePayroll.Api.Controllers
         }
 
         [HttpPost]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult SaveImage(IFormFile file)
         {
             if (file == null || file.Length == 0)

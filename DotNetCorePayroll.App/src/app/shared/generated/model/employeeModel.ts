@@ -14,7 +14,7 @@ import { EmployeeContactDetailModel } from './employeeContactDetailModel';
 import { EmployeeNextOfKinDetailModel } from './employeeNextOfKinDetailModel';
 
 
-export interface EmployeeModel {
+export interface EmployeeModel { 
     id?: string;
     companyId?: string;
     employeeNumber?: string;
@@ -54,5 +54,5 @@ export namespace EmployeeModel {
         NUMBER_2: 2 as CrudStatusEnum,
         NUMBER_3: 3 as CrudStatusEnum,
         NUMBER_4: 4 as CrudStatusEnum
-    }
+    };
 }

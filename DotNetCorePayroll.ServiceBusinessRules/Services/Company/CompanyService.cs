@@ -25,7 +25,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Company
             this.companyBuilder = companyBuilder;
             this.companyAdapter = companyAdapter;
         }
-        
+
         public CompanyModel Add(CompanyModel companyModel)
         {
             var company = companyBuilder.Build(companyModel);
@@ -51,7 +51,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Company
 
         public CompanyModel Find(long id)
         {
-            var company = unitOfWork.Company.GetById(o => o.Id == id);
+            var company = unitOfWork.Company.GetById(o => o.Id == id, "PhysicalAddress, PostalAddress");
 
             if (company == null)
             {
@@ -140,6 +140,24 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Company
             unitOfWork.Save();
 
             return companyBuilder.BuildToCompanyModel(unitOfWork.Company.GetById(o => o.Id == companyModel.Id));
+        }
+
+        public CompanyModel SaveAddressDetails(CompanyAddressModel companyAddressModel)
+        {
+            var company = unitOfWork.Company.GetById(o => o.Id == companyAddressModel.CompanyId, "PhysicalAddress, PostalAddress");
+
+            if (company == null)
+            {
+                throw new ResponseValidationException(ResponseMessage.ToError("Company you trying to update does not exist."));
+            }
+
+
+            companyAdapter.UpdateAddressDetails(company, companyAddressModel);
+            unitOfWork.Company.Update(company);
+            unitOfWork.Save();
+
+            return companyBuilder.BuildToCompanyModel(unitOfWork.Company.GetById(o => o.Id == companyAddressModel.CompanyId));
+
         }
     }
 }

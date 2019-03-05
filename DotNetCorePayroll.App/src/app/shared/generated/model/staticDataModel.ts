@@ -12,7 +12,7 @@
 import { ReferenceDataModel } from './referenceDataModel';
 
 
-export interface StaticDataModel {
+export interface StaticDataModel { 
     provinces?: Array<ReferenceDataModel>;
     countries?: Array<ReferenceDataModel>;
     accountTypes?: Array<ReferenceDataModel>;
