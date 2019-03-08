@@ -1,0 +1,103 @@
+<mat-card class="organisation-card">
+  <mat-card-header>
+    <div class="post-same-phy-address">
+      <mat-checkbox (change)="isPostalSameAsPhysicalAddress($event)">Postal address same as physical address</mat-checkbox>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="addressForm" [appFormValidator]="addressForm" [validationMessages]="validationMessages">
+      <app-summary-validation-messages [appForm]="addressForm"></app-summary-validation-messages>
+
+      <div class="form-address">
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('physicalAddressLine1'))" class="full-width-form-field">
+          <input type="hidden" formControlName="physicalAddressId">
+          <input matInput type="text" placeholder="Address" formControlName="physicalAddressLine1">
+          <mat-error [appValidationMessage]="addressForm.get('physicalAddressLine1')" [messages]="validationMessages.physicalAddressLine1"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('physicalAddressLine2'))" class="full-width-form-field">
+          <input matInput type="text" placeholder="Address 2" formControlName="physicalAddressLine2">
+          <mat-error [appValidationMessage]="addressForm.get('physicalAddressLine2')" [messages]="validationMessages.physicalAddressLine2"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('physicalAddressSuburb'))">
+          <input matInput type="text" placeholder="Suburb" formControlName="physicalAddressSuburb">
+          <mat-error [appValidationMessage]="addressForm.get('physicalAddressSuburb')" [messages]="validationMessages.physicalAddressSuburb"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('physicalAddressCity'))">
+          <input matInput type="text" placeholder="City" formControlName="physicalAddressCity">
+          <mat-error [appValidationMessage]="addressForm.get('physicalAddressCity')" [messages]="validationMessages.physicalAddressCity"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('physicalAddressPostalCode'))">
+          <input matInput type="text" placeholder="Postal Code" formControlName="physicalAddressPostalCode">
+          <mat-error [appValidationMessage]="addressForm.get('physicalAddressPostalCode')" [messages]="validationMessages.physicalAddressPostalCode"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('physicalAddressProvinceId'))">
+          <mat-select placeholder="Province" formControlName="physicalAddressProvinceId">
+            <mat-option></mat-option>
+            <mat-option *ngFor="let province of provinces" [value]="province.id">
+              {{province.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error [appValidationMessage]="addressForm.get('physicalAddressProvinceId')" [messages]="validationMessages.physicalAddressProvinceId"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('physicalAddressCountryId'))" class="full-width-form-field">
+          <mat-select placeholder="Country" formControlName="physicalAddressCountryId">
+            <mat-option></mat-option>
+            <mat-option *ngFor="let country of countries" [value]="country.id">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error [appValidationMessage]="addressForm.get('physicalAddressCountryId')" [messages]="validationMessages.physicalAddressCountryId"></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-address">
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('postalAddressLine1'))" class="full-width-form-field">
+          <input type="hidden" formControlName="postalAddressId">
+          <input matInput type="text" placeholder="Postal Address" formControlName="postalAddressLine1">
+          <mat-error [appValidationMessage]="addressForm.get('postalAddressLine1')" [messages]="validationMessages.postalAddressLine1"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('postalAddressLine2'))" class="full-width-form-field">
+          <input matInput type="text" placeholder="Address 2" formControlName="postalAddressLine2">
+          <mat-error [appValidationMessage]="addressForm.get('postalAddressLine2')" [messages]="validationMessages.postalAddressLine2"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('postalAddressSuburb'))">
+          <input matInput type="text" placeholder="Suburb" formControlName="postalAddressSuburb">
+          <mat-error [appValidationMessage]="addressForm.get('postalAddressSuburb')" [messages]="validationMessages.postalAddressSuburb"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('postalAddressCity'))">
+          <input matInput type="text" placeholder="City" formControlName="postalAddressCity">
+          <mat-error [appValidationMessage]="addressForm.get('postalAddressCity')" [messages]="validationMessages.postalAddressCity"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('postalAddressPostalCode'))">
+          <input matInput type="text" placeholder="Postal Code" formControlName="postalAddressPostalCode">
+          <mat-error [appValidationMessage]="addressForm.get('postalAddressPostalCode')" [messages]="validationMessages.postalAddressPostalCode"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('postalAddressProvinceId'))">
+          <mat-select placeholder="Province" formControlName="postalAddressProvinceId">
+            <mat-option></mat-option>
+            <mat-option *ngFor="let province of provinces" [value]="province.id">
+              {{province.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error [appValidationMessage]="addressForm.get('postalAddressProvinceId')" [messages]="validationMessages.postalAddressProvinceId"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(addressForm.get('postalAddressCountryId'))" class="full-width-form-field">
+          <mat-select placeholder="Country" formControlName="postalAddressCountryId">
+            <mat-option></mat-option>
+            <mat-option *ngFor="let country of countries" [value]="country.id">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error [appValidationMessage]="addressForm.get('postalAddressCountryId')" [messages]="validationMessages.postalAddressCountryId"></mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="buttons-container">
+      <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+      <button mat-raised-button (click)="save()" *ngIf="!isInProgress" color="primary">Save</button>
+      <button mat-raised-button *ngIf="!isInProgress" (click)="cancel()">Cancel</button>
+      <mat-progress-bar mode="indeterminate" *ngIf="isInProgress"></mat-progress-bar>
+    </div>
+  </mat-card-actions>
+</mat-card>

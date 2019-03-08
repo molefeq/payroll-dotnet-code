@@ -11,6 +11,8 @@ using DotNetCorePayroll.DataAccess;
 using DotNetCorePayroll.ServiceBusinessRules.ModelAdapters;
 using DotNetCorePayroll.ServiceBusinessRules.ModelBuilders;
 using Microsoft.Extensions.Configuration;
+using Payslip.Calculator;
+using Payslip.Sars.Builders;
 using SqsLibraries.Common.Utilities.ResponseObjects;
 
 namespace DotNetCorePayroll.ServiceBusinessRules.Services.Employee
@@ -20,12 +22,15 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Employee
         private IUnitOfWork unitOfWork;
         private EmployeeBuilder employeeBuilder;
         private EmployeeAdapter employeeAdapter;
+        private ICalculateService calculateService;
 
-        public EmployeeService(IUnitOfWork unitOfWork, EmployeeBuilder employeeBuilder, EmployeeAdapter employeeAdapter)
+        public EmployeeService(IUnitOfWork unitOfWork, EmployeeBuilder employeeBuilder, EmployeeAdapter employeeAdapter,
+            ICalculateService calculateService)
         {
             this.unitOfWork = unitOfWork;
             this.employeeBuilder = employeeBuilder;
             this.employeeAdapter = employeeAdapter;
+            this.calculateService = calculateService;
         }
 
         public EmployeeModel Add(EmployeeModel employeeModel)
@@ -109,6 +114,25 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Employee
             unitOfWork.Save();
 
             return employeeBuilder.BuildToEmployeeModel(unitOfWork.Employee.GetById(o => o.Id == employee.Id));
+        }
+
+        public void CreatePaySlip(long employeeId)
+        {
+            var employee = unitOfWork.Employee.GetById(o => o.Id == employeeId);
+
+            var builder = new CalculatorModelBuilder();
+            var sarsPayslipBuilder = new SarsPayslipBuilder(calculateService);
+            var sarsTaxIncomeBuilder = new SarsTaxIncomeBuilder();
+
+            builder.buildCalculatorModel(employee: employee, unitOfWork: unitOfWork);
+            sarsTaxIncomeBuilder.buildSarsTaxIncomeTable(unitOfWork: unitOfWork);
+
+            var calculatorModel = builder.GetModel();
+            var sarsTaxIncomeTable = sarsTaxIncomeBuilder.GetSarsTaxIncomeTable();
+
+            sarsPayslipBuilder.buildPayslip(calculatorModel, sarsTaxIncomeTable);
+
+            var payslipCalculation = sarsPayslipBuilder.getPayslip();
         }
 
         public void MapRelativeLogoPath(EmployeeModel employeeModel, IConfiguration configuration, string currentUrl)

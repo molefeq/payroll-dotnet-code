@@ -1,0 +1,148 @@
+<mat-card class="organisation-card">
+  <mat-card-content>
+    <form [formGroup]="employmentDetailForm" [appFormValidator]="employmentDetailForm" [validationMessages]="employmentDetailForm">
+      <app-summary-validation-messages [appForm]="employmentDetailForm"></app-summary-validation-messages>
+      <div class="form-row">
+        <mat-form-field [class.is-invalid]="isControlInvalid(employmentDetailForm.get('dateOfEmployement'))">
+          <input matInput type="text" placeholder="Date Of Engagement" formControlName="dateOfEmployement">
+          <input type="hidden" formControlName="id">
+          <mat-error [appValidationMessage]="employmentDetailForm.get('dateOfEmployement')" [messages]="validationMessages.dateOfEmployement"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(employmentDetailForm.get('payrollDay'))">
+          <input matInput type="text" placeholder="Pay Day" formControlName="payrollDay">
+          <mat-error [appValidationMessage]="employmentDetailForm.get('payrollDay')" [messages]="validationMessages.payrollDay"></mat-error>
+        </mat-form-field>
+      </div> <div class="form-row">
+        <mat-form-field [class.is-invalid]="isControlInvalid(employmentDetailForm.get('dateOfEmployement'))">
+          <input matInput type="text" placeholder="Date Of Engagement" formControlName="dateOfEmployement">
+          <input type="hidden" formControlName="id">
+          <mat-error [appValidationMessage]="employmentDetailForm.get('dateOfEmployement')" [messages]="validationMessages.dateOfEmployement"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(employmentDetailForm.get('payrollDay'))">
+          <input matInput type="text" placeholder="Pay Day" formControlName="payrollDay">
+          <mat-error [appValidationMessage]="employmentDetailForm.get('payrollDay')" [messages]="validationMessages.payrollDay"></mat-error>
+        </mat-form-field>
+      </div>
+      
+      
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            <label for="DateOfEmployementTermination">Contract End Date</label>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            <span>{{employeeFactory.employee.EmployeeCompanyDetail.ContractEndDate | date: 'dd/MM/yyyy'}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            <label for="EmployeeAnnualLeaveType">Annual Leave Type</label>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            <span>{{employeeFactory.employee.EmployeeCompanyDetail.AnnualLeaveType}}</span>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            <label for="EmploymentType">Employement Type</label>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            <span>{{employeeFactory.employee.EmployeeCompanyDetail.EmployementType}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            <label for="PaymentFrequency">Payment Frequency</label>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            <span>{{employeeFactory.employee.EmployeeCompanyDetail.PaymentFrequency}}</span>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            <label for="EmployeeJobTitle">Job Title</label>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            <span>{{employeeFactory.employee.EmployeeCompanyDetail.JobTitle}}</span>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="form-container">
+        <div class="panel-default">
+          <div class="panel-heading tab-sbuheader">
+            <h5>Remuneration Details</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12 column-row">
+            <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+              <label for="BasicSalary">Basic Salary</label>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+              <span>{{employeeFactory.employee.EmployeeCompanyDetail.BasicSalary}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12 column-row" ng-if="companyPayrollSetting.IsMedicalAidCovered">
+            <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+              <label for="EmployerMedicalAidAmount">Employer Medical Aid Amount</label>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+              <span>{{employeeFactory.employee.EmployeeCompanyDetail.EmployerMedicalAidAmount}}</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 column-row" ng-if="companyPayrollSetting.IsMedicalAidCovered">
+            <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+              <label for="EmployeeMedicalAidAmount">Employee Medical Aid Amount<i class="required">*</i></label>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+              <span>{{employeeFactory.employee.EmployeeCompanyDetail.EmployeeMedicalAidAmount}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12 column-row" ng-repeat="employeeAllowance in employeesFactory.employee.EmployeeAllowances">
+            <div class="clearfix"></div>
+            <div class="col-md-12 col-sm-12 col-xs-12 label">
+              <label for="AllowanceTypeName">{{employeeAllowance.AllowanceTypeName}}</label>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <span>{{employeeAllowance.CompanyContributionAmount}}</span>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tab-table-sbuheader">
+          <div class="width30">
+            <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+            </div>
+          </div>
+          <div class="width30">
+            <label class="center-align"> Employee</label>
+          </div>
+          <div class="width30">
+            <label class="center-align"> Employeer</label>
+          </div>
+        </div>
+        <div class="row" ng-repeat="employeeContribution in employeesFactory.employee.EmployeeContributions">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <label for="ContributionTypeName"> {{employeeContribution.ContributionTypeName}}</label>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <span>{{employeeContribution.EmployeeContributionAmount}}</span>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <span>{{employeeContribution.CompanyContributionAmount}}</span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

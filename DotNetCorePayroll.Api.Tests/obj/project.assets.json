@@ -6637,6 +6637,7 @@
           "DotNetCorePayroll.Common": "1.0.0",
           "DotNetCorePayroll.Data": "1.0.0",
           "DotNetCorePayroll.DataAccess": "1.0.0",
+          "DotNetCorePayroll.PdfWriter": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "2.2.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.2.0",
           "SqsLibraries.Common.RC.1.0.0": "1.0.1"

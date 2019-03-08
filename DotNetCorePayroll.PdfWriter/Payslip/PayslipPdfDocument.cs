@@ -29,7 +29,7 @@
 //                return _instance;
 //            }
 //        }
-//        public void WriteBatch(string directoryName, List<PayslipModel> payslipModels)
+//        public void WriteBatch(string directoryName, List<PayslipPdfModel> payslipModels)
 //        {
 //            if (!Directory.Exists(directoryName))
 //            {
@@ -43,7 +43,7 @@
 //            }
 //        }
 
-//        public void EmailBatch(string directoryName, List<PayslipModel> payslipModels, DateTime emailDate)
+//        public void EmailBatch(string directoryName, List<PayslipPdfModel> payslipModels, DateTime emailDate)
 //        {
 //            if (!Directory.Exists(directoryName))
 //            {
@@ -65,7 +65,7 @@
 //            }
 //        }
 
-//        public void Write(string fileName, PayslipModel payslipModel)
+//        public void Write(string fileName, PayslipPdfModel payslipModel)
 //        {
 //            using (FileStream fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
 //            {
@@ -100,7 +100,7 @@
 
 //        #region Private Methods
 
-//        private void WriteDocument(PayslipModel payslipModel, Document pdfDocument)
+//        private void WriteDocument(PayslipPdfModel payslipModel, Document pdfDocument)
 //        {
 //            PdfPTable pdfPTable = new PdfPTable(new float[] { 100f });
 //            Font font = FontFactory.GetFont("Arial", 8, BaseColor.DARK_GRAY);
@@ -122,7 +122,7 @@
 //            pdfDocument.Add(pdfPTable);
 //        }
 
-//        private void SendPayslipEmail(PayslipModel payslipModel, string fileName, DateTime emailDate)
+//        private void SendPayslipEmail(PayslipPdfModel payslipModel, string fileName, DateTime emailDate)
 //        {
 //            using (MemoryStream zippedStream = new MemoryStream())
 //            {

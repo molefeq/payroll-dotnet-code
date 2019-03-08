@@ -18,6 +18,19 @@ namespace DotNetCorePayroll.DataAccess
         private GenericRepository<Country> country;
         private GenericRepository<Province> province;
         private EmployeeRepository employee;
+        private IncomeTaxRepository incomeTax;
+        private MedicalAidTaxCreditRepository medicalAidTaxCredit;
+        private AllowanceRepository allowance;
+        private TaxRebateRepository taxRebate;
+        private TaxThresholdRepository taxThreshold;
+        private UifRepository uif;
+        private PensionFundRepository pensionFund;
+        private GenericRepository<EmployeePayroll> employeePayroll;
+        private GenericRepository<EmployeeMedicalAid> employeeMedicalAid;
+        private GenericRepository<EmployeeBenefit> employeeBenefit;
+        private GenericRepository<EmployeeAllowance> employeeAllowance;
+        private GenericRepository<Benefit> benefit;
+        private GenericRepository<AllowanceType> allowanceType;
 
         #endregion
 
@@ -50,8 +63,7 @@ namespace DotNetCorePayroll.DataAccess
                 return organisation;
             }
         }
-
-
+        
         public CompanyRepository Company
         {
             get
@@ -104,7 +116,6 @@ namespace DotNetCorePayroll.DataAccess
             }
         }
 
-
         public GenericRepository<Province> Province
         {
             get
@@ -128,6 +139,173 @@ namespace DotNetCorePayroll.DataAccess
                 }
 
                 return employee;
+            }
+        }
+
+        public IncomeTaxRepository IncomeTax { get
+            {
+                if (incomeTax == null)
+                {
+                    incomeTax = new IncomeTaxRepository(context);
+                }
+
+                return incomeTax;
+            }
+        }
+
+        public MedicalAidTaxCreditRepository MedicalAidTaxCredit {
+            get
+            {
+                if (medicalAidTaxCredit == null)
+                {
+                    medicalAidTaxCredit = new MedicalAidTaxCreditRepository(context);
+                }
+
+                return medicalAidTaxCredit;
+            }
+        }
+
+        public TaxRebateRepository TaxRebate
+        {
+            get
+            {
+                if (taxRebate == null)
+                {
+                    taxRebate = new TaxRebateRepository(context);
+                }
+
+                return taxRebate;
+            }
+        }
+
+        public TaxThresholdRepository TaxThreshold
+        {
+            get
+            {
+                if (taxThreshold == null)
+                {
+                    taxThreshold = new TaxThresholdRepository(context);
+                }
+
+                return taxThreshold;
+            }
+        }
+
+        public UifRepository Uif
+        {
+            get
+            {
+                if (uif == null)
+                {
+                    uif = new UifRepository(context);
+                }
+
+                return uif;
+            }
+        }
+
+        public PensionFundRepository PensionFund
+        {
+            get
+            {
+                if (pensionFund == null)
+                {
+                    pensionFund = new PensionFundRepository(context);
+                }
+
+                return pensionFund;
+            }
+        }
+
+        public AllowanceRepository Allowance
+        {
+            get
+            {
+                if (allowance == null)
+                {
+                    allowance = new AllowanceRepository(context);
+                }
+
+                return allowance;
+            }
+        }
+
+
+        public GenericRepository<AllowanceType> AllowanceType
+        {
+            get
+            {
+                if (allowanceType == null)
+                {
+                    allowanceType = new GenericRepository<AllowanceType>(context);
+                }
+
+                return allowanceType;
+            }
+        }
+
+        public GenericRepository<Benefit> Benefit
+        {
+            get
+            {
+                if (benefit == null)
+                {
+                    benefit = new GenericRepository<Benefit>(context);
+                }
+
+                return benefit;
+            }
+        }
+
+        public GenericRepository<EmployeeAllowance> EmployeeAllowance
+        {
+            get
+            {
+                if (employeeAllowance == null)
+                {
+                    employeeAllowance = new GenericRepository<EmployeeAllowance>(context);
+                }
+
+                return employeeAllowance;
+            }
+        }
+
+        public GenericRepository<EmployeeBenefit> EmployeeBenefit
+        {
+            get
+            {
+                if (employeeBenefit == null)
+                {
+                    employeeBenefit = new GenericRepository<EmployeeBenefit>(context);
+                }
+
+                return employeeBenefit;
+            }
+        }
+
+        public GenericRepository<EmployeeMedicalAid> EmployeeMedicalAid
+        {
+            get
+            {
+                if (employeeMedicalAid == null)
+                {
+                    employeeMedicalAid = new GenericRepository<EmployeeMedicalAid>(context);
+                }
+
+                return employeeMedicalAid;
+            }
+        }
+
+        public GenericRepository<EmployeePayroll> EmployeePayroll
+        {
+            get
+            {
+                if (employeePayroll == null)
+                {
+                    employeePayroll = new GenericRepository<EmployeePayroll>(context);
+                }
+
+                return employeePayroll;
             }
         }
 

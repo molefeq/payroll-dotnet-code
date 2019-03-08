@@ -32,7 +32,7 @@
 //            DeductionDetailModel deductionDetailModel = new DeductionDetailModel();
 
 //            deductionDetailModel.Description = sqlDataReader["Description"].ToString();
-//            deductionDetailModel.Amount = sqlDataReader["Amount"].ToDecimal();
+//            deductionDetailModel.Amount = sqlDataReader["Amount"].Todouble();
 
 //            return deductionDetailModel;
 //        }

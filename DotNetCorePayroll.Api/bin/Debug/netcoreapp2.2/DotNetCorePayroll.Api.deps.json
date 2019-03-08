@@ -1187,15 +1187,43 @@
           "DotNetCorePayroll.Common": "1.0.0",
           "DotNetCorePayroll.Data": "1.0.0",
           "DotNetCorePayroll.DataAccess": "1.0.0",
+          "DotNetCorePayroll.PdfWriter": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "2.2.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.2.0",
-          "SqsLibraries.Common.RC.1.0.0": "1.0.1"
+          "SqsLibraries.Common.RC.1.0.0": "1.0.1",
+          "Payslip.Calculator": "1.0.0.0",
+          "Payslip.Sars": "1.0.0.0",
+          "Payslip.Common": "1.0.0.0"
         },
         "runtime": {
           "DotNetCorePayroll.ServiceBusinessRules.dll": {}
         },
         "compile": {
           "DotNetCorePayroll.ServiceBusinessRules.dll": {}
+        }
+      },
+      "Payslip.Calculator.Reference/1.0.0.0": {
+        "runtime": {
+          "Payslip.Calculator.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Payslip.Sars.Reference/1.0.0.0": {
+        "runtime": {
+          "Payslip.Sars.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Payslip.Common.Reference/1.0.0.0": {
+        "runtime": {
+          "Payslip.Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Libuv/1.10.0": {
@@ -5152,6 +5180,21 @@
     },
     "DotNetCorePayroll.ServiceBusinessRules/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Payslip.Calculator.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Payslip.Sars.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Payslip.Common.Reference/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

@@ -11,7 +11,7 @@ namespace DotNetCorePayroll.Data.ViewModels.Company
         public int? HoursPerDay { get; set; }
         public int? WeeklyPeriods { get; set; }
         public int? HoursPerWeek { get; set; }
-        public decimal? DaysPerMonth { get; set; }
+        public double? DaysPerMonth { get; set; }
         public string PayslipMessage { get; set; }
         public CrudStatus CrudStatus { get; set; }
     }

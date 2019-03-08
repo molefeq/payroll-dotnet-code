@@ -7,66 +7,69 @@ namespace DotNetCorePayroll.DataAccess.TableBuilders
     {
         public static void Build(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.ToTable("employee");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.CompanyId).HasColumnName("companyid");
+                entity.Property(e => e.CompanyId).HasColumnName("company_id");
 
-                entity.Property(e => e.CreateDate).HasColumnName("create_date");
+                entity.Property(e => e.CreateDate)
+                    .HasColumnName("create_date")
+                    .HasColumnType("date");
 
                 entity.Property(e => e.CreateUserId).HasColumnName("create_user_id");
 
                 entity.Property(e => e.DateOfBirth)
-                    .HasColumnName("dateofbirth")
+                    .HasColumnName("date_of_birth")
                     .HasColumnType("date");
 
                 entity.Property(e => e.DisabilityDescription)
-                    .HasColumnName("disabilitydescription")
+                    .HasColumnName("disability_description")
                     .HasMaxLength(100);
 
                 entity.Property(e => e.EmailAddress)
-                    .HasColumnName("emailaddress")
+                    .HasColumnName("email_address")
                     .HasMaxLength(500);
 
                 entity.Property(e => e.EmployeeNumber)
                     .IsRequired()
-                    .HasColumnName("employeenumber")
+                    .HasColumnName("employee_number")
                     .HasMaxLength(20);
 
                 entity.Property(e => e.EthnicGroup)
                     .IsRequired()
-                    .HasColumnName("ethnicgroup")
+                    .HasColumnName("ethnic_group")
                     .HasMaxLength(50);
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
-                    .HasColumnName("firstname")
+                    .HasColumnName("first_name")
                     .HasMaxLength(200);
 
                 entity.Property(e => e.Gender)
                     .HasColumnName("gender")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.HasDisability).HasColumnName("hasdisability");
+                entity.Property(e => e.HasDisability).HasColumnName("has_disability");
 
                 entity.Property(e => e.HomeLanguage)
                     .IsRequired()
-                    .HasColumnName("homelanguage")
+                    .HasColumnName("home_language")
                     .HasMaxLength(50);
 
                 entity.Property(e => e.HomeNumber)
-                    .HasColumnName("homenumber")
+                    .HasColumnName("home_number")
                     .HasMaxLength(20);
 
                 entity.Property(e => e.IdOrPassportNumber)
-                    .HasColumnName("idorpassportnumber")
+                    .HasColumnName("id_or_passport_number")
                     .HasMaxLength(20);
 
                 entity.Property(e => e.ImageFileName)
-                    .HasColumnName("imagefilename")
+                    .HasColumnName("image_file_name")
                     .HasMaxLength(1000);
 
                 entity.Property(e => e.Initials)
@@ -74,40 +77,42 @@ namespace DotNetCorePayroll.DataAccess.TableBuilders
                     .HasColumnName("initials")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.IsSouthAfricanCitizen).HasColumnName("issouthafricancitizen");
+                entity.Property(e => e.IsSouthAfricanCitizen).HasColumnName("is_south_african_citizen");
 
                 entity.Property(e => e.LastName)
                     .IsRequired()
-                    .HasColumnName("lastname")
+                    .HasColumnName("last_name")
                     .HasMaxLength(100);
 
                 entity.Property(e => e.MaritalStatus)
                     .IsRequired()
-                    .HasColumnName("maritalstatus")
+                    .HasColumnName("marital_status")
                     .HasMaxLength(50);
 
                 entity.Property(e => e.MobileNumber)
-                    .HasColumnName("mobilenumber")
+                    .HasColumnName("mobile_number")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.ModifyDate).HasColumnName("modify_date");
+                entity.Property(e => e.ModifiedDate)
+                    .HasColumnName("modified_date")
+                    .HasColumnType("date");
 
-                entity.Property(e => e.ModifyUserId).HasColumnName("modify_user_id");
+                entity.Property(e => e.ModifiedUserId).HasColumnName("modified_user_id");
 
                 entity.Property(e => e.NickName)
                     .IsRequired()
-                    .HasColumnName("nickname")
+                    .HasColumnName("nick_name")
                     .HasMaxLength(100);
 
                 entity.Property(e => e.PhysicalAddressId).HasColumnName("physical_address_id");
 
                 entity.Property(e => e.PostalAddressId).HasColumnName("postal_address_id");
 
-                entity.Property(e => e.StatusId).HasColumnName("statuses_id");
+                entity.Property(e => e.StatusId).HasColumnName("status_id");
 
                 entity.Property(e => e.TaxReferenceNumber)
                     .IsRequired()
-                    .HasColumnName("taxreferencenumber")
+                    .HasColumnName("tax_reference_number")
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Title)
@@ -116,14 +121,14 @@ namespace DotNetCorePayroll.DataAccess.TableBuilders
                     .HasMaxLength(20);
 
                 entity.Property(e => e.WorkNumber)
-                    .HasColumnName("worknumber")
+                    .HasColumnName("work_number")
                     .HasMaxLength(20);
 
                 entity.HasOne(d => d.Company)
-                    .WithMany(p => p.Employees)
+                    .WithMany()
                     .HasForeignKey(d => d.CompanyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_employee_company_companyid");
+                    .HasConstraintName("fk_employee_company_company_id");
 
                 entity.HasOne(d => d.CreateUser)
                     .WithMany()
@@ -131,20 +136,10 @@ namespace DotNetCorePayroll.DataAccess.TableBuilders
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_employee_account_create_user_id");
 
-                entity.HasOne(d => d.ModifyUser)
+                entity.HasOne(d => d.ModifiedUser)
                     .WithMany()
-                    .HasForeignKey(d => d.ModifyUserId)
-                    .HasConstraintName("fk_employee_account_modify_user_id");
-
-                entity.HasOne(d => d.PhysicalAddress)
-                    .WithMany()
-                    .HasForeignKey(d => d.PhysicalAddressId)
-                    .HasConstraintName("fk_employee_physical_address_id");
-
-                entity.HasOne(d => d.PostalAddress)
-                    .WithMany()
-                    .HasForeignKey(d => d.PostalAddressId)
-                    .HasConstraintName("fk_employee_postal_address_id");
+                    .HasForeignKey(d => d.ModifiedUserId)
+                    .HasConstraintName("fk_employee_account_modified_user_id");
             });
         }
     }

@@ -32,7 +32,7 @@
 //            CompanyContributionDetailModel companyContributionDetailModel = new CompanyContributionDetailModel();
 
 //            companyContributionDetailModel.Description = sqlDataReader["Description"].ToString();
-//            companyContributionDetailModel.Amount = sqlDataReader["Amount"].ToDecimal();
+//            companyContributionDetailModel.Amount = sqlDataReader["Amount"].Todouble();
 
 //            return companyContributionDetailModel;
 //        }

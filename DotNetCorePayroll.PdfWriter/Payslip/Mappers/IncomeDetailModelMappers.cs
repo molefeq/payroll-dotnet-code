@@ -33,7 +33,7 @@
 //            IncomeDetailModel incomeDetailModel = new IncomeDetailModel();
 
 //            incomeDetailModel.Description = sqlDataReader["Description"].ToString();
-//            incomeDetailModel.Amount = sqlDataReader["Amount"].ToDecimal();
+//            incomeDetailModel.Amount = sqlDataReader["Amount"].Todouble();
 
 //            return incomeDetailModel;
 //        }

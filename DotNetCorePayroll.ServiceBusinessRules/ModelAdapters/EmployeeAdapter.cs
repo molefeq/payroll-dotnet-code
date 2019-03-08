@@ -23,13 +23,13 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelAdapters
             employee.Initials = employeeModel.Initials;
             employee.LastName = employeeModel.LastName;
             employee.NickName = employeeModel.NickName;
-            employee.DateOfBirth = employeeModel.DateOfBirth;
+            employee.DateOfBirth = employeeModel.DateOfBirth.Value;
             employee.Gender = employeeModel.Gender;
             employee.DisabilityDescription = employeeModel.DisabilityDescription;
             employee.MaritalStatus = employeeModel.MaritalStatus;
             employee.HomeLanguage = employeeModel.HomeLanguage;
             employee.TaxReferenceNumber = employeeModel.TaxReferenceNumber;
-            employee.StatusId = employeeModel.StatusId;
+            employee.StatusId = employeeModel.StatusId.Value;
             employee.EthnicGroup = employeeModel.EthnicGroup;
             employee.EmployeeNumber = employeeModel.EmployeeNumber;
             employee.IdOrPassportNumber = employeeModel.IdOrPassportNumber;
@@ -38,8 +38,8 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelAdapters
             employee.HomeNumber = employeeModel.HomeNumber;
             employee.MobileNumber = employeeModel.MobileNumber;
             employee.ImageFileName = employeeModel.ImageFileName;
-            employee.ModifyDate = DateTime.Now;
-            employee.ModifyUserId = employeeModel.UserId;
+            employee.ModifiedDate = DateTime.Now;
+            employee.ModifiedUserId = employeeModel.UserId;
         }
 
         public void UpdateAddressDetails(Employee employee, EmployeeAddressModel addressModel)

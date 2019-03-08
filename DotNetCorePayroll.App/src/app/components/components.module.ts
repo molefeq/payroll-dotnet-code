@@ -20,6 +20,12 @@ import { EmployeeFormComponent } from './employee/employee-form/employee-form.co
 import { EmployeeAddressFormComponent } from './employee/employee-form/employee-address-form/employee-address-form.component';
 import { EmployeeBankingDetailsFormComponent } from './employee/employee-form/employee-banking-details-form/employee-banking-details-form.component';
 import { EmployeeSettingsFormComponent } from './employee/employee-form/employee-settings-form/employee-settings-form.component';
+import { EmploymentDetailsComponent } from './employee/employee-form/employment-details/employment-details.component';
+import { AddressComponent } from './employee/employee-form/address/address.component';
+import { BankingDetailsComponent } from './employee/employee-form/banking-details/banking-details.component';
+import { SettingsComponent } from './employee/employee-form/settings/settings.component';
+import { MedicalAidComponent } from './employee/employee-form/medical-aid/medical-aid.component';
+import { MedicalAidDependantComponent } from './employee/employee-form/medical-aid/medical-aid-dependant/medical-aid-dependant.component';
 
 @NgModule({
   imports: [
@@ -48,6 +54,12 @@ import { EmployeeSettingsFormComponent } from './employee/employee-form/employee
     EmployeeAddressFormComponent,
     EmployeeBankingDetailsFormComponent,
     EmployeeSettingsFormComponent,
+    EmploymentDetailsComponent,
+    AddressComponent,
+    BankingDetailsComponent,
+    SettingsComponent,
+    MedicalAidComponent,
+    MedicalAidDependantComponent,
   ]
 })
 export class ComponentsModule { }

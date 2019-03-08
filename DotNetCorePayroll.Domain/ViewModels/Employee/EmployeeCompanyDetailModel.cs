@@ -14,9 +14,9 @@ namespace DotNetCorePayroll.Data.ViewModels.Employee
         public string AnnualLeaveType { get; set; }
         public string EmployementType { get; set; }
         public string JobTitle { get; set; }
-        public decimal BasicSalary { get; set; }
-        public decimal? TravelAllowance { get; set; }
-        public decimal? OtherAllowance { get; set; }
+        public double BasicSalary { get; set; }
+        public double? TravelAllowance { get; set; }
+        public double? OtherAllowance { get; set; }
         public long CreateUserId { get; set; }
         public string CreateUser { get; set; }
         public DateTime CreateDate { get; set; }

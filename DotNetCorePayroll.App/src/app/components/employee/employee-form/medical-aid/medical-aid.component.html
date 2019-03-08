@@ -1,0 +1,72 @@
+<mat-card class="organisation-card">
+  <mat-card-content>
+    <form [formGroup]="medicalAidForm" [appFormValidator]="medicalAidForm" [validationMessages]="medicalAidForm">
+      <app-summary-validation-messages [appForm]="medicalAidForm"></app-summary-validation-messages>
+      <div class="form-row">
+        <mat-form-field [class.is-invalid]="isControlInvalid(medicalAidForm.get('medicalAidName'))">
+          <input matInput type="text" placeholder="Medical Aid Name" formControlName="medicalAidName">
+          <input type="hidden" formControlName="id">
+          <mat-error [appValidationMessage]="medicalAidForm.get('medicalAidName')" [messages]="validationMessages.medicalAidName"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(medicalAidForm.get('medicalAidScheme'))">
+          <input matInput type="text" placeholder="Medical Aid Scheme" formControlName="medicalAidScheme">
+          <mat-error [appValidationMessage]="medicalAidForm.get('medicalAidScheme')" [messages]="validationMessages.medicalAidScheme"></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field [class.is-invalid]="isControlInvalid(medicalAidForm.get('medicalAidNumber'))">
+          <input matInput type="text" placeholder="Medical Aid Number" formControlName="medicalAidNumber">
+          <input type="hidden" formControlName="id">
+          <mat-error [appValidationMessage]="medicalAidForm.get('medicalAidNumber')" [messages]="validationMessages.medicalAidNumber"></mat-error>
+        </mat-form-field>
+        <mat-form-field [class.is-invalid]="isControlInvalid(medicalAidForm.get('medicalAidScheme'))">
+
+        </mat-form-field>
+      </div>
+
+
+      <div class="table-container mat-elevation-z8">
+        <div class="table-loading-shade" *ngIf="isBusy$ | async">
+          <mat-spinner *ngIf="isBusy$ | async" strokeWidth="2"></mat-spinner>
+        </div>
+    
+        <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 material_table" matSort matSortDirection="asc" matSortActive="firstFullName">
+    
+          <ng-container matColumnDef="firstFullName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Full Names</mat-header-cell>
+            <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.firstFullName }}</mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="medicalAidCode">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-3">Medical Aid Code</mat-header-cell>
+            <mat-cell *matCellDef="let row" class="cell-flex-3">{{ row.medicalAidCode }}</mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="dateOfBirth">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1"> Date Of Birth</mat-header-cell>
+            <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.dateOfBirth }}</mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="relationship">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Relationship</mat-header-cell>
+            <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.relationship }}</mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="table-header-actions-col"></th>
+            <td mat-cell *matCellDef="let row" class="table-cell-actions-col">
+              <button mat-icon-button color="primary" (click)="editEmployee(row)" matTooltip="Edit employee">
+                <mat-icon aria-label="Button to edit employee.">create</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+    
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+        </mat-table>
+        <mat-paginator [length]="totalDependants$ | async" [pageSize]="5"></mat-paginator>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

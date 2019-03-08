@@ -29,22 +29,22 @@
 //            }
 //        }
 
-//        public List<PayslipModel> MapToPayslipModels(SqlDataReader sqlDataReader)
+//        public List<PayslipPdfModel> MapToPayslipModels(SqlDataReader sqlDataReader)
 //        {
-//            List<PayslipModel> payslipModels = new List<PayslipModel>();
+//            List<PayslipPdfModel> payslipModels = new List<PayslipPdfModel>();
 
 //            using (sqlDataReader)
 //            {
 //                while (sqlDataReader.Read())
 //                {
-//                    PayslipModel payslipModel = new PayslipModel();
+//                    PayslipPdfModel payslipModel = new PayslipPdfModel();
 
 //                    payslipModel.EmployeeId = sqlDataReader["Id"].ToInteger();
 //                    payslipModel.Period = sqlDataReader["PaySlipDate"].ToString();
 //                    payslipModel.Date = sqlDataReader["PaySlipPeriod"].ToString();
-//                    payslipModel.TotalGrossEarnings = sqlDataReader["TotalGrossEarnings"].ToDecimal();
-//                    payslipModel.TotalDeductions = sqlDataReader["TotalDeductions"].ToDecimal();
-//                    payslipModel.NetPayAmount = sqlDataReader["NetPayAmount"].ToDecimal();
+//                    payslipModel.TotalGrossEarnings = sqlDataReader["TotalGrossEarnings"].Todouble();
+//                    payslipModel.TotalDeductions = sqlDataReader["TotalDeductions"].Todouble();
+//                    payslipModel.NetPayAmount = sqlDataReader["NetPayAmount"].Todouble();
 
 //                    payslipModels.Add(payslipModel);
 //                }
@@ -54,7 +54,7 @@
 //                while (sqlDataReader.Read())
 //                {
 //                    int employeeId = sqlDataReader["Id"].ToInteger();
-//                    PayslipModel payslipModel = payslipModels.Where(item => item.EmployeeId == employeeId).FirstOrDefault();
+//                    PayslipPdfModel payslipModel = payslipModels.Where(item => item.EmployeeId == employeeId).FirstOrDefault();
 
 //                    if (payslipModel != null)
 //                    {
@@ -68,7 +68,7 @@
 //                while (sqlDataReader.Read())
 //                {
 //                    int employeeId = sqlDataReader["EmployeeId"].ToInteger();
-//                    PayslipModel payslipModel = payslipModels.Where(item => item.EmployeeId == employeeId).FirstOrDefault();
+//                    PayslipPdfModel payslipModel = payslipModels.Where(item => item.EmployeeId == employeeId).FirstOrDefault();
 
 //                    if (payslipModel != null)
 //                    {
@@ -81,7 +81,7 @@
 //                while (sqlDataReader.Read())
 //                {
 //                    int employeeId = sqlDataReader["EmployeeId"].ToInteger();
-//                    PayslipModel payslipModel = payslipModels.Where(item => item.EmployeeId == employeeId).FirstOrDefault();
+//                    PayslipPdfModel payslipModel = payslipModels.Where(item => item.EmployeeId == employeeId).FirstOrDefault();
 
 //                    if (payslipModel != null)
 //                    {
@@ -94,7 +94,7 @@
 //                while (sqlDataReader.Read())
 //                {
 //                    int employeeId = sqlDataReader["EmployeeId"].ToInteger();
-//                    PayslipModel payslipModel = payslipModels.Where(item => item.EmployeeId == employeeId).FirstOrDefault();
+//                    PayslipPdfModel payslipModel = payslipModels.Where(item => item.EmployeeId == employeeId).FirstOrDefault();
 
 //                    if (payslipModel != null)
 //                    {
@@ -106,9 +106,9 @@
 //            return payslipModels;
 //        }
 
-//        public PayslipModel MapToPayslipModel(SqlDataReader sqlDataReader)
+//        public PayslipPdfModel MapToPayslipModel(SqlDataReader sqlDataReader)
 //        {
-//            PayslipModel payslipModel = new PayslipModel();
+//            PayslipPdfModel payslipModel = new PayslipPdfModel();
 
 //            using (sqlDataReader)
 //            {
@@ -117,9 +117,9 @@
 //                    payslipModel.EmployeeId = sqlDataReader["Id"].ToInteger();
 //                    payslipModel.Period = sqlDataReader["PaySlipDate"].ToString();
 //                    payslipModel.Date = sqlDataReader["PaySlipPeriod"].ToString();
-//                    payslipModel.TotalGrossEarnings = sqlDataReader["TotalGrossEarnings"].ToDecimal();
-//                    payslipModel.TotalDeductions = sqlDataReader["TotalDeductions"].ToDecimal();
-//                    payslipModel.NetPayAmount = sqlDataReader["NetPayAmount"].ToDecimal();
+//                    payslipModel.TotalGrossEarnings = sqlDataReader["TotalGrossEarnings"].Todouble();
+//                    payslipModel.TotalDeductions = sqlDataReader["TotalDeductions"].Todouble();
+//                    payslipModel.NetPayAmount = sqlDataReader["NetPayAmount"].Todouble();
 
 //                    sqlDataReader.NextResult();
 

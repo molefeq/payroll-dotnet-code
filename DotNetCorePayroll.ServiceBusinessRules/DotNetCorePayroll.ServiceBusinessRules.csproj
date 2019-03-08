@@ -10,6 +10,22 @@
     <ProjectReference Include="..\DotNetCorePayroll.Common\DotNetCorePayroll.Common.csproj" />
     <ProjectReference Include="..\DotNetCorePayroll.DataAccess\DotNetCorePayroll.DataAccess.csproj" />
     <ProjectReference Include="..\DotNetCorePayroll.Domain\DotNetCorePayroll.Data.csproj" />
+    <ProjectReference Include="..\DotNetCorePayroll.PdfWriter\DotNetCorePayroll.PdfWriter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Payslip.Calculator">
+      <HintPath>..\..\..\Users\bbdnet1168\source\repos\Payslip\Payslip.Sars\bin\Debug\netcoreapp2.2\Payslip.Calculator.dll</HintPath>
+    </Reference>
+    <Reference Include="Payslip.Common">
+      <HintPath>..\..\..\Users\bbdnet1168\source\repos\Payslip\Payslip.Sars\bin\Debug\netcoreapp2.2\Payslip.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Payslip.Sars">
+      <HintPath>..\..\..\Users\bbdnet1168\source\repos\Payslip\Payslip.Sars\bin\Debug\netcoreapp2.2\Payslip.Sars.dll</HintPath>
+    </Reference>
+    <Reference Include="SqsLibraries.Common">
+      <HintPath>..\..\SqsLibraries\SqsLibraries.Common\bin\Debug\netcoreapp2.0\SqsLibraries.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <PropertyGroup>
