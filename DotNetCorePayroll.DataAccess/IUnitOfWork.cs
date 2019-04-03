@@ -29,6 +29,7 @@ namespace DotNetCorePayroll.DataAccess
         AllowanceRepository Allowance { get; }
         GenericRepository<AllowanceType> AllowanceType { get; }
         GenericRepository<Benefit> Benefit { get; }
+        GenericRepository<Lookup> Lookup { get; }
 
         #endregion
 

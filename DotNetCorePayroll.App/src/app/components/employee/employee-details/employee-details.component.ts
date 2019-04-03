@@ -35,7 +35,7 @@ export class EmployeeDetailsComponent implements OnInit, OnDestroy {
     this.company = this.companyDetailsService.Company;
     this.employeeDetailsSerivce.Employee = null;
     this.subscriptions = this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    this.subscriptions.add(this.employeeDetailsSerivce.getEmployees(this.paginator, this.sort, this.searchEvent)
+    this.subscriptions.add(this.employeeDetailsSerivce.getEmployees(this.paginator, this.sort, this.searchEvent,  this.company.id)
       .subscribe(data => this.dataSource = data));
   }
 

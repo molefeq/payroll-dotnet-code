@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeFormConstants } from './employee-form-constants';
 import { logoModel } from '../../../shared/models/logoModel';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { CompanyModel, EmployeeModel } from '../../../shared/generated';
+import { CompanyModel, EmployeeModel, ReferenceDataModel } from '../../../shared/generated';
 import { CompanyDetailsService } from '../../company/company-details.service';
 import { EmployeeDetailsService } from '../employee-details.service';
 import { AppReferenceDataService } from '../../../shared/services/app-reference-data-service';
@@ -12,15 +12,44 @@ import { serverValidation } from '../../../shared/validators/server-side-validat
 import { FormHelper } from '../../../shared/utils/form-helper';
 import { FormFieldValidator } from '../../../shared/utils/form-fields-validator';
 import { finalize } from 'rxjs/operators';
+import { MatDatepicker, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
+//import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import * as _moment from 'moment';
+// tslint:disable-next-line:no-duplicate-imports
+import { default as _rollupMoment } from 'moment';
+
+const moment = _rollupMoment || _moment;
+
+// See the Moment.js docs for the meaning of these formats:
+// https://momentjs.com/docs/#/displaying/format/
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'LL',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
-  styleUrls: ['./employee-form.component.scss']
+  styleUrls: ['./employee-form.component.scss'],
+  providers: [
+    // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
+    // application's root module. We provide it at the component level here, due to limitations of
+    // our example generation script.
+    // {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+
+    // {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
 export class EmployeeFormComponent implements OnInit {
 
-
+  @ViewChild(MatDatepicker) dateOfBirthPicker: MatDatepicker<Date>;
   apiUrl: String = EmployeeFormConstants.UPLOAD_IMAGE_URL;
   logo: logoModel;
 
@@ -30,6 +59,10 @@ export class EmployeeFormComponent implements OnInit {
   heading: String = 'Create Employee';
   company: CompanyModel;
   validationMessages = EmployeeFormConstants.VALIDATION_MESSAGES;
+  titles: Array<ReferenceDataModel>;
+  languages: Array<ReferenceDataModel>;
+  maritalStatuses: Array<ReferenceDataModel>;
+  ethnicGroups: Array<ReferenceDataModel>;
 
   constructor(private fb: FormBuilder,
     private companyDetailsService: CompanyDetailsService,
@@ -39,6 +72,11 @@ export class EmployeeFormComponent implements OnInit {
 
   ngOnInit() {
     this.company = this.companyDetailsService.Company;
+    this.titles = this.referenceDataService.getTitles();
+    this.languages = this.referenceDataService.getLanguages();
+    this.maritalStatuses = this.referenceDataService.getMaritalStatuses();
+    this.ethnicGroups = this.referenceDataService.getEthnicGroups();
+
     this.createForm();
   }
 
@@ -65,7 +103,7 @@ export class EmployeeFormComponent implements OnInit {
       idOrPassportNumber: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],
       // tslint:disable-next-line:max-line-length
       ethnicGroup: ['', [serverValidation()]],
-      gender: ['', [serverValidation()]],
+      gender: ['', [Validators.required, serverValidation()]],
       hasDisability: ['', [serverValidation()]],
       // tslint:disable-next-line:max-line-length
       disabilityDescription: ['', [Validators.maxLength(100), Validators.pattern(Constants.ALPHA_NUMERIC_REG_EXP), serverValidation()]],

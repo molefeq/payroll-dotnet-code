@@ -51,6 +51,7 @@ export class EmployeeFormConstants {
             serverValidation: ''
         },
         gender: {
+            required: 'Gender is required.',
             serverValidation: ''
         },
         hasDisability: {

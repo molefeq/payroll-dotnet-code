@@ -19,7 +19,7 @@ export class CompanyDetailsService {
 
   constructor(private companyService: CompanyService) { }
 
-  getAllCompanies(searchEvent: EventEmitter<string>): Observable<CompanyModel[]> {
+  getAllCompanies(searchEvent: EventEmitter<string>, organisationId:number): Observable<CompanyModel[]> {
     const that = this;
 
     return searchEvent.pipe(
@@ -32,8 +32,9 @@ export class CompanyDetailsService {
         return that.companyService.getCompanies(
           {
             searchText: searchText,
+            organisationId: organisationId,
             pageData: {
-              includeAllData: false,
+              includeAllData: true,
               sortOrder: PageData.SortOrderEnum.NUMBER_1,
               sortColumn: 'name'
             }
@@ -116,15 +117,15 @@ export class CompanyDetailsService {
   }
 
   saveCompany(companyModel: CompanyModel): Observable<CompanyModel> {
-    if (companyModel.id) {
+    if (!companyModel.id) {
       return this.companyService.addCompany(companyModel);
     }
 
     return this.companyService.updateCompany(companyModel);
   }
 
-  saveContactDetails(CompanyAddressModel: CompanyAddressModel): Observable<CompanyModel> {
-    return this.companyService.saveCompanyAddress(CompanyAddressModel);
+  saveContactDetails(companyAddressModel: CompanyAddressModel): Observable<CompanyModel> {
+    return this.companyService.saveCompanyAddress(companyAddressModel);
   }
 
   /* savePayrollSettings(companyPayrollSettingModel: CompanyPayrollSettingModel): Observable<CompanyModel> {

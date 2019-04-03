@@ -31,6 +31,7 @@ namespace DotNetCorePayroll.DataAccess
         private GenericRepository<EmployeeAllowance> employeeAllowance;
         private GenericRepository<Benefit> benefit;
         private GenericRepository<AllowanceType> allowanceType;
+        private GenericRepository<Lookup> lookup;
 
         #endregion
 
@@ -306,6 +307,19 @@ namespace DotNetCorePayroll.DataAccess
                 }
 
                 return employeePayroll;
+            }
+        }
+
+        public GenericRepository<Lookup> Lookup
+        {
+            get
+            {
+                if (lookup == null)
+                {
+                    lookup = new GenericRepository<Lookup>(context);
+                }
+
+                return lookup;
             }
         }
 

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ReferenceDataModel, CompanyAddressModel, CompanyModel, EmployeeModel } from 'src/app/shared/generated';
+import { ReferenceDataModel, EmployeeModel } from '../../../../../../src/app/shared/generated';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { EmployeeDetailsService } from '../../employee-details.service';
-import { AppReferenceDataService } from 'src/app/shared/services/app-reference-data-service';
-import { OrganisationDetailsService } from 'src/app/components/organisation/organisation-details.service';
+import { AppReferenceDataService } from '../../../../../../src/app/shared/services/app-reference-data-service';
+import { OrganisationDetailsService } from '../../../../../../src/app/components/organisation/organisation-details.service';
 import { Router } from '@angular/router';
-import { serverValidation } from 'src/app/shared/validators/server-side-validator';
-import { Constants } from 'src/app/shared/utils/constants';
-import { FormFieldValidator } from 'src/app/shared/utils/form-fields-validator';
+import { serverValidation } from '../../../../../../src/app/shared/validators/server-side-validator';
+import { Constants } from '../../../../../../src/app/shared/utils/constants';
+import { FormFieldValidator } from '../../../../../../src/app/shared/utils/form-fields-validator';
 import { finalize } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material';
-import { FormHelper } from 'src/app/shared/utils/form-helper';
+import { FormHelper } from '../../../../../../src/app/shared/utils/form-helper';
 import { EmployeeAddressFormConstants } from './address-form-constants';
 
 @Component({
@@ -124,14 +124,14 @@ export class AddressComponent implements OnInit {
 
     // employeeModel.companyId = this.employeeDetailsService.Company.id;
 
-    this.employeeDetailsService.saveContactDetails(employeeModel).pipe(
+    /* this.employeeDetailsService.saveContactDetails(employeeModel).pipe(
       finalize(() => {
         this.isInProgress = false;
       })
     ).subscribe((data: EmployeeModel) => {
       this.employeeDetailsService.Employee = data;
       this.initialiseForm();
-    });
+    });*/
   }
 
   isPostalSameAsPhysicalAddress(event: MatCheckboxChange) {

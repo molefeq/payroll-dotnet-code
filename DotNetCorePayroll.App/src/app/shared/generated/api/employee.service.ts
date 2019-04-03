@@ -18,8 +18,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
+import { EmployeeAddressModel } from '../model/employeeAddressModel';
 import { EmployeeBankDetailModel } from '../model/employeeBankDetailModel';
-import { EmployeeContactDetailModel } from '../model/employeeContactDetailModel';
 import { EmployeeModel } from '../model/employeeModel';
 import { EmployeeNextOfKinDetailModel } from '../model/employeeNextOfKinDetailModel';
 import { EmployeeSearchFilter } from '../model/employeeSearchFilter';
@@ -300,10 +300,10 @@ export class EmployeeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeContactDetailModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
-    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeContactDetailModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
-    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeContactDetailModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
-    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeContactDetailModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeAddressModel, observe?: 'body', reportProgress?: boolean): Observable<EmployeeModel>;
+    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeAddressModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<EmployeeModel>>;
+    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeAddressModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<EmployeeModel>>;
+    public saveEmployeeContactDetails(employeeContactDetail?: EmployeeAddressModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;

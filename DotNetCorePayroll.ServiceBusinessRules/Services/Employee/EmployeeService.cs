@@ -123,6 +123,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Employee
             var builder = new CalculatorModelBuilder();
             var sarsPayslipBuilder = new SarsPayslipBuilder(calculateService);
             var sarsTaxIncomeBuilder = new SarsTaxIncomeBuilder();
+            var payslipPdfModelBuilder = new PayslipPdfModelBuilder();
 
             builder.buildCalculatorModel(employee: employee, unitOfWork: unitOfWork);
             sarsTaxIncomeBuilder.buildSarsTaxIncomeTable(unitOfWork: unitOfWork);
@@ -133,6 +134,15 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Employee
             sarsPayslipBuilder.buildPayslip(calculatorModel, sarsTaxIncomeTable);
 
             var payslipCalculation = sarsPayslipBuilder.getPayslip();
+
+            payslipPdfModelBuilder.Build(employee: employee, payslipInformation: payslipCalculation);
+            payslipPdfModelBuilder.BuildCompanyDetail(company: employee.Company);
+            payslipPdfModelBuilder.BuildEmployeeDetail(employee: employee);
+            payslipPdfModelBuilder.BuildIncomeDetails(employee: employee);
+            payslipPdfModelBuilder.BuildDeductionDetails(employee: employee, payslipInformation: payslipCalculation);
+            payslipPdfModelBuilder.BuildContibutions(employee: employee, payslipInformation: payslipCalculation);
+
+            var payslip = payslipPdfModelBuilder.GetPayslipPdfModel();
         }
 
         public void MapRelativeLogoPath(EmployeeModel employeeModel, IConfiguration configuration, string currentUrl)

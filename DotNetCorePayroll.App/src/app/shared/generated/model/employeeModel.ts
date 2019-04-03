@@ -9,13 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { EmployeeBankDetailModel } from './employeeBankDetailModel';
-import { EmployeeContactDetailModel } from './employeeContactDetailModel';
-import { EmployeeNextOfKinDetailModel } from './employeeNextOfKinDetailModel';
+import { EmployeeAddressModel } from './employeeAddressModel';
+import { EmployeeCompanyDetailModel } from './employeeCompanyDetailModel';
 
 
 export interface EmployeeModel { 
-    id?: string;
+    id?: number;
+    guid?: string;
     companyId?: string;
     employeeNumber?: string;
     title?: string;
@@ -42,10 +42,10 @@ export interface EmployeeModel {
     workNumber?: string;
     homeNumber?: string;
     mobileNumber?: string;
+    userId?: number;
     crudStatus?: EmployeeModel.CrudStatusEnum;
-    contactDetail?: EmployeeContactDetailModel;
-    nextOfKinDetail?: EmployeeNextOfKinDetailModel;
-    bankDetail?: EmployeeBankDetailModel;
+    address?: EmployeeAddressModel;
+    companyDetailModel?: EmployeeCompanyDetailModel;
 }
 export namespace EmployeeModel {
     export type CrudStatusEnum = 1 | 2 | 3 | 4;

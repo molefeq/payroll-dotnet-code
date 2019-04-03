@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import {
   EmployeeModel, EmployeeService, PageData,
   EmployeeBankDetailModel, EmployeeNextOfKinDetailModel,
-  EmployeeContactDetailModel
+  EmployeeAddressModel
 } from '../../shared/generated';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatPaginator, MatSort } from '@angular/material';
@@ -17,7 +17,7 @@ export class EmployeeDetailsService {
 
   constructor(private employeeService: EmployeeService) { }
 
-  getEmployees(paginator: MatPaginator, sort: MatSort, searchEvent: EventEmitter<string>): Observable<EmployeeModel[]> {
+  getEmployees(paginator: MatPaginator, sort: MatSort, searchEvent: EventEmitter<string>, companyId: number): Observable<EmployeeModel[]> {
     this._isBusy$.next(true);
 
     return merge(sort.sortChange, paginator.page, searchEvent)
@@ -30,6 +30,7 @@ export class EmployeeDetailsService {
           return this.employeeService.getEmployees(
             {
               searchText: searchText,
+              companyId: companyId,
               pageData: {
                 includeAllData: false,
                 take: pageSize,
@@ -66,7 +67,7 @@ export class EmployeeDetailsService {
     return this.employeeService.updateEmployee(employeeModel);
   }
 
-  saveContactDetails(companyContactDetailModel: EmployeeContactDetailModel): Observable<EmployeeModel> {
+  saveContactDetails(companyContactDetailModel: EmployeeAddressModel): Observable<EmployeeModel> {
     return this.employeeService.saveEmployeeContactDetails(companyContactDetailModel);
   }
 
@@ -118,16 +119,16 @@ export class EmployeeDetailsService {
 
   setAddress(employee: EmployeeModel) {
     employee['name'] = [employee.title, employee.firstName, employee.lastName].filter(Boolean).join(', ');
-    employee['physicalAddress'] = [employee.contactDetail.physicalAddressLine1,
-    employee.contactDetail.physicalAddressLine2,
-    employee.contactDetail.physicalAddressSuburb,
-    employee.contactDetail.physicalAddressCity,
-    employee.contactDetail.physicalAddressPostalCode].filter(Boolean).join(', ');
+    employee['physicalAddress'] = [employee.address.physicalAddress.line1,
+    employee.address.physicalAddress.line2,
+    employee.address.physicalAddress.suburb,
+    employee.address.physicalAddress.city,
+    employee.address.physicalAddress.postalCode].filter(Boolean).join(', ');
 
-    employee['postalAddress'] = [employee.contactDetail.postalAddressLine1,
-    employee.contactDetail.postalAddressLine2,
-    employee.contactDetail.postalAddressSuburb,
-    employee.contactDetail.postalAddressCity,
-    employee.contactDetail.postalAddressPostalCode].filter(Boolean).join(', ');
+    employee['postalAddress'] = [employee.address.postalAddress.line1,
+    employee.address.postalAddress.line2,
+    employee.address.postalAddress.suburb,
+    employee.address.postalAddress.city,
+    employee.address.postalAddress.postalCode].filter(Boolean).join(', ');
   }
 }

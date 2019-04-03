@@ -63,6 +63,42 @@ export class ReferenceDataService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
+    public geTitles(observe?: 'body', reportProgress?: boolean): Observable<Array<ReferenceDataModel>>;
+    public geTitles(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReferenceDataModel>>>;
+    public geTitles(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReferenceDataModel>>>;
+    public geTitles(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<ReferenceDataModel>>(`${this.basePath}/api/ReferenceData/GeTitles`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
     public getCountries(observe?: 'body', reportProgress?: boolean): Observable<Array<ReferenceDataModel>>;
     public getCountries(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReferenceDataModel>>>;
     public getCountries(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReferenceDataModel>>>;
@@ -84,6 +120,114 @@ export class ReferenceDataService {
         ];
 
         return this.httpClient.get<Array<ReferenceDataModel>>(`${this.basePath}/api/ReferenceData/GetCountries`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getEthnicGroups(observe?: 'body', reportProgress?: boolean): Observable<Array<ReferenceDataModel>>;
+    public getEthnicGroups(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReferenceDataModel>>>;
+    public getEthnicGroups(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReferenceDataModel>>>;
+    public getEthnicGroups(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<ReferenceDataModel>>(`${this.basePath}/api/ReferenceData/GetEthnicGroups`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getLanguages(observe?: 'body', reportProgress?: boolean): Observable<Array<ReferenceDataModel>>;
+    public getLanguages(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReferenceDataModel>>>;
+    public getLanguages(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReferenceDataModel>>>;
+    public getLanguages(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<ReferenceDataModel>>(`${this.basePath}/api/ReferenceData/GetLanguages`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getMaritalStatuses(observe?: 'body', reportProgress?: boolean): Observable<Array<ReferenceDataModel>>;
+    public getMaritalStatuses(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ReferenceDataModel>>>;
+    public getMaritalStatuses(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ReferenceDataModel>>>;
+    public getMaritalStatuses(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<ReferenceDataModel>>(`${this.basePath}/api/ReferenceData/GetMaritalStatuses`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

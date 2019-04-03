@@ -4,15 +4,14 @@
   </section>
   <ol class="breadcrumbs">
     <li>
-      <a routerLink="/organisations">Organisations</a>
+      <a routerLink="/Companies">Companies</a>
     </li>
     <li>
-      <a routerLink="/organisation/{{organisation.id}}">{{organisation.name}}</a>
+      <a routerLink="/company/{{company.id}}">{{company.name}}</a>
     </li>
     <li>
-      <a routerLink="/companies/{{organisation.id}}">{{organisation.name}} Companies</a>
+      <a routerLink="/employees/{{company.id}}">Employees</a>
     </li>
-    <li class="active">{{heading}}</li>
   </ol>
 </div>
 
@@ -37,97 +36,125 @@
                   <mat-error [appValidationMessage]="employeeForm.get('employeeNumber')" [messages]="validationMessages.employeeNumber"></mat-error>
                 </mat-form-field>
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('title'))">
-                  <input matInput type="text" placeholder="Title" formControlName="title">
+                  <mat-select placeholder="Title" formControlName="title">
+                    <mat-option></mat-option>
+                    <mat-option *ngFor="let item of titles" [value]="item.code">
+                      {{item.name}}
+                    </mat-option>
+                  </mat-select>
                   <mat-error [appValidationMessage]="employeeForm.get('title')" [messages]="validationMessages.title"></mat-error>
                 </mat-form-field>
               </div>
               <div class="form-row">
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('firstName'))">
-                  <input matInput type="text" placeholder="Trading As" formControlName="firstName">
+                  <input matInput type="text" placeholder="FirstName" formControlName="firstName">
                   <mat-error [appValidationMessage]="employeeForm.get('firstName')" [messages]="validationMessages.firstName"></mat-error>
                 </mat-form-field>
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('initials'))">
-                  <input matInput type="text" placeholder="Nature Of Business" formControlName="initials">
+                  <input matInput type="text" placeholder="Initials" formControlName="initials">
                   <mat-error [appValidationMessage]="employeeForm.get('initials')" [messages]="validationMessages.initials"></mat-error>
                 </mat-form-field>
               </div>
               <div class="form-row">
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('lastName'))">
-                  <input matInput type="text" placeholder="Company Registration Number" formControlName="lastName">
+                  <input matInput type="text" placeholder="LastName" formControlName="lastName">
                   <mat-error [appValidationMessage]="employeeForm.get('lastName')" [messages]="validationMessages.lastName"></mat-error>
                 </mat-form-field>
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('nickName'))">
-                  <input matInput type="text" placeholder="Tax Number" formControlName="nickName">
+                  <input matInput type="text" placeholder="NickName" formControlName="nickName">
                   <mat-error [appValidationMessage]="employeeForm.get('nickName')" [messages]="validationMessages.nickName"></mat-error>
                 </mat-form-field>
               </div>
               <div class="form-row">
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('dateOfBirth'))">
-                  <input matInput type="text" placeholder="UIF Reference Number" formControlName="dateOfBirth">
+                  <input matInput [matDatepicker]="dateOfBirthPicker" placeholder="Date Of Birth" formControlName="dateOfBirth">
+                  <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #dateOfBirthPicker></mat-datepicker>
                   <mat-error [appValidationMessage]="employeeForm.get('dateOfBirth')" [messages]="validationMessages.dateOfBirth"></mat-error>
                 </mat-form-field>
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('isSouthAfricanCitizen'))">
-                  <input matInput type="text" placeholder="PAYE Reference Number" formControlName="isSouthAfricanCitizen">
+                <div class="mat-form-field" [class.is-invalid]="isControlInvalid(employeeForm.get('dateOfBirth'))">
+                  <mat-checkbox labelPosition="before" formControlName="isSouthAfricanCitizen">Are you a South African
+                    Citizen?</mat-checkbox>
                   <mat-error [appValidationMessage]="employeeForm.get('isSouthAfricanCitizen')" [messages]="validationMessages.isSouthAfricanCitizen"></mat-error>
-                </mat-form-field>
+                </div>
               </div>
               <div class="form-row">
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('idOrPassportNumber'))">
-                  <input matInput type="text" placeholder="UIF Company Reference Number" formControlName="idOrPassportNumber">
+                  <input matInput type="text" placeholder="ID / Passport Number" formControlName="idOrPassportNumber">
                   <mat-error [appValidationMessage]="employeeForm.get('idOrPassportNumber')" [messages]="validationMessages.idOrPassportNumber"></mat-error>
                 </mat-form-field>
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('ethnicGroup'))">
-                  <input matInput type="text" placeholder="SARS UIF Number" formControlName="ethnicGroup">
-                  <mat-error [appValidationMessage]="employeeForm.get('ethnicGroup')" [messages]="validationMessages.ethnicGroup"></mat-error>
+                  <mat-select placeholder="Ethnic Group" formControlName="ethnicGroup">
+                    <mat-option></mat-option>
+                    <mat-option *ngFor="let item of ethnicGroups" [value]="item.code">
+                      {{item.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error [appValidationMessage]="employeeForm.get('title')" [messages]="validationMessages.title"></mat-error>
                 </mat-form-field>
               </div>
               <div class="form-row">
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('gender'))">
-                  <input matInput type="text" placeholder="Contact" formControlName="gender">
+                <label>Gender</label>
+                <div class="mat-form-field" [class.is-invalid]="isControlInvalid(employeeForm.get('gender'))">
+                  <mat-radio-group formControlName="gender">
+                    <mat-radio-button value="Male">Male</mat-radio-button>
+                    <mat-radio-button value="Female">Female</mat-radio-button>
+                  </mat-radio-group>
                   <mat-error [appValidationMessage]="employeeForm.get('gender')" [messages]="validationMessages.gender"></mat-error>
-                </mat-form-field>
-                <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('hasDisability'))">
-                  <input matInput type="text" placeholder="Email" formControlName="hasDisability">
+                </div>
+                <div class="mat-form-field" [class.is-invalid]="isControlInvalid(employeeForm.get('hasDisability'))">
+                  <mat-checkbox labelPosition="before" formControlName="hasDisability">Have any disability?
+                    Citizen?</mat-checkbox>
                   <mat-error [appValidationMessage]="employeeForm.get('hasDisability')" [messages]="validationMessages.hasDisability"></mat-error>
-                </mat-form-field>
+                </div>
               </div>
               <div class="form-row">
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('disabilityDescription'))">
-                  <input matInput type="text" placeholder="Fax" formControlName="disabilityDescription">
+                  <input matInput type="text" placeholder="If yes please specify" formControlName="disabilityDescription">
                   <mat-error [appValidationMessage]="employeeForm.get('disabilityDescription')" [messages]="validationMessages.disabilityDescription"></mat-error>
                 </mat-form-field>
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('maritalStatus'))">
-                  <input matInput type="text" placeholder="Email" formControlName="maritalStatus">
+                  <mat-select placeholder="Marital Status" formControlName="maritalStatus">
+                    <mat-option></mat-option>
+                    <mat-option *ngFor="let item of maritalStatuses" [value]="item.code">
+                      {{item.value}}
+                    </mat-option>
+                  </mat-select>
                   <mat-error [appValidationMessage]="employeeForm.get('maritalStatus')" [messages]="validationMessages.maritalStatus"></mat-error>
                 </mat-form-field>
               </div>
               <div class="form-row">
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('homeLanguage'))">
-                  <input matInput type="text" placeholder="Fax" formControlName="homeLanguage">
+                    <mat-select placeholder="Home Language" formControlName="homeLanguage">
+                      <mat-option></mat-option>
+                      <mat-option *ngFor="let item of languages" [value]="item.code">
+                        {{item.name}}
+                      </mat-option>
+                    </mat-select>
                   <mat-error [appValidationMessage]="employeeForm.get('homeLanguage')" [messages]="validationMessages.homeLanguage"></mat-error>
                 </mat-form-field>
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('taxReferenceNumber'))">
-                  <input matInput type="text" placeholder="Email" formControlName="taxReferenceNumber">
+                  <input matInput type="text" placeholder="Tax Reference Number" formControlName="taxReferenceNumber">
                   <mat-error [appValidationMessage]="employeeForm.get('taxReferenceNumber')" [messages]="validationMessages.taxReferenceNumber"></mat-error>
                 </mat-form-field>
               </div>
               <div class="form-row">
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('emailAddress'))">
-                  <input matInput type="text" placeholder="Fax" formControlName="emailAddress">
+                  <input matInput type="text" placeholder="Email" formControlName="emailAddress">
                   <mat-error [appValidationMessage]="employeeForm.get('emailAddress')" [messages]="validationMessages.emailAddress"></mat-error>
                 </mat-form-field>
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('workNumber'))">
-                  <input matInput type="text" placeholder="Email" formControlName="workNumber">
+                  <input matInput type="text" placeholder="Work Number" formControlName="workNumber">
                   <mat-error [appValidationMessage]="employeeForm.get('workNumber')" [messages]="validationMessages.workNumber"></mat-error>
                 </mat-form-field>
               </div>
               <div class="form-row">
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('homeNumber'))">
-                  <input matInput type="text" placeholder="Fax" formControlName="homeNumber">
+                  <input matInput type="text" placeholder="Home Number" formControlName="homeNumber">
                   <mat-error [appValidationMessage]="employeeForm.get('homeNumber')" [messages]="validationMessages.homeNumber"></mat-error>
                 </mat-form-field>
                 <mat-form-field [class.is-invalid]="isControlInvalid(employeeForm.get('mobileNumber'))">
-                  <input matInput type="text" placeholder="Email" formControlName="mobileNumber">
+                  <input matInput type="text" placeholder="Mobile Number" formControlName="mobileNumber">
                   <mat-error [appValidationMessage]="employeeForm.get('mobileNumber')" [messages]="validationMessages.mobileNumber"></mat-error>
                 </mat-form-field>
               </div>
@@ -144,19 +171,19 @@
         </mat-card>
       </mat-tab>
       <mat-tab label="Contact Details">
-        <app-employee-address-form></app-employee-address-form>
+
       </mat-tab>
       <mat-tab label="Banking Details">
-        <app-employee-banking-details-form></app-employee-banking-details-form>
+
       </mat-tab>
       <mat-tab label="Employment Details">
-        <app-employee-banking-details-form></app-employee-banking-details-form>
+
       </mat-tab>
       <mat-tab label="Medical Aid Details">
-        <app-employee-banking-details-form></app-employee-banking-details-form>
+
       </mat-tab>
       <mat-tab label="Settings">
-        <app-employee-settings-form></app-employee-settings-form>
+
       </mat-tab>
     </mat-tab-group>
   </div>

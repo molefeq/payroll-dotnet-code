@@ -17,9 +17,6 @@ import { CompanyBankingDetailsComponent } from './company/company-form/company-b
 import { EmployeeDetailsComponent } from './employee/employee-details/employee-details.component';
 import { EmployeeDetailsService } from './employee/employee-details.service';
 import { EmployeeFormComponent } from './employee/employee-form/employee-form.component';
-import { EmployeeAddressFormComponent } from './employee/employee-form/employee-address-form/employee-address-form.component';
-import { EmployeeBankingDetailsFormComponent } from './employee/employee-form/employee-banking-details-form/employee-banking-details-form.component';
-import { EmployeeSettingsFormComponent } from './employee/employee-form/employee-settings-form/employee-settings-form.component';
 import { EmploymentDetailsComponent } from './employee/employee-form/employment-details/employment-details.component';
 import { AddressComponent } from './employee/employee-form/address/address.component';
 import { BankingDetailsComponent } from './employee/employee-form/banking-details/banking-details.component';
@@ -51,9 +48,6 @@ import { MedicalAidDependantComponent } from './employee/employee-form/medical-a
     CompanyBankingDetailsComponent,
     EmployeeDetailsComponent,
     EmployeeFormComponent,
-    EmployeeAddressFormComponent,
-    EmployeeBankingDetailsFormComponent,
-    EmployeeSettingsFormComponent,
     EmploymentDetailsComponent,
     AddressComponent,
     BankingDetailsComponent,

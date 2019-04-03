@@ -16,7 +16,7 @@ export class CompanyDetailsComponent implements OnInit {
   organisation: OrganisationModel;
   isBusy$: Observable<boolean> = this.companyDetailsService.isBusy$;
   @Output() searchEvent: EventEmitter<string> = new EventEmitter();
-  dataSource$ = this.companyDetailsService.getAllCompanies(this.searchEvent);
+  dataSource$;
 
   constructor(private organisationDetailsService: OrganisationDetailsService,
     private companyDetailsService: CompanyDetailsService,
@@ -26,6 +26,7 @@ export class CompanyDetailsComponent implements OnInit {
   ngOnInit() {
     this.organisation = this.organisationDetailsService.Organisation;
     this.companyDetailsService.Company = null;
+    this.dataSource$ = this.companyDetailsService.getAllCompanies(this.searchEvent, this.organisation.id);
   }
 
   applyFilter(filterValue: string) {

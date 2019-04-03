@@ -9,5 +9,7 @@ namespace DotNetCorePayroll.Data.ViewModels
         public List<ReferenceDataModel> AccountTypes { get; set; }
         public List<ReferenceDataModel> Languages { get; set; }
         public List<ReferenceDataModel> MaritalStatuses { get; set; }
+        public List<ReferenceDataModel> EthnicGroups { get; set; }
+        public List<ReferenceDataModel> Titles { get; set; }
     }
 }

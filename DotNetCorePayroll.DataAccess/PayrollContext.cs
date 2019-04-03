@@ -37,6 +37,7 @@ namespace DotNetCorePayroll.DataAccess
         public virtual DbSet<AllowanceType> AllowanceType { get; set; }
         public virtual DbSet<Benefit> Benefit { get; set; }
         public virtual DbSet<PaymentFrequency> PaymentFrequency { get; set; }
+        public virtual DbSet<Lookup> Lookup { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -71,6 +72,7 @@ namespace DotNetCorePayroll.DataAccess
             TaxThresholdTableBuilder.Build(modelBuilder);
             UifTableBuilder.Build(modelBuilder);
             AllowanceTableBuilder.Build(modelBuilder);
+            LookupTableBuilder.Build(modelBuilder);
 
         }
 

@@ -18,4 +18,6 @@ export interface StaticDataModel {
     accountTypes?: Array<ReferenceDataModel>;
     languages?: Array<ReferenceDataModel>;
     maritalStatuses?: Array<ReferenceDataModel>;
+    ethnicGroups?: Array<ReferenceDataModel>;
+    titles?: Array<ReferenceDataModel>;
 }

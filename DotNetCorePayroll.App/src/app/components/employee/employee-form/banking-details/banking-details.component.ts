@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-// tslint:disable-next-line:max-line-length
-import { CompanyDetailsService } from 'src/app/components/company/company-details.service';
-import { OrganisationDetailsService } from 'src/app/components/organisation/organisation-details.service';
 import { Router } from '@angular/router';
-import { serverValidation } from 'src/app/shared/validators/server-side-validator';
-import { Constants } from 'src/app/shared/utils/constants';
-import { FormHelper } from 'src/app/shared/utils/form-helper';
-import { FormFieldValidator } from 'src/app/shared/utils/form-fields-validator';
+import { serverValidation } from '../../../../../../src/app/shared/validators/server-side-validator';
+import { Constants } from '../../../../../../src/app/shared/utils/constants';
+import { FormHelper } from '../../../../../../src/app/shared/utils/form-helper';
+import { FormFieldValidator } from '../../../../../../src/app/shared/utils/form-fields-validator';
 import { EmployeeBankingConstants } from './banking-details-constants';
 import { EmployeeDetailsService } from '../../employee-details.service';
 
@@ -57,7 +54,7 @@ export class BankingDetailsComponent implements OnInit {
       return;
     }
 
-    this.bankingDetailsForm.patchValue(this.employeeDetailsService.Employee.bankDetail);
+    // this.bankingDetailsForm.patchValue(this.employeeDetailsService.Employee.);
   }
 
   isControlInvalid(control: FormControl): boolean {

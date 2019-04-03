@@ -14,7 +14,7 @@ export function mockEmployeesBackEndService(url: string, method: string, request
         for (let i = 1; i < 100; i++) {
             const valueId = i % 3 + 1;
             const employee: EmployeeModel = {
-                id: '451241-tggert-7899po-kujgf' + i,
+                id: i,
                 companyId: '1202124564-ghdkjghfdk',
                 employeeNumber: '123_' + i,
                 firstName: 'firstname ' + i,
@@ -26,27 +26,31 @@ export function mockEmployeesBackEndService(url: string, method: string, request
                 gender: i % 2 === 0 ? 'Male' : 'Female',
                 hasDisability: i % 2 === 0,
                 disabilityDescription: i % 2 === 0 ? 'Lack of eye sight' : null,
-                maritalStatus:  i % 2 === 0 ? 'Single' : 'Married',
+                maritalStatus: i % 2 === 0 ? 'Single' : 'Married',
                 homeLanguage: 'IsiZulu',
                 taxReferenceNumber: '1232346846511',
                 isSystemUser: false,
-                contactDetail: {
-                    physicalAddressLine1: 'Line ' + (i + 1),
-                    physicalAddressLine2: 'Line ' + (i + 2),
-                    physicalAddressSuburb: 'Suburb ' + i,
-                    physicalAddressCity: 'City ' + i,
-                    physicalAddressPostalCode: '200' + i,
-                    physicalAddressProvinceId: valueId,
-                    physicalAddressCountryId: valueId,
-                    postalAddressId: i,
-                    postalAddressLine1: 'Post Line ' + (i + 1),
-                    postalAddressLine2: 'Post Line ' + (i + 2),
-                    postalAddressSuburb: 'Post Suburb ' + i,
-                    postalAddressCity: 'Post City ' + i,
-                    postalAddressPostalCode: '200' + i,
-                    postalAddressProvinceId: valueId,
-                    postalAddressCountryId: valueId,
-
+                address: {
+                    physicalAddress: {
+                        id: i,
+                        line1: 'Line ' + (i + 1),
+                        line2: 'Line ' + (i + 2),
+                        suburb: 'Suburb ' + i,
+                        city: 'City ' + i,
+                        postalCode: '200' + i,
+                        provinceId: valueId,
+                        countryId: valueId,
+                    },
+                    postalAddress: {
+                        id: i,
+                        line1: 'Post Line ' + (i + 1),
+                        line2: 'Post Line ' + (i + 2),
+                        suburb: 'Post Suburb ' + i,
+                        city: 'Post City ' + i,
+                        postalCode: '200' + i,
+                        provinceId: valueId,
+                        countryId: valueId,
+                    }
                 },
                 homeNumber: '01178900' + i,
                 workNumber: '01178925' + i,
@@ -78,7 +82,7 @@ export function mockEmployeesBackEndService(url: string, method: string, request
 
     if (url.endsWith('/api/Employee/AddEmployee') && method === 'POST') {
         const employee: EmployeeModel = request.body;
-        employee.id = 'gfhgsdj-hgdhdhgjgh-122323234';
+        employee.id = 4;
 
         return new Observable(resp => {
             resp.next(new HttpResponse({

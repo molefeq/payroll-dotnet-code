@@ -8,6 +8,10 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.ReferenceData
 {
     public class ReferenceDataService : IReferenceDataService
     {
+        private static string TITLE_TPYE = "TITLE";
+        private static string MARITAL_STATUS_TPYE = "MARITAL_STATUS";
+        private static string ETHNIC_GROUP_TPYE = "ETHNIC_GROUP";
+        private static string LANGUAGE_TPYE = "LANGUAGE";
         private IUnitOfWork unitOfWork;
 
         public ReferenceDataService(IUnitOfWork unitOfWork)
@@ -20,7 +24,11 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.ReferenceData
             return new StaticDataModel
             {
                 Countries = GetCountries(),
-                Provinces = GetProvinces()
+                Provinces = GetProvinces(),
+                Titles = GeTitles(),
+                MaritalStatuses = GetMaritalStatuses(),
+                EthnicGroups = GetEthnicGroups(),
+                Languages = GetLanguages()
             };
         }
 
@@ -36,6 +44,34 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.ReferenceData
             var countries = unitOfWork.Province.GetEntities();
 
             return countries.Select(p => new ReferenceDataModel(p.Id, p.Name, p.Code)).ToList();
+        }
+
+        public List<ReferenceDataModel> GeTitles()
+        {
+            var items = unitOfWork.Lookup.GetEntities(item=> TITLE_TPYE.Equals(item.Type));
+
+            return items.Select(p => new ReferenceDataModel(p.Value, p.Code)).ToList(); 
+        }
+
+        public List<ReferenceDataModel> GetMaritalStatuses()
+        {
+            var items = unitOfWork.Lookup.GetEntities(item => MARITAL_STATUS_TPYE.Equals(item.Type));
+
+            return items.Select(p => new ReferenceDataModel(p.Value, p.Code)).ToList();
+        }
+
+        public List<ReferenceDataModel> GetEthnicGroups()
+        {
+            var items = unitOfWork.Lookup.GetEntities(item => ETHNIC_GROUP_TPYE.Equals(item.Type));
+
+            return items.Select(p => new ReferenceDataModel(p.Value, p.Code)).ToList();
+        }
+
+        public List<ReferenceDataModel> GetLanguages()
+        {
+            var items = unitOfWork.Lookup.GetEntities(item => LANGUAGE_TPYE.Equals(item.Type));
+
+            return items.Select(p => new ReferenceDataModel(p.Value, p.Code)).ToList();
         }
     }
 }

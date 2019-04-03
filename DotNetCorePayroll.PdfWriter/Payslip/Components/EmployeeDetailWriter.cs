@@ -4,8 +4,27 @@ using DotNetCorePayroll.PdfWriter.Models;
 
 namespace DotNetCorePayroll.PdfWriter.Payslip.Components
 {
-    public class EmployeeDetailBuilder
+    public class EmployeeDetailWriter
     {
+        private static EmployeeDetailWriter _instance;
+
+        private EmployeeDetailWriter()
+        {
+        }
+
+        public static EmployeeDetailWriter Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new EmployeeDetailWriter();
+                }
+
+                return _instance;
+            }
+        }
+
         public PdfPTable Write(PayslipEmployeeModel payslipEmployeeModel, Font font)
         {
             PdfPTable employeeDetails = new PdfPTable(new float[] { 18f, 25f, 17f, 40f });

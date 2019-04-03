@@ -16,6 +16,11 @@ import { CompanyDetailsService } from '../../components/company/company-details.
 export class AppReferenceDataService {
     private countries: Array<ReferenceDataModel>;
     private provinces: Array<ReferenceDataModel>;
+    private titles: Array<ReferenceDataModel>;
+    private maritalStatuses: Array<ReferenceDataModel>;
+    private ethnicGroups: Array<ReferenceDataModel>;
+    private languages: Array<ReferenceDataModel>;
+
     private _organisations: DropdownDataSource =
         {
             data$: this.getOrganisations(),
@@ -64,6 +69,38 @@ export class AppReferenceDataService {
         this._companies.data$ = this.getOrganisationCompanies(initialOrganisationId, valueChanges);
 
         return this._companies;
+    }
+
+    public setTitles(titles) {
+        this.titles = titles;
+    }
+
+    public getTitles(): Array<ReferenceDataModel> {
+        return this.titles;
+    }
+
+    public setMaritalStatuses(maritalStatuses) {
+        this.maritalStatuses = maritalStatuses;
+    }
+
+    public getMaritalStatuses(): Array<ReferenceDataModel> {
+        return this.maritalStatuses;
+    }
+
+    public setEthnicGroups(ethnicGroups) {
+        this.ethnicGroups = ethnicGroups;
+    }
+
+    public getEthnicGroups(): Array<ReferenceDataModel> {
+        return this.ethnicGroups;
+    }
+
+    public setLanguages(languages) {
+        this.languages = languages;
+    }
+
+    public getLanguages(): Array<ReferenceDataModel> {
+        return this.languages;
     }
 
     getOrganisations(): Observable<ReferenceDataModel[]> {

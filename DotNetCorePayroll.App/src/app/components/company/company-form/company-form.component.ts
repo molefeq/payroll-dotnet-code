@@ -2,9 +2,7 @@ import { Component, OnInit, } from '@angular/core';
 import { logoModel } from '../../../shared/models/logoModel';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CompanyDetailsService } from '../company-details.service';
-import { AppReferenceDataService } from '../../../shared/services/app-reference-data-service';
-import { MatCheckboxChange } from '@angular/material';
-import { CompanyModel, ReferenceDataModel, OrganisationModel } from '../../../shared/generated';
+import { CompanyModel, OrganisationModel } from '../../../shared/generated';
 import { FormHelper } from '../../../shared/utils/form-helper';
 import { serverValidation } from '../../../shared/validators/server-side-validator';
 import { finalize } from 'rxjs/operators';
@@ -52,7 +50,6 @@ export class CompanyFormComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private organisationDetailsService: OrganisationDetailsService,
     private companyDetailsService: CompanyDetailsService,
-    private referenceDataService: AppReferenceDataService,
     private router: Router) {
   }
 
@@ -129,12 +126,14 @@ export class CompanyFormComponent implements OnInit {
     const companyModel: CompanyModel = Object.assign(Object.create(null), this.companyForm.getRawValue());
 
     companyModel.logoFileName = this.logo.logoFilename;
+    companyModel.paysdlInd = false;
+    companyModel.organisationId = this.organisation.id;
 
     this.companyDetailsService.saveCompany(companyModel).pipe(
       finalize(() => {
         this.isInProgress = false;
       })
-    ).subscribe((data: CompanyModel) => {
+    ).subscribe(() => {
     });
   }
 

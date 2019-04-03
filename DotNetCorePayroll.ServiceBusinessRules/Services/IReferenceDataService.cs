@@ -10,5 +10,9 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services
         StaticDataModel GetStaticData();
         List<ReferenceDataModel> GetCountries();
         List<ReferenceDataModel> GetProvinces();
+        List<ReferenceDataModel> GeTitles();
+        List<ReferenceDataModel> GetMaritalStatuses();
+        List<ReferenceDataModel> GetEthnicGroups();
+        List<ReferenceDataModel> GetLanguages();
     }
 }

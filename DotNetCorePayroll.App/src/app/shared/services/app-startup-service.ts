@@ -18,6 +18,10 @@ export class AppStartUpService {
       }).subscribe((data: StaticDataModel) => {
         this.appReferenceDataService.setCountries(data.countries);
         this.appReferenceDataService.setProvinces(data.provinces);
+        this.appReferenceDataService.setTitles(data.titles);
+        this.appReferenceDataService.setEthnicGroups(data.ethnicGroups);
+        this.appReferenceDataService.setMaritalStatuses(data.maritalStatuses);
+        this.appReferenceDataService.setLanguages(data.languages);
         resolve(true);
       });
     });

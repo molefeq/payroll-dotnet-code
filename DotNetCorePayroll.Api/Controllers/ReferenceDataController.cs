@@ -39,5 +39,33 @@ namespace DotNetCorePayroll.Api.Controllers
             return Ok(referenceDataService.GetProvinces());
         }
 
+
+        [HttpGet]
+        [ProducesResponseType(typeof(List<ReferenceDataModel>), 200)]
+        public IActionResult GeTitles()
+        {
+            return Ok(referenceDataService.GeTitles());
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(List<ReferenceDataModel>), 200)]
+        public IActionResult GetMaritalStatuses()
+        {
+            return Ok(referenceDataService.GetMaritalStatuses());
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(List<ReferenceDataModel>), 200)]
+        public IActionResult GetEthnicGroups()
+        {
+            return Ok(referenceDataService.GetEthnicGroups());
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(List<ReferenceDataModel>), 200)]
+        public IActionResult GetLanguages()
+        {
+            return Ok(referenceDataService.GetLanguages());
+        }
     }
 }
