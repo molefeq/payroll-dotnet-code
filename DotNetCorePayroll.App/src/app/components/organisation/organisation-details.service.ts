@@ -14,24 +14,27 @@ export class OrganisationDetailsService {
 
   constructor(private organisationService: OrganisationService) { }
 
-  getAllOrganisations(searchEvent: EventEmitter<string>): Observable<OrganisationModel[]> {
+  getAllOrganisations(paginator: MatPaginator, sort: MatSort, searchEvent: EventEmitter<string>): Observable<OrganisationModel[]> {
     const that = this;
+    that._isBusy$.next(true);
 
     return searchEvent.pipe(
       startWith(null),
       delay(0),
       switchMap((event) => {
 
-        that._isBusy$.next(true);
+        const pageSize: number = paginator.pageSize ? paginator.pageSize : 5;
         const searchText = typeof event === 'string' ? event : null;
 
         return that.organisationService.getOrganisations(
           {
             searchText: searchText,
             pageData: {
-              includeAllData: true,
-              sortOrder: PageData.SortOrderEnum.NUMBER_1,
-              sortColumn: 'name'
+              includeAllData: false,
+              take: pageSize,
+              skip: pageSize * (paginator.pageIndex),
+              sortOrder: sort.direction === 'asc' ? PageData.SortOrderEnum.NUMBER_1 : PageData.SortOrderEnum.NUMBER_2,
+              sortColumn: sort.active
             }
           });
       }),
@@ -88,7 +91,7 @@ export class OrganisationDetailsService {
                 take: pageSize,
                 skip: pageSize * (paginator.pageIndex),
                 sortOrder: sort.direction === 'asc' ? PageData.SortOrderEnum.NUMBER_1 : PageData.SortOrderEnum.NUMBER_2,
-                sortColumn: sort.active
+                sortColumn: sort.active ? sort.active : 'name'
               }
             });
         }),

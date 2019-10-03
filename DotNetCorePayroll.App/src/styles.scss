@@ -1,6 +1,7 @@
 @import './colors';
 @import './easing';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import './assets/styles/index';
 
 html {
   box-sizing: border-box;
@@ -18,7 +19,7 @@ body {
   letter-spacing: 0.3px;
   font-size: 14px;
   line-height: 1.5;
-  background: $grey-200;
+  background: $white;
 }
 
 a {
@@ -338,33 +339,5 @@ a {
   mat-spinner {
     margin: auto;
     opacity: 1;
-  }
-}
-
-
-.items-container {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 5px;
-    height: 100%;
-    flex-wrap: wrap;
-    position: relative;
-    max-height: 75vh;    
-    overflow-y: auto;
-
-  .items-card {
-    max-width: 300px;
-    margin: 12px;
-    flex: 1 0 25%;
-
-    .mat-card-header {
-      margin-left: -19px;
-      margin-right: -19px;
-
-      .mat-card-title {
-        text-transform: capitalize;
-      }
-
-    }
   }
 }

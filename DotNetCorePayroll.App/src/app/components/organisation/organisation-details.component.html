@@ -1,46 +1,63 @@
+<div class="page-heading">
+  <section class="mat-typography">
+    <h1>Organisations</h1>
+  </section>
+</div>
+
 <div class="containerX">
-  <div class="containerX-heading-container">
-    <section class="mat-typography">
-      <h1>Organisations</h1>
-    </section>
+  <div class="containerX-header">
     <div class="containerX-header-actions">
-      <button mat-mini-fab color="primary" (click)="addOrganisation()" matTooltip="Add">
+      <button mat-mini-fab color="primary" (click)="addOrganisation()" matTooltip="Add organisation">
         <mat-icon aria-label="Button to add new organisation.">add</mat-icon>
       </button>
     </div>
-  </div>
-  <div class="containerX-header">
-    <div class="containerX-header-actions">
-      <!-- <button mat-raised-button color="primary" (click)="addOrganisation()">Add</button> -->
-
-    </div>
     <div class="containerX-header-filter">
       <mat-form-field class="header-search-field">
-        <input matInput (keyup)="applyFilter($event.target.value)">
+        <input matInput (keyup)="applyFilter($event.target.value)" />
         <mat-icon matPrefix>search</mat-icon>
       </mat-form-field>
     </div>
   </div>
 
-  <div class="items-container organisations">
-    <div class="table-loading-shade" *ngIf="isBusy$ | async as isBusy">
-      <mat-spinner strokeWidth="10"></mat-spinner>
+
+  <div class="table-container mat-elevation-z8">
+    <div class="table-loading-shade" *ngIf="isBusy$ | async">
+      <mat-spinner *ngIf="isBusy$ | async" strokeWidth="2"></mat-spinner>
     </div>
 
-    <mat-card class="items-card" *ngFor="let item of dataSource$ | async">
-      <img mat-card-image src="{{item.logoFileNamePath}}" alt="Organisation logo" onError="this.src='../../assets/no_image_available.png';">
-      <mat-card-header>
-        <mat-card-title>{{ item.name }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-actions>
-        <button mat-button (click)="editOrganisation(item)">
-          EDIT
-        </button>
-        <button mat-button (click)="viewOrganisation(item)">
-          COMPANIES
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+    <mat-table #table [dataSource]="dataSource"  class="mat-elevation-z8 material_table" matSort matSortDirection="asc"
+      matSortActive="name">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Name</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.name }}</mat-cell>
+      </ng-container>
 
+      <ng-container matColumnDef="physicalAddress">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-3">Location</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="cell-flex-3">{{ row.physicalAddressText }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="emailAddress">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="cell-flex-1">Email</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="cell-flex-1">{{ row.emailAddress }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="table-header-actions-col"></th>
+        <td mat-cell *matCellDef="let row" class="table-cell-actions-col">
+          <button mat-icon-button color="primary" (click)="editOrganisation(row)" matTooltip="Edit organisation">
+            <mat-icon aria-label="Button to edit organisation.">create</mat-icon>
+          </button>
+           <button mat-icon-button color="primary" (click)="viewOrganisation(row)" matTooltip="Companies">
+            <mat-icon aria-label="Button to view organisation companies.">visibility</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+    <mat-paginator [length]="totalOrganisations$ | async" [pageSize]="5"></mat-paginator>
+  </div>
 </div>

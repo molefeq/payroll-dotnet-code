@@ -1,26 +1,4 @@
 h1 {
-  font: 400 32px/32px 'Raleway', sans-serif;
+  font: 400 32px/32px "Raleway", sans-serif;
 }
 
-.organisations {
-  justify-content: center;
-
-  .items-card {
-    max-width: 200px;
-    font: 400 32px/32px 'Raleway', sans-serif;
-
-    .mat-card-header .mat-card-title  {
-      font-size: 16px;
-    }
-
-    .mat-card-image {
-      margin: inherit;
-      width: 150px;
-      height: 150px;
-    }
-
-    .mat-button {
-      font-size: 11px;
-    }
-  }
-}

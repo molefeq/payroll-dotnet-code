@@ -1,5 +1,5 @@
 ﻿using DotNetCorePayroll.Data;
-
+using Microsoft.EntityFrameworkCore;
 using SqsLibraries.Common.Utilities.ResponseObjects;
 
 using System.Linq;
@@ -17,7 +17,9 @@ namespace DotNetCorePayroll.DataAccess.Repositories
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                query = query.Where(o => o.Name.Contains(searchText) || o.Description.Contains(searchText));
+                query = query.Where(o => EF.Functions.Like(o.Name, $"%{searchText}%") ||
+                                         EF.Functions.Like(o.Description, $"%{searchText}%")
+                                   );
             }
 
             return GetPagedEntities(query, pageData, "PhysicalAddress, PostalAddress");

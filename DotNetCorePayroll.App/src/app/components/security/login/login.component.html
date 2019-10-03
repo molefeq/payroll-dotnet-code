@@ -6,26 +6,27 @@
   <form [formGroup]="loginForm" [appFormValidator]="loginForm" [validationMessages]="validationMessages">
     <app-summary-validation-messages [appForm]="loginForm"></app-summary-validation-messages>
     <mat-form-field [class.is-invalid]="isControlInvalid(loginForm.get('username'))">
-      <input matInput type="text" placeholder="Username" formControlName="username">
-      <mat-error [appValidationMessage]="loginForm.get('username')" [messages]="validationMessages.username"></mat-error>
+      <input matInput type="text" placeholder="Username" formControlName="username" />
+      <mat-error [appValidationMessage]="loginForm.get('username')" [messages]="validationMessages.username">
+      </mat-error>
     </mat-form-field>
     <mat-form-field [class.is-invalid]="isControlInvalid(loginForm.get('password'))">
-      <input matInput type="password" placeholder="Password" formControlName="password">
-      <mat-error [appValidationMessage]="loginForm.get('password')" [messages]="validationMessages.password"></mat-error>
+      <input matInput type="password" placeholder="Password" formControlName="password" />
+      <mat-error [appValidationMessage]="loginForm.get('password')" [messages]="validationMessages.password">
+      </mat-error>
     </mat-form-field>
 
-    <div class="buttons-container">
+    <div class="actions-container">
       <div class="login-links">
         <mat-checkbox aria-label="Remember Me" class="remember-me">Remember Me</mat-checkbox>
-        <span class="forgot-password">
-          <a routerLink="/forgot-password">Forgot Password</a>
-        </span>
+        <a routerLink="/forgot-password" class="secondary">Forgot Password</a>
       </div>
-      <div class="link">
-        <button mat-raised-button class="login-button" (click)="login()" *ngIf="!isInProgress"> LOGIN </button>
+      <div class="buttons-container">
+        <button mat-raised-button class="secondary" (click)="login()" *ngIf="!isInProgress">
+          LOGIN
+        </button>
       </div>
       <mat-progress-bar mode="indeterminate" *ngIf="isInProgress"></mat-progress-bar>
     </div>
-
   </form>
 </div>

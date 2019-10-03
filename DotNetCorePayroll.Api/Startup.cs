@@ -79,6 +79,7 @@ namespace DotNetCorePayroll.Api
             services.AddDbContext<PayrollContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Payroll_DB_Local")), ServiceLifetime.Transient);
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
+
             Adapters.Initialise(services);
             Builders.Initialise(services);
             BusinessRules.Initialise(services);

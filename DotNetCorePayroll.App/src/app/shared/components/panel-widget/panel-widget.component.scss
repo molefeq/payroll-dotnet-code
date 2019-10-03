@@ -4,17 +4,21 @@
     flex-basis: 100%;
     flex-shrink: 0;
     flex-grow: 1;
-    max-width: 300px;
+    max-width: 150px;
     margin: 12px;
     flex-direction: column;
     display: flex;
     text-align: center;
+
     .mat-card {
         padding: 15px;
+        border-radius: 0; 
     }
+    
     .mat-card-content {
         cursor: pointer;
     }
+    
     .mat-card-footer {
         margin: 0 -15px -15px -15px;
     }
@@ -23,21 +27,16 @@
         padding: 0 0 5px 0;
         color: $blue-grey-300 !important;
         .panel-icon {
-            @include md-icon-size(150px);
+            @include md-icon-size(120px);
         }
     }
     .panel-info {
-        font-size: 16px;
-        line-height: 16px;
+        font-size: 12px;
+        line-height: 12px;
         text-transform: uppercase;
-        padding: 10px 0 5px 0;
+        padding: 5px 0 5px 0;
         margin-bottom: 15px;
         color: $blue-grey-400 !important;
-    }
-    .panel-footer {
-        height: 45px;
-        background: $grey-100;
-        line-height: 45px;
     }
 }
 
