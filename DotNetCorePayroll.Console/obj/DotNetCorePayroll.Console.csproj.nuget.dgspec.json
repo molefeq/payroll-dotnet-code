@@ -1,0 +1,425 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Console\\DotNetCorePayroll.Console.csproj": {}
+  },
+  "projects": {
+    "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj",
+        "projectName": "DotNetCorePayroll.Common",
+        "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj",
+        "packagesPath": "C:\\Users\\bbdnet1168\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\bbdnet1168\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "SqsLibraries.Common.RC.1.0.0": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.6.0-preview.19073.11, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Console\\DotNetCorePayroll.Console.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Console\\DotNetCorePayroll.Console.csproj",
+        "projectName": "DotNetCorePayroll.Console",
+        "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Console\\DotNetCorePayroll.Console.csproj",
+        "packagesPath": "C:\\Users\\bbdnet1168\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Console\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\bbdnet1168\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj": {
+                "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj"
+              },
+              "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj": {
+                "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj"
+              },
+              "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj": {
+                "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj"
+              },
+              "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj": {
+                "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "SqsLibraries.Common.RC.1.0.0": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj",
+        "projectName": "DotNetCorePayroll.DataAccess",
+        "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\bbdnet1168\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\bbdnet1168\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj": {
+                "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj"
+              },
+              "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj": {
+                "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[4.0.4, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "SqsLibraries.Common.RC.1.0.0": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj",
+        "projectName": "DotNetCorePayroll.Data",
+        "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj",
+        "packagesPath": "C:\\Users\\bbdnet1168\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\bbdnet1168\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "SqsLibraries.Common.RC.1.0.0": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj",
+        "projectName": "DotNetCorePayroll.PdfWriter",
+        "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj",
+        "packagesPath": "C:\\Users\\bbdnet1168\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\bbdnet1168\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "iTextSharp.LGPLv2.Core": {
+              "target": "Package",
+              "version": "[1.4.5, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj",
+        "projectName": "DotNetCorePayroll.ServiceBusinessRules",
+        "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\DotNetCorePayroll.ServiceBusinessRules.csproj",
+        "packagesPath": "C:\\Users\\bbdnet1168\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.ServiceBusinessRules\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\bbdnet1168\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj": {
+                "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Common\\DotNetCorePayroll.Common.csproj"
+              },
+              "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj": {
+                "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.DataAccess\\DotNetCorePayroll.DataAccess.csproj"
+              },
+              "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj": {
+                "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.Domain\\DotNetCorePayroll.Data.csproj"
+              },
+              "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj": {
+                "projectPath": "C:\\repos\\payroll-dotnet-code\\DotNetCorePayroll.PdfWriter\\DotNetCorePayroll.PdfWriter.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "SqsLibraries.Common.RC.1.0.0": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

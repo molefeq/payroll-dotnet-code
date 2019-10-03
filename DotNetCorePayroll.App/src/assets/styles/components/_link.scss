@@ -1,0 +1,8 @@
+@import "../../../colors";
+@import "../../../definations.scss";
+
+a {
+  &.secondary {
+    color: $teal-400;
+  }
+}

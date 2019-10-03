@@ -1,0 +1,21 @@
+@import "../../../colors";
+@import "../../../definations.scss";
+
+button {
+  &.mat-raised-button {
+    border-radius: 0;
+  }
+
+  &.secondary {
+    @include md-button-bg-color($teal-400);
+    color: white;
+  }
+}
+
+.buttons-container {
+  margin: 5px 0 5px 0;
+
+  button {
+    float: right;
+  }
+}
