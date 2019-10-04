@@ -5,7 +5,7 @@ import { FormHelper } from '../../../../shared/utils/form-helper';
 import { RoleModel } from '../../../../shared/generated';
 import { finalize } from 'rxjs/operators';
 import { AdminRoleService } from '../admin-role.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormFieldValidator } from '../../../../shared/utils/form-fields-validator';
 
 @Component({

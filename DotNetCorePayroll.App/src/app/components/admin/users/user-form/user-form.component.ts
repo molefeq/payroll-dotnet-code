@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { AdminUserService } from '../admin-user.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AccountModel } from '../../../../shared/generated';
 import { FormHelper } from '../../../../shared/utils/form-helper';
 import { finalize } from 'rxjs/operators';

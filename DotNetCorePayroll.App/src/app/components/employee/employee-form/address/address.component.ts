@@ -9,7 +9,7 @@ import { serverValidation } from '../../../../../../src/app/shared/validators/se
 import { Constants } from '../../../../../../src/app/shared/utils/constants';
 import { FormFieldValidator } from '../../../../../../src/app/shared/utils/form-fields-validator';
 import { finalize } from 'rxjs/operators';
-import { MatCheckboxChange } from '@angular/material';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { FormHelper } from '../../../../../../src/app/shared/utils/form-helper';
 import { EmployeeAddressFormConstants } from './address-form-constants';
 

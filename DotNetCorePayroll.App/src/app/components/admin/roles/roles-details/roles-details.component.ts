@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { MatSort, MatPaginator, MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { RoleModel } from '../../../../shared/generated';
 import { Observable } from 'rxjs/Observable';
 import { RolesFormComponent } from '../roles-form/roles-form.component';

@@ -4,7 +4,8 @@ import { CompanyModel, EmployeeModel } from '../../../shared/generated';
 import { CompanyDetailsService } from '../../company/company-details.service';
 import { EmployeeDetailsService } from '../employee-details.service';
 import { Router } from '@angular/router';
-import { MatSort, MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-employee-details',

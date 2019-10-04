@@ -1,7 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { RoleService, RoleModel, PageData } from '../../../shared/generated';
 import { Observable } from 'rxjs';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { merge } from 'rxjs/observable/merge';
 import { startWith, switchMap, map, catchError, finalize } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

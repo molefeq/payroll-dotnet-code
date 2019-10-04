@@ -12,7 +12,8 @@ import { serverValidation } from '../../../shared/validators/server-side-validat
 import { FormHelper } from '../../../shared/utils/form-helper';
 import { FormFieldValidator } from '../../../shared/utils/form-fields-validator';
 import { finalize } from 'rxjs/operators';
-import { MatDatepicker, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
+import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
 //import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports

@@ -5,7 +5,8 @@ import {
   EmployeeAddressModel
 } from '../../shared/generated';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { merge } from 'rxjs/observable/merge';
 import { startWith, switchMap, map, catchError, finalize } from 'rxjs/operators';
 

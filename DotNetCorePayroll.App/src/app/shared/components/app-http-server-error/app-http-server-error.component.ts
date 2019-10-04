@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ServerValidationService } from '../../services/server-validation.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ServerErrorDailogComponent } from './server-error-dailog/server-error-dailog.component';
 import { Subscription } from 'rxjs/Subscription';
 

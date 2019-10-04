@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AdminUserService } from '../admin-user.service';
-import { MatDialog, MatSort, MatPaginator, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { AccountModel } from '../../../../shared/generated';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { dialogCloseResponse } from '../../../../shared/models/dialogCloseResponse';
