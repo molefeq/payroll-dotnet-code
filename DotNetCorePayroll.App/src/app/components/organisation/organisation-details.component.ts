@@ -21,8 +21,8 @@ export class OrganisationDetailsComponent implements OnInit, OnDestroy {
   @Output() searchEvent: EventEmitter<string> = new EventEmitter();
   isBusy$: Observable<boolean> = this.organisationDetailsService.isBusy$;
   totalOrganisations$: Observable<number> = this.organisationDetailsService.totalOrganisations$;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   dataSource: OrganisationModel[] = [];
 
   constructor(private organisationDetailsService: OrganisationDetailsService,

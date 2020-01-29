@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 using Serilog;
 
@@ -24,11 +24,13 @@ namespace DotNetCorePayroll.Api
             {
                 Log.Information("Host starting...");
 
-                BuildWebHost(args).Run();
+                CreateHostBuilder(args).Build().Run();
+                return 0;
             }
             catch (Exception ex)
             {
                 Log.Fatal(ex, "Host terminated unexpectedly");
+                return 1;
             }
             finally
             {
@@ -36,11 +38,12 @@ namespace DotNetCorePayroll.Api
             }
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseWebRoot("")
-                .UseStartup<Startup>()
-                .UseSerilog()
-                .Build();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+           Host.CreateDefaultBuilder(args)
+               .ConfigureWebHostDefaults(webBuilder =>
+               {
+                   webBuilder.UseStartup<Startup>();
+               })
+               .UseSerilog();
     }
 }

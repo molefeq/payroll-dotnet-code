@@ -1,0 +1,33 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 As build
+
+WORKDIR /app
+
+COPY DotNetCorePayroll.Common/*.csproj /app/DotNetCorePayroll.Common/
+COPY DotNetCorePayroll.Domain/*.csproj /app/DotNetCorePayroll.Domain/
+COPY DotNetCorePayroll.DataAccess/*.csproj /app/DotNetCorePayroll.DataAccess/
+COPY DotNetCorePayroll.PdfWriter/*.csproj /app/DotNetCorePayroll.PdfWriter/
+COPY DotNetCorePayroll.ServiceBusinessRules/*.csproj /app/DotNetCorePayroll.ServiceBusinessRules/
+COPY DotNetCorePayroll.Api/*.csproj /app/DotNetCorePayroll.Api/
+
+RUN dotnet restore DotNetCorePayroll.Api/DotNetCorePayroll.Api.csproj
+
+# copy and build app and libraries
+COPY DotNetCorePayroll.Common/ /app/DotNetCorePayroll.Common/
+COPY DotNetCorePayroll.Domain/ /app/DotNetCorePayroll.Domain/
+COPY DotNetCorePayroll.DataAccess/ /app/DotNetCorePayroll.DataAccess/
+COPY DotNetCorePayroll.PdfWriter/ /app/DotNetCorePayroll.PdfWriter/
+COPY DotNetCorePayroll.ServiceBusinessRules/ /app/DotNetCorePayroll.ServiceBusinessRules/
+COPY DotNetCorePayroll.Api/ /app/DotNetCorePayroll.Api/
+
+WORKDIR /app/DotNetCorePayroll.Api
+FROM build AS publish
+RUN dotnet publish -c release -o /publish
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+WORKDIR /publish
+COPY --from=publish /publish .
+ENTRYPOINT ["dotnet", "DotNetCorePayroll.Api.dll"]
+
+
+

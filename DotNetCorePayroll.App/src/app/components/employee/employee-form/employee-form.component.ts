@@ -50,7 +50,7 @@ export const MY_FORMATS = {
 })
 export class EmployeeFormComponent implements OnInit {
 
-  @ViewChild(MatDatepicker) dateOfBirthPicker: MatDatepicker<Date>;
+  @ViewChild(MatDatepicker, {static: true}) dateOfBirthPicker: MatDatepicker<Date>;
   apiUrl: String = EmployeeFormConstants.UPLOAD_IMAGE_URL;
   logo: logoModel;
 

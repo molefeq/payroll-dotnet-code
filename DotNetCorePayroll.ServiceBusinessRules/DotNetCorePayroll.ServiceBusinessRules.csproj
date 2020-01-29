@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.0" />
     <PackageReference Include="SqsLibraries.Common.RC.1.0.0" Version="1.0.1" />
   </ItemGroup>
 
@@ -13,23 +13,8 @@
     <ProjectReference Include="..\DotNetCorePayroll.PdfWriter\DotNetCorePayroll.PdfWriter.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Payslip.Calculator">
-      <HintPath>..\..\..\Users\bbdnet1168\source\repos\Payslip\Payslip.Sars\bin\Debug\netcoreapp2.2\Payslip.Calculator.dll</HintPath>
-    </Reference>
-    <Reference Include="Payslip.Common">
-      <HintPath>..\..\..\Users\bbdnet1168\source\repos\Payslip\Payslip.Sars\bin\Debug\netcoreapp2.2\Payslip.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Payslip.Sars">
-      <HintPath>..\..\..\Users\bbdnet1168\source\repos\Payslip\Payslip.Sars\bin\Debug\netcoreapp2.2\Payslip.Sars.dll</HintPath>
-    </Reference>
-    <Reference Include="SqsLibraries.Common">
-      <HintPath>..\..\SqsLibraries\SqsLibraries.Common\bin\Debug\netcoreapp2.0\SqsLibraries.Common.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
 </Project>

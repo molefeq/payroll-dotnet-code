@@ -1,7 +1,6 @@
 ﻿using DotNetCorePayroll.Common.Extensions;
 using DotNetCorePayroll.Data;
 using DotNetCorePayroll.DataAccess;
-using Payslip.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +13,7 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
         private static string OTHER_ALLOWANCE = "OTHER_ALLOWANCE";
         private static string RETIREMENT_ANNUITY = "RETIREMENT_ANNUITY";
 
-        private CalculatorModel calculatorModel = new CalculatorModel();
+        //private CalculatorModel calculatorModel = new CalculatorModel();
 
         public CalculatorModelBuilder() { }
 
@@ -43,96 +42,92 @@ namespace DotNetCorePayroll.ServiceBusinessRules.ModelBuilders
                 return;
             }
 
-            BuildTravelAllowance(allowances);
-            BuildOtherAllowance(allowances);
-            BuildEmployerRetirementAnnuityAContribution(benefits);
-            BuildEmployeeRetirementAnnuityAContribution(benefits);
-            BuildEmployerMedicalAidContribution(medicalAid);
-            BuildMedicalAidNumberOfDependants(medicalAid);
-            calculatorModel.BasicSalary = payrollInformation.BasicSalary;
-            calculatorModel.TravelAllowanceInclusionPercentage = travelAllowance.TaxPercentage;
-            calculatorModel.PaymentRefrequency = payrollInformation.PaymentFrequency.Frequency;
-            calculatorModel.LimitPercentageForRetirementFundsContributions = pensionFund.AnnualRemunerationPercent;
-            calculatorModel.MaximumRetirementFundsContributions = pensionFund.MaximumAmount;
-            calculatorModel.MainMemberMedicalAidCredit = mainMemberMedicalAidCredit.CreditAmount;
-            calculatorModel.FirstDependentMedicalAidCredit = firstDependantMedicalAidCredit.CreditAmount; ;
-            calculatorModel.OtherDependentMedicalAidCredit = otherDependantMedicalAidCredit.CreditAmount; ;
-            calculatorModel.SlidingScale = 0;
-            calculatorModel.TaxPercentage = 0;
-            calculatorModel.MinimumNonTaxableAmount = 0;
-            calculatorModel.TaxRebate = taxRebate.RebateAmount;
-            calculatorModel.UifLimit = uif.MaximumAmount;
+            //BuildTravelAllowance(allowances);
+            //BuildOtherAllowance(allowances);
+            //BuildEmployerRetirementAnnuityAContribution(benefits);
+            //BuildEmployeeRetirementAnnuityAContribution(benefits);
+            //BuildEmployerMedicalAidContribution(medicalAid);
+            //BuildMedicalAidNumberOfDependants(medicalAid);
+            // calculatorModel.BasicSalary = payrollInformation.BasicSalary;
+            // calculatorModel.TravelAllowanceInclusionPercentage = travelAllowance.TaxPercentage;
+            // calculatorModel.PaymentRefrequency = payrollInformation.PaymentFrequency.Frequency;
+            // calculatorModel.LimitPercentageForRetirementFundsContributions = pensionFund.AnnualRemunerationPercent;
+            // calculatorModel.MaximumRetirementFundsContributions = pensionFund.MaximumAmount;
+            // calculatorModel.MainMemberMedicalAidCredit = mainMemberMedicalAidCredit.CreditAmount;
+            // calculatorModel.FirstDependentMedicalAidCredit = firstDependantMedicalAidCredit.CreditAmount; ;
+            // calculatorModel.OtherDependentMedicalAidCredit = otherDependantMedicalAidCredit.CreditAmount; ;
+            // calculatorModel.SlidingScale = 0;
+            // calculatorModel.TaxPercentage = 0;
+            // calculatorModel.MinimumNonTaxableAmount = 0;
+            // calculatorModel.TaxRebate = taxRebate.RebateAmount;
+            // calculatorModel.UifLimit = uif.MaximumAmount;
         }
 
-        public void BuildTravelAllowance(List<EmployeeAllowance> allowances)
-        {
-            if (allowances.Count == 0)
-            {
-                calculatorModel.TravelAllowance = 0;
-                return;
-            }
+        // public void BuildTravelAllowance(List<EmployeeAllowance> allowances)
+        // {
+        //     if (allowances.Count == 0)
+        //     {
+        //         calculatorModel.TravelAllowance = 0;
+        //         return;
+        //     }
 
-            calculatorModel.TravelAllowance = allowances.Where(a => TRAVEL_ALLOWANCE.Equals(a.AllowanceType.Type)).Sum(item => item.Amount);
-        }
+        //     calculatorModel.TravelAllowance = allowances.Where(a => TRAVEL_ALLOWANCE.Equals(a.AllowanceType.Type)).Sum(item => item.Amount);
+        // }
 
-        public void BuildOtherAllowance(List<EmployeeAllowance> allowances)
-        {
-            if (allowances.Count == 0)
-            {
-                calculatorModel.TravelAllowance = 0;
-                return;
-            }
+        // public void BuildOtherAllowance(List<EmployeeAllowance> allowances)
+        // {
+        //     if (allowances.Count == 0)
+        //     {
+        //         calculatorModel.TravelAllowance = 0;
+        //         return;
+        //     }
 
-            calculatorModel.TravelAllowance = allowances.Where(a => OTHER_ALLOWANCE.Equals(a.AllowanceType.Type)).Sum(item => item.Amount);
-        }
+        //     calculatorModel.TravelAllowance = allowances.Where(a => OTHER_ALLOWANCE.Equals(a.AllowanceType.Type)).Sum(item => item.Amount);
+        // }
 
-        public void BuildEmployerRetirementAnnuityAContribution(List<EmployeeBenefit> benefits)
-        {
-            if (benefits.Count == 0)
-            {
-                calculatorModel.EmployerContribution = 0;
-                return;
-            }
+        // public void BuildEmployerRetirementAnnuityAContribution(List<EmployeeBenefit> benefits)
+        // {
+        //     if (benefits.Count == 0)
+        //     {
+        //         calculatorModel.EmployerContribution = 0;
+        //         return;
+        //     }
 
-            calculatorModel.EmployerContribution = benefits.Where(a => RETIREMENT_ANNUITY.Equals(a.Benefit.Type)).Sum(item => item.EmployerContribution);
-        }
+        //     calculatorModel.EmployerContribution = benefits.Where(a => RETIREMENT_ANNUITY.Equals(a.Benefit.Type)).Sum(item => item.EmployerContribution);
+        // }
 
-        public void BuildEmployeeRetirementAnnuityAContribution(List<EmployeeBenefit> benefits)
-        {
-            if (benefits.Count == 0)
-            {
-                calculatorModel.EmployeeContribution = 0;
-                return;
-            }
+        // public void BuildEmployeeRetirementAnnuityAContribution(List<EmployeeBenefit> benefits)
+        // {
+        //     if (benefits.Count == 0)
+        //     {
+        //         calculatorModel.EmployeeContribution = 0;
+        //         return;
+        //     }
 
-            calculatorModel.EmployeeContribution = benefits.Where(a => RETIREMENT_ANNUITY.Equals(a.Benefit.Type)).Sum(item => item.EmployeeContribution);
-        }
+        //     calculatorModel.EmployeeContribution = benefits.Where(a => RETIREMENT_ANNUITY.Equals(a.Benefit.Type)).Sum(item => item.EmployeeContribution);
+        // }
 
-        public void BuildEmployerMedicalAidContribution(EmployeeMedicalAid medicalAid)
-        {
-            if (medicalAid == null)
-            {
-                calculatorModel.EmployerMedicalAidContribution = 0;
-                return;
-            }
+        // public void BuildEmployerMedicalAidContribution(EmployeeMedicalAid medicalAid)
+        // {
+        //     if (medicalAid == null)
+        //     {
+        //         calculatorModel.EmployerMedicalAidContribution = 0;
+        //         return;
+        //     }
 
-            calculatorModel.EmployeeContribution = medicalAid.EmployerContribution;
-        }
+        //     calculatorModel.EmployeeContribution = medicalAid.EmployerContribution;
+        // }
 
-        public void BuildMedicalAidNumberOfDependants(EmployeeMedicalAid medicalAid)
-        {
-            if (medicalAid == null)
-            {
-                calculatorModel.NumberOfDependants = 0;
-                return;
-            }
+        // public void BuildMedicalAidNumberOfDependants(EmployeeMedicalAid medicalAid)
+        // {
+        //     if (medicalAid == null)
+        //     {
+        //         calculatorModel.NumberOfDependants = 0;
+        //         return;
+        //     }
 
-            calculatorModel.NumberOfDependants = medicalAid.NumberOfDependants + 1;
-        }
+        //     calculatorModel.NumberOfDependants = medicalAid.NumberOfDependants + 1;
+        // }
 
-        public CalculatorModel GetModel()
-        {
-            return calculatorModel;
-        }
     }
 }

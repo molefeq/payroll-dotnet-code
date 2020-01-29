@@ -11,8 +11,6 @@ using DotNetCorePayroll.DataAccess;
 using DotNetCorePayroll.ServiceBusinessRules.ModelAdapters;
 using DotNetCorePayroll.ServiceBusinessRules.ModelBuilders;
 using Microsoft.Extensions.Configuration;
-using Payslip.Calculator;
-using Payslip.Sars.Builders;
 using SqsLibraries.Common.Utilities.ResponseObjects;
 
 namespace DotNetCorePayroll.ServiceBusinessRules.Services.Employee
@@ -22,15 +20,13 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Employee
         private IUnitOfWork unitOfWork;
         private EmployeeBuilder employeeBuilder;
         private EmployeeAdapter employeeAdapter;
-        private ICalculateService calculateService;
+        //private ICalculateService calculateService;
 
-        public EmployeeService(IUnitOfWork unitOfWork, EmployeeBuilder employeeBuilder, EmployeeAdapter employeeAdapter,
-            ICalculateService calculateService)
+        public EmployeeService(IUnitOfWork unitOfWork, EmployeeBuilder employeeBuilder, EmployeeAdapter employeeAdapter)
         {
             this.unitOfWork = unitOfWork;
             this.employeeBuilder = employeeBuilder;
             this.employeeAdapter = employeeAdapter;
-            this.calculateService = calculateService;
         }
 
         public EmployeeModel Add(EmployeeModel employeeModel)
@@ -114,35 +110,6 @@ namespace DotNetCorePayroll.ServiceBusinessRules.Services.Employee
             unitOfWork.Save();
 
             return employeeBuilder.BuildToEmployeeModel(unitOfWork.Employee.GetById(o => o.Id == employee.Id));
-        }
-
-        public void CreatePaySlip(long employeeId)
-        {
-            var employee = unitOfWork.Employee.GetById(o => o.Id == employeeId);
-
-            var builder = new CalculatorModelBuilder();
-            var sarsPayslipBuilder = new SarsPayslipBuilder(calculateService);
-            var sarsTaxIncomeBuilder = new SarsTaxIncomeBuilder();
-            var payslipPdfModelBuilder = new PayslipPdfModelBuilder();
-
-            builder.buildCalculatorModel(employee: employee, unitOfWork: unitOfWork);
-            sarsTaxIncomeBuilder.buildSarsTaxIncomeTable(unitOfWork: unitOfWork);
-
-            var calculatorModel = builder.GetModel();
-            var sarsTaxIncomeTable = sarsTaxIncomeBuilder.GetSarsTaxIncomeTable();
-
-            sarsPayslipBuilder.buildPayslip(calculatorModel, sarsTaxIncomeTable);
-
-            var payslipCalculation = sarsPayslipBuilder.getPayslip();
-
-            payslipPdfModelBuilder.Build(employee: employee, payslipInformation: payslipCalculation);
-            payslipPdfModelBuilder.BuildCompanyDetail(company: employee.Company);
-            payslipPdfModelBuilder.BuildEmployeeDetail(employee: employee);
-            payslipPdfModelBuilder.BuildIncomeDetails(employee: employee);
-            payslipPdfModelBuilder.BuildDeductionDetails(employee: employee, payslipInformation: payslipCalculation);
-            payslipPdfModelBuilder.BuildContibutions(employee: employee, payslipInformation: payslipCalculation);
-
-            var payslip = payslipPdfModelBuilder.GetPayslipPdfModel();
         }
 
         public void MapRelativeLogoPath(EmployeeModel employeeModel, IConfiguration configuration, string currentUrl)

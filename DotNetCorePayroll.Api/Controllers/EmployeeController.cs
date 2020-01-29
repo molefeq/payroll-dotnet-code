@@ -19,9 +19,9 @@ namespace DotNetCorePayroll.Api.Controllers
     public class EmployeeController : Controller
     {
         private IConfiguration configuration;
-        private IHostingEnvironment environment;
+        private IWebHostEnvironment environment;
 
-        public EmployeeController(IConfiguration configuration, IHostingEnvironment environment)
+        public EmployeeController(IConfiguration configuration, IWebHostEnvironment environment)
         {
             this.configuration = configuration;
             this.environment = environment;

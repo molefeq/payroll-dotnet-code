@@ -25,8 +25,8 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   isBusy$: Observable<boolean> = this.adminUserService.isBusy$;
 
   @Output() searchEvent: EventEmitter<string> = new EventEmitter();
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   dataSource$: Observable<AccountModel[]>;
 
   constructor(private adminUserService: AdminUserService, private dialog: MatDialog) {

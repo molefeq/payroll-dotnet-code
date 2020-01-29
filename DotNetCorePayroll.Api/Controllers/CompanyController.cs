@@ -22,9 +22,9 @@ namespace DotNetCorePayroll.Api.Controllers
         private ICompanyService companyService;
 
         private IConfiguration configuration;
-        private IHostingEnvironment environment;
+        private IWebHostEnvironment environment;
 
-        public CompanyController(ICompanyService companyService, IConfiguration configuration, IHostingEnvironment environment)
+        public CompanyController(ICompanyService companyService, IConfiguration configuration, IWebHostEnvironment environment)
         {
             this.companyService = companyService;
             this.configuration = configuration;

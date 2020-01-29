@@ -25,8 +25,8 @@ export class RolesDetailsComponent implements OnInit, OnDestroy {
   isBusy$: Observable<boolean> = this.adminRoleService.isBusy$;
 
   @Output() searchEvent: EventEmitter<string> = new EventEmitter();
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   dataSource: RoleModel[] = [];
 
   constructor(private adminRoleService: AdminRoleService, private dialog: MatDialog) {

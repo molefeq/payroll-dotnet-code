@@ -25,9 +25,9 @@ namespace DotNetCorePayroll.Api.Controllers
     {
         private IOgranisationService ogranisationService;
         private IConfiguration configuration;
-        private IHostingEnvironment environment;
+        private IWebHostEnvironment environment;
 
-        public OrganisationController(IOgranisationService ogranisationService, IConfiguration configuration, IHostingEnvironment environment)
+        public OrganisationController(IOgranisationService ogranisationService, IConfiguration configuration, IWebHostEnvironment environment)
         {
             this.ogranisationService = ogranisationService;
             this.configuration = configuration;
