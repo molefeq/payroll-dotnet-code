@@ -25,12 +25,10 @@ namespace DotNetCorePayroll.Api
                 Log.Information("Host starting...");
 
                 CreateHostBuilder(args).Build().Run();
-                return 0;
             }
             catch (Exception ex)
             {
                 Log.Fatal(ex, "Host terminated unexpectedly");
-                return 1;
             }
             finally
             {
@@ -43,7 +41,7 @@ namespace DotNetCorePayroll.Api
                .ConfigureWebHostDefaults(webBuilder =>
                {
                    webBuilder.UseStartup<Startup>();
-               })
-               .UseSerilog();
+                   webBuilder.UseSerilog();
+               });
     }
 }

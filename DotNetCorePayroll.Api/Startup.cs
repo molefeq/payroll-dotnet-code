@@ -56,12 +56,12 @@ namespace DotNetCorePayroll.Api
             services.AddAuthorization();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Zenit Payroll API V1",
                     Version = "v1",
                     Description = "Zenit Payroll Web API written in ASP.NET Core Web API",
-                    Contact = new Contact { Name = "Qinisela Molefe", Email = "molefeq@gmail.com", Url = "https://www.codeassembly.co.za" },
+                    Contact = new OpenApiContact { Name = "Qinisela Molefe", Email = "molefeq@gmail.com", Url = new Uri("https://www.codeassembly.co.za") },
                 });
 
                 //// Set the comments path for the Swagger JSON and UI.
